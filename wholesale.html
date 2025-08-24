@@ -1,5 +1,4 @@
-<html lang="vi"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon">
-const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass4qKYdS2C3PZtIVdRhlQp3rICd2a8H4f5qhOeGaq6dEvfiROLue2qjARA/exec";</script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
+<html lang="vi"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ANARO — Bảng Giá Sỉ Cà Phê</title>
@@ -459,7 +458,7 @@ const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass
       }
     }
   </style>
-<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><style type="text/css">.index-module_type__E-SaG::after {
+<style type="text/css">.index-module_type__E-SaG::after {
   content: '|';
   animation: index-module_cursor__PQg0P 1.1s infinite step-start;
 }
@@ -469,7 +468,6 @@ const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass
     opacity: 0;
   }
 }
-</style><style id="
 </style>  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -496,9 +494,9 @@ const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass
         <h1>☕ ANARO COFFEE WHOLESALE</h1>
       </div>
       <nav class="nav" role="navigation">
-        <a class="btn btn-home" href="https://anarocafe.vercel.app">🏠 Về trang chủ</a>
+        <a class="btn btn-home" href="https://anarocafe-vert.vercel.app/">🏠 Về trang chủ</a>
         <a class="btn" href="#wholesale-form">📝 Đăng ký tư vấn</a>
-        <a class="btn btn-primary" href="https://anarocafe.vercel.app/index-cart.html">🛒 Mua lẻ</a>
+        <a class="btn btn-primary" href="https://anarocafe-vert.vercel.app/index-cart.html">🛒 Mua lẻ</a>
       </nav>
     </div>
   </header>
@@ -605,6 +603,22 @@ const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass
 
     <!-- Form đăng ký -->
     <section class="section" id="wholesale-form">
+<h2 class="section-title">📝 ĐĂNG KÝ TƯ VẤN / NHẬN MẪU</h2>
+      <div class="form-container">
+        <form id="leadForm">
+          <input name="name" type="text" placeholder="Tên quán / người liên hệ *" required>
+          <input name="phone" type="text" placeholder="Số điện thoại *" required>
+          <input name="email" type="email" placeholder="Email (không bắt buộc)">
+          <select name="interest">
+            <option value="">Quan tâm (Arabica/Robusta/Blend...)</option>
+            <option>Arabica</option><option>Robusta</option><option>Blend 2:8</option><option>Blend 3:7</option><option>Blend 5:5</option>
+          </select>
+          <textarea name="note" placeholder="Nhu cầu / sản lượng / máy pha / hương vị mong muốn"></textarea>
+          <label class="checkbox-container"><input type="checkbox" required> Tôi đồng ý được ANARO liên hệ tư vấn.</label>
+          <button class="submit-btn" type="submit">Gửi thông tin</button>
+          <div id="formMsg">✅ Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.</div>
+        </form>
+      </div>
       
       
       
@@ -671,7 +685,7 @@ const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass
     const form = document.getElementById('leadForm');
     const formMsg = document.getElementById('formMsg');
     
-    form.addEventListener('submit', async (e) => {
+    if (form) form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const formData = new FormData(form);
