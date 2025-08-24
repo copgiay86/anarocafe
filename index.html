@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+  Modified index page for ANARO Coffee.
+  This version separates CSS and JavaScript into their own files, adds a canonical
+  link, improves accessibility, and sets up the page for better SEO. A noscript
+  fallback is provided so the catalog still contains useful information when
+  JavaScript is disabled.
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANARO Coffee Collection – Danh mục &amp; Bảng giá | Cà phê rang xay tươi</title>
+
+    <!-- Canonical URL to avoid duplicate content -->
+    <link rel="canonical" href="https://anarocafe.vercel.app/">
+
+    <!-- Basic SEO tags -->
+    <meta name="description"
+          content="Khám phá bộ sưu tập cà phê ANARO với Arabica, Robusta và các blend độc đáo. Rang tươi hàng ngày, giao hàng toàn quốc.">
+    <meta name="keywords"
+          content="cà phê ANARO, Arabica, Robusta, blend cà phê, cà phê phin, espresso, pour over">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="ANARO Coffee Collection – Danh mục &amp; Bảng giá">
+    <meta property="og:description" content="Cà phê rang tươi chất lượng cao từ các vùng trồng nổi tiếng Việt Nam.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anarocafe.vercel.app/">
+    <meta property="og:image" content="https://anarocafe.vercel.app/images/anaro-coffee-collection.jpg">
+    <meta property="og:locale" content="vi_VN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ANARO Coffee Collection – Danh mục &amp; Bảng giá">
+    <meta name="twitter:description" content="Cà phê rang tươi chất lượng cao từ Việt Nam">
+    <meta name="twitter:image" content="https://anarocafe.vercel.app/images/anaro-coffee-collection.jpg">
+
+    <!-- Structured data describing the store -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "ANARO Coffee",
+        "url": "https://anarocafe.vercel.app/",
+        "description": "Cà phê rang xay tươi chất lượng cao từ các vùng trồng nổi tiếng Việt Nam",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "58 Đa Phước",
+          "addressLocality": "Bình Chánh",
+          "addressRegion": "TP HCM",
+          "addressCountry": "VN"
+        },
+        "telephone": "+84918337071",
+        "email": "anmy1909@gmail.com",
+        "priceRange": "₫₫"
+      }
+    </script>
+
+    <!-- External CSS: defines the colour palette, layout and responsive rules -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- Skip link for assistive technology -->
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+    <!-- Header with logo and navigation.  The navigation toggle has been kept simple -->
+    <header class="header" role="banner">
+      <div class="header-container">
+        <h1 class="site-title">☕ ANARO COFFEE COLLECTION</h1>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menuPanel" aria-label="Mở menu điều hướng">☰ Menu</button>
+      </div>
+      <nav id="menuPanel" class="menu-panel" role="navigation" aria-label="Menu chính">
+        <a class="btn" href="faq.html" aria-describedby="faq-desc">❓ Câu hỏi thường gặp</a>
+        <span id="faq-desc" class="sr-only">Xem các câu hỏi thường gặp về sản phẩm</span>
+        <a class="btn" href="blog.html" aria-describedby="blog-desc">Blog cà phê</a>
+        <span id="blog-desc" class="sr-only">Đọc bài viết về cà phê và kiến thức pha chế</span>
+        <a class="btn" href="wholesale.html" aria-describedby="contact-desc">Giá sỉ cho quán</a>
+        <span id="contact-desc" class="sr-only">Thông tin liên hệ và hỗ trợ khách hàng</span>
+        <a class="btn btn-primary" href="index-cart.html" aria-describedby="cart-desc">Mua hàng</a>
+        <span id="cart-desc" class="sr-only">Xem giỏ hàng và thanh toán</span>
+        <div class="divider" role="separator" aria-hidden="true"></div>
+        <!-- Product filters: all/light/balanced/strong -->
+        <div id="filters" class="filters" role="tablist" aria-label="Bộ lọc sản phẩm">
+          <button class="filter-btn" data-category="all" aria-pressed="false" role="tab" aria-describedby="filter-all-desc">Tất cả</button>
+          <span id="filter-all-desc" class="sr-only">Hiển thị tất cả sản phẩm</span>
+          <button class="filter-btn" data-category="light" aria-pressed="false" role="tab" aria-describedby="filter-light-desc">Êm nhẹ – Thanh</button>
+          <span id="filter-light-desc" class="sr-only">Hiển thị sản phẩm có vị êm nhẹ và thanh</span>
+          <button class="filter-btn" data-category="balanced" aria-pressed="false" role="tab" aria-describedby="filter-balanced-desc">Cân bằng – Tròn vị</button>
+          <span id="filter-balanced-desc" class="sr-only">Hiển thị sản phẩm có vị cân bằng và tròn</span>
+          <button class="filter-btn" data-category="strong" aria-pressed="false" role="tab" aria-describedby="filter-strong-desc">Đậm mạnh – Hậu dài</button>
+          <span id="filter-strong-desc" class="sr-only">Hiển thị sản phẩm có vị đậm mạnh và hậu dài</span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main content: catalog will be rendered dynamically. tabindex makes it focusable for announcement -->
+    <main id="main-content" class="catalog-container" role="main" aria-label="Danh mục sản phẩm cà phê">
+      <div id="catalog" role="region" tabindex="-1" aria-live="polite" aria-label="">
+        <!-- JavaScript will inject the catalog here -->
+      </div>
+      <noscript>
+        <!-- Fallback content when JavaScript is disabled -->
+        <p>Trang này yêu cầu JavaScript để hiển thị danh mục sản phẩm. Bạn có thể xem <a href="products.json">danh sách sản phẩm dạng JSON</a> hoặc liên hệ trực tiếp để được tư vấn.</p>
+      </noscript>
+    </main>
+
+    <!-- Footer with basic information -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-container">
+        <p>&copy; 2025 ANARO Coffee. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for interactive functionality is loaded with defer so it executes after parsing -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
