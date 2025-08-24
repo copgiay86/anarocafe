@@ -77,8 +77,14 @@
   <div class="wrap">
     <header class="site-header">
       <h1>☕ ANARO COFFEE — Thanh toán</h1>
-      <a class="btn" href="index-cart.html">← Tiếp tục mua</a>
-    </header>
+      <a class="btn" href="index.html">← Tiếp tục mua</a>
+    
+<nav class="site-nav" aria-label="Chính">
+    <a href="index-cart.html">Mua lẻ</a>
+    <a href="wholesale.html">Giá sỉ</a>
+    <a href="checkout.html">Thanh toán</a>
+  </nav>
+</header>
 
     <div class="grid">
       <!-- LEFT: Customer Info -->
@@ -182,7 +188,7 @@
         <strong>Mã đơn hàng của bạn: <span id="successOrderCode"></span></strong>
       </div>
       <div class="row">
-        <a class="btn" href="index-cart.html">← Tiếp tục mua</a>
+        <a class="btn" href="index.html">← Tiếp tục mua</a>
         <a id="okZalo" class="btn" target="_blank" rel="noopener">Zalo</a>
         <a id="okMsg" class="btn" target="_blank" rel="noopener">Messenger</a>
         <a id="okFan" class="btn" target="_blank" rel="noopener">Fanpage</a>
@@ -276,7 +282,8 @@
     // ====== Config ======
     const FORM_EMAIL = "anmy1909@gmail.com";
     const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL);
-    const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass4qKYdS2C3PZtIVdRhlQp3rICd2a8H4f5qhOeGaq6dEvfiROLue2qjARA/exec";
+    const GS_ENDPOINT = GOOGLE_SHEETS_URL;
+const GOOGLE_SHEETS_URL = GOOGLE_SHEETS_URL;
 
     const SOCIAL_LINKS = {
       zalo: "https://zalo.me/84918337071",
@@ -630,13 +637,13 @@
 
         try{
           const sheetsResult = await sendToGoogleSheets(orderData);
-          /* log removed */('Sheets OK:', sheetsResult);
+          console.log('Sheets OK:', sheetsResult);
           sheetsSuccess = true;
         }catch(e){ sheetsError = e; console.error('Sheets ERR:', e); }
 
         try{
           const emailResult = await sendOrderByEmail(orderData);
-          /* log removed */('Email OK:', emailResult);
+          console.log('Email OK:', emailResult);
           emailSuccess = true;
         }catch(e){ emailError = e; console.error('Email ERR:', e); }
 
