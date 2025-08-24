@@ -68,23 +68,13 @@
       .copy-group{width:100%}
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
   <div class="wrap">
-    <header class="site-header">
+    <header>
       <h1>☕ ANARO COFFEE — Thanh toán</h1>
       <a class="btn" href="index.html">← Tiếp tục mua</a>
-    
-<nav class="site-nav" aria-label="Chính">
-    <a href="index-cart.html">Mua lẻ</a>
-    <a href="wholesale.html">Giá sỉ</a>
-    <a href="checkout.html">Thanh toán</a>
-  </nav>
-</header>
+    </header>
 
     <div class="grid">
       <!-- LEFT: Customer Info -->
@@ -176,7 +166,7 @@
       </section>
     </div>
 
-    <footer class="site-footer">ANARO COFFEE · © 2025</footer>
+    <footer>ANARO COFFEE · © 2025</footer>
   </div>
 
   <!-- Success popup -->
@@ -282,8 +272,7 @@
     // ====== Config ======
     const FORM_EMAIL = "anmy1909@gmail.com";
     const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL);
-    const GS_ENDPOINT = GOOGLE_SHEETS_URL;
-    const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass4qKYdS2C3PZtIVdRhlQp3rICd2a8H4f5qhOeGaq6dEvfiROLue2qjARA/exec"
+    const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzNeAQvdDfass4qKYdS2C3PZtIVdRhlQp3rICd2a8H4f5qhOeGaq6dEvfiROLue2qjARA/exec";
 
     const SOCIAL_LINKS = {
       zalo: "https://zalo.me/84918337071",
@@ -374,7 +363,12 @@
       try{
         const m = location.hash.match(/[#&]p=([^&]+)/);
         if(!m) return null;
-        const json = decodeURIComponent(escape(atob(m[1])));
+        let b64 = m[1];
+        // sanitize base64: strip spaces, URL-safe chars, and pad to length % 4 == 0
+        b64 = b64.replace(/\s/g,'').replace(/-/g,'+').replace(/_/g,'/');
+        const pad = b64.length % 4;
+        if (pad) b64 += '='.repeat(4 - pad);
+        const json = decodeURIComponent(escape(atob(b64)));
         return JSON.parse(json);
       }catch(e){
         return {
@@ -547,7 +541,7 @@
           window[callbackName] = function(response){
             delete window[callbackName];
             if(script.parentNode) document.head.removeChild(script);
-            if(response && (response.success || response.result==='success')){
+            if(response && (response.success || response.result==='success' || response.status==='success' || response.ok===true || response==='success' || (typeof response==='object' && !response.error))){
               resolve(response);
             } else {
               reject(new Error(response ? (response.message || response.error || 'Unknown error') : 'Unknown error from Google Sheets'));
