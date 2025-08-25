@@ -1,6 +1,6 @@
 /*
-  Stylesheet for the upgraded ANARO Coffee site.
-  This file defines colour variables, layout rules and responsive behaviour.
+  Complete stylesheet for ANARO Coffee website
+  Includes original styles + new footer styles
 */
 
 :root {
@@ -211,8 +211,8 @@ body {
   text-align: right;
 }
 
-/* Footer */
-.footer {
+/* OLD FOOTER - REPLACED WITH NEW DESIGN BELOW */
+/* .footer {
   background: var(--white);
   border-top: 1px solid var(--border);
   padding: 1rem;
@@ -223,6 +223,202 @@ body {
   text-align: center;
   color: var(--secondary);
   font-size: 0.9rem;
+} */
+
+/* =================== NEW FOOTER STYLES =================== */
+.footer-container {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+  padding: 2rem 1rem 1rem;
+  margin-top: 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.footer-info h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.footer-info p {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.contact-item:hover,
+.contact-item:focus {
+  background: var(--light);
+  border-color: var(--border);
+}
+
+.contact-item .icon {
+  font-size: 1rem;
+  width: 1.25rem;
+  text-align: center;
+}
+
+.social-section h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  border: 2px solid transparent;
+}
+
+.social-link.facebook {
+  background-color: #1877f2;
+}
+
+.social-link.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-link.tiktok {
+  background-color: #000000;
+}
+
+.social-link:hover,
+.social-link:focus {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.map-container {
+  position: relative;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 150px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+  font-size: 0.75rem;
+  z-index: 2;
+}
+
+.map-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  color: var(--text);
+}
+
+.map-placeholder:hover,
+.map-placeholder:focus {
+  background: var(--bg);
+}
+
+.map-placeholder span {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.map-placeholder small {
+  color: var(--secondary);
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+.heart {
+  color: #e74c3c;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+/* =================== END FOOTER STYLES =================== */
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Responsive adjustments */
@@ -239,5 +435,27 @@ body {
   }
   .filters {
     width: 100%;
+  }
+
+  /* Footer responsive */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-info {
+    gap: 0.5rem;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .map-container {
+    height: 120px;
+  }
+
+  .footer-info h3 {
+    font-size: 1.25rem;
   }
 }
