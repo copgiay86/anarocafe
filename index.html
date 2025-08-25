@@ -107,17 +107,88 @@
     </main>
 
     <!-- Footer with basic information -->
-    <footer class="footer" role="contentinfo">
-      <div class="footer-container">
-        <p>&copy; 2025 ANARO Coffee. Tất cả quyền được bảo lưu.</p>
-      </div>
-    </footer>
+    <div class="footer-container" bis_skin_checked="1">
+        <div class="footer-content" bis_skin_checked="1">
+            
+            <!-- COMPANY INFORMATION -->
+            <div class="footer-info" bis_skin_checked="1">
+                <h3>☕ ANARO Coffee</h3>
+                <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê được tuyển chọn kỹ lưỡng từ các vùng trồng nổi tiếng Việt Nam.</p>
+                
+                <!-- Contact Information -->
+                <div class="contact-info" bis_skin_checked="1">
+                    <!-- Địa chỉ -->
+                    <div class="contact-item" onclick="openGoogleMaps()" bis_skin_checked="1">
+                        <span class="icon">📍</span>
+                        <span>78 Đa Phước Bình Chánh TP.HCM</span>
+                    </div>
+                    
+                    <!-- Số điện thoại -->
+                    <div class="contact-item" onclick="makePhoneCall()" bis_skin_checked="1">
+                        <span class="icon">📞</span>
+                        <span>0918337071</span>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="contact-item" onclick="sendEmail()" bis_skin_checked="1">
+                        <span class="icon">✉️</span>
+                        <span>anmy1909@gmail.com</span>
+                    </div>
+                    
+                    <!-- Giờ mở cửa -->
+                    <div class="contact-item" bis_skin_checked="1">
+                        <span class="icon">🕐</span>
+                        <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
+                    </div>
+                </div>
+            </div>
 
-    <!-- JavaScript for interactive functionality is loaded with defer so it executes after parsing -->
-    <script src="script.js" defer></script>
-<link rel="stylesheet" href="assets/footer.css">
-<div data-include="footer"></div>
-<script src="assets/footer.js" defer></script>
+            <!-- SOCIAL MEDIA & MAP -->
+            <div class="social-section" bis_skin_checked="1">
+                <h4>Kết nối với ANARO Coffee</h4>
+                
+                <!-- Social Media Links -->
+                <div class="social-links" bis_skin_checked="1">
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/anarocoffee" class="social-link facebook" title="Theo dõi ANARO Coffee trên Facebook" target="_blank" onclick="trackSocialClick('facebook')" style="transform: translateY(0px) scale(1);">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/anarocoffee" class="social-link instagram" title="Theo dõi ANARO Coffee trên Instagram" target="_blank" onclick="trackSocialClick('instagram')" style="transform: translateY(0px) scale(1);">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <!-- TikTok -->
+                    <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" title="Theo dõi ANARO Coffee trên TikTok" target="_blank" onclick="trackSocialClick('tiktok')">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+
+                <!-- Google Map -->
+                <div class="map-container" bis_skin_checked="1">
+                    <div class="map-overlay" bis_skin_checked="1">ANARO Coffee Store</div>
+                    <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ" bis_skin_checked="1">
+                        <div bis_skin_checked="1">
+                            <div bis_skin_checked="1">
+                                <span>📍</span>
+                                Nhấn để xem bản đồ
+                            </div>
+                            <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COPYRIGHT SECTION -->
+        <div class="footer-bottom" bis_skin_checked="1">
+            <p>
+                © 2025 ANARO Coffee. All rights reserved. | 
+                Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+            </p>
+        </div>
+    </div>
 
   </body>
 </html>
