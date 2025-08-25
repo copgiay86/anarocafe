@@ -9,7 +9,6 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
   <link rel="stylesheet" href="blog.css">
-  <script defer src="blog.js"></script>
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -23,10 +22,9 @@
   </div>
 </header>
 
-
   <main class="main">
     <div class="container">
-      <div class="status" id="status" aria-live="polite"></div>
+      <div class="status" id="status" aria-live="polite">Đang tải...</div>
       <div id="post-root"></div>
     </div>
   </main>
@@ -69,13 +67,48 @@
     </div>
   </div>
 </footer>
+
 <script>
-function openGoogleMaps(){ const address=encodeURIComponent("58 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); }
-function makePhoneCall(){ const p='0918337071'; window.location.href=`tel:${p}`; }
-function sendEmail(){ const email='anmy1909@gmail.com'; const subject=encodeURIComponent('Liên hệ từ website ANARO Coffee'); const body=encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); window.location.href=`mailto:${email}?subject=${subject}&body=${body}`; }
-function trackSocialClick(p){ console.log('Social media clicked:',p); }
+function openGoogleMaps(){ 
+  const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
+  window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
+}
+function makePhoneCall(){ 
+  const p = '0918337071'; 
+  window.location.href = `tel:${p}`; 
+}
+function sendEmail(){ 
+  const email = 'anmy1909@gmail.com'; 
+  const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
+  const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
+  window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
+}
+function trackSocialClick(p){ 
+  console.log('Social media clicked:', p); 
+}
 </script>
 
-  <script>window.addEventListener("DOMContentLoaded", Blog.renderSinglePost);</script>
+<!-- Load blog script và khởi chạy -->
+<script src="blog.js"></script>
+<script>
+// Đảm bảo script đã load xong trước khi gọi
+function initSinglePost() {
+  if (typeof window.Blog !== 'undefined' && window.Blog.renderSinglePost) {
+    console.log('[Blog] Initializing single post...');
+    window.Blog.renderSinglePost();
+  } else {
+    console.warn('[Blog] Blog object not ready, retrying...');
+    setTimeout(initSinglePost, 100);
+  }
+}
+
+// Chạy khi DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSinglePost);
+} else {
+  initSinglePost();
+}
+</script>
+
 </body>
 </html>
