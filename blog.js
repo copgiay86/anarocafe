@@ -1,6 +1,6 @@
 /* GitHub-backed blog loader with card badges and responsive grid */
 const OWNER = "copgiay86";
-const REPO  = "anarocafe";
+const REPO  = "anarocafe-vert";
 const BRANCH = "main";
 const POSTS_DIR = "posts";
 const GITHUB_LIST_API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${POSTS_DIR}?ref=${BRANCH}`;
