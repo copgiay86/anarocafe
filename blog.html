@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog — ANARO Coffee</title>
+  <meta name="description" content="Blog cà phê ANARO: chia sẻ kinh nghiệm pha chế, rang xay, kinh doanh quán.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <link rel="stylesheet" href="blog.css">
+  <script defer src="blog.js"></script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+  <div class="container">
+    <a class="brand" href="index-cart.html">ANARO COFFEE</a>
+    <nav class="site-nav" aria-label="Chính">
+      <a href="index-cart.html">Mua lẻ</a>
+      <a href="wholesale.html">Giá sỉ</a>
+      <a href="checkout.html">Thanh toán</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main class="main">
+    <div class="container">
+      <h1 class="page-title">Blog cà phê</h1>
+      <p class="status" id="status" aria-live="polite"></p>
+
+      <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết"></section>
+      <div class="morewrap"><button id="moreBtn" aria-label="Xem thêm bài">Xem thêm</button></div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>☕ ANARO Coffee</h3>
+        <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
+        <div class="contact-info">
+          <div class="contact-item" onclick="openGoogleMaps()"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
+          <div class="contact-item" onclick="makePhoneCall()"><span class="icon">📞</span><span>0918337071</span></div>
+          <div class="contact-item" onclick="sendEmail()"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
+          <div class="contact-item"><span class="icon">🕐</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
+        </div>
+      </div>
+      <div class="social-section">
+        <h4>Kết nối với ANARO Coffee</h4>
+        <div class="social-links">
+          <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="map-container">
+          <div class="map-overlay">ANARO Coffee Store</div>
+          <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ">
+            <div>
+              <div><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
+              <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+    </div>
+  </div>
+</footer>
+<script>
+function openGoogleMaps(){ const address=encodeURIComponent("58 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); }
+function makePhoneCall(){ const p='0918337071'; window.location.href=`tel:${p}`; }
+function sendEmail(){ const email='anmy1909@gmail.com'; const subject=encodeURIComponent('Liên hệ từ website ANARO Coffee'); const body=encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); window.location.href=`mailto:${email}?subject=${subject}&body=${body}`; }
+function trackSocialClick(p){ console.log('Social media clicked:',p); }
+</script>
+
+  <script>window.addEventListener("DOMContentLoaded", Blog.renderBlogList);</script>
+</body>
+</html>
