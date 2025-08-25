@@ -107,10 +107,16 @@
     </main>
 
     <!-- Footer with basic information -->
-<!-- Shared footer include -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-container">
+        <p>&copy; 2025 ANARO Coffee. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for interactive functionality is loaded with defer so it executes after parsing -->
+    <script src="script.js" defer></script>
 <link rel="stylesheet" href="assets/footer.css">
-<div data-include-footer></div>
-<script>window.ANARO_FOOTER_URL = 'partials/footer.html';</script>
+<div data-include="footer"></div>
 <script src="assets/footer.js" defer></script>
 
   </body>
