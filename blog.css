@@ -349,3 +349,120 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;c
         padding: 20px;
     }
 }
+/* ===== TABLE STYLES - Thêm vào cuối file blog.css ===== */
+
+/* Table wrapper */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Basic table styles */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  font-size: 0.95em;
+}
+
+.info-table th,
+.info-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.info-table th {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--border) 100%);
+  color: var(--brand);
+  font-weight: 600;
+  border-bottom: 2px solid var(--brand);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.info-table tbody tr:hover {
+  background: var(--ink);
+}
+
+.info-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Striped rows */
+.info-table tbody tr:nth-child(even) {
+  background: rgba(248, 235, 221, 0.3);
+}
+
+.info-table tbody tr:nth-child(even):hover {
+  background: var(--ink);
+}
+
+/* Responsive table - Mobile */
+@media (max-width: 768px) {
+  .table-wrapper {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  .info-table,
+  .info-table thead,
+  .info-table tbody,
+  .info-table th,
+  .info-table td,
+  .info-table tr {
+    display: block;
+  }
+  
+  .info-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .info-table tr {
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 8px;
+  }
+  
+  .info-table td {
+    border: none;
+    position: relative;
+    padding: 8px 8px 8px 45% !important;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9em;
+  }
+  
+  .info-table td:before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 8px;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--brand);
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  
+  .info-table td:last-child {
+    border-bottom: none;
+  }
+}
