@@ -3,115 +3,411 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog — ANARO Coffee</title>
-  <meta name="description" content="Blog cà phê ANARO: chia sẻ kinh nghiệm pha chế, rang xay, kinh doanh quán.">
+  <title>Blog - ANARO Coffee</title>
+  <meta name="description" content="Blog cà phê ANARO: chia sẻ kinh nghiệm pha chế, rang xay, kinh doanh quán cà phê và những câu chuyện thú vị về văn hóa cà phê Việt Nam.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
   <link rel="stylesheet" href="blog.css">
+  
+  <!-- Enhanced meta tags for SEO -->
+  <meta property="og:title" content="Blog ANARO Coffee - Chia sẻ kiến thức cà phê">
+  <meta property="og:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ANARO Coffee">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog ANARO Coffee">
+  <meta name="twitter:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
 </head>
 <body>
   <header class="site-header" role="banner">
-  <div class="container">
-    <a class="brand" href="index-cart.html">ANARO COFFEE</a>
-    <nav class="site-nav" aria-label="Chính">
-      <a href="index-cart.html">Mua lẻ</a>
-      <a href="wholesale.html">Giá sỉ</a>
-      <a href="checkout.html">Thanh toán</a>
-    </nav>
-  </div>
-</header>
+    <div class="container">
+      <a class="brand" href="index-cart.html">ANARO COFFEE</a>
+      <nav class="site-nav" aria-label="Chính">
+        <a href="index-cart.html">Mua lẻ</a>
+        <a href="wholesale.html">Giá sỉ</a>
+        <a href="checkout.html">Thanh toán</a>
+        <a href="blog.html" class="active">Blog</a>
+      </nav>
+    </div>
+  </header>
 
   <main class="main">
     <div class="container">
-      <h1 class="page-title">Blog cà phê</h1>
+      <!-- Hero section -->
+      <div class="blog-hero" style="margin-bottom: 2rem;">
+        <h1 class="page-title">Blog cà phê ANARO</h1>
+        <p class="blog-intro" style="color: var(--muted); font-size: 1.1rem; max-width: 600px;">
+          Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay, và văn hóa cà phê Việt Nam.
+        </p>
+      </div>
+
+      <!-- Filter and search section -->
+      <div class="blog-controls" style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <div class="search-box" style="flex: 1; min-width: 300px;">
+          <input type="text" id="search-input" placeholder="Tìm kiếm bài viết..." 
+                 style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: var(--white);">
+        </div>
+        <div class="filter-tags" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="filter-tag active" data-tag="all" 
+                  style="padding: 8px 16px; border: 1px solid var(--border); background: var(--brand); color: white; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+            Tất cả
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading and status -->
       <p class="status" id="status" aria-live="polite">Đang tải...</p>
 
+      <!-- Stats section -->
+      <div id="blog-stats" style="display: none; margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted);">
+          <span><span style="margin-right: 4px;">📝</span><span id="total-posts">0</span> bài viết</span>
+          <span><span style="margin-right: 4px;">🔥</span><span id="popular-posts">0</span> bài phổ biến</span>
+          <span><span style="margin-right: 4px;">✨</span><span id="new-posts">0</span> bài mới</span>
+        </div>
+      </div>
+
+      <!-- Blog grid -->
       <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết"></section>
-      <div class="morewrap"><button id="moreBtn" aria-label="Xem thêm bài" style="display:none">Xem thêm</button></div>
+      
+      <!-- Load more button -->
+      <div class="morewrap">
+        <button id="moreBtn" aria-label="Xem thêm bài" style="display:none">
+          <span>Xem thêm</span>
+          <span id="remaining-count" style="font-size: 0.8rem; opacity: 0.8;"></span>
+        </button>
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" style="display: none; text-align: center; padding: 3rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+        <h3 style="color: var(--brand); margin-bottom: 1rem;">Chưa có bài viết nào</h3>
+        <p style="color: var(--muted);">Hãy quay lại sau để đọc những bài viết mới nhất về cà phê!</p>
+      </div>
+
+      <!-- No results state -->
+      <div id="no-results" style="display: none; text-align: center; padding: 3rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+        <h3 style="color: var(--brand); margin-bottom: 1rem;">Không tìm thấy kết quả</h3>
+        <p style="color: var(--muted);">Thử tìm kiếm với từ khóa khác hoặc bỏ bộ lọc.</p>
+        <button onclick="clearFilters()" style="margin-top: 1rem; padding: 8px 16px; background: var(--brand); color: white; border: none; border-radius: 6px; cursor: pointer;">
+          Xóa bộ lọc
+        </button>
+      </div>
     </div>
   </main>
 
   <!-- FOOTER -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <h3>☕ ANARO Coffee</h3>
-        <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
-        <div class="contact-info">
-          <div class="contact-item" onclick="openGoogleMaps()"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
-          <div class="contact-item" onclick="makePhoneCall()"><span class="icon">📞</span><span>0918337071</span></div>
-          <div class="contact-item" onclick="sendEmail()"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
-          <div class="contact-item"><span class="icon">🕐</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>☕ ANARO Coffee</h3>
+          <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
+          <div class="contact-info">
+            <div class="contact-item" onclick="openGoogleMaps()"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
+            <div class="contact-item" onclick="makePhoneCall()"><span class="icon">📞</span><span>0918337071</span></div>
+            <div class="contact-item" onclick="sendEmail()"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
+            <div class="contact-item"><span class="icon">🕒</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
+          </div>
         </div>
-      </div>
-      <div class="social-section">
-        <h4>Kết nối với ANARO Coffee</h4>
-        <div class="social-links">
-          <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
-          <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <div class="map-container">
-          <div class="map-overlay">ANARO Coffee Store</div>
-          <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ">
-            <div>
-              <div><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
-              <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
+        <div class="social-section">
+          <h4>Kết nối với ANARO Coffee</h4>
+          <div class="social-links">
+            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
+          </div>
+          <div class="map-container">
+            <div class="map-overlay">ANARO Coffee Store</div>
+            <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ">
+              <div>
+                <div><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
+                <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="footer-bottom">
+        © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+      </div>
     </div>
-    <div class="footer-bottom">
-      © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-function openGoogleMaps(){ 
-  const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
-  window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
-}
-function makePhoneCall(){ 
-  const p = '0918337071'; 
-  window.location.href = `tel:${p}`; 
-}
-function sendEmail(){ 
-  const email = 'anmy1909@gmail.com'; 
-  const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
-  const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
-  window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
-}
-function trackSocialClick(p){ 
-  console.log('Social media clicked:', p); 
-}
-</script>
-
-<!-- Load blog script và khởi chạy -->
-<script src="blog.js"></script>
-<script>
-// Đảm bảo script đã load xong trước khi gọi
-function initBlog() {
-  if (typeof window.Blog !== 'undefined' && window.Blog.renderBlogList) {
-    console.log('[Blog] Initializing blog list...');
-    window.Blog.renderBlogList();
-  } else {
-    console.warn('[Blog] Blog object not ready, retrying...');
-    setTimeout(initBlog, 100);
+  <script>
+  function openGoogleMaps(){ 
+    const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
   }
-}
+  function makePhoneCall(){ 
+    const p = '0918337071'; 
+    window.location.href = `tel:${p}`; 
+  }
+  function sendEmail(){ 
+    const email = 'anmy1909@gmail.com'; 
+    const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
+    const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
+  }
+  function trackSocialClick(p){ 
+    console.log('Social media clicked:', p); 
+  }
 
-// Chạy khi DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBlog);
-} else {
-  initBlog();
-}
-</script>
+  // Enhanced blog functionality
+  let allPosts = [];
+  let filteredPosts = [];
+  let currentFilter = 'all';
+  let searchQuery = '';
+
+  // Search functionality
+  function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', debounce(function(e) {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterAndDisplayPosts();
+      }, 300));
+    }
+  }
+
+  // Debounce helper
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // Filter posts by search and tag
+  function filterAndDisplayPosts() {
+    const grid = document.getElementById('blog-grid');
+    const noResults = document.getElementById('no-results');
+    
+    filteredPosts = allPosts.filter(post => {
+      // Filter by search query
+      const matchesSearch = !searchQuery || 
+        post.title.toLowerCase().includes(searchQuery) ||
+        post.desc.toLowerCase().includes(searchQuery) ||
+        (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase().includes(searchQuery)));
+      
+      // Filter by tag
+      const matchesTag = currentFilter === 'all' || 
+        (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase() === currentFilter.toLowerCase()));
+      
+      return matchesSearch && matchesTag;
+    });
+    
+    // Clear current grid
+    grid.innerHTML = '';
+    
+    if (filteredPosts.length === 0) {
+      noResults.style.display = 'block';
+      document.getElementById('moreBtn').style.display = 'none';
+    } else {
+      noResults.style.display = 'none';
+      displayPosts(0, Math.min(6, filteredPosts.length));
+    }
+    
+    updateStats();
+  }
+
+  // Display posts with pagination
+  function displayPosts(start, end) {
+    const grid = document.getElementById('blog-grid');
+    const moreBtn = document.getElementById('moreBtn');
+    const remainingCount = document.getElementById('remaining-count');
+    
+    const postsToShow = filteredPosts.slice(start, end);
+    
+    if (start === 0) {
+      grid.innerHTML = '';
+    }
+    
+    // Use the cardHTML function from the blog system
+    if (typeof cardHTML === 'function') {
+      grid.insertAdjacentHTML('beforeend', postsToShow.map(cardHTML).join(''));
+    } else {
+      // Fallback rendering
+      grid.insertAdjacentHTML('beforeend', postsToShow.map(post => `
+        <article class="blog-card">
+          <a class="card-link" href="post.html?slug=${post.slug}">
+            <div class="thumb ${post.cover ? '' : 'thumb--placeholder'}">
+              ${post.cover ? `<img src="${post.cover}" alt="${post.title}" loading="lazy">` : '<span>📝</span>'}
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">${post.title}</h3>
+              <div class="meta">${post.date || 'Chưa có ngày'}</div>
+              <p class="desc">${post.desc || 'Mô tả bài viết'}</p>
+              <div class="tags">${(post.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('')}</div>
+            </div>
+          </a>
+        </article>
+      `).join(''));
+    }
+    
+    const remaining = filteredPosts.length - end;
+    if (remaining > 0) {
+      moreBtn.style.display = 'inline-flex';
+      remainingCount.textContent = `(còn ${remaining} bài)`;
+    } else {
+      moreBtn.style.display = 'none';
+    }
+  }
+
+  // Setup filter tags
+  function setupFilters(posts) {
+    const filterContainer = document.querySelector('.filter-tags');
+    const allTags = new Set();
+    
+    posts.forEach(post => {
+      if (post.tags && Array.isArray(post.tags)) {
+        post.tags.forEach(tag => allTags.add(tag));
+      }
+    });
+    
+    const sortedTags = Array.from(allTags).sort();
+    
+    sortedTags.forEach(tag => {
+      const button = document.createElement('button');
+      button.className = 'filter-tag';
+      button.dataset.tag = tag.toLowerCase();
+      button.textContent = tag;
+      button.style.cssText = 'padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;';
+      
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.filter-tag').forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.background = 'var(--white)';
+          btn.style.color = 'var(--brand)';
+        });
+        
+        this.classList.add('active');
+        this.style.background = 'var(--brand)';
+        this.style.color = 'white';
+        
+        currentFilter = this.dataset.tag;
+        filterAndDisplayPosts();
+      });
+      
+      filterContainer.appendChild(button);
+    });
+  }
+
+  // Update statistics
+  function updateStats() {
+    const statsSection = document.getElementById('blog-stats');
+    const totalPosts = document.getElementById('total-posts');
+    const popularPosts = document.getElementById('popular-posts');
+    const newPosts = document.getElementById('new-posts');
+    
+    if (allPosts.length > 0) {
+      statsSection.style.display = 'block';
+      totalPosts.textContent = filteredPosts.length;
+      popularPosts.textContent = filteredPosts.filter(p => p.isHot).length;
+      newPosts.textContent = filteredPosts.filter(p => p.isNew).length;
+    }
+  }
+
+  // Clear all filters
+  function clearFilters() {
+    // Reset search
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.value = '';
+    searchQuery = '';
+    
+    // Reset tag filter
+    document.querySelectorAll('.filter-tag').forEach(btn => {
+      btn.classList.remove('active');
+      btn.style.background = 'var(--white)';
+      btn.style.color = 'var(--brand)';
+    });
+    const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
+    if (allBtn) {
+      allBtn.classList.add('active');
+      allBtn.style.background = 'var(--brand)';
+      allBtn.style.color = 'white';
+    }
+    currentFilter = 'all';
+    
+    filterAndDisplayPosts();
+  }
+
+  // Store references for external access
+  window.BlogControls = {
+    allPosts,
+    filteredPosts,
+    setupFilters,
+    setupSearch,
+    updateStats,
+    filterAndDisplayPosts,
+    displayPosts
+  };
+  </script>
+
+  <!-- Load blog script và khởi chạy -->
+  <script src="blog.js"></script>
+  <script>
+  // Enhanced initialization
+  function initBlog() {
+    if (typeof window.Blog !== 'undefined' && window.Blog.renderBlogList) {
+      console.log('[Blog] Initializing blog list...');
+      
+      // Enhance the renderBlogList function
+      const originalRenderBlogList = window.Blog.renderBlogList;
+      window.Blog.renderBlogList = async function() {
+        try {
+          await originalRenderBlogList();
+          
+          // Get posts data for enhanced features
+          if (window.Blog.allPosts) {
+            allPosts = window.Blog.allPosts;
+            filteredPosts = [...allPosts];
+            setupFilters(allPosts);
+            setupSearch();
+            updateStats();
+            
+            // Enhanced more button functionality
+            const moreBtn = document.getElementById('moreBtn');
+            if (moreBtn && !moreBtn.hasAttribute('data-enhanced')) {
+              moreBtn.setAttribute('data-enhanced', 'true');
+              let currentIndex = 6;
+              
+              moreBtn.onclick = function() {
+                const nextBatch = Math.min(currentIndex + 6, filteredPosts.length);
+                displayPosts(currentIndex, nextBatch);
+                currentIndex = nextBatch;
+              };
+            }
+          }
+        } catch (error) {
+          console.error('[Blog] Error rendering blog:', error);
+          document.getElementById('status').textContent = 'Có lỗi xảy ra khi tải blog.';
+          document.getElementById('empty-state').style.display = 'block';
+        }
+      };
+      
+      window.Blog.renderBlogList();
+    } else {
+      console.warn('[Blog] Blog object not ready, retrying...');
+      setTimeout(initBlog, 100);
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlog);
+  } else {
+    initBlog();
+  }
+  </script>
 
 </body>
 </html>
