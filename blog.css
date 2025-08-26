@@ -466,3 +466,18 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;c
     border-bottom: none;
   }
 }
+/* Copy CSS này vào blog.css */
+.table-wrapper {
+  width: fit-content; /* Tự động theo nội dung */
+  min-width: 100%;
+}
+
+.info-table {
+  table-layout: auto; /* Cột tự động điều chỉnh */
+}
+
+/* Padding responsive */
+.info-table th,
+.info-table td {
+  padding: clamp(8px, 2vw, 20px) clamp(12px, 3vw, 24px);
+}
