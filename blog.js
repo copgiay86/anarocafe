@@ -664,6 +664,205 @@ async function renderSinglePost() {
       </article>`;
     
     status.textContent = "";
+    // Thêm function này vào blog.js (sau function addHeadingIds)
+
+// Enhance tables với data-label cho responsive
+function enhanceTables(html) {
+  // Tạo một DOM parser tạm thời
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  const tables = tempDiv.querySelectorAll('table');
+  tables.forEach(table => {
+    // Thêm class và wrapper
+    table.classList.add('info-table');
+    
+    // Tạo wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+    
+    // Lấy headers cho data-label
+    const headers = table.querySelectorAll('thead th, tr:first-child td');
+    const headerTexts = Array.from(headers).map(th => th.textContent.trim());
+    
+    // Thêm data-label cho tất cả td trong tbody
+    const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      cells.forEach((cell, index) => {
+        if (headerTexts[index]) {
+          cell.setAttribute('data-label', headerTexts[index]);
+        }
+      });
+    });
+  });
+  
+  return tempDiv.innerHTML;
+}
+
+// Sửa lại function renderSinglePost
+async function renderSinglePost() {
+  const root = document.getElementById("post-root");
+  const status = document.getElementById("status");
+  
+  if (!root || !status) {
+    console.error('[Blog] Required DOM elements not found');
+    return;
+  }
+  
+  try {
+    status.textContent = "Đang kiểm tra nguồn...";
+    const src = await resolveSource();
+    
+    const params = new URLSearchParams(window.location.search);
+    const slug = (params.get("slug") || "").toLowerCase();
+    
+    if (!slug) {
+      status.textContent = "Không có slug bài viết.";
+      return;
+    }
+    
+    const match = src.files.find(f => f.type === "file" && slugFromName(f.name).toLowerCase() === slug);
+    
+    if (!match) { 
+      status.textContent = "Không tìm thấy bài viết.";
+      const errorTemplate = document.getElementById('error-template');
+      if (errorTemplate) {
+        errorTemplate.style.display = 'block';
+        const errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+          errorMessage.textContent = `Không tìm thấy bài viết với slug: ${slug}`;
+        }
+      }
+      return; 
+    }
+    
+    const RAW_BASE = `https://raw.githubusercontent.com/${src.owner}/${src.repo}/${src.branch}/`;
+    status.textContent = "Đang tải bài...";
+    
+    const text = await fetchText(RAW_BASE + POSTS_DIR + "/" + match.name);
+    const { meta, body } = parseFrontMatter(text);
+    
+    const title = meta.title || slug;
+    const date = formatDate(meta.date || "");
+    const tags = Array.isArray(meta.tags) ? meta.tags : [];
+    const cover = meta.cover || "";
+    const description = meta.description || truncate(firstParagraph(body), 160);
+    
+    // Update page metadata
+    if (typeof updateMetaTags === 'function') {
+      updateMetaTags(title, description, cover, window.location.href);
+    }
+    
+    // Process shortcodes trước khi convert markdown
+    const processedBody = processShortcodes(body);
+    
+    // Extract TOC
+    const tocHeadings = extractTOC(processedBody);
+    const tocHTML = generateTOCHTML(tocHeadings);
+    
+    // Convert to HTML và add heading IDs
+    let html = DOMPurify.sanitize(marked.parse(processedBody));
+    html = addHeadingIds(html);
+    
+    // *** THÊM BƯỚC NÀY: Enhance tables sau khi convert markdown ***
+    html = enhanceTables(html);
+    
+    document.title = `${title} - Blog ANARO Coffee`;
+    
+    const coverImg = cover ? `
+      <div class="post-cover-wrapper">
+        <img class="post-cover" src="${escapeHtml(cover)}" alt="${escapeHtml(title)}" 
+             onerror="this.style.display='none'">
+      </div>` : "";
+    
+    const readTime = Math.max(1, Math.ceil(body.length / 1000));
+    const viewCount = meta.views || 0;
+    
+    root.innerHTML = `
+      <article class="post-article" itemscope itemtype="https://schema.org/BlogPosting">
+        ${coverImg}
+        <header class="post-header">
+          <h1 class="post-title" itemprop="headline">${escapeHtml(title)}</h1>
+          <div class="post-meta">
+            <time class="post-date" datetime="${meta.date || ''}" itemprop="datePublished">${date}</time>
+            ${date ? '·' : ''} <span class="read-time">${readTime} phút đọc</span>
+            ${viewCount > 0 ? `· <span class="view-count">${viewCount} lượt xem</span>` : ''}
+            ${tags.length ? '·' : ''} <div class="post-tags">${tagChips(tags)}</div>
+          </div>
+        </header>
+        
+        <div class="post-content" itemprop="articleBody">
+          ${tocHTML}
+          ${html}
+        </div>
+        
+        <footer class="post-footer">
+          <div class="post-navigation">
+            <a class="back-btn" href="blog.html">← Quay lại Blog</a>
+          </div>
+          
+          <div class="post-sharing">
+            <h4>Chia sẻ bài viết này:</h4>
+            <div class="sharing-buttons">
+              <button onclick="shareOnFacebook()" class="share-btn facebook">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </button>
+              <button onclick="shareOnTwitter()" class="share-btn twitter">
+                <i class="fab fa-twitter"></i> Twitter
+              </button>
+              <button onclick="copyToClipboard()" class="share-btn copy">
+                <i class="fas fa-link"></i> Sao chép link
+              </button>
+            </div>
+          </div>
+        </footer>
+      </article>`;
+    
+    status.textContent = "";
+    
+    // Setup interactive features
+    setupPostInteractivity();
+    
+    // Track page view
+    console.log(`[Blog] Post viewed: ${title}`);
+    
+  } catch (e) {
+    console.error('[Blog] Error:', e);
+    status.textContent = "Không tải được bài viết.";
+    
+    if (typeof showError === 'function') {
+      showError("Có lỗi xảy ra khi tải bài viết. Vui lòng thử lại sau.");
+    }
+  }
+}
+
+// Cập nhật exports
+window.Blog = { 
+  renderBlogList, 
+  renderSinglePost,
+  allPosts: [],
+  processShortcodes,
+  extractTOC,
+  generateTOCHTML,
+  setupPostInteractivity,
+  filterByTag,
+  enhanceTables  // Thêm function mới
+};
+
+// Export utility functions
+window.BlogUtils = {
+  escapeHtml,
+  formatDate,
+  truncate,
+  tagChips,
+  cardHTML,
+  slugFromName,
+  postUrlFromSlug,
+  enhanceTables  // Thêm function mới
+};
     
     // Setup interactive features
     setupPostInteractivity();
