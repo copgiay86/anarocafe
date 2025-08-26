@@ -555,6 +555,7 @@ async function renderSinglePost() {
   if (!root || !status) {
     console.error('[Blog] Required DOM elements not found');
     return;
+    html = enhanceTables(html);
   }
   
   try {
