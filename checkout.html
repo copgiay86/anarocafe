@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ANARO — Checkout</title>
   <style>
-    :root{--bg:#fffdf9;--text:#2a221d;--muted:#6e625a;--border:#eadfd4;--brand:#7a4b2b}
+    :root{--bg:#fffdf9;--text:#2a221d;--muted:#6e625a;--border:#eadfd4;--brand:#7a4b2b;--discount:#e74c3c}
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text)}
     .wrap{max-width:980px;margin:0 auto;padding:20px 16px}
@@ -24,6 +24,8 @@
     .gender{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
     .opt{display:flex;gap:6px;align-items:center;padding:8px 10px;border:1px solid #0001;border-radius:10px;background:#0001;cursor:pointer}
     .line{display:flex;justify-content:space-between;margin:6px 0}
+    .line.discount{color:var(--discount);font-weight:600}
+    .line.total{border-top:1px solid var(--border);padding-top:6px;margin-top:10px}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid #0001;background:#0001;color:#1e1e1e;font-weight:800;cursor:pointer;text-decoration:none}
     .btn:disabled{opacity:0.5;cursor:not-allowed}
     .cta{background:#F8EBDD;border-color:transparent}
@@ -57,6 +59,8 @@
     .amount-info .detail-row{margin:6px 0}
     .order-code{margin-top:8px;padding:8px 12px;background:#f0f8f0;border:1px solid #d4e6f1;border-radius:8px;text-align:center}
     .order-code strong{color:var(--brand);font-size:14px}
+
+    .discount-badge{background:#e8f5e8;border:1px solid #4caf50;color:#2e7d32;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600;margin-left:8px}
   
     @media (max-width: 768px) {
       .grid{grid-template-columns:1fr}
@@ -151,14 +155,18 @@
 
       <!-- RIGHT: Order Summary -->
       <section class="card">
-        <h2 class="title">Đơn hàng</h2>
+        <h2 class="title">
+          Đơn hàng
+          <span class="discount-badge">🎉 Giảm 10%</span>
+        </h2>
         <div class="order-code" id="orderCodeDisplay" style="display:none">
           <strong>Mã đơn hàng: <span id="currentOrderCode"></span></strong>
         </div>
         <div class="line"><strong>Tiền hàng</strong><span id="co-subtotal">0đ</span></div>
+        <div class="line discount"><span>Giảm giá (10%)</span><span id="co-discount">-0đ</span></div>
         <div class="line"><span>Cân nặng</span><span id="co-weight">0 kg</span></div>
         <div class="line"><span>Phí ship</span><span id="co-ship">0đ</span></div>
-        <div class="line"><strong>Tổng</strong><strong id="co-total">0đ</strong></div>
+        <div class="line total"><strong>Tổng thanh toán</strong><strong id="co-total">0đ</strong></div>
         <div class="muted" id="co-items" style="margin-top:8px"></div>
         <div style="margin-top:12px">
           <button id="placeOrder" class="btn cta">Đặt hàng</button>
@@ -280,6 +288,8 @@
       fanpage: "https://www.facebook.com/anarocoffee/"
     };
 
+    const DISCOUNT_RATE = 0.10; // 10% discount
+
     // Đầu số di động VN
     const VALID_PREFIXES = [
       '032','033','034','035','036','037','038','039','096','097','098','086',
@@ -292,6 +302,7 @@
     ];
 
     let currentOrderCode = '';
+    let currentOrderData = null;
 
     // ====== Helpers ======
     const fmt = n => (n||0).toLocaleString('vi-VN') + "đ";
@@ -300,6 +311,10 @@
       const ts = Date.now().toString();
       const rnd = Math.floor(Math.random()*1000).toString().padStart(3,'0');
       return 'ANARO' + ts.slice(-6) + rnd.slice(-2);
+    }
+
+    function calculateDiscount(subtotal) {
+      return Math.round(subtotal * DISCOUNT_RATE);
     }
 
     function showToast(msg, type='info'){
@@ -316,8 +331,7 @@
     function hidePopup(){ document.getElementById('backdrop').style.display='none'; }
 
     function showQRModal(){
-      const payload = readPayloadFromHash();
-      const total = payload ? payload.total : 0;
+      const total = currentOrderData ? currentOrderData.total : 0;
       currentOrderCode = generateOrderCode();
 
       document.getElementById('transferAmount').textContent = fmt(total);
@@ -389,11 +403,30 @@
 
     function renderOrderSummary(payload){
       if(!payload) return;
-      const { items=[], subtotal=0, weightKg=0, shipping=0, total=0 } = payload;
+      
+      const { items=[], subtotal=0, weightKg=0, shipping=0 } = payload;
+      
+      // Tính toán giảm giá và tổng mới
+      const discount = calculateDiscount(subtotal);
+      const discountedSubtotal = subtotal - discount;
+      const newTotal = discountedSubtotal + shipping;
+      
+      // Cập nhật payload với thông tin giảm giá
+      currentOrderData = {
+        ...payload,
+        originalSubtotal: subtotal,
+        discount: discount,
+        discountedSubtotal: discountedSubtotal,
+        total: newTotal
+      };
+      
+      // Hiển thị thông tin
       document.getElementById('co-subtotal').textContent = fmt(subtotal);
-      document.getElementById('co-weight').textContent   = (weightKg||0).toFixed(2) + " kg";
-      document.getElementById('co-ship').textContent     = fmt(shipping);
-      document.getElementById('co-total').textContent    = fmt(total);
+      document.getElementById('co-discount').textContent = '-' + fmt(discount);
+      document.getElementById('co-weight').textContent = (weightKg||0).toFixed(2) + " kg";
+      document.getElementById('co-ship').textContent = fmt(shipping);
+      document.getElementById('co-total').textContent = fmt(newTotal);
+      
       const lines = items.map(it=>`• ${it.name} — ${it.size} — ${it.grind} × ${it.qty}`).join('<br>');
       document.getElementById('co-items').innerHTML = lines || '';
     }
@@ -588,9 +621,11 @@
           "Địa chỉ": r.address||"",
           "Ghi chú": r.note||"N/A",
           "Phương thức TT": "Chuyển khoản",
-          "Tiền hàng": fmt(orderData.subtotal||0),
+          "Tiền hàng gốc": fmt(orderData.originalSubtotal||0),
+          "Giảm giá (10%)": fmt(orderData.discount||0),
+          "Tiền hàng sau giảm": fmt(orderData.discountedSubtotal||0),
           "Phí ship": fmt(orderData.shipping||0),
-          "Tổng": fmt(orderData.total||0),
+          "Tổng thanh toán": fmt(orderData.total||0),
           "Cân nặng (kg)": (orderData.weightKg||0),
           "Chi tiết": itemsStr,
           "Thời gian": new Date().toLocaleString('vi-VN')
@@ -616,11 +651,10 @@
         orderBtn.textContent = 'Đang xử lý...';
         orderBtn.classList.add('loading');
 
-        const payload = readPayloadFromHash() || {};
         const formData = getFormData();
 
         const orderData = {
-          ...payload,
+          ...currentOrderData,
           recipient: formData,
           contact: { ...SOCIAL_LINKS },
           orderTime: new Date().toISOString(),
