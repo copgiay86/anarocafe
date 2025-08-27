@@ -73,7 +73,7 @@ Nhiều người nghĩ pha phin rất đơn giản - chỉ cần cho bột vào 
 - **Medium đến Dark roast**: Tạo body đầy đặn và độ đắng dễ chịu
 - **Tránh Light roast**: Sẽ cho vị chua cao, không phù hợp với khẩu vị truyền thống
 
-## Dụng cụ cần thiết {#dung-cu-can-thiet}
+## Dụng cụ cần thiết  
 
 ### Phin cà phê
 
@@ -88,8 +88,7 @@ Nhiều người nghĩ pha phin rất đơn giản - chỉ cần cho bột vào 
 - Thìa khuấy
 - Cốc/ly thủy tinh chịu nhiệt
 
-## Các bước pha phin chi tiết {#cac-buoc-pha-phin}
-
+## Các bước pha phin chi tiết { 
 ### Bước 1: Chuẩn bị nguyên liệu
 
 - **Tỷ lệ**: 15-20g bột cà phê cho 150ml nước (khoảng 2-3 thìa canh bột)
@@ -138,7 +137,7 @@ Nhiều người nghĩ pha phin rất đơn giản - chỉ cần cho bột vào 
 - **Phần giữa**: Ngọt đậm, thơm nhất
 - **Phần cuối**: Có thể nhạt dần
 
-## Bí quyết nâng cao {#bi-quyet-nang-cao}
+## Bí quyết nâng cao  
 
 ### Điều chỉnh độ xay theo sở thích
 
@@ -184,7 +183,7 @@ Nhẹ hơn: 1:12
     </ul>
 </div>
 
-## Khắc phục lỗi thường gặp {#khac-phuc-loi}
+## Khắc phục lỗi thường gặp  
 
 ### Cà phê bị đắng quá
 
