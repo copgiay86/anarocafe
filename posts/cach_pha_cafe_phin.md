@@ -27,21 +27,21 @@ views: 0
 Bạn đã bao giờ thắc mắc tại sao cà phê phin pha tại nhà lại không thơm ngon như ở quán? Hay tự hỏi làm sao để có ly cà phê phin đậm đà, thơm lừng mà không bị đắng hay nhạt? Bài viết này sẽ tiết lộ những bí quyết "vàng" giúp bạn pha ra những ly cà phê phin hoàn hảo ngay tại nhà!
 
 <!-- CTA Box cho khách hàng cá nhân -->
-<div class="cta-box">
+<div class="cta-box" style="background: linear-gradient(135deg, #f8f6f3, #ede8e0); border: 2px solid #d4a574;">
     <div class="cta-content">
         <div class="cta-image">
             <img src="/images/blend-2.jpg" alt="Blend Số 2 ANARO">
         </div>
         <div class="cta-info">
-            <h3 class="cta-title">🔥 Blend Số 2 (A Đà Lạt 30% · R 70%)</h3>
-            <p class="cta-desc">Blend cân bằng hoàn hảo cho pha phin, body đầy đặn với hương vị Arabica tinh tế.</p>
-            <div class="cta-price">80.000đ</div>
-            <a href="https://anarocafe-vert.vercel.app/index-cart.html" class="cta-btn">🛒 Đặt mua ngay</a>
+            <h3 class="cta-title" style="color: #2c1810;">🔥 Blend Số 2 (A Đà Lạt 30% · R 70%)</h3>
+            <p class="cta-desc" style="color: #4a2c17;">Blend cân bằng hoàn hảo cho pha phin, body đầy đặn với hương vị Arabica tinh tế.</p>
+            <div class="cta-price" style="color: #2c1810;">80.000đ</div>
+            <a href="https://anarocafe-vert.vercel.app/index-cart.html" class="cta-btn" style="background: linear-gradient(135deg, #d4a574, #b8956a); color: #fff; font-weight: bold; box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);">🛒 Đặt mua ngay</a>
         </div>
     </div>
 </div>
 
-## Tại sao cần học cách pha phin đúng cách? {#tai-sao-can-hoc}
+## Tại sao cần học cách pha phin đúng cách?
 
 Cà phê phin không chỉ là thức uống, mà còn là văn hóa ẩm thực đặc trưng của Việt Nam. Một ly cà phê phin ngon phải đạt được sự cân bằng hoàn hảo giữa **độ đậm đà, hương thơm tự nhiên và độ mượt mà**. 
 
@@ -161,18 +161,28 @@ Nhẹ hơn: 1:12
 ```
 
 <!-- CTA Box cho khách hàng sỉ/quán cà phê -->
-<div class="cta-box" style="background: linear-gradient(135deg, #2c1810, #4a2c17); border: 2px solid #d4a574;">
+<div class="cta-box" style="background: linear-gradient(135deg, #f0f4f7, #e1ebf0); border: 2px solid #2c5aa0;">
     <div class="cta-content">
         <div class="cta-image">
             <img src="/images/robusta-moc.jpg" alt="Robusta Mộc cho quán cà phê">
         </div>
         <div class="cta-info">
-            <h3 class="cta-title">☕ Nguồn hàng cho quán cà phê</h3>
-            <p class="cta-desc">Cà phê hạt chất lượng cao, giá sỉ ưu đãi cho các quán cà phê và đối tác kinh doanh. Robusta Mộc - lựa chọn kinh doanh hiệu quả.</p>
-            <div class="cta-price">Liên hệ báo giá</div>
-            <a href="https://anarocafe-vert.vercel.app/giasi.html" class="cta-btn">📞 Liên hệ sỉ ngay</a>
+            <h3 class="cta-title" style="color: #1a365d;">☕ Nguồn hàng cho quán cà phê</h3>
+            <p class="cta-desc" style="color: #2d3748;">Cà phê hạt chất lượng cao, giá sỉ ưu đãi cho các quán cà phê và đối tác kinh doanh. Robusta Mộc - lựa chọn kinh doanh hiệu quả.</p>
+            <div class="cta-price" style="color: #1a365d;">Liên hệ báo giá</div>
+            <a href="https://anarocafe-vert.vercel.app/giasi.html" class="cta-btn" style="background: linear-gradient(135deg, #2c5aa0, #1e4080); color: #fff; font-weight: bold; box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);">📞 Liên hệ sỉ ngay</a>
         </div>
     </div>
+</div>
+
+<!-- Bài viết liên quan -->
+<div class="related-posts" style="background: linear-gradient(135deg, #faf8f5, #f0ede8); border: 1px solid #d4a574; border-radius: 8px; padding: 20px; margin: 30px 0;">
+    <h3 style="color: #2c1810; margin-bottom: 15px;">📖 Bài viết liên quan</h3>
+    <ul class="related-list" style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="/posts/cach-chon-hat-ca-phe-chat-luong.html" style="color: #4a2c17; text-decoration: none;">🌱 Cách chọn hạt cà phê chất lượng cho pha phin</a></li>
+        <li style="margin-bottom: 10px;"><a href="/posts/phan-biet-arabica-robusta.html" style="color: #4a2c17; text-decoration: none;">☕ Phân biệt hạt Arabica và Robusta - Loại nào phù hợp với bạn?</a></li>
+        <li style="margin-bottom: 10px;"><a href="/posts/bao-quan-hat-ca-phe.html" style="color: #4a2c17; text-decoration: none;">🏠 Bí quyết bảo quản hạt cà phê tươi ngon lâu dài</a></li>
+    </ul>
 </div>
 
 ## Khắc phục lỗi thường gặp {#khac-phuc-loi}
@@ -229,23 +239,23 @@ Cà phê phin có **body đậm và caffeine cao**, phù hợp uống:
 
 *Ly cà phê phin đậm đà, thơm lừng pha theo đúng kỹ thuật*
 
-## Kết luận {#ket-luan}
+## Kết luận
 
 Pha cà phê phin ngon không khó, chỉ cần nắm vững những nguyên tắc cơ bản: **chọn hạt phù hợp, độ xay chuẩn, nhiệt độ nước đúng và kiên nhẫn với thời gian chiết xuất**. Hãy thực hành thường xuyên và điều chỉnh theo khẩu vị cá nhân để tìm ra công thức hoàn hảo cho riêng mình.
 
 Nhớ rằng, chất lượng hạt cà phê là yếu tố quyết định 70% hương vị của ly cà phê. Đầu tư vào hạt cà phê chất lượng sẽ giúp bạn có những ly cà phê ngon không thua kém quán chuyên nghiệp!
 
 <!-- CTA cuối bài cho khách hàng cá nhân -->
-<div class="cta-box">
+<div class="cta-box" style="background: linear-gradient(135deg, #f8f6f3, #ede8e0); border: 2px solid #d4a574;">
     <div class="cta-content">
         <div class="cta-image">
-            <img src="/images/combo-phin-premium.jpg" alt="Combo cà phê cho pha phin">
+            <img src="/images/robusta-honey.jpg" alt="Robusta Honey ANARO">
         </div>
         <div class="cta-info">
-            <h3 class="cta-title">💎 Combo pha phin hoàn hảo</h3>
-            <p class="cta-desc">Trọn bộ 3 loại blend đặc biệt cho pha phin: Nhẹ nhàng - Cân bằng - Đậm đà!</p>
-            <div class="cta-price">255.000đ <span style="text-decoration: line-through; color: #999; font-size: 0.8em;">285.000đ</span></div>
-            <a href="https://anarocafe-vert.vercel.app/index-cart.html" class="cta-btn">🚀 Mua combo ngay</a>
+            <h3 class="cta-title" style="color: #2c1810;">💎 Robusta Honey</h3>
+            <p class="cta-desc" style="color: #4a2c17;">Robusta chế biến honey process, đậm đà nhưng có độ ngọt hậu tự nhiên - hoàn hảo cho pha phin!</p>
+            <div class="cta-price" style="color: #2c1810;">89.000đ</div>
+            <a href="https://anarocafe-vert.vercel.app/index-cart.html" class="cta-btn" style="background: linear-gradient(135deg, #d4a574, #b8956a); color: #fff; font-weight: bold; box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);">🚀 Mua ngay</a>
         </div>
     </div>
 </div>
