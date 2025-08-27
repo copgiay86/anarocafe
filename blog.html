@@ -490,55 +490,6 @@
       50% { transform: scale(1.1); }
     }
 
-    /* Pagination */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 3rem 0;
-      flex-wrap: wrap;
-    }
-
-    .pagination button {
-      padding: 10px 15px;
-      border: 2px solid var(--border);
-      background: var(--white);
-      color: var(--brand);
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: var(--transition);
-      min-width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .pagination button:hover:not(:disabled) {
-      border-color: var(--brand);
-      transform: translateY(-2px);
-    }
-
-    .pagination button.active {
-      background: var(--brand);
-      color: var(--white);
-      border-color: var(--brand);
-    }
-
-    .pagination button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .pagination .page-info {
-      margin: 0 1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
     .loading {
       display: flex;
       justify-content: center;
@@ -641,7 +592,7 @@
         </p>
       </div>
 
-      <!-- Filter section (no search input) -->
+      <!-- Filter section -->
       <div class="blog-controls">
         <button class="filter-tag active" data-tag="all">Tất cả</button>
         <button class="filter-tag" data-tag="cà phê phin">cà phê phin</button>
@@ -655,26 +606,20 @@
       <div class="blog-stats" id="blog-stats">
         <div class="stat-item">
           <span class="stat-icon">📝</span>
-          <span><span id="total-posts">0</span> bài viết</span>
+          <span><span id="total-posts">6</span> bài viết</span>
         </div>
         <div class="stat-item">
           <span class="stat-icon">🔥</span>
-          <span><span id="hot-posts">0</span> bài nổi bật</span>
+          <span><span id="hot-posts">2</span> bài nổi bật</span>
         </div>
         <div class="stat-item">
           <span class="stat-icon">✨</span>
-          <span><span id="new-posts">0</span> bài mới</span>
+          <span><span id="new-posts">1</span> bài mới</span>
         </div>
       </div>
 
-      <!-- Loading state -->
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <span>Đang tải bài viết...</span>
-      </div>
-
       <!-- Blog grid -->
-      <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết" style="display: none;">
+      <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết">
         <!-- Posts will be inserted here -->
       </section>
 
@@ -685,15 +630,7 @@
         <p>Hãy quay lại sau để đọc những bài viết mới nhất về cà phê!</p>
       </div>
 
-      <!-- Pagination -->
-      <div class="pagination" id="pagination" style="display: none;">
-        <button id="prev-btn" onclick="changePage(currentPage - 1)">‹</button>
-        <div id="page-numbers"></div>
-        <button id="next-btn" onclick="changePage(currentPage + 1)">›</button>
-        <div class="page-info">
-          <span id="page-info-text">Trang 1 / 1</span>
-        </div>
-      </div>
+      <!-- No results -->
       <div id="no-results" class="no-results" style="display: none;">
         <div class="icon">🔍</div>
         <h3>Không tìm thấy kết quả</h3>
@@ -760,13 +697,13 @@
   </footer>
 
   <script>
-    // Sample data for demo
+    // Sample data
     const SAMPLE_POSTS = [
       {
         slug: 'cach-pha-cafe-phin',
         title: 'Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia',
         desc: 'Hướng dẫn chi tiết cách pha cà phê phin ngon như quán chuyên nghiệp. Từ chọn hạt, xay bột đến kỹ thuật pha chuẩn.',
-        cover: '/images/cafe-phin-truyen-thong.jpg',
+        cover: '',
         date: '27/08/2025',
         readTime: '5 phút đọc',
         tags: ['cà phê phin', 'pha cà phê', 'hạt cà phê', 'cà phê tại nhà'],
@@ -777,7 +714,7 @@
         slug: 'rang-ca-phe-tai-nha',
         title: 'Rang cà phê tại nhà - Từ A đến Z cho người mới bắt đầu',
         desc: 'Khám phá nghệ thuật rang cà phê tại nhà với hướng dẫn từng bước chi tiết. Tạo ra hương vị cà phê độc đáo theo sở thích riêng.',
-        cover: '/images/rang-ca-phe.jpg',
+        cover: '',
         date: '25/08/2025',
         readTime: '8 phút đọc',
         tags: ['rang xay', 'hạt cà phê', 'cà phê tại nhà'],
@@ -788,7 +725,7 @@
         slug: 'latte-art-co-ban',
         title: 'Latte Art cơ bản - Tạo hình đẹp mắt trên tách cà phê',
         desc: 'Học cách tạo những hình ảnh đẹp mắt trên bề mặt tách cà phê. Kỹ thuật đánh sữa và tạo hình từ cơ bản đến nâng cao.',
-        cover: '/images/latte-art.jpg',
+        cover: '',
         date: '23/08/2025',
         readTime: '6 phút đọc',
         tags: ['pha cà phê', 'latte art', 'cà phê tại nhà'],
@@ -799,7 +736,7 @@
         slug: 'chon-hat-ca-phe',
         title: 'Cách chọn hạt cà phê ngon - Bí quyết từ các barista chuyên nghiệp',
         desc: 'Hướng dẫn chi tiết cách nhận biết và lựa chọn hạt cà phê chất lượng cao. Phân biệt các loại hạt và độ rang phù hợp.',
-        cover: '/images/hat-ca-phe.jpg',
+        cover: '',
         date: '20/08/2025',
         readTime: '7 phút đọc',
         tags: ['hạt cà phê', 'chọn cà phê'],
@@ -810,7 +747,7 @@
         slug: 'van-hoa-ca-phe-viet',
         title: 'Văn hóa cà phê Việt Nam - Từ truyền thống đến hiện đại',
         desc: 'Tìm hiểu lịch sử và văn hóa cà phê Việt Nam qua các thời kỳ. Từ cà phê phin truyền thống đến những xu hướng mới.',
-        cover: '/images/van-hoa-ca-phe.jpg',
+        cover: '',
         date: '18/08/2025',
         readTime: '10 phút đọc',
         tags: ['văn hóa cà phê', 'cà phê Việt Nam'],
@@ -821,7 +758,7 @@
         slug: 'ca-phe-cold-brew',
         title: 'Cold Brew - Cà phê pha lạnh hoàn hảo cho mùa hè',
         desc: 'Khám phá phương pháp pha cà phê cold brew tại nhà. Tạo ra ly cà phê lạnh mượt mà, ít chua và giàu hương vị.',
-        cover: '/images/cold-brew.jpg',
+        cover: '',
         date: '15/08/2025',
         readTime: '4 phút đọc',
         tags: ['cold brew', 'pha cà phê', 'cà phê tại nhà'],
@@ -837,34 +774,21 @@
 
     // Initialize blog
     function initBlog() {
-      // Simulate loading
-      setTimeout(() => {
-        allPosts = SAMPLE_POSTS;
-        filteredPosts = [...allPosts];
-        
-        hideLoading();
-        renderPosts();
-        updateStats();
-        setupFilters();
-      }, 1000);
+      allPosts = SAMPLE_POSTS;
+      filteredPosts = [...allPosts];
+      
+      renderPosts();
+      updateStats();
+      setupFilters();
     }
 
-    // Hide loading state
-    function hideLoading() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('blog-grid').style.display = 'grid';
-    }
-
-    // Render posts (max 6)
+    // Render posts
     function renderPosts() {
       const grid = document.getElementById('blog-grid');
       const emptyState = document.getElementById('empty-state');
       const noResults = document.getElementById('no-results');
       
-      // Limit to 6 posts
-      const postsToShow = filteredPosts.slice(0, 6);
-      
-      if (postsToShow.length === 0) {
+      if (filteredPosts.length === 0) {
         grid.style.display = 'none';
         if (currentFilter === 'all') {
           emptyState.style.display = 'block';
@@ -882,18 +806,15 @@
       grid.style.display = 'grid';
       
       // Render posts
-      grid.innerHTML = postsToShow.map(post => `
+      grid.innerHTML = filteredPosts.map(post => `
         <article class="blog-card" data-tags="${post.tags.join(',')}">
           <a class="card-link" href="post.html?slug=${post.slug}" aria-label="${post.title}">
             <div class="badges">
               ${post.isNew ? '<span class="badge new">Mới</span>' : ''}
               ${post.isHot ? '<span class="badge hot">Nổi bật</span>' : ''}
             </div>
-            <div class="thumb ${post.cover ? '' : 'thumb--placeholder'}">
-              ${post.cover ? 
-                `<img src="${post.cover}" loading="lazy" alt="${post.title}" onerror="this.parentNode.className='thumb thumb--placeholder'; this.parentNode.innerHTML='<span>📄</span>'">` : 
-                '<span>📄</span>'
-              }
+            <div class="thumb thumb--placeholder">
+              <span>📄</span>
             </div>
             <div class="card-body">
               <h3 class="card-title">${post.title}</h3>
@@ -903,7 +824,7 @@
               </div>
               <p class="desc">${post.desc}</p>
               <div class="tags">
-                ${post.tags.map(tag => `<span class="chip" onclick="filterByTag('${tag}')">${tag}</span>`).join('')}
+                ${post.tags.map(tag => `<span class="chip" onclick="filterByTag('${tag}'); event.preventDefault();">${tag}</span>`).join('')}
               </div>
             </div>
           </a>
@@ -913,16 +834,9 @@
 
     // Update statistics
     function updateStats() {
-      const totalPosts = document.getElementById('total-posts');
-      const hotPosts = document.getElementById('hot-posts');
-      const newPosts = document.getElementById('new-posts');
-      
-      const startIndex = (currentPage - 1) * postsPerPage;
-      const endIndex = Math.min(startIndex + postsPerPage, filteredPosts.length);
-      
-      totalPosts.textContent = `${endIndex - startIndex} / ${filteredPosts.length}`;
-      hotPosts.textContent = filteredPosts.filter(p => p.isHot).length;
-      newPosts.textContent = filteredPosts.filter(p => p.isNew).length;
+      document.getElementById('total-posts').textContent = filteredPosts.length;
+      document.getElementById('hot-posts').textContent = filteredPosts.filter(p => p.isHot).length;
+      document.getElementById('new-posts').textContent = filteredPosts.filter(p => p.isNew).length;
     }
 
     // Setup filter functionality
@@ -952,15 +866,6 @@
         );
       }
       
-      // Reset to page 1 when filtering
-      currentPage = 1;
-      renderPosts();
-      updateStats();
-    }filter(post => 
-          post.tags.some(tag => tag.toLowerCase() === currentFilter.toLowerCase())
-        );
-      }
-      
       renderPosts();
       updateStats();
     }
@@ -979,7 +884,6 @@
       if (allButton) {
         allButton.click();
       }
-      currentPage = 1; // Reset to page 1
     }
 
     // Contact functions
@@ -1002,18 +906,7 @@
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', initBlog);
 
-    // Enhanced error handling for images
-    document.addEventListener('error', function(e) {
-      if (e.target.tagName === 'IMG') {
-        const thumb = e.target.closest('.thumb');
-        if (thumb) {
-          thumb.className = 'thumb thumb--placeholder';
-          thumb.innerHTML = '<span>📄</span>';
-        }
-      }
-    }, true);
-
-    // Smooth scroll for internal links
+    // Add smooth scroll for internal links
     document.addEventListener('click', function(e) {
       if (e.target.closest('a[href^="#"]')) {
         e.preventDefault();
@@ -1027,87 +920,13 @@
       }
     });
 
-    // Performance: Lazy load images when they come into viewport
-    function setupLazyLoading() {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              img.src = img.dataset.src || img.src;
-              img.classList.remove('lazy');
-              imageObserver.unobserve(img);
-            }
-          });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-      }
-    }
-
-    // Add loading animation for better UX
-    function addLoadingStates() {
-      const cards = document.querySelectorAll('.blog-card');
-      cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        setTimeout(() => {
-          card.style.transition = 'all 0.6s ease';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, index * 100);
-      });
-    }
-
-    // Enhanced initialization
-    function initBlog() {
-      // Show loading state
-      document.getElementById('loading').style.display = 'flex';
-      document.getElementById('blog-grid').style.display = 'none';
-      
-      // Simulate realistic loading time
-      setTimeout(() => {
-        allPosts = SAMPLE_POSTS;
-        filteredPosts = [...allPosts];
-        
-        hideLoading();
-        renderPosts();
-        updateStats();
-        setupFilters();
-        setupLazyLoading();
-        
-        // Add stagger animation after a brief delay
-        setTimeout(addLoadingStates, 100);
-      }, 1200);
-    }
-
     // Add keyboard navigation support
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         clearFilters();
       }
     });
-
-    // Add focus management for accessibility
-    function manageFocus() {
-      const filterButtons = document.querySelectorAll('.filter-tag');
-      filterButtons.forEach((button, index) => {
-        button.addEventListener('keydown', function(e) {
-          if (e.key === 'ArrowLeft' && index > 0) {
-            e.preventDefault();
-            filterButtons[index - 1].focus();
-          } else if (e.key === 'ArrowRight' && index < filterButtons.length - 1) {
-            e.preventDefault();
-            filterButtons[index + 1].focus();
-          }
-        });
-      });
-    }
-
-    // Initialize accessibility features
-    setTimeout(manageFocus, 1500);
   </script>
+
 </body>
 </html>
