@@ -3,7 +3,7 @@ title: "Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia"
 date: "2025-08-27"
 description: "Hướng dẫn chi tiết cách pha cà phê phin ngon như quán chuyên nghiệp. Từ chọn hạt, xay bột đến kỹ thuật pha chuẩn."
 tags: ["cà phê phin", "pha cà phê", "hạt cà phê", "cà phê tại nhà"]
-cover: "/images/cach-pha-cafe-phin-cover.jpg"
+cover: "/images/cafe-phin-truyen-thong.jpg"
 popular: false
 views: 0
 ---
@@ -56,8 +56,7 @@ Nhiều người nghĩ pha phin rất đơn giản - chỉ cần cho bột vào 
 
 *Cà phê phin - tinh túy của văn hóa cà phê Việt Nam*
 
-## Chọn hạt cà phê phù hợp {#chon-hat-ca-phe}
-
+## Chọn hạt cà phê phù hợp  
 ### Loại hạt nào phù hợp với phin?
 
 **Robusta** là lựa chọn truyền thống và phổ biến nhất cho pha phin vì:
@@ -235,7 +234,7 @@ Cà phê phin có **body đậm và caffeine cao**, phù hợp uống:
 - Sau bữa trưa để tỉnh táo
 - **Tránh uống sau 4h chiều** để không ảnh hưởng giấc ngủ
 
-![Ly cà phê phin hoàn hảo](/images/cafe-phin-hoan-hao.jpg)
+![Ly cà phê phin hoàn hảo](images/ca-phe-phin-hoan-hao.jpg)
 
 *Ly cà phê phin đậm đà, thơm lừng pha theo đúng kỹ thuật*
 
