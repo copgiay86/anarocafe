@@ -298,7 +298,7 @@ function cardHTML(p) {
     </article>`;
 }
 
-// SỬAFIX: Extract TOC chỉ từ H2 trong HTML đã render
+// Extract TOC chỉ từ H2 trong HTML đã render
 function extractTOCFromHTML(html) {
   if (!html) return [];
   
@@ -332,7 +332,7 @@ function extractTOCFromHTML(html) {
   return headings;
 }
 
-// SỬAFIX: Generate TOC HTML gọn gàng với dropdown
+// Generate TOC HTML gọn gàng với dropdown
 function generateTOCHTML(headings) {
   if (!headings.length) return '';
   
@@ -349,7 +349,7 @@ function generateTOCHTML(headings) {
     </details>`;
 }
 
-// SỬAFIX: Add IDs to H2 headings only
+// Add IDs to H2 headings only
 function addHeadingIds(html) {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
@@ -667,7 +667,7 @@ async function renderSinglePost() {
     html = addHeadingIds(html);
     html = enhanceTables(html);
     
-    // SỬAFIX: Extract TOC từ HTML đã render (chỉ H2)
+    // Extract TOC từ HTML đã render (chỉ H2)
     const tocHeadings = extractTOCFromHTML(html);
     const tocHTML = generateTOCHTML(tocHeadings);
     
