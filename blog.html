@@ -1,456 +1,932 @@
-<html lang="vi"><head><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script>
+<!doctype html>
+<html lang="vi">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog - ANARO Coffee</title>
   <meta name="description" content="Blog cà phê ANARO: chia sẻ kinh nghiệm pha chế, rang xay, kinh doanh quán cà phê và những câu chuyện thú vị về văn hóa cà phê Việt Nam.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-  <link rel="stylesheet" href="blog.css">
   
-  <!-- Enhanced meta tags for SEO -->
-  <meta property="og:title" content="Blog ANARO Coffee - Chia sẻ kiến thức cà phê">
-  <meta property="og:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="ANARO Coffee">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog ANARO Coffee">
-  <meta name="twitter:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
-<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><style id="__web-inspector-hide-shortcut-style__">
-.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *
-{
-    visibility: hidden !important;
-}
-</style></head>
-<body __processed_084b4520-cee6-4df8-864f-4451049a56df__="true" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZGlzYWJsZWQiLCJDT05GSUciOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMi4wLjI2Iiwic2NvcmUiOjIwMDI2fV0=" __processed_07d12de4-7e32-47ff-b7a2-1df9e52cfd6d__="true" __processed_feff81d1-3a7f-4bc9-a434-292338eea66b__="true">
+  <style>
+    /* ===== PALETTE & ROOT VARIABLES ===== */
+    :root {
+      --bg: #f6efe9;
+      --text: #2a221d;
+      --panel: #a47148;
+      --ink: #F8EBDD;
+      --border: #e9d7c5;
+      --brand: #6b3f25;
+      --muted: #806a5b;
+      --white: #fff;
+    }
+
+    /* ===== BASE STYLES ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff, var(--bg) 50%, #f0e2d6);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ===== HEADER STYLES ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: #ffffffcc;
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+    }
+
+    .brand {
+      font-weight: 900;
+      color: var(--brand);
+      text-decoration: none;
+      letter-spacing: .4px;
+    }
+
+    .site-nav a {
+      color: var(--brand);
+      text-decoration: none;
+      margin-left: 16px;
+      font-weight: 700;
+    }
+
+    .site-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .site-nav a.active {
+      color: #8b4a2d;
+      text-decoration: underline;
+    }
+
+    /* ===== BLOG LAYOUT ===== */
+    .main {
+      padding: 28px 0;
+    }
+
+    .page-title {
+      margin: 0 0 8px 0;
+      color: var(--brand);
+      font-size: 2rem;
+    }
+
+    .blog-intro {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .status {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+
+    /* Blog Controls */
+    .blog-controls {
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      background: var(--white);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tag {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--brand);
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .filter-tag.active {
+      background: var(--brand);
+      color: white;
+    }
+
+    /* Stats section */
+    #blog-stats {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    #blog-stats > div {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 680px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Blog Cards */
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .05);
+      transition: transform .15s ease, box-shadow .15s ease;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    }
+
+    .card-link {
+      display: flex;
+      flex-direction: column;
+      color: inherit;
+      text-decoration: none;
+      height: 100%;
+    }
+
+    .thumb {
+      aspect-ratio: 16/9;
+      background: #0001;
+      overflow: hidden;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0005;
+      font-size: 3rem;
+    }
+
+    /* Badges */
+    .badges {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+    }
+
+    .badge.new {
+      background: #11998e;
+    }
+
+    .badge.hot {
+      background: #d35400;
+    }
+
+    /* Card Content */
+    .card-body {
+      padding: 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      margin: 0 0 6px 0;
+      color: var(--brand);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 6px;
+    }
+
+    .desc {
+      margin: 0 0 10px 0;
+      line-height: 1.6;
+      color: #3b2f27;
+      flex: 1;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .chip {
+      background: #f8ebdd;
+      border: 1px solid var(--border);
+      color: #6b3f25;
+      font-size: .8rem;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip:hover {
+      background: var(--brand);
+      color: white;
+    }
+
+    /* More Button */
+    .morewrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    #moreBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 800;
+      color: var(--brand);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    #moreBtn:hover {
+      background: #fdf7f1;
+      transform: translateY(-1px);
+    }
+
+    /* Empty states */
+    #empty-state, #no-results {
+      text-align: center;
+      padding: 3rem;
+    }
+
+    #empty-state h3, #no-results h3 {
+      color: var(--brand);
+      margin-bottom: 1rem;
+    }
+
+    #empty-state p, #no-results p {
+      color: var(--muted);
+    }
+
+    .clear-filters-btn {
+      margin-top: 1rem;
+      padding: 8px 16px;
+      background: var(--brand);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Footer styles */
+    .footer {
+      background: linear-gradient(135deg, #6b3f25 0%, #8b5a3c 50%, #a47148 100%);
+      color: #f8f4f0;
+      margin-top: 3rem;
+      box-shadow: 0 -15px 35px rgba(107, 63, 37, .25);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-info h3 {
+      color: #f8ebdd;
+      font-size: 1.8rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .footer-info p {
+      color: #e8dcc8;
+      line-height: 1.8;
+      margin: 0 0 2rem 0;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #f0e6d2;
+      font-size: .95rem;
+      padding: .8rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .1);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, .2);
+      transform: translateX(8px);
+    }
+
+    .social-section {
+      text-align: center;
+    }
+
+    .social-section h4 {
+      color: #f8ebdd;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: #fff;
+      transition: all 0.3s;
+    }
+
+    .social-link.facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); }
+    .social-link.instagram { background: linear-gradient(135deg, #e4405f, #f77737, #fccc63); }
+    .social-link.tiktok { background: linear-gradient(135deg, #000, #ff0050); }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      height: 180px;
+      position: relative;
+      background: linear-gradient(135deg, #f8f4f0, #ede1d0);
+    }
+
+    .map-overlay {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(107, 63, 37, .95);
+      color: #fff;
+      padding: .5rem 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: .9rem;
+      z-index: 2;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-direction: column;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, .2);
+      color: #e8dcc8;
+    }
+
+    .heart {
+      color: #e74c3c;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .search-box {
+        min-width: auto;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
   <header class="site-header" role="banner">
-    <div class="container" bis_skin_checked="1">
-      <a class="brand" href="https://anarocafe-vert.vercel.app/index.html">ANARO COFFEE</a>
+    <div class="container">
+      <a class="brand" href="index.html">ANARO COFFEE</a>
       <nav class="site-nav" aria-label="Chính">
-        <a href="https://anarocafe-vert.vercel.app/index-cart.html">Mua lẻ</a>
-        <a href="https://anarocafe-vert.vercel.app/wholesale.html">Giá sỉ</a>
-        <a href="https://anarocafe-vert.vercel.app/checkout.html">Thanh toán</a>
+        <a href="index-cart.html">Mua lẻ</a>
+        <a href="wholesale.html">Giá sỉ</a>
+        <a href="checkout.html">Thanh toán</a>
         <a href="blog.html" class="active">Blog</a>
       </nav>
     </div>
   </header>
 
   <main class="main">
-    <div class="container" bis_skin_checked="1">
+    <div class="container">
       <!-- Hero section -->
-      <div class="blog-hero" style="margin-bottom: 2rem;" bis_skin_checked="1">
+      <div class="blog-hero" style="margin-bottom: 2rem;">
         <h1 class="page-title">Blog cà phê ANARO</h1>
-        <p class="blog-intro" style="color: var(--muted); font-size: 1.1rem; max-width: 600px;">
+        <p class="blog-intro">
           Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay, và văn hóa cà phê Việt Nam.
         </p>
       </div>
 
       <!-- Filter and search section -->
-      <div class="blog-controls" style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;" bis_skin_checked="1">
-        <div class="search-box" style="flex: 1; min-width: 300px;" bis_skin_checked="1">
-          <input type="text" id="search-input" placeholder="Tìm kiếm bài viết..." style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: var(--white);">
+      <div class="blog-controls">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Tìm kiếm bài viết...">
         </div>
-        <div class="filter-tags" style="display: flex; gap: 8px; flex-wrap: wrap;" bis_skin_checked="1">
-          <button class="filter-tag active" data-tag="all" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--brand); color: white; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
-            Tất cả
-          </button>
-        <button class="filter-tag" data-tag="cà phê phin" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê phin</button><button class="filter-tag" data-tag="cà phê tại nhà" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê tại nhà</button><button class="filter-tag" data-tag="hạt cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">hạt cà phê</button><button class="filter-tag" data-tag="pha cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">pha cà phê</button><button class="filter-tag" data-tag="cà phê phin" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê phin</button><button class="filter-tag" data-tag="cà phê tại nhà" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê tại nhà</button><button class="filter-tag" data-tag="hạt cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">hạt cà phê</button><button class="filter-tag" data-tag="pha cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">pha cà phê</button><button class="filter-tag" data-tag="cà phê phin" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê phin</button><button class="filter-tag" data-tag="cà phê tại nhà" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">cà phê tại nhà</button><button class="filter-tag" data-tag="hạt cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">hạt cà phê</button><button class="filter-tag" data-tag="pha cà phê" style="padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;">pha cà phê</button></div>
+        <div class="filter-tags">
+          <button class="filter-tag active" data-tag="all">Tất cả</button>
+        </div>
       </div>
 
       <!-- Loading and status -->
-      <div class="status" id="status" aria-live="polite" bis_skin_checked="1"></div>
+      <div class="status" id="status" aria-live="polite">Đang tải...</div>
 
       <!-- Stats section -->
-      <div id="blog-stats" style="display: block; margin-bottom: 1.5rem;" bis_skin_checked="1">
-        <div style="display: flex; gap: 2rem; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted);" bis_skin_checked="1">
-          <span><span style="margin-right: 4px;">📝</span><span id="total-posts">2</span> bài viết</span>
+      <div id="blog-stats" style="display: none;">
+        <div>
+          <span><span style="margin-right: 4px;">📄</span><span id="total-posts">0</span> bài viết</span>
           <span><span style="margin-right: 4px;">🔥</span><span id="popular-posts">0</span> bài phổ biến</span>
           <span><span style="margin-right: 4px;">✨</span><span id="new-posts">0</span> bài mới</span>
         </div>
       </div>
 
       <!-- Blog grid -->
-      <div class="status" id="status" aria-live="polite" bis_skin_checked="1">Đang tải...</div>
       <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết">
-    
-    
-    
-    
-   
-    
-    <article class="blog-card" data-tags="">
-      <a class="card-link" href="file:///C:/Users/DELL/Downloads/post.html?slug=" aria-label="">
-        <div class="badges"></div>
-        <div class="thumb thumb--placeholder"><span>📄</span></div>
-        <div class="card-body">
-          <h3 class="card-title"></h3>
-          <div class="meta">
-            <span class="date"></span>
-             <span class="read-time">1 phút đọc</span>
-          </div>
-          <p class="desc"></p>
-          <div class="tags"></div>
-        </div>
-      </a>
-    </article>
-    <article class="blog-card" data-tags="">
-      <a class="card-link" href="file:///C:/Users/DELL/Downloads/post.html?slug=cach-pha-cafe-phin" aria-label="cach-pha-cafe-phin">
-        <div class="badges"></div>
-        <div class="thumb thumb--placeholder"><span>📄</span></div>
-        <div class="card-body">
-          <h3 class="card-title">cach-pha-cafe-phin</h3>
-          <div class="meta">
-            <span class="date"></span>
-             <span class="read-time">1 phút đọc</span>
-          </div>
-          <p class="desc">&lt;html lang="vi" &lt;script src="chrome extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppi…</p>
-          <div class="tags"></div>
-        </div>
-      </a>
-    </article></section>
+      </section>
       
       <!-- Load more button -->
-      <div class="morewrap" bis_skin_checked="1">
-        <button id="moreBtn" aria-label="Xem thêm bài" style="display:none" data-enhanced="true">
+      <div class="morewrap">
+        <button id="moreBtn" aria-label="Xem thêm bài" style="display:none">
           <span>Xem thêm</span>
-          <span id="remaining-count" style="font-size: 0.8rem; opacity: 0.8;">(còn -4 bài)</span>
+          <span id="remaining-count" style="font-size: 0.8rem; opacity: 0.8;"></span>
         </button>
       </div>
 
       <!-- Empty state -->
-      <div id="empty-state" style="display: block; text-align: center; padding: 3rem;" bis_skin_checked="1">
-        <div style="font-size: 3rem; margin-bottom: 1rem;" bis_skin_checked="1" class="__web-inspector-hide-shortcut__">📝</div>
-        <h3 style="color: var(--brand); margin-bottom: 1rem;" class="__web-inspector-hide-shortcut__">Chưa có bài viết nào</h3>
-        <p style="color: var(--muted);" class="__web-inspector-hide-shortcut__">Hãy quay lại sau để đọc những bài viết mới nhất về cà phê!</p>
+      <div id="empty-state" style="display: none;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
+        <h3>Chưa có bài viết nào</h3>
+        <p>Hãy quay lại sau để đọc những bài viết mới nhất về cà phê!</p>
       </div>
 
       <!-- No results state -->
-      <div id="no-results" style="display: none; text-align: center; padding: 3rem;" bis_skin_checked="1">
-        <div style="font-size: 3rem; margin-bottom: 1rem;" bis_skin_checked="1">🔍</div>
-        <h3 style="color: var(--brand); margin-bottom: 1rem;">Không tìm thấy kết quả</h3>
-        <p style="color: var(--muted);">Thử tìm kiếm với từ khóa khác hoặc bỏ bộ lọc.</p>
-        <button onclick="clearFilters()" style="margin-top: 1rem; padding: 8px 16px; background: var(--brand); color: white; border: none; border-radius: 6px; cursor: pointer;">
-          Xóa bộ lọc
-        </button>
+      <div id="no-results" style="display: none;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+        <h3>Không tìm thấy kết quả</h3>
+        <p>Thử tìm kiếm với từ khóa khác hoặc bỏ bộ lọc.</p>
+        <button onclick="clearFilters()" class="clear-filters-btn">Xóa bộ lọc</button>
       </div>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <footer class="footer">
-    <div class="footer-container" bis_skin_checked="1">
-      <div class="footer-content" bis_skin_checked="1">
-        <div class="footer-info" bis_skin_checked="1">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
           <h3>☕ ANARO Coffee</h3>
           <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
-          <div class="contact-info" bis_skin_checked="1">
-            <div class="contact-item" onclick="openGoogleMaps()" bis_skin_checked="1"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
-            <div class="contact-item" onclick="makePhoneCall()" bis_skin_checked="1"><span class="icon">📞</span><span>0918337071</span></div>
-            <div class="contact-item" onclick="sendEmail()" bis_skin_checked="1"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
-            <div class="contact-item" bis_skin_checked="1"><span class="icon">🕒</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
+          <div class="contact-info">
+            <div class="contact-item" onclick="openGoogleMaps()">
+              <span class="icon">📍</span>
+              <span>78 Ấp Phước Bình Chánh TP.HCM</span>
+            </div>
+            <div class="contact-item" onclick="makePhoneCall()">
+              <span class="icon">📞</span>
+              <span>0918337071</span>
+            </div>
+            <div class="contact-item" onclick="sendEmail()">
+              <span class="icon">✉️</span>
+              <span>anmy1909@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">🕒</span>
+              <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
+            </div>
           </div>
         </div>
-        <div class="social-section" bis_skin_checked="1">
+        <div class="social-section">
           <h4>Kết nối với ANARO Coffee</h4>
-          <div class="social-links" bis_skin_checked="1">
-            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
+          <div class="social-links">
+            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank">f</a>
+            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank">i</a>
+            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank">t</a>
           </div>
-          <div class="map-container" bis_skin_checked="1">
-            <div class="map-overlay" bis_skin_checked="1">ANARO Coffee Store</div>
-            <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ" bis_skin_checked="1">
-              <div bis_skin_checked="1">
-                <div bis_skin_checked="1"><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
-                <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
-              </div>
+          <div class="map-container">
+            <div class="map-overlay">ANARO Coffee Store</div>
+            <div class="map-placeholder" onclick="openGoogleMaps()">
+              <div>Nhấn để xem bản đồ</div>
+              <small>78 Ấp Phước, Bình Chánh, TP.HCM</small>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer-bottom" bis_skin_checked="1">
+      <div class="footer-bottom">
         © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
       </div>
     </div>
   </footer>
 
   <script>
-  function openGoogleMaps(){ 
-    const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
-    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
-  }
-  function makePhoneCall(){ 
-    const p = '0918337071'; 
-    window.location.href = `tel:${p}`; 
-  }
-  function sendEmail(){ 
-    const email = 'anmy1909@gmail.com'; 
-    const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
-    const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
-  }
-  function trackSocialClick(p){ 
-    console.log('Social media clicked:', p); 
-  }
-
-  // Enhanced blog functionality
-  let allPosts = [];
-  let filteredPosts = [];
-  let currentFilter = 'all';
-  let searchQuery = '';
-
-  // Search functionality
-  function setupSearch() {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-      searchInput.addEventListener('input', debounce(function(e) {
-        searchQuery = e.target.value.toLowerCase().trim();
-        filterAndDisplayPosts();
-      }, 300));
-    }
-  }
-
-  // Debounce helper
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-
-  // Filter posts by search and tag
-  function filterAndDisplayPosts() {
-    const grid = document.getElementById('blog-grid');
-    const noResults = document.getElementById('no-results');
-    
-    filteredPosts = allPosts.filter(post => {
-      // Filter by search query
-      const matchesSearch = !searchQuery || 
-        post.title.toLowerCase().includes(searchQuery) ||
-        post.desc.toLowerCase().includes(searchQuery) ||
-        (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase().includes(searchQuery)));
-      
-      // Filter by tag
-      const matchesTag = currentFilter === 'all' || 
-        (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase() === currentFilter.toLowerCase()));
-      
-      return matchesSearch && matchesTag;
-    });
-    
-    // Clear current grid
-    grid.innerHTML = '';
-    
-    if (filteredPosts.length === 0) {
-      noResults.style.display = 'block';
-      document.getElementById('moreBtn').style.display = 'none';
-    } else {
-      noResults.style.display = 'none';
-      displayPosts(0, Math.min(6, filteredPosts.length));
+    // Utility functions
+    function openGoogleMaps(){ 
+      const address = encodeURIComponent("78 Ấp Phước, Bình Chánh, TP.HCM, Vietnam"); 
+      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
     }
     
-    updateStats();
-  }
+    function makePhoneCall(){ 
+      window.location.href = 'tel:0918337071'; 
+    }
+    
+    function sendEmail(){ 
+      const email = 'anmy1909@gmail.com'; 
+      const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
+      const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
+    }
 
-  // Display posts with pagination
-  function displayPosts(start, end) {
-    const grid = document.getElementById('blog-grid');
-    const moreBtn = document.getElementById('moreBtn');
-    const remainingCount = document.getElementById('remaining-count');
-    
-    const postsToShow = filteredPosts.slice(start, end);
-    
-    if (start === 0) {
-      grid.innerHTML = '';
-    }
-    
-    // Use the cardHTML function from the blog system
-    if (typeof cardHTML === 'function') {
-      grid.insertAdjacentHTML('beforeend', postsToShow.map(cardHTML).join(''));
-    } else {
-      // Fallback rendering
-      grid.insertAdjacentHTML('beforeend', postsToShow.map(post => `
-        <article class="blog-card">
-          <a class="card-link" href="post.html?slug=${post.slug}">
-            <div class="thumb ${post.cover ? '' : 'thumb--placeholder'}">
-              ${post.cover ? `<img src="${post.cover}" alt="${post.title}" loading="lazy">` : '<span>📝</span>'}
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">${post.title}</h3>
-              <div class="meta">${post.date || 'Chưa có ngày'}</div>
-              <p class="desc">${post.desc || 'Mô tả bài viết'}</p>
-              <div class="tags">${(post.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('')}</div>
-            </div>
-          </a>
-        </article>
-      `).join(''));
-    }
-    
-    const remaining = filteredPosts.length - end;
-    if (remaining > 0) {
-      moreBtn.style.display = 'inline-flex';
-      remainingCount.textContent = `(còn ${remaining} bài)`;
-    } else {
-      moreBtn.style.display = 'none';
-    }
-  }
+    // Blog functionality
+    let allPosts = [];
+    let filteredPosts = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let displayedCount = 0;
+    const POSTS_PER_PAGE = 6;
 
-  // Setup filter tags
-  function setupFilters(posts) {
-    const filterContainer = document.querySelector('.filter-tags');
-    const allTags = new Set();
-    
-    posts.forEach(post => {
-      if (post.tags && Array.isArray(post.tags)) {
-        post.tags.forEach(tag => allTags.add(tag));
+    // Mock data for demo - replace with real API calls
+    const mockPosts = [
+      {
+        slug: 'cach-pha-cafe-phin-ngon',
+        title: 'Cách pha cà phê phin ngon đúng chuẩn',
+        desc: 'Hướng dẫn chi tiết cách pha cà phê phin truyền thống Việt Nam để có ly cà phê đậm đà, thơm ngon nhất.',
+        tags: ['cà phê phin', 'pha chế', 'cà phê tại nhà'],
+        date: '2025-01-15',
+        cover: '',
+        isNew: true,
+        isHot: false,
+        views: 120
+      },
+      {
+        slug: 'chon-hat-cafe-chat-luong',
+        title: 'Bí quyết chọn hạt cà phê chất lượng',
+        desc: 'Những tiêu chí quan trọng để lựa chọn hạt cà phê tốt, từ nguồn gốc đến cách bảo quản.',
+        tags: ['hạt cà phê', 'chọn mua', 'chất lượng'],
+        date: '2025-01-10',
+        cover: '',
+        isNew: true,
+        isHot: true,
+        views: 89
+      },
+      {
+        slug: 'cafe-sua-da-sai-gon',
+        title: 'Cà phê sữa đá Sài Gòn - Nét văn hóa đường phố',
+        desc: 'Khám phá lịch sử và văn hóa cà phê sữa đá - thức uống không thể thiếu của người Sài Gòn.',
+        tags: ['văn hóa cà phê', 'cà phê sữa đá', 'Sài Gòn'],
+        date: '2025-01-05',
+        cover: '',
+        isNew: false,
+        isHot: true,
+        views: 156
       }
-    });
-    
-    const sortedTags = Array.from(allTags).sort();
-    
-    sortedTags.forEach(tag => {
-      const button = document.createElement('button');
-      button.className = 'filter-tag';
-      button.dataset.tag = tag.toLowerCase();
-      button.textContent = tag;
-      button.style.cssText = 'padding: 8px 16px; border: 1px solid var(--border); background: var(--white); color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;';
-      
-      button.addEventListener('click', function() {
-        document.querySelectorAll('.filter-tag').forEach(btn => {
-          btn.classList.remove('active');
-          btn.style.background = 'var(--white)';
-          btn.style.color = 'var(--brand)';
-        });
+    ];
+
+    // Debounce function
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // Search functionality
+    function setupSearch() {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', debounce(function(e) {
+          searchQuery = e.target.value.toLowerCase().trim();
+          filterAndDisplayPosts();
+        }, 300));
+      }
+    }
+
+    // Filter posts
+    function filterAndDisplayPosts() {
+      filteredPosts = allPosts.filter(post => {
+        const matchesSearch = !searchQuery || 
+          post.title.toLowerCase().includes(searchQuery) ||
+          post.desc.toLowerCase().includes(searchQuery) ||
+          post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
         
-        this.classList.add('active');
-        this.style.background = 'var(--brand)';
-        this.style.color = 'white';
+        const matchesTag = currentFilter === 'all' || 
+          post.tags.some(tag => tag.toLowerCase() === currentFilter.toLowerCase());
         
-        currentFilter = this.dataset.tag;
-        filterAndDisplayPosts();
+        return matchesSearch && matchesTag;
       });
       
-      filterContainer.appendChild(button);
-    });
-  }
-
-  // Update statistics
-  function updateStats() {
-    const statsSection = document.getElementById('blog-stats');
-    const totalPosts = document.getElementById('total-posts');
-    const popularPosts = document.getElementById('popular-posts');
-    const newPosts = document.getElementById('new-posts');
-    
-    if (allPosts.length > 0) {
-      statsSection.style.display = 'block';
-      totalPosts.textContent = filteredPosts.length;
-      popularPosts.textContent = filteredPosts.filter(p => p.isHot).length;
-      newPosts.textContent = filteredPosts.filter(p => p.isNew).length;
-    }
-  }
-
-  // Clear all filters
-  function clearFilters() {
-    // Reset search
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) searchInput.value = '';
-    searchQuery = '';
-    
-    // Reset tag filter
-    document.querySelectorAll('.filter-tag').forEach(btn => {
-      btn.classList.remove('active');
-      btn.style.background = 'var(--white)';
-      btn.style.color = 'var(--brand)';
-    });
-    const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
-    if (allBtn) {
-      allBtn.classList.add('active');
-      allBtn.style.background = 'var(--brand)';
-      allBtn.style.color = 'white';
-    }
-    currentFilter = 'all';
-    
-    filterAndDisplayPosts();
-  }
-
-  // Store references for external access
-  window.BlogControls = {
-    allPosts,
-    filteredPosts,
-    setupFilters,
-    setupSearch,
-    updateStats,
-    filterAndDisplayPosts,
-    displayPosts
-  };
-  </script>
-
-  <!-- Load blog script và khởi chạy -->
-  <script src="blog.js"></script>
-  <script>
-  // Enhanced initialization
-  function initBlog() {
-    if (typeof window.Blog !== 'undefined' && window.Blog.renderBlogList) {
-      console.log('[Blog] Initializing blog list...');
+      displayedCount = 0;
+      document.getElementById('blog-grid').innerHTML = '';
       
-      // Enhance the renderBlogList function
-      const originalRenderBlogList = window.Blog.renderBlogList;
-      window.Blog.renderBlogList = async function() {
-        try {
-          await originalRenderBlogList();
+      if (filteredPosts.length === 0) {
+        document.getElementById('no-results').style.display = 'block';
+        document.getElementById('moreBtn').style.display = 'none';
+      } else {
+        document.getElementById('no-results').style.display = 'none';
+        displayPosts();
+      }
+      
+      updateStats();
+    }
+
+    // Display posts
+    function displayPosts() {
+      const grid = document.getElementById('blog-grid');
+      const batch = filteredPosts.slice(displayedCount, displayedCount + POSTS_PER_PAGE);
+      
+      batch.forEach(post => {
+        const card = createPostCard(post);
+        grid.appendChild(card);
+      });
+      
+      displayedCount += batch.length;
+      
+      const moreBtn = document.getElementById('moreBtn');
+      const remainingCount = document.getElementById('remaining-count');
+      
+      if (displayedCount < filteredPosts.length) {
+        moreBtn.style.display = 'inline-flex';
+        remainingCount.textContent = `(còn ${filteredPosts.length - displayedCount} bài)`;
+      } else {
+        moreBtn.style.display = 'none';
+      }
+    }
+
+    // Create post card
+    function createPostCard(post) {
+      const article = document.createElement('article');
+      article.className = 'blog-card';
+      
+      const badges = [];
+      if (post.isNew) badges.push('<span class="badge new">Bài mới</span>');
+      if (post.isHot) badges.push('<span class="badge hot">Đọc nhiều</span>');
+      
+      const thumb = post.cover 
+        ? `<div class="thumb"><img src="${post.cover}" alt="${post.title}" loading="lazy"></div>`
+        : `<div class="thumb thumb--placeholder">📄</div>`;
+      
+      const readTime = Math.max(1, Math.ceil(post.desc.length / 200));
+      const formattedDate = formatDate(post.date);
+      
+      article.innerHTML = `
+        <a class="card-link" href="post.html?slug=${post.slug}">
+          <div class="badges">${badges.join('')}</div>
+          ${thumb}
+          <div class="card-body">
+            <h3 class="card-title">${escapeHtml(post.title)}</h3>
+            <div class="meta">
+              <span class="date">${formattedDate}</span>
+              ${formattedDate ? ' · ' : ''}<span class="read-time">${readTime} phút đọc</span>
+            </div>
+            <p class="desc">${escapeHtml(truncate(post.desc, 120))}</p>
+            <div class="tags">${post.tags.map(tag => `<span class="chip" onclick="filterByTag('${escapeHtml(tag)}')">${escapeHtml(tag)}</span>`).join('')}</div>
+          </div>
+        </a>
+      `;
+      
+      return article;
+    }
+
+    // Setup filters
+    function setupFilters() {
+      const filterContainer = document.querySelector('.filter-tags');
+      const allTags = new Set();
+      
+      allPosts.forEach(post => {
+        post.tags.forEach(tag => allTags.add(tag));
+      });
+      
+      // Remove duplicate filter buttons and add unique tags
+      const existingTags = new Set(['all']);
+      Array.from(allTags).forEach(tag => {
+        if (!existingTags.has(tag.toLowerCase())) {
+          existingTags.add(tag.toLowerCase());
           
-          // Get posts data for enhanced features
-          if (window.Blog.allPosts) {
-            allPosts = window.Blog.allPosts;
-            filteredPosts = [...allPosts];
-            setupFilters(allPosts);
-            setupSearch();
-            updateStats();
-            
-            // Enhanced more button functionality
-            const moreBtn = document.getElementById('moreBtn');
-            if (moreBtn && !moreBtn.hasAttribute('data-enhanced')) {
-              moreBtn.setAttribute('data-enhanced', 'true');
-              let currentIndex = 6;
-              
-              moreBtn.onclick = function() {
-                const nextBatch = Math.min(currentIndex + 6, filteredPosts.length);
-                displayPosts(currentIndex, nextBatch);
-                currentIndex = nextBatch;
-              };
-            }
-          }
-        } catch (error) {
-          console.error('[Blog] Error rendering blog:', error);
-          document.getElementById('status').textContent = 'Có lỗi xảy ra khi tải blog.';
-          document.getElementById('empty-state').style.display = 'block';
+          const button = document.createElement('button');
+          button.className = 'filter-tag';
+          button.dataset.tag = tag.toLowerCase();
+          button.textContent = tag;
+          
+          button.addEventListener('click', function() {
+            document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.tag;
+            filterAndDisplayPosts();
+          });
+          
+          filterContainer.appendChild(button);
         }
-      };
-      
-      window.Blog.renderBlogList();
-    } else {
-      console.warn('[Blog] Blog object not ready, retrying...');
-      setTimeout(initBlog, 100);
+      });
     }
-  }
 
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
+    // Filter by tag
+    function filterByTag(tag) {
+      document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
+      
+      const tagBtn = document.querySelector(`[data-tag="${tag.toLowerCase()}"]`);
+      if (tagBtn) {
+        tagBtn.classList.add('active');
+        currentFilter = tag.toLowerCase();
+        filterAndDisplayPosts();
+      }
+    }
+
+    // Update statistics
+    function updateStats() {
+      const statsSection = document.getElementById('blog-stats');
+      const totalPosts = document.getElementById('total-posts');
+      const popularPosts = document.getElementById('popular-posts');
+      const newPosts = document.getElementById('new-posts');
+      
+      if (allPosts.length > 0) {
+        statsSection.style.display = 'block';
+        totalPosts.textContent = filteredPosts.length;
+        popularPosts.textContent = filteredPosts.filter(p => p.isHot).length;
+        newPosts.textContent = filteredPosts.filter(p => p.isNew).length;
+      } else {
+        statsSection.style.display = 'none';
+      }
+    }
+
+    // Clear all filters
+    function clearFilters() {
+      document.getElementById('search-input').value = '';
+      searchQuery = '';
+      
+      document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.filter-tag[data-tag="all"]').classList.add('active');
+      currentFilter = 'all';
+      
+      filterAndDisplayPosts();
+    }
+
+    // Utility functions
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function truncate(str, length) {
+      return str.length > length ? str.substring(0, length) + '...' : str;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('vi-VN');
+    }
+
+    // Initialize blog
+    function initBlog() {
+      document.getElementById('status').textContent = 'Đang tải bài viết...';
+      
+      // Simulate API call with mock data
+      setTimeout(() => {
+        allPosts = mockPosts;
+        filteredPosts = [...allPosts];
+        
+        setupFilters();
+        setupSearch();
+        displayPosts();
+        updateStats();
+        
+        document.getElementById('status').style.display = 'none';
+        
+        // Setup more button
+        document.getElementById('moreBtn').onclick = displayPosts;
+      }, 500);
+    }
+
+    // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', initBlog);
-  } else {
-    initBlog();
-  }
   </script>
-
-
-
-
-
-
-
-</body></html>
+</body>
+</html>
