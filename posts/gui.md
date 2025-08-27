@@ -8,11 +8,11 @@ popular: true
 views: 28
 ---
 
-# Cách pha cà phê phin không đắng - Bí quyết từ chuyên gia
+# Cách pha cà phê phin không đắng - Bí quyết từ chuyên gia 
 
 Cà phê phin đắng là nỗi lo của nhiều người yêu cà phê. Bạn có biết rằng vị đắng khó chịu thường xuất phát từ những sai lầm nhỏ trong quá trình pha chế? Hôm nay ANARO Coffee sẽ tiết lộ những bí quyết giúp bạn pha được ly cà phê phin thơm ngon, êm dịu mà không hề đắng.
 
-{{cta|Cà phê ANARO Smooth Blend|Hạt cà phê rang vừa, độ đắng cân bằng hoàn hảo|279.000đ|https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=120&h=120&fit=crop|index-cart.html#smooth-blend}}
+{{cta|Cà phê ANARO dòng cân bằng|Hạt cà phê rang vừa, độ đắng cân bằng hoàn hảo|279.000đ|https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=120&h=120&fit=crop|index-cart.html#smooth-blend}}
 
 ## Nguyên nhân khiến cà phê phin bị đắng
 
@@ -32,7 +32,8 @@ Khi cà phê tiếp xúc với nước quá lâu, quá trình chiết xuất s�
 
 ### Độ xay không phù hợp
 
-{{table|Độ xay|Thời gian pha|Đặc điểm|Quá mịn|7-10 phút|Đắng, đậm|Vừa phải|4-6 phút|Cân bằng|Quá to|2-3 phút|Nhạt, chua}}
+Quá mịn => chiết xuất lâu, cà phê dễ mang vị đắng
+Quá thô => chiết xuất nhanh, cà phê dễ loãng và nhạt 
 
 ## Kỹ thuật pha cà phê phin không đắng
 
@@ -74,7 +75,7 @@ Cà phê cũ tích tụ trong phin sẽ tạo vị đắng:
 - Ngâm với nước muối loãng hàng tuần
 - Sử dụng bàn chải mềm làm sạch
 
-{{cta|Bộ dụng cụ pha cà phê ANARO|Phin nhôm cao cấp, ly thủy tinh và thìa khuấy|159.000đ|https://images.unsplash.com/photo-1545665225-b23b99e4d26e?w=120&h=120&fit=crop|#bo-dung-cu}}
+{{cta|Cà phê ANARO dòng đậm vị|Hạt cà phê rang đậm, |279.000đ|https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=120&h=120&fit=crop|index-cart.html#smooth-blend}}
 
 ## Mẹo hay để cải thiện hương vị
 
@@ -106,7 +107,6 @@ Cà phê cũ tích tụ trong phin sẽ tạo vị đắng:
 
 Pha cà phê phin không đắng là một nghệ thuật đòi hỏi sự kiên nhẫn và chú ý đến từng chi tiết. Từ việc chọn nhiệt độ nước phù hợp, kiểm soát thời gian pha, đến việc bảo trì dụng cụ - tất cả đều góp phần tạo nên ly cà phê hoàn hảo. Hãy thực hành những kỹ thuật này và điều chỉnh theo khẩu vị cá nhân để tìm ra công thức riêng của bạn.
 
-{{cta|Khóa học pha cà phê ANARO|Học từ barista chuyên nghiệp, thực hành trực tiếp|1.299.000đ|https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=120&h=120&fit=crop|#khoa-hoc-pha-che}}
 
 ---
 
