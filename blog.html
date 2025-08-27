@@ -1,860 +1,182 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog - ANARO Coffee</title>
-  <meta name="description" content="Blog cà phê ANARO: chia sẻ kinh nghiệm pha chế, rang xay, kinh doanh quán cà phê và những câu chuyện thú vị về văn hóa cà phê Việt Nam.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+// Tag Filtering System for ANARO Coffee Blog
+// Chỉ tập trung vào tag filtering, loại bỏ duplicate tags
+
+let allPosts = [];
+let filteredPosts = [];
+let currentFilter = 'all';
+
+// Hàm setup filter tags - loại bỏ duplicate
+function setupFilters() {
+  // Lấy tất cả posts từ DOM
+  const blogCards = document.querySelectorAll('.blog-card');
+  const allTags = new Set();
   
-  <!-- Enhanced meta tags for SEO -->
-  <meta property="og:title" content="Blog ANARO Coffee - Chia sẻ kiến thức cà phê">
-  <meta property="og:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="ANARO Coffee">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog ANARO Coffee">
-  <meta name="twitter:description" content="Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay và văn hóa cà phê Việt Nam.">
+  blogCards.forEach(card => {
+    const tagsAttr = card.getAttribute('data-tags');
+    if (tagsAttr && tagsAttr.trim() !== '') {
+      const tags = tagsAttr.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+      tags.forEach(tag => allTags.add(tag));
+    }
+  });
   
-  <style>
-    :root {
-      --brand: #8B4513;
-      --white: #ffffff;
-      --border: #e5e5e5;
-      --muted: #666666;
-      --light-bg: #f8f9fa;
-      --shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: var(--light-bg);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Header */
-    .site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .site-header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--brand);
-      text-decoration: none;
-    }
-
-    .site-nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .site-nav a {
-      text-decoration: none;
-      color: #666;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .site-nav a:hover,
-    .site-nav a.active {
-      color: var(--brand);
-    }
-
-    /* Main content */
-    .main {
-      padding: 2rem 0 4rem;
-    }
-
-    .blog-hero {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .page-title {
-      font-size: 2.5rem;
-      color: var(--brand);
-      margin-bottom: 1rem;
-    }
-
-    .blog-intro {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Controls */
-    .blog-controls {
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .search-box {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    #search-input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      background: var(--white);
-    }
-
-    .filter-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-tag {
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--brand);
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
+  const filterContainer = document.querySelector('.filter-tags');
+  if (!filterContainer) return;
+  
+  // Xóa các tag cũ (trừ nút "Tất cả")
+  const existingTags = filterContainer.querySelectorAll('.filter-tag:not([data-tag="all"])');
+  existingTags.forEach(tag => tag.remove());
+  
+  // Tạo các nút filter mới (đã loại bỏ duplicate)
+  const sortedTags = Array.from(allTags).sort();
+  
+  sortedTags.forEach(tag => {
+    const button = document.createElement('button');
+    button.className = 'filter-tag';
+    button.dataset.tag = tag.toLowerCase();
+    button.textContent = tag;
+    button.style.cssText = `
+      padding: 8px 16px; 
+      border: 1px solid var(--border); 
+      background: var(--white); 
+      color: var(--brand); 
+      border-radius: 20px; 
+      cursor: pointer; 
+      font-size: 0.9rem; 
       transition: all 0.3s;
-    }
-
-    .filter-tag.active,
-    .filter-tag:hover {
-      background: var(--brand);
-      color: white;
-    }
-
-    /* Stats */
-    #blog-stats {
-      margin-bottom: 1.5rem;
-    }
-
-    #blog-stats > div {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* Blog grid */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .blog-card {
-      background: var(--white);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-
-    .card-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .badges {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 2;
-    }
-
-    .badge {
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .badge.new {
-      background: #10b981;
-      color: white;
-    }
-
-    .badge.hot {
-      background: #f59e0b;
-      color: white;
-    }
-
-    .thumb {
-      position: relative;
-      height: 200px;
-      overflow: hidden;
-    }
-
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .thumb--placeholder {
-      background: var(--light-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-    }
-
-    .card-body {
-      padding: 1.5rem;
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      line-height: 1.4;
-    }
-
-    .meta {
-      color: var(--muted);
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-    }
-
-    .desc {
-      color: #555;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .chip {
-      padding: 4px 8px;
-      background: var(--light-bg);
-      border-radius: 12px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .chip:hover {
-      background: var(--brand);
-      color: white;
-    }
-
-    /* Demo card - Hidden */
-    .blog-card.demo-card,
-    .blog-card[data-tags=""] {
-      display: none !important;
-    }
-
-    /* Status and empty states */
-    .status {
-      text-align: center;
-      color: var(--muted);
-      padding: 2rem;
-    }
-
-    #empty-state,
-    #no-results {
-      text-align: center;
-      padding: 3rem;
-    }
-
-    #empty-state h3,
-    #no-results h3 {
-      color: var(--brand);
-      margin-bottom: 1rem;
-    }
-
-    #empty-state p,
-    #no-results p {
-      color: var(--muted);
-    }
-
-    /* More button */
-    .morewrap {
-      text-align: center;
-    }
-
-    #moreBtn {
-      padding: 12px 24px;
-      background: var(--brand);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-
-    #moreBtn:hover {
-      background: #704214;
-    }
-
-    /* Footer */
-    .footer {
-      background: #2d1810;
-      color: white;
-      padding: 3rem 0 1rem;
-      margin-top: 4rem;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-info h3 {
-      color: #d4a574;
-      margin-bottom: 1rem;
-    }
-
-    .contact-info {
-      margin-top: 1.5rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      cursor: pointer;
-    }
-
-    .social-section h4 {
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: transform 0.3s;
-    }
-
-    .social-link:hover {
-      transform: scale(1.1);
-    }
-
-    .facebook { background: #1877f2; }
-    .instagram { background: #e4405f; }
-    .tiktok { background: #000; }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid #3d2818;
-      color: #999;
-    }
-
-    .heart {
-      color: #e4405f;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .page-title {
-        font-size: 2rem;
-      }
-      
-      .blog-controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .search-box {
-        min-width: auto;
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-      
-      .site-nav {
-        gap: 1rem;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header" role="banner">
-    <div class="container">
-      <a class="brand" href="https://anarocafe-vert.vercel.app/index.html">ANARO COFFEE</a>
-      <nav class="site-nav" aria-label="Chính">
-        <a href="https://anarocafe-vert.vercel.app/index-cart.html">Mua lẻ</a>
-        <a href="https://anarocafe-vert.vercel.app/wholesale.html">Giá sỉ</a>
-        <a href="https://anarocafe-vert.vercel.app/checkout.html">Thanh toán</a>
-        <a href="blog.html" class="active">Blog</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="main">
-    <div class="container">
-      <!-- Hero section -->
-      <div class="blog-hero">
-        <h1 class="page-title">Blog cà phê ANARO</h1>
-        <p class="blog-intro">
-          Khám phá thế giới cà phê qua những bài viết chuyên sâu về pha chế, rang xay, và văn hóa cà phê Việt Nam.
-        </p>
-      </div>
-
-      <!-- Filter and search section -->
-      <div class="blog-controls">
-        <div class="search-box">
-          <input type="text" id="search-input" placeholder="Tìm kiếm bài viết..." />
-        </div>
-        <div class="filter-tags">
-          <button class="filter-tag active" data-tag="all">Tất cả</button>
-        </div>
-      </div>
-
-      <!-- Stats section -->
-      <div id="blog-stats" style="display: none;">
-        <div>
-          <span><span style="margin-right: 4px;">📝</span><span id="total-posts">0</span> bài viết</span>
-          <span><span style="margin-right: 4px;">🔥</span><span id="popular-posts">0</span> bài phổ biến</span>
-          <span><span style="margin-right: 4px;">✨</span><span id="new-posts">0</span> bài mới</span>
-        </div>
-      </div>
-
-      <!-- Blog grid -->
-      <section id="blog-grid" class="blog-grid" aria-label="Danh sách bài viết">
-        <!-- Sample post -->
-        <article class="blog-card" data-tags="cà phê phin,pha cà phê,hạt cà phê,cà phê tại nhà">
-          <a class="card-link" href="https://anarocafe-vert.vercel.app/post.html?slug=cach-pha-cafe-phin" aria-label="Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia">
-            <div class="badges">
-              <span class="badge new">Bài mới</span>
-            </div>
-            <div class="thumb">
-              <img src="/images/cafe-phin-truyen-thong.jpg" loading="lazy" alt="Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia" onerror="this.parentNode.className='thumb thumb--placeholder'; this.parentNode.innerHTML='<span>📄</span>'">
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia</h3>
-              <div class="meta">
-                <span class="date">27/08/2025</span>
-                · <span class="read-time">5 phút đọc</span>
-              </div>
-              <p class="desc">Hướng dẫn chi tiết cách pha cà phê phin ngon như quán chuyên nghiệp. Từ chọn hạt, xay bột đến kỹ thuật pha chuẩn.</p>
-              <div class="tags">
-                <span class="chip" onclick="filterByTag('cà phê phin')">cà phê phin</span>
-                <span class="chip" onclick="filterByTag('pha cà phê')">pha cà phê</span>
-                <span class="chip" onclick="filterByTag('hạt cà phê')">hạt cà phê</span>
-                <span class="chip" onclick="filterByTag('cà phê tại nhà')">cà phê tại nhà</span>
-              </div>
-            </div>
-          </a>
-        </article>
-      </section>
-      
-      <!-- Load more button -->
-      <div class="morewrap">
-        <button id="moreBtn" aria-label="Xem thêm bài" style="display:none">
-          <span>Xem thêm</span>
-          <span id="remaining-count" style="font-size: 0.8rem; opacity: 0.8;"></span>
-        </button>
-      </div>
-
-      <!-- Empty state -->
-      <div id="empty-state" style="display: none;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
-        <h3>Chưa có bài viết nào</h3>
-        <p>Hãy quay lại sau để đọc những bài viết mới nhất về cà phê!</p>
-      </div>
-
-      <!-- No results state -->
-      <div id="no-results" style="display: none;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-        <h3>Không tìm thấy kết quả</h3>
-        <p>Thử tìm kiếm với từ khóa khác hoặc bỏ bộ lọc.</p>
-        <button onclick="clearFilters()" style="margin-top: 1rem; padding: 8px 16px; background: var(--brand); color: white; border: none; border-radius: 6px; cursor: pointer;">
-          Xóa bộ lọc
-        </button>
-      </div>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="footer-info">
-          <h3>☕ ANARO Coffee</h3>
-          <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
-          <div class="contact-info">
-            <div class="contact-item" onclick="openGoogleMaps()">
-              <span class="icon">📍</span>
-              <span>78 Đa Phước Bình Chánh TP.HCM</span>
-            </div>
-            <div class="contact-item" onclick="makePhoneCall()">
-              <span class="icon">📞</span>
-              <span>0918337071</span>
-            </div>
-            <div class="contact-item" onclick="sendEmail()">
-              <span class="icon">✉️</span>
-              <span>anmy1909@gmail.com</span>
-            </div>
-            <div class="contact-item">
-              <span class="icon">🕒</span>
-              <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
-            </div>
-          </div>
-        </div>
-        <div class="social-section">
-          <h4>Kết nối với ANARO Coffee</h4>
-          <div class="social-links">
-            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank">
-              <i class="fab fa-tiktok"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Enhanced blog functionality
-    let allPosts = [];
-    let filteredPosts = [];
-    let currentFilter = 'all';
-    let searchQuery = '';
-
-    // Sample data
-    const samplePosts = [
-      {
-        id: 1,
-        title: "Cách pha cà phê phin ngon tại nhà - Bí quyết từ chuyên gia",
-        slug: "cach-pha-cafe-phin",
-        desc: "Hướng dẫn chi tiết cách pha cà phê phin ngon như quán chuyên nghiệp. Từ chọn hạt, xay bột đến kỹ thuật pha chuẩn.",
-        cover: "/images/cafe-phin-truyen-thong.jpg",
-        date: "27/08/2025",
-        readTime: "5 phút đọc",
-        tags: ["cà phê phin", "pha cà phê", "hạt cà phê", "cà phê tại nhà"],
-        isNew: true,
-        isHot: false
-      },
-      {
-        id: 2,
-        title: "Bí quyết chọn hạt cà phê nguyên chất",
-        slug: "chon-hat-ca-phe-nguyen-chat",
-        desc: "Làm thế nào để nhận biết hạt cà phê nguyên chất và tránh hàng tẩm ướp. Kinh nghiệm từ các chuyên gia rang xay.",
-        cover: "/images/hat-ca-phe-nguyen-chat.jpg",
-        date: "25/08/2025",
-        readTime: "4 phút đọc",
-        tags: ["hạt cà phê", "chất lượng", "mua sắm"],
-        isNew: false,
-        isHot: true
-      },
-      {
-        id: 3,
-        title: "Lịch sử cà phê Việt Nam qua các thời kỳ",
-        slug: "lich-su-ca-phe-viet-nam",
-        desc: "Từ thời Pháp thuộc đến hiện tại, cà phê Việt Nam đã trải qua những thăng trầm như thế nào để trở thành thương hiệu nổi tiếng thế giới.",
-        cover: "/images/lich-su-ca-phe.jpg",
-        date: "20/08/2025",
-        readTime: "8 phút đọc",
-        tags: ["lịch sử", "văn hóa", "cà phê Việt Nam"],
-        isNew: false,
-        isHot: false
-      }
-    ];
-
-    // Initialize
-    function init() {
-      allPosts = samplePosts;
-      filteredPosts = [...allPosts];
-      setupFilters();
-      setupSearch();
-      renderPosts();
-      updateStats();
-      
-      // Remove loading text
-      const statusEl = document.querySelector('.status');
-      if (statusEl) statusEl.style.display = 'none';
-      
-      document.getElementById('blog-stats').style.display = 'block';
-    }
-
-    // Setup search functionality
-    function setupSearch() {
-      const searchInput = document.getElementById('search-input');
-      if (searchInput) {
-        searchInput.addEventListener('input', debounce(function(e) {
-          searchQuery = e.target.value.toLowerCase().trim();
-          filterAndDisplayPosts();
-        }, 300));
-      }
-    }
-
-    // Setup filter tags (remove duplicates)
-    function setupFilters() {
-      const filterContainer = document.querySelector('.filter-tags');
-      const allTags = new Set();
-      
-      allPosts.forEach(post => {
-        if (post.tags && Array.isArray(post.tags)) {
-          post.tags.forEach(tag => allTags.add(tag));
-        }
+    `;
+    
+    // Event listener cho tag filtering
+    button.addEventListener('click', function() {
+      // Reset tất cả nút về trạng thái không active
+      document.querySelectorAll('.filter-tag').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'var(--white)';
+        btn.style.color = 'var(--brand)';
       });
       
-      const sortedTags = Array.from(allTags).sort();
+      // Active nút được click
+      this.classList.add('active');
+      this.style.background = 'var(--brand)';
+      this.style.color = 'white';
       
-      // Clear existing tags except "Tất cả"
-      const existingTags = filterContainer.querySelectorAll('.filter-tag:not([data-tag="all"])');
-      existingTags.forEach(tag => tag.remove());
-      
-      sortedTags.forEach(tag => {
-        const button = document.createElement('button');
-        button.className = 'filter-tag';
-        button.dataset.tag = tag.toLowerCase();
-        button.textContent = tag;
-        
-        button.addEventListener('click', function() {
-          document.querySelectorAll('.filter-tag').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          
-          this.classList.add('active');
-          currentFilter = this.dataset.tag;
-          filterAndDisplayPosts();
-        });
-        
-        filterContainer.appendChild(button);
+      currentFilter = this.dataset.tag;
+      filterPostsByTag();
+    });
+    
+    filterContainer.appendChild(button);
+  });
+  
+  // Setup nút "Tất cả"
+  const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
+  if (allBtn) {
+    allBtn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-tag').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'var(--white)';
+        btn.style.color = 'var(--brand)';
       });
       
-      // Setup "Tất cả" button
-      const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
-      if (allBtn) {
-        allBtn.addEventListener('click', function() {
-          document.querySelectorAll('.filter-tag').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          this.classList.add('active');
-          currentFilter = 'all';
-          filterAndDisplayPosts();
-        });
-      }
-    }
-
-    // Filter and display posts
-    function filterAndDisplayPosts() {
-      filteredPosts = allPosts.filter(post => {
-        // Filter by search query
-        const matchesSearch = !searchQuery || 
-          post.title.toLowerCase().includes(searchQuery) ||
-          post.desc.toLowerCase().includes(searchQuery) ||
-          (post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchQuery)));
-        
-        // Filter by tag
-        const matchesTag = currentFilter === 'all' || 
-          (post.tags && post.tags.some(tag => tag.toLowerCase() === currentFilter.toLowerCase()));
-        
-        return matchesSearch && matchesTag;
-      });
+      this.classList.add('active');
+      this.style.background = 'var(--brand)';
+      this.style.color = 'white';
       
-      renderPosts();
-      updateStats();
-    }
-
-    // Render posts
-    function renderPosts() {
-      const grid = document.getElementById('blog-grid');
-      const noResults = document.getElementById('no-results');
-      const emptyState = document.getElementById('empty-state');
-      
-      if (filteredPosts.length === 0) {
-        grid.innerHTML = '';
-        if (searchQuery || currentFilter !== 'all') {
-          noResults.style.display = 'block';
-          emptyState.style.display = 'none';
-        } else {
-          emptyState.style.display = 'block';
-          noResults.style.display = 'none';
-        }
-      } else {
-        noResults.style.display = 'none';
-        emptyState.style.display = 'none';
-        
-        grid.innerHTML = filteredPosts.map(post => `
-          <article class="blog-card" data-tags="${post.tags?.join(',') || ''}">
-            <a class="card-link" href="post.html?slug=${post.slug}" aria-label="${post.title}">
-              ${post.isNew || post.isHot ? `
-                <div class="badges">
-                  ${post.isNew ? '<span class="badge new">Bài mới</span>' : ''}
-                  ${post.isHot ? '<span class="badge hot">Phổ biến</span>' : ''}
-                </div>
-              ` : ''}
-              <div class="thumb${!post.cover ? ' thumb--placeholder' : ''}">
-                ${post.cover 
-                  ? `<img src="${post.cover}" loading="lazy" alt="${post.title}" onerror="this.parentNode.className='thumb thumb--placeholder'; this.parentNode.innerHTML='<span>📄</span>'">`
-                  : '<span>📄</span>'
-                }
-              </div>
-              <div class="card-body">
-                <h3 class="card-title">${post.title}</h3>
-                <div class="meta">
-                  <span class="date">${post.date}</span>
-                  · <span class="read-time">${post.readTime}</span>
-                </div>
-                <p class="desc">${post.desc}</p>
-                <div class="tags">
-                  ${(post.tags || []).map(tag => 
-                    `<span class="chip" onclick="filterByTag('${tag}')">${tag}</span>`
-                  ).join('')}
-                </div>
-              </div>
-            </a>
-          </article>
-        `).join('');
-      }
-    }
-
-    // Update statistics
-    function updateStats() {
-      const totalPosts = document.getElementById('total-posts');
-      const popularPosts = document.getElementById('popular-posts');
-      const newPosts = document.getElementById('new-posts');
-      
-      if (totalPosts) totalPosts.textContent = filteredPosts.length;
-      if (popularPosts) popularPosts.textContent = filteredPosts.filter(p => p.isHot).length;
-      if (newPosts) newPosts.textContent = filteredPosts.filter(p => p.isNew).length;
-    }
-
-    // Helper functions
-    function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
-
-    function filterByTag(tag) {
-      const tagBtn = document.querySelector(`.filter-tag[data-tag="${tag.toLowerCase()}"]`);
-      if (tagBtn) {
-        document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
-        tagBtn.classList.add('active');
-        currentFilter = tag.toLowerCase();
-        filterAndDisplayPosts();
-      }
-    }
-
-    function clearFilters() {
-      // Reset search
-      const searchInput = document.getElementById('search-input');
-      if (searchInput) searchInput.value = '';
-      searchQuery = '';
-      
-      // Reset tag filter
-      document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
-      const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
-      if (allBtn) allBtn.classList.add('active');
       currentFilter = 'all';
-      
-      filterAndDisplayPosts();
-    }
+      filterPostsByTag();
+    });
+  }
+}
 
-    // Footer functions
-    function openGoogleMaps() { 
-      const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
-      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank', 'noopener,noreferrer'); 
+// Hàm filter posts theo tag
+function filterPostsByTag() {
+  const blogCards = document.querySelectorAll('.blog-card');
+  let visibleCount = 0;
+  
+  blogCards.forEach(card => {
+    const tagsAttr = card.getAttribute('data-tags');
+    
+    // Ẩn demo cards (không có tags hoặc tags rỗng)
+    if (!tagsAttr || tagsAttr.trim() === '') {
+      card.style.display = 'none';
+      return;
     }
-
-    function makePhoneCall() { 
-      const phone = '0918337071'; 
-      window.location.href = `tel:${phone}`; 
-    }
-
-    function sendEmail() { 
-      const email = 'anmy1909@gmail.com'; 
-      const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
-      const body = encodeURIComponent('Chào ANARO Coffee,\n\nTôi muốn liên hệ về...\n\nTrân trọng,'); 
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
-    }
-
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+    
+    if (currentFilter === 'all') {
+      card.style.display = 'block';
+      visibleCount++;
     } else {
-      init();
+      const tags = tagsAttr.split(',').map(tag => tag.trim().toLowerCase());
+      
+      if (tags.includes(currentFilter.toLowerCase())) {
+        card.style.display = 'block';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
     }
-  </script>
-</body>
-</html>
+  });
+  
+  // Hiển thị/ẩn trạng thái "không có kết quả"
+  showNoResultsState(visibleCount === 0);
+}
+
+// Hàm hiển thị trạng thái không có kết quả
+function showNoResultsState(show) {
+  const noResults = document.getElementById('no-results');
+  const emptyState = document.getElementById('empty-state');
+  
+  if (show && currentFilter !== 'all') {
+    if (noResults) noResults.style.display = 'block';
+    if (emptyState) emptyState.style.display = 'none';
+  } else {
+    if (noResults) noResults.style.display = 'none';
+    if (emptyState && show) emptyState.style.display = 'block';
+    else if (emptyState) emptyState.style.display = 'none';
+  }
+}
+
+// Hàm click vào chip tag trong card
+function filterByTag(tag) {
+  const tagBtn = document.querySelector(`.filter-tag[data-tag="${tag.toLowerCase()}"]`);
+  if (tagBtn) {
+    tagBtn.click(); // Trigger click event
+  }
+}
+
+// Hàm clear filter (reset về "Tất cả")
+function clearFilters() {
+  const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
+  if (allBtn) {
+    allBtn.click();
+  }
+}
+
+// Khởi tạo khi DOM ready
+function initTagFiltering() {
+  // Ẩn demo cards ngay lập tức
+  const demoCards = document.querySelectorAll('.blog-card[data-tags=""]');
+  demoCards.forEach(card => card.style.display = 'none');
+  
+  // Setup filtering
+  setupFilters();
+  
+  // Set default active cho nút "Tất cả"
+  const allBtn = document.querySelector('.filter-tag[data-tag="all"]');
+  if (allBtn && !allBtn.classList.contains('active')) {
+    allBtn.classList.add('active');
+    allBtn.style.background = 'var(--brand)';
+    allBtn.style.color = 'white';
+  }
+  
+  console.log('[Tag Filtering] Initialized successfully');
+}
+
+// Auto-run khi script load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTagFiltering);
+} else {
+  initTagFiltering();
+}
+
+// Export functions for global access
+window.filterByTag = filterByTag;
+window.clearFilters = clearFilters;
