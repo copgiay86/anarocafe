@@ -209,7 +209,7 @@ Nhẹ hơn: 1:12
 
 > **Mẹo hay**: Thời gian lý tưởng cho 1 ly phin là 4-6 phút. Nếu quá nhanh hay quá chậm, hãy điều chỉnh độ xay.
 
-## Kinh nghiệm thực tế từ chuyên gia {#kinh-nghiem}
+## Kinh nghiệm thực tế từ chuyên gia  
 
 ### Chọn hạt theo sở thích cá nhân
 
@@ -234,7 +234,7 @@ Cà phê phin có **body đậm và caffeine cao**, phù hợp uống:
 - Sau bữa trưa để tỉnh táo
 - **Tránh uống sau 4h chiều** để không ảnh hưởng giấc ngủ
 
-![Ly cà phê phin hoàn hảo](images/ca-phe-phin-hoan-hao.jpg)
+![Ly cà phê phin hoàn hảo](https://anarocafe-vert.vercel.app/images/ca-phe-phin-hoan-hao.jpg)
 
 *Ly cà phê phin đậm đà, thơm lừng pha theo đúng kỹ thuật*
 
