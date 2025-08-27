@@ -109,6 +109,10 @@ function parseFrontMatter(md) {
 function processShortcodes(body) {
   if (!body) return body;
   
+  // XÓA TOC MANUAL TRONG MARKDOWN - chỉ giữ nội dung
+  body = body.replace(/<details[^>]*class="toc-dropdown"[^>]*>[\s\S]*?<\/details>/gi, '');
+  body = body.replace(/<!-- Table of Contents[\s\S]*?-->/gi, '');
+  
   // Process CTA boxes: {{cta|title|description|price|image|link}}
   body = body.replace(/\{\{cta\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^}]+)\}\}/g, 
     (match, title, desc, price, image, link) => {
@@ -184,42 +188,6 @@ function processShortcodes(body) {
   });
 
   return body;
-}
-
-// Enhance tables với data-label cho responsive
-function enhanceTables(html) {
-  // Tạo một DOM parser tạm thời
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  
-  const tables = tempDiv.querySelectorAll('table');
-  tables.forEach(table => {
-    // Thêm class và wrapper
-    table.classList.add('info-table');
-    
-    // Tạo wrapper div
-    const wrapper = document.createElement('div');
-    wrapper.className = 'table-wrapper';
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
-    
-    // Lấy headers cho data-label
-    const headers = table.querySelectorAll('thead th, tr:first-child td');
-    const headerTexts = Array.from(headers).map(th => th.textContent.trim());
-    
-    // Thêm data-label cho tất cả td trong tbody
-    const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      cells.forEach((cell, index) => {
-        if (headerTexts[index]) {
-          cell.setAttribute('data-label', headerTexts[index]);
-        }
-      });
-    });
-  });
-  
-  return tempDiv.innerHTML;
 }
 
 function formatDate(dstr) {
@@ -330,40 +298,46 @@ function cardHTML(p) {
     </article>`;
 }
 
-// Extract Table of Contents từ markdown
-function extractTOC(body) {
-  if (!body) return [];
+// SỬAFIX: Extract TOC chỉ từ H2 trong HTML đã render
+function extractTOCFromHTML(html) {
+  if (!html) return [];
+  
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
   
   const headings = [];
-  const lines = body.split('\n');
+  const h2Elements = tempDiv.querySelectorAll('h2');
   
-  for (const line of lines) {
-    const match = line.match(/^(#{2,4})\s+(.+?)(\s*\{#([^}]+)\})?$/);
-    if (match) {
-      const level = match[1].length;
-      const text = match[2].trim();
-      const customId = match[4];
-      const id = customId || text.toLowerCase()
+  h2Elements.forEach((h2, index) => {
+    const text = h2.textContent.trim();
+    let id = h2.id;
+    
+    // Nếu chưa có ID, tạo ID từ text
+    if (!id) {
+      id = text.toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '');
       
-      headings.push({ level, text, id });
+      // Đảm bảo ID unique
+      if (tempDiv.querySelector(`#${id}`)) {
+        id = `${id}-${index}`;
+      }
     }
-  }
+    
+    headings.push({ text, id });
+  });
   
   return headings;
 }
 
-// Generate TOC HTML với nested structure
+// SỬAFIX: Generate TOC HTML gọn gàng với dropdown
 function generateTOCHTML(headings) {
   if (!headings.length) return '';
   
   const tocItems = headings.map(h => 
-    `<li class="toc-level-${h.level}">
-       <a href="#${h.id}" class="toc-link">${escapeHtml(h.text)}</a>
-     </li>`
+    `<li><a href="#${h.id}" class="toc-link">${escapeHtml(h.text)}</a></li>`
   ).join('');
   
   return `
@@ -375,17 +349,66 @@ function generateTOCHTML(headings) {
     </details>`;
 }
 
-// Add IDs to headings trong HTML
+// SỬAFIX: Add IDs to H2 headings only
 function addHeadingIds(html) {
-  return html.replace(/<h([2-4])>([^<]+)<\/h[2-4]>/g, (match, level, text) => {
-    const id = text.toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
-    
-    return `<h${level} id="${id}">${text}</h${level}>`;
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  const h2Elements = tempDiv.querySelectorAll('h2');
+  h2Elements.forEach((h2, index) => {
+    if (!h2.id) {
+      const text = h2.textContent.trim();
+      let id = text.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      
+      // Đảm bảo ID unique
+      if (tempDiv.querySelector(`#${id}`)) {
+        id = `${id}-${index}`;
+      }
+      
+      h2.id = id;
+    }
   });
+  
+  return tempDiv.innerHTML;
+}
+
+// Enhance tables với data-label cho responsive
+function enhanceTables(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  const tables = tempDiv.querySelectorAll('table');
+  tables.forEach(table => {
+    // Thêm class và wrapper
+    table.classList.add('info-table');
+    
+    // Tạo wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+    
+    // Lấy headers cho data-label
+    const headers = table.querySelectorAll('thead th, tr:first-child td');
+    const headerTexts = Array.from(headers).map(th => th.textContent.trim());
+    
+    // Thêm data-label cho tất cả td trong tbody
+    const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      cells.forEach((cell, index) => {
+        if (headerTexts[index]) {
+          cell.setAttribute('data-label', headerTexts[index]);
+        }
+      });
+    });
+  });
+  
+  return tempDiv.innerHTML;
 }
 
 // Global filter function
@@ -439,7 +462,7 @@ function setupPostInteractivity() {
   function updateTOCHighlight() {
     if (!ticking) {
       requestAnimationFrame(() => {
-        const headings = document.querySelectorAll('h2, h3, h4');
+        const headings = document.querySelectorAll('h2');
         let activeHeading = null;
         
         headings.forEach(heading => {
@@ -639,16 +662,14 @@ async function renderSinglePost() {
     // Process shortcodes trước khi convert markdown
     const processedBody = processShortcodes(body);
     
-    // Extract TOC
-    const tocHeadings = extractTOC(processedBody);
-    const tocHTML = generateTOCHTML(tocHeadings);
-    
     // Convert to HTML và add heading IDs
     let html = DOMPurify.sanitize(marked.parse(processedBody));
     html = addHeadingIds(html);
-    
-    // *** QUAN TRỌNG: Enhance tables sau khi convert markdown ***
     html = enhanceTables(html);
+    
+    // SỬAFIX: Extract TOC từ HTML đã render (chỉ H2)
+    const tocHeadings = extractTOCFromHTML(html);
+    const tocHTML = generateTOCHTML(tocHeadings);
     
     document.title = `${title} - Blog ANARO Coffee`;
     
@@ -725,7 +746,7 @@ window.Blog = {
   renderSinglePost,
   allPosts: [],
   processShortcodes,
-  extractTOC,
+  extractTOCFromHTML,
   generateTOCHTML,
   setupPostInteractivity,
   filterByTag,
@@ -741,5 +762,6 @@ window.BlogUtils = {
   cardHTML,
   slugFromName,
   postUrlFromSlug,
-  enhanceTables
+  enhanceTables,
+  addHeadingIds
 };
