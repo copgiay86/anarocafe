@@ -682,45 +682,50 @@ async function renderSinglePost() {
     const readTime = Math.max(1, Math.ceil(body.length / 1000));
     const viewCount = meta.views || 0;
     
-    root.innerHTML = `
-      <article class="post-article" itemscope itemtype="https://schema.org/BlogPosting">
-        ${coverImg}
-        <header class="post-header">
-          <h1 class="post-title" itemprop="headline">${escapeHtml(title)}</h1>
-          <div class="post-meta">
-            <time class="post-date" datetime="${meta.date || ''}" itemprop="datePublished">${date}</time>
-            ${date ? '·' : ''} <span class="read-time">${readTime} phút đọc</span>
-            ${viewCount > 0 ? `· <span class="view-count">${viewCount} lượt xem</span>` : ''}
-            ${tags.length ? '·' : ''} <div class="post-tags">${tagChips(tags)}</div>
-          </div>
-        </header>
-        
-        <div class="post-content" itemprop="articleBody">
-          ${tocHTML}
-          ${html}
+    // Build skeleton first to avoid malformed Markdown breaking outer HTML
+root.innerHTML = `
+  <article class="post-article" itemscope itemtype="https://schema.org/BlogPosting">
+    ${coverImg}
+    <header class="post-header">
+      <h1 class="post-title" itemprop="headline">${escapeHtml(title)}</h1>
+      <div class="post-meta">
+        <time class="post-date" datetime="${meta.date || ''}" itemprop="datePublished">${date}</time>
+        ${date ? '·' : ''} <span class="read-time">${readTime} phút đọc</span>
+        ${viewCount > 0 ? `· <span class="view-count">${viewCount} lượt xem</span>` : ''}
+        ${tags.length ? '·' : ''} <div class="post-tags">${tagChips(tags)}</div>
+      </div>
+    </header>
+
+    <div class="post-content" id="post-body" itemprop="articleBody"></div>
+
+    <footer class="post-footer">
+      <div class="post-navigation">
+        <a class="back-btn" href="blog.html">← Quay lại Blog</a>
+      </div>
+
+      <div class="post-sharing">
+        <h4>Chia sẻ bài viết này:</h4>
+        <div class="sharing-buttons">
+          <button onclick="shareOnFacebook()" class="share-btn facebook">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </button>
+          <button onclick="shareOnTwitter()" class="share-btn twitter">
+            <i class="fab fa-twitter"></i> Twitter
+          </button>
+          <button onclick="copyToClipboard()" class="share-btn copy">
+            <i class="fas fa-link"></i> Sao chép link
+          </button>
         </div>
-        
-        <footer class="post-footer">
-          <div class="post-navigation">
-            <a class="back-btn" href="blog.html">← Quay lại Blog</a>
-          </div>
-          
-          <div class="post-sharing">
-            <h4>Chia sẻ bài viết này:</h4>
-            <div class="sharing-buttons">
-              <button onclick="shareOnFacebook()" class="share-btn facebook">
-                <i class="fab fa-facebook-f"></i> Facebook
-              </button>
-              <button onclick="shareOnTwitter()" class="share-btn twitter">
-                <i class="fab fa-twitter"></i> Twitter
-              </button>
-              <button onclick="copyToClipboard()" class="share-btn copy">
-                <i class="fas fa-link"></i> Sao chép link
-              </button>
-            </div>
-          </div>
-        </footer>
-      </article>`;
+      </div>
+    </footer>
+  </article>`;
+
+// Inject Markdown separately so any unclosed <pre> or code fences
+// cannot swallow the rest of the template.
+const postBodyEl = document.getElementById('post-body');
+if (postBodyEl) {
+  postBodyEl.innerHTML = `${tocHTML}${html}`;
+}
     
     status.textContent = "";
     

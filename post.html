@@ -8,640 +8,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <link rel="stylesheet" href="blog.css">
   
-  <style>
-    /* ===== ROOT VARIABLES ===== */
-    :root {
-      --bg: #f6efe9;
-      --text: #2a221d;
-      --panel: #a47148;
-      --ink: #F8EBDD;
-      --border: #e9d7c5;
-      --brand: #6b3f25;
-      --muted: #806a5b;
-      --white: #fff;
-    }
-
-    /* ===== BASE STYLES ===== */
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: var(--text);
-      background: linear-gradient(180deg, #fff, var(--bg) 50%, #f0e2d6);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* ===== HEADER ===== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: #ffffffcc;
-      backdrop-filter: saturate(180%) blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .site-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 16px;
-    }
-
-    .brand {
-      font-weight: 900;
-      color: var(--brand);
-      text-decoration: none;
-      letter-spacing: .4px;
-    }
-
-    .site-nav a {
-      color: var(--brand);
-      text-decoration: none;
-      margin-left: 16px;
-      font-weight: 700;
-    }
-
-    .site-nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== MAIN CONTENT ===== */
-    .main {
-      padding: 28px 0;
-      min-height: 60vh;
-    }
-
-    .status {
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 14px;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* ===== POST STYLES ===== */
-    .post-article {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .post-cover-wrapper {
-      width: 100%;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-    }
-
-    .post-cover {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .post-header {
-      padding: 32px 32px 0;
-    }
-
-    .post-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--brand);
-      margin: 0 0 16px 0;
-      line-height: 1.2;
-    }
-
-    .post-meta {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .post-meta .post-date {
-      font-weight: 500;
-    }
-
-    .post-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .post-content {
-      padding: 0 32px 32px;
-    }
-
-    .post-content h1 {
-      font-size: 2rem;
-      color: var(--brand);
-      margin: 32px 0 16px 0;
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 8px;
-    }
-
-    .post-content h2 {
-      font-size: 1.5rem;
-      color: var(--brand);
-      margin: 28px 0 16px 0;
-      border-left: 4px solid var(--brand);
-      padding-left: 16px;
-    }
-
-    .post-content h3 {
-      font-size: 1.25rem;
-      color: var(--brand);
-      margin: 24px 0 12px 0;
-    }
-
-    .post-content p {
-      margin: 16px 0;
-      color: var(--text);
-    }
-
-    .post-content img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin: 24px 0;
-    }
-
-    .post-content blockquote {
-      margin: 24px 0;
-      padding: 16px 20px;
-      border-left: 4px solid var(--brand);
-      background: var(--ink);
-      border-radius: 0 8px 8px 0;
-      font-style: italic;
-    }
-
-    .post-content pre {
-      background: #111;
-      color: #eee;
-      padding: 20px;
-      border-radius: 12px;
-      overflow-x: auto;
-      margin: 24px 0;
-      font-size: 0.9rem;
-    }
-
-    .post-content code {
-      background: var(--ink);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      color: var(--brand);
-    }
-
-    .post-content pre code {
-      background: none;
-      padding: 0;
-      color: inherit;
-    }
-
-    .post-content ul, .post-content ol {
-      padding-left: 24px;
-      margin: 16px 0;
-    }
-
-    .post-content li {
-      margin: 8px 0;
-    }
-
-    .post-content a {
-      color: var(--brand);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: all 0.2s;
-    }
-
-    .post-content a:hover {
-      color: #8b4a2d;
-      text-decoration-thickness: 2px;
-    }
-
-    /* TOC Dropdown */
-    .toc-dropdown {
-      margin: 25px 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--ink);
-      overflow: hidden;
-    }
-
-    .toc-dropdown summary {
-      cursor: pointer;
-      font-weight: 600;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, var(--ink) 0%, var(--border) 100%);
-      border-bottom: 1px solid var(--border);
-      color: var(--brand);
-      transition: background 0.3s ease;
-    }
-
-    .toc-dropdown summary:hover {
-      background: linear-gradient(135deg, var(--border) 0%, #d4c4b0 100%);
-    }
-
-    .toc-list {
-      padding: 20px;
-      margin: 0;
-      list-style: none;
-    }
-
-    .toc-list li {
-      margin: 8px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .toc-list li::before {
-      content: "▶";
-      position: absolute;
-      left: 0;
-      color: var(--brand);
-      font-size: 0.8em;
-    }
-
-    .toc-link {
-      color: var(--brand);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .toc-link:hover,
-    .toc-link.active {
-      color: #8b4a2d;
-      text-decoration: underline;
-    }
-
-    /* CTA Box */
-    .cta-box {
-      border: 2px solid var(--brand);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 30px 0;
-      background: linear-gradient(135deg, var(--ink) 0%, #f0e6d2 100%);
-      box-shadow: 0 4px 15px rgba(107, 63, 37, 0.1);
-    }
-
-    .cta-content {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .cta-image img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid var(--border);
-    }
-
-    .cta-title {
-      color: var(--brand);
-      margin: 0 0 8px 0;
-      font-size: 1.4em;
-      font-weight: 700;
-    }
-
-    .cta-price {
-      font-size: 1.5em;
-      color: #e74c3c;
-      font-weight: bold;
-      margin: 8px 0;
-    }
-
-    .cta-desc {
-      color: var(--muted);
-      margin: 8px 0 16px 0;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      background: var(--brand);
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .cta-btn:hover {
-      background: #8b4a2d;
-      transform: translateY(-1px);
-    }
-
-    /* Post Footer */
-    .post-footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 32px;
-      background: var(--ink);
-      margin-top: 32px;
-    }
-
-    .post-navigation {
-      margin-bottom: 24px;
-    }
-
-    .back-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: var(--brand);
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .back-btn:hover {
-      background: #8b4a2d;
-      transform: translateY(-1px);
-    }
-
-    .post-sharing h4 {
-      color: var(--brand);
-      margin: 0 0 16px 0;
-    }
-
-    .sharing-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-      text-decoration: none;
-      color: white;
-    }
-
-    .share-btn.facebook { background: #1877f2; }
-    .share-btn.twitter { background: #1da1f2; }
-    .share-btn.copy { background: #6c757d; }
-
-    .share-btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    /* Chips */
-    .chip {
-      background: #f8ebdd;
-      border: 1px solid var(--border);
-      color: #6b3f25;
-      font-size: .8rem;
-      padding: .15rem .5rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .chip:hover {
-      background: var(--brand);
-      color: white;
-    }
-
-    /* Error state */
-    .error-state {
-      text-align: center;
-      padding: 3rem;
-      background: var(--ink);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .error-state h2 {
-      color: var(--brand);
-      margin-bottom: 1rem;
-    }
-
-    .error-state p {
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
-    /* Footer */
-    .footer {
-      background: linear-gradient(135deg, #6b3f25 0%, #8b5a3c 50%, #a47148 100%);
-      color: #f8f4f0;
-      margin-top: 3rem;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 2rem 1rem;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-info h3 {
-      color: #f8ebdd;
-      font-size: 1.8rem;
-      margin: 0 0 1rem 0;
-    }
-
-    .footer-info p {
-      color: #e8dcc8;
-      line-height: 1.8;
-      margin: 0 0 2rem 0;
-    }
-
-    .contact-info {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: #f0e6d2;
-      padding: .8rem;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, .1);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .contact-item:hover {
-      background: rgba(255, 255, 255, .2);
-      transform: translateX(8px);
-    }
-
-    .social-section {
-      text-align: center;
-    }
-
-    .social-section h4 {
-      color: #f8ebdd;
-      margin-bottom: 1.5rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 15px;
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: #fff;
-      transition: all 0.3s;
-    }
-
-    .social-link.facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); }
-    .social-link.instagram { background: linear-gradient(135deg, #e4405f, #f77737, #fccc63); }
-    .social-link.tiktok { background: linear-gradient(135deg, #000, #ff0050); }
-
-    .social-link:hover {
-      transform: translateY(-5px) scale(1.05);
-    }
-
-    .map-container {
-      border-radius: 15px;
-      overflow: hidden;
-      height: 180px;
-      position: relative;
-      background: linear-gradient(135deg, #f8f4f0, #ede1d0);
-    }
-
-    .map-overlay {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(107, 63, 37, .95);
-      color: #fff;
-      padding: .5rem 1rem;
-      border-radius: 25px;
-      font-weight: 600;
-      font-size: .9rem;
-      z-index: 2;
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      flex-direction: column;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, .2);
-      color: #e8dcc8;
-    }
-
-    .heart {
-      color: #e74c3c;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .post-article {
-        margin: 0 -16px;
-        border-radius: 0;
+  <!-- Enhanced meta tags for social sharing -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ANARO Coffee Blog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@anarocoffee">
+  <meta name="author" content="ANARO Coffee">
+  
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json" id="structured-data">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ANARO Coffee",
+      "url": "https://anarocoffee.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://anarocoffee.com/logo.png"
       }
-      
-      .post-header, .post-content, .post-footer {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-      
-      .post-title {
-        font-size: 2rem;
-      }
-      
-      .cta-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-      }
-      
-      .cta-image img {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ANARO Coffee"
     }
-
-    @media (max-width: 480px) {
-      .post-title {
-        font-size: 1.75rem;
-      }
-      
-      .sharing-buttons {
-        justify-content: center;
-      }
-    }
-  </style>
+  }
+  </script>
 </head>
 <body>
   <header class="site-header" role="banner">
     <div class="container">
-      <a class="brand" href="index.html">ANARO COFFEE</a>
+      <a class="brand" href="index-cart.html">ANARO COFFEE</a>
       <nav class="site-nav" aria-label="Chính">
         <a href="index-cart.html">Mua lẻ</a>
         <a href="wholesale.html">Giá sỉ</a>
@@ -656,20 +56,53 @@
       <!-- Loading state -->
       <div class="status" id="status" aria-live="polite">Đang tải...</div>
       
+      <!-- Progress bar for loading -->
+      <div id="loading-progress" style="display:none;">
+        <div style="width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden;">
+          <div id="progress-bar" style="width:0%;height:100%;background:var(--brand);transition:width 0.3s;"></div>
+        </div>
+      </div>
+      
       <!-- Main content area -->
       <div id="post-root"></div>
       
-      <!-- Error state -->
-      <div id="error-state" style="display:none;" class="error-state">
-        <div style="font-size:3rem;margin-bottom:1rem;">😕</div>
-        <h2>Oops! Có lỗi xảy ra</h2>
-        <p id="error-message">Không thể tải bài viết này.</p>
-        <a href="blog.html" class="cta-btn">← Quay lại Blog</a>
+      <!-- Error state template -->
+      <div id="error-template" style="display:none;">
+        <div style="text-align:center;padding:3rem;background:var(--ink);border-radius:12px;border:1px solid var(--border);">
+          <div style="font-size:3rem;margin-bottom:1rem;">😕</div>
+          <h2 style="color:var(--brand);margin-bottom:1rem;">Oops! Có lỗi xảy ra</h2>
+          <p style="color:var(--muted);margin-bottom:2rem;" id="error-message">Không thể tải bài viết này.</p>
+          <a href="blog.html" class="cta-btn">← Quay lại Blog</a>
+        </div>
       </div>
+      
+      <!-- Reading progress indicator -->
+      <div id="reading-progress" style="position:fixed;top:0;left:0;width:0%;height:3px;background:var(--brand);z-index:1000;transition:width 0.1s;"></div>
+      
+      <!-- Social sharing buttons -->
+      <div id="social-sharing" style="display:none;position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:100;">
+        <div style="display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,0.95);padding:12px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+          <button onclick="shareOnFacebook()" class="social-share-btn facebook" title="Chia sẻ lên Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button onclick="shareOnTwitter()" class="social-share-btn twitter" title="Chia sẻ lên Twitter">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button onclick="copyToClipboard()" class="social-share-btn copy" title="Sao chép liên kết">
+            <i class="fas fa-link"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Back to top button -->
+      <button id="back-to-top" onclick="scrollToTop()" style="display:none;position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--brand);color:white;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:all 0.3s;" title="Lên đầu trang">
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </div>
   </main>
 
   <!-- FOOTER -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
@@ -677,36 +110,26 @@
           <h3>☕ ANARO Coffee</h3>
           <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
           <div class="contact-info">
-            <div class="contact-item" onclick="openGoogleMaps()">
-              <span class="icon">📍</span>
-              <span>78 Ấp Phước Bình Chánh TP.HCM</span>
-            </div>
-            <div class="contact-item" onclick="makePhoneCall()">
-              <span class="icon">📞</span>
-              <span>0918337071</span>
-            </div>
-            <div class="contact-item" onclick="sendEmail()">
-              <span class="icon">✉️</span>
-              <span>anmy1909@gmail.com</span>
-            </div>
-            <div class="contact-item">
-              <span class="icon">🕒</span>
-              <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
-            </div>
+            <div class="contact-item" onclick="openGoogleMaps()"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
+            <div class="contact-item" onclick="makePhoneCall()"><span class="icon">📞</span><span>0918337071</span></div>
+            <div class="contact-item" onclick="sendEmail()"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
+            <div class="contact-item"><span class="icon">🕒</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
           </div>
         </div>
         <div class="social-section">
           <h4>Kết nối với ANARO Coffee</h4>
           <div class="social-links">
-            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank">f</a>
-            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank">i</a>
-            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank">t</a>
+            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
           </div>
           <div class="map-container">
             <div class="map-overlay">ANARO Coffee Store</div>
-            <div class="map-placeholder" onclick="openGoogleMaps()">
-              <div>Nhấn để xem bản đồ</div>
-              <small>78 Ấp Phước, Bình Chánh, TP.HCM</small>
+            <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ">
+              <div>
+                <div><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
+                <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
+              </div>
             </div>
           </div>
         </div>
@@ -718,103 +141,237 @@
   </footer>
 
   <script>
-    // Utility functions
-    function openGoogleMaps(){ 
-      const address = encodeURIComponent("78 Ấp Phước, Bình Chánh, TP.HCM, Vietnam"); 
-      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
-    }
+  function openGoogleMaps(){ 
+    const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
+  }
+  function makePhoneCall(){ 
+    const p = '0918337071'; 
+    window.location.href = `tel:${p}`; 
+  }
+  function sendEmail(){ 
+    const email = 'anmy1909@gmail.com'; 
+    const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
+    const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
+  }
+  function trackSocialClick(p){ 
+    console.log('Social media clicked:', p); 
+  }
+
+  // Enhanced post loading with progress tracking
+  function updateProgress(current, total) {
+    const progressBar = document.getElementById('progress-bar');
+    const loadingProgress = document.getElementById('loading-progress');
     
-    function makePhoneCall(){ 
-      window.location.href = 'tel:0918337071'; 
+    if (progressBar && loadingProgress) {
+      loadingProgress.style.display = 'block';
+      const percentage = (current / total) * 100;
+      progressBar.style.width = `${percentage}%`;
+      
+      if (percentage === 100) {
+        setTimeout(() => {
+          loadingProgress.style.display = 'none';
+        }, 500);
+      }
     }
+  }
+
+  // Show error state
+  function showError(message) {
+    const status = document.getElementById('status');
+    const errorTemplate = document.getElementById('error-template');
+    const errorMessage = document.getElementById('error-message');
     
-    function sendEmail(){ 
-      const email = 'anmy1909@gmail.com'; 
-      const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
-      const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
+    if (status) status.style.display = 'none';
+    if (errorTemplate && errorMessage) {
+      errorMessage.textContent = message;
+      errorTemplate.style.display = 'block';
     }
+  }
 
-    // Social sharing functions
-    function shareOnFacebook() {
-      const url = encodeURIComponent(window.location.href);
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+  // Update page meta tags dynamically
+  function updateMetaTags(title, description, image, url) {
+    document.title = `${title} - ANARO Coffee Blog`;
+    
+    // Update meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = 'description';
+      document.head.appendChild(metaDesc);
     }
-
-    function shareOnTwitter() {
-      const url = encodeURIComponent(window.location.href);
-      const title = encodeURIComponent(document.title);
-      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+    metaDesc.content = description;
+    
+    // Update Open Graph tags
+    updateMetaTag('property', 'og:title', title);
+    updateMetaTag('property', 'og:description', description);
+    updateMetaTag('property', 'og:url', url || window.location.href);
+    if (image) updateMetaTag('property', 'og:image', image);
+    
+    // Update Twitter tags
+    updateMetaTag('name', 'twitter:title', title);
+    updateMetaTag('name', 'twitter:description', description);
+    if (image) updateMetaTag('name', 'twitter:image', image);
+    
+    // Update structured data
+    const structuredData = document.getElementById('structured-data');
+    if (structuredData) {
+      const data = JSON.parse(structuredData.textContent);
+      data.headline = title;
+      data.description = description;
+      data.url = url || window.location.href;
+      data.datePublished = new Date().toISOString();
+      if (image) data.image = image;
+      structuredData.textContent = JSON.stringify(data, null, 2);
     }
+  }
 
-    function copyToClipboard() {
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        alert('Đã sao chép link!');
-      });
+  function updateMetaTag(attr, name, content) {
+    let tag = document.querySelector(`meta[${attr}="${name}"]`);
+    if (!tag) {
+      tag = document.createElement('meta');
+      tag.setAttribute(attr, name);
+      document.head.appendChild(tag);
     }
+    tag.content = content;
+  }
 
-    // Filter by tag function
-    function filterByTag(tag) {
-      window.location.href = `blog.html?tag=${encodeURIComponent(tag)}`;
+  // Reading progress indicator
+  function setupReadingProgress() {
+    const progressBar = document.getElementById('reading-progress');
+    if (!progressBar) return;
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+  }
+
+  // Social sharing functions
+  function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareOnTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+  }
+
+  function copyToClipboard() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.querySelector('.social-share-btn.copy');
+      const originalText = btn.title;
+      btn.title = 'Đã sao chép!';
+      btn.style.background = '#28a745';
+      setTimeout(() => {
+        btn.title = originalText;
+        btn.style.background = '';
+      }, 2000);
+    });
+  }
+
+  // Back to top functionality
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Show/hide back to top button
+  function setupBackToTop() {
+    const backToTopBtn = document.getElementById('back-to-top');
+    const socialSharing = document.getElementById('social-sharing');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 300) {
+        if (backToTopBtn) backToTopBtn.style.display = 'block';
+        if (socialSharing) socialSharing.style.display = 'block';
+      } else {
+        if (backToTopBtn) backToTopBtn.style.display = 'none';
+        if (socialSharing) socialSharing.style.display = 'none';
+      }
+    });
+  }
+
+  // Initialize post enhancements
+  function setupPostEnhancements() {
+    setupReadingProgress();
+    setupBackToTop();
+    
+    // Smooth scroll for anchor links
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('a[href^="#"]')) {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+
+    // Track CTA clicks
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('.cta-btn')) {
+        console.log('CTA clicked:', e.target.href);
+        trackSocialClick('cta_click');
+      }
+    });
+  }
+  </script>
+
+  <!-- Load blog script và khởi chạy -->
+  <script src="blog.js"></script>
+  <script>
+  // Enhanced initialization with error handling
+  function initSinglePost() {
+    if (typeof window.Blog !== 'undefined' && window.Blog.renderSinglePost) {
+      console.log('[Blog] Initializing single post...');
+      
+      // Enhance the renderSinglePost function with meta updates
+      const originalRenderSinglePost = window.Blog.renderSinglePost;
+      window.Blog.renderSinglePost = async function() {
+        try {
+          await originalRenderSinglePost();
+          
+          // Setup enhanced features after post loads
+          setupPostEnhancements();
+          
+        } catch (error) {
+          console.error('[Blog] Error rendering post:', error);
+          showError('Không thể tải bài viết. Vui lòng thử lại sau.');
+        }
+      };
+      
+      window.Blog.renderSinglePost();
+    } else {
+      console.warn('[Blog] Blog object not ready, retrying...');
+      setTimeout(initSinglePost, 100);
     }
+  }
 
-    // Show error state
-    function showError(message) {
-      document.getElementById('status').style.display = 'none';
-      document.getElementById('error-message').textContent = message;
-      document.getElementById('error-state').style.display = 'block';
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSinglePost);
+  } else {
+    initSinglePost();
+  }
+
+  // Handle browser back/forward navigation
+  window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.slug) {
+      window.Blog.renderSinglePost();
     }
+  });
+  </script>
 
-    // Utility functions
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('vi-VN');
-    }
-
-    // Mock post data - replace with real API call
-    const mockPosts = {
-      'cach-pha-cafe-phin-ngon': {
-        title: 'Cách pha cà phê phin ngon đúng chuẩn',
-        date: '2025-01-15',
-        tags: ['cà phê phin', 'pha chế', 'cà phê tại nhà'],
-        cover: '',
-        content: `
-# Cách pha cà phê phin ngon đúng chuẩn
-
-Cà phê phin là nét đẹp văn hóa truyền thống của Việt Nam. Để có được ly cà phê phin thơm ngon, đậm đà, bạn cần nắm vững những bí quyết sau.
-
-## Chuẩn bị dụng cụ và nguyên liệu
-
-### Dụng cụ cần thiết:
-- Phin cà phê inox hoặc nhôm
-- Tách/cốc uống
-- Thìa khuấy
-- Ấm đun nước
-
-### Nguyên liệu:
-- 15-20g cà phê xay (độ xay vừa)
-- 150-200ml nước sôi
-- Sữa đặc hoặc đường (tùy khẩu vị)
-
-## Các bước pha cà phê phin
-
-### Bước 1: Làm nóng phin và tách
-
-Rửa phin và tách bằng nước nóng để làm ấm dụng cụ. Điều này giúp giữ nhiệt độ ổn định trong quá trình pha.
-
-### Bước 2: Cho cà phê vào phin
-
-Đổ cà phê xay vào phin, lắc đều để cà phê phẳng. Đặt miếng lưới lên trên và vặn nhẹ để cà phê không bị nén quá chặt.
-
-### Bước 3: Pha lần đầu (bloom)
-
-Đổ một lượng nhỏ nước nóng (80-85°C) vào phin, chỉ đủ ướt cà phê. Đợi 30 giây để cà phê nở và giải phóng khí CO2.
-
-### Bước 4: Pha chính
+</body>
+</html>
