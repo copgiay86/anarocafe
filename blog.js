@@ -738,4 +738,48 @@ async function renderSinglePost() {
 window.Blog = { 
   renderBlogList, 
   renderSinglePost,
-  all
+  allPosts: [],
+  processShortcodes,
+  extractTOC,
+  generateTOCHTML,
+  setupPostInteractivity,
+  filterByTag,
+  enhanceTables
+};
+
+// Export utility functions
+window.BlogUtils = {
+  escapeHtml,
+  formatDate,
+  truncate,
+  tagChips,
+  cardHTML,
+  slugFromName,
+  postUrlFromSlug,
+  enhanceTables
+};
+
+// Compatibility functions for different pages
+function initBlog() {
+  if (typeof window.Blog !== 'undefined' && window.Blog.renderBlogList) {
+    console.log('[Blog] Initializing blog list...');
+    window.Blog.renderBlogList();
+  } else {
+    console.warn('[Blog] Blog object not ready, retrying...');
+    setTimeout(initBlog, 100);
+  }
+}
+
+function initSinglePost() {
+  if (typeof window.Blog !== 'undefined' && window.Blog.renderSinglePost) {
+    console.log('[Blog] Initializing single post...');
+    window.Blog.renderSinglePost();
+  } else {
+    console.warn('[Blog] Blog object not ready, retrying...');
+    setTimeout(initSinglePost, 100);
+  }
+}
+
+// Make functions globally available
+window.initBlog = initBlog;
+window.initSinglePost = initSinglePost;
