@@ -6,6 +6,9 @@
   <title>Bài viết - ANARO Coffee</title>
   <meta name="description" content="Bài viết chi tiết trên blog ANARO Coffee.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  
+  <!-- Required libraries -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
   <link rel="stylesheet" href="blog.css">
@@ -53,7 +56,7 @@
 
   <main class="main">
     <div class="container">
-      <!-- Loading state -->
+      <!-- Loading/Status indicator -->
       <div class="status" id="status" aria-live="polite">Đang tải...</div>
       
       <!-- Progress bar for loading -->
@@ -63,7 +66,7 @@
         </div>
       </div>
       
-      <!-- Main content area -->
+      <!-- Main content area - this is where the post will be rendered -->
       <div id="post-root"></div>
       
       <!-- Error state template -->
@@ -72,37 +75,35 @@
           <div style="font-size:3rem;margin-bottom:1rem;">😕</div>
           <h2 style="color:var(--brand);margin-bottom:1rem;">Oops! Có lỗi xảy ra</h2>
           <p style="color:var(--muted);margin-bottom:2rem;" id="error-message">Không thể tải bài viết này.</p>
-          <a href="blog.html" class="cta-btn">← Quay lại Blog</a>
+          <a href="blog.html" class="back-btn">← Quay lại Blog</a>
         </div>
       </div>
-      
-      <!-- Reading progress indicator -->
-      <div id="reading-progress" style="position:fixed;top:0;left:0;width:0%;height:3px;background:var(--brand);z-index:1000;transition:width 0.1s;"></div>
-      
-      <!-- Social sharing buttons -->
-      <div id="social-sharing" style="display:none;position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:100;">
-        <div style="display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,0.95);padding:12px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-          <button onclick="shareOnFacebook()" class="social-share-btn facebook" title="Chia sẻ lên Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </button>
-          <button onclick="shareOnTwitter()" class="social-share-btn twitter" title="Chia sẻ lên Twitter">
-            <i class="fab fa-twitter"></i>
-          </button>
-          <button onclick="copyToClipboard()" class="social-share-btn copy" title="Sao chép liên kết">
-            <i class="fas fa-link"></i>
-          </button>
-        </div>
-      </div>
-      
-      <!-- Back to top button -->
-      <button id="back-to-top" onclick="scrollToTop()" style="display:none;position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--brand);color:white;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:all 0.3s;" title="Lên đầu trang">
-        <i class="fas fa-arrow-up"></i>
-      </button>
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <!-- Reading progress indicator -->
+  <div id="reading-progress" style="position:fixed;top:0;left:0;width:0%;height:3px;background:var(--brand);z-index:1000;transition:width 0.1s;"></div>
+  
+  <!-- Social sharing buttons (hidden by default, shown on scroll) -->
+  <div id="social-sharing" style="display:none;position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:100;">
+    <div style="display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,0.95);padding:12px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);backdrop-filter:blur(8px);">
+      <button onclick="shareOnFacebook()" class="social-share-btn facebook" title="Chia sẻ lên Facebook" style="width:40px;height:40px;border:none;border-radius:8px;background:#1877f2;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button onclick="shareOnTwitter()" class="social-share-btn twitter" title="Chia sẻ lên Twitter" style="width:40px;height:40px;border:none;border-radius:8px;background:#1da1f2;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+        <i class="fab fa-twitter"></i>
+      </button>
+      <button onclick="copyToClipboard()" class="social-share-btn copy" title="Sao chép liên kết" style="width:40px;height:40px;border:none;border-radius:8px;background:var(--brand);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;">
+        <i class="fas fa-link"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Back to top button -->
+  <button id="back-to-top" onclick="scrollToTop()" style="display:none;position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--brand);color:white;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:100;" title="Lên đầu trang">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
@@ -110,24 +111,42 @@
           <h3>☕ ANARO Coffee</h3>
           <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê tuyển chọn.</p>
           <div class="contact-info">
-            <div class="contact-item" onclick="openGoogleMaps()"><span class="icon">📍</span><span>78 Đa Phước Bình Chánh TP.HCM</span></div>
-            <div class="contact-item" onclick="makePhoneCall()"><span class="icon">📞</span><span>0918337071</span></div>
-            <div class="contact-item" onclick="sendEmail()"><span class="icon">✉️</span><span>anmy1909@gmail.com</span></div>
-            <div class="contact-item"><span class="icon">🕒</span><span>Mở cửa: 8:00 - 22:00 hàng ngày</span></div>
+            <div class="contact-item" onclick="openGoogleMaps()">
+              <span class="icon">📍</span>
+              <span>78 Đa Phước Bình Chánh TP.HCM</span>
+            </div>
+            <div class="contact-item" onclick="makePhoneCall()">
+              <span class="icon">📞</span>
+              <span>0918337071</span>
+            </div>
+            <div class="contact-item" onclick="sendEmail()">
+              <span class="icon">✉️</span>
+              <span>anmy1909@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="icon">🕒</span>
+              <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
+            </div>
           </div>
         </div>
         <div class="social-section">
           <h4>Kết nối với ANARO Coffee</h4>
           <div class="social-links">
-            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')"><i class="fab fa-tiktok"></i></a>
+            <a href="https://facebook.com/anarocoffee" class="social-link facebook" target="_blank" onclick="trackSocialClick('facebook')">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/anarocoffee" class="social-link instagram" target="_blank" onclick="trackSocialClick('instagram')">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" target="_blank" onclick="trackSocialClick('tiktok')">
+              <i class="fab fa-tiktok"></i>
+            </a>
           </div>
           <div class="map-container">
             <div class="map-overlay">ANARO Coffee Store</div>
             <div class="map-placeholder" onclick="openGoogleMaps()" title="Click để xem bản đồ">
               <div>
-                <div><span style="animation: spin 1s linear infinite; display:none;">🔄</span> Nhấn để xem bản đồ</div>
+                <div>📍 Nhấn để xem bản đồ</div>
                 <small>78 Đa Phước, Bình Chánh, TP.HCM</small>
               </div>
             </div>
@@ -135,31 +154,31 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2025 ANARO Coffee. All rights reserved. | Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+        © 2025 ANARO Coffee. All rights reserved. | Thiết kế với ❤️ tại Việt Nam
       </div>
     </div>
   </footer>
 
   <script>
-  function openGoogleMaps(){ 
+  // Utility functions for footer interactions
+  function openGoogleMaps() { 
     const address = encodeURIComponent("78 Đa Phước, Bình Chánh, TP.HCM, Vietnam"); 
-    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`,'_blank','noopener,noreferrer'); 
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank', 'noopener,noreferrer'); 
   }
-  function makePhoneCall(){ 
-    const p = '0918337071'; 
-    window.location.href = `tel:${p}`; 
+  function makePhoneCall() { 
+    window.location.href = 'tel:0918337071'; 
   }
-  function sendEmail(){ 
+  function sendEmail() { 
     const email = 'anmy1909@gmail.com'; 
     const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee'); 
-    const body = encodeURIComponent('Chào ANARO Coffee,\\n\\nTôi muốn liên hệ về...\\n\\nTrân trọng,'); 
+    const body = encodeURIComponent('Chào ANARO Coffee,\n\nTôi muốn liên hệ về...\n\nTrân trọng,'); 
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`; 
   }
-  function trackSocialClick(p){ 
-    console.log('Social media clicked:', p); 
+  function trackSocialClick(platform) { 
+    console.log('Social media clicked:', platform); 
   }
 
-  // Enhanced post loading with progress tracking
+  // Progress tracking
   function updateProgress(current, total) {
     const progressBar = document.getElementById('progress-bar');
     const loadingProgress = document.getElementById('loading-progress');
@@ -217,13 +236,17 @@
     // Update structured data
     const structuredData = document.getElementById('structured-data');
     if (structuredData) {
-      const data = JSON.parse(structuredData.textContent);
-      data.headline = title;
-      data.description = description;
-      data.url = url || window.location.href;
-      data.datePublished = new Date().toISOString();
-      if (image) data.image = image;
-      structuredData.textContent = JSON.stringify(data, null, 2);
+      try {
+        const data = JSON.parse(structuredData.textContent);
+        data.headline = title;
+        data.description = description;
+        data.url = url || window.location.href;
+        data.datePublished = new Date().toISOString();
+        if (image) data.image = image;
+        structuredData.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        console.warn('Error updating structured data:', e);
+      }
     }
   }
 
@@ -265,13 +288,17 @@
   function copyToClipboard() {
     navigator.clipboard.writeText(window.location.href).then(() => {
       const btn = document.querySelector('.social-share-btn.copy');
-      const originalText = btn.title;
-      btn.title = 'Đã sao chép!';
-      btn.style.background = '#28a745';
-      setTimeout(() => {
-        btn.title = originalText;
-        btn.style.background = '';
-      }, 2000);
+      if (btn) {
+        const originalBg = btn.style.background;
+        btn.style.background = '#28a745';
+        btn.title = 'Đã sao chép!';
+        setTimeout(() => {
+          btn.style.background = originalBg;
+          btn.title = 'Sao chép liên kết';
+        }, 2000);
+      }
+    }).catch(err => {
+      console.warn('Could not copy text: ', err);
     });
   }
 
@@ -280,8 +307,8 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Show/hide back to top button
-  function setupBackToTop() {
+  // Show/hide elements on scroll
+  function setupScrollElements() {
     const backToTopBtn = document.getElementById('back-to-top');
     const socialSharing = document.getElementById('social-sharing');
     
@@ -301,7 +328,7 @@
   // Initialize post enhancements
   function setupPostEnhancements() {
     setupReadingProgress();
-    setupBackToTop();
+    setupScrollElements();
     
     // Smooth scroll for anchor links
     document.addEventListener('click', function(e) {
@@ -324,6 +351,17 @@
         console.log('CTA clicked:', e.target.href);
         trackSocialClick('cta_click');
       }
+    });
+
+    // Hover effects for social share buttons
+    const shareButtons = document.querySelectorAll('.social-share-btn');
+    shareButtons.forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'scale(1.1)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'scale(1)';
+      });
     });
   }
   </script>
