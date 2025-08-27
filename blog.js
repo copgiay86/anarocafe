@@ -105,56 +105,6 @@ function parseFrontMatter(md) {
   return { meta: {}, body: md };
 }
 
-// Enhance tables với data-label cho responsive
-function enhanceTables(html) {
-  // Tạo một DOM parser tạm thời
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  
-  const tables = tempDiv.querySelectorAll('table');
-  tables.forEach(table => {
-    // Thêm class và wrapper
-    table.classList.add('info-table');
-    
-    // Tạo wrapper div
-    const wrapper = document.createElement('div');
-    wrapper.className = 'table-wrapper';
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
-    
-    // Lấy headers cho data-label
-    const headers = table.querySelectorAll('thead th, tr:first-child td, tr:first-child th');
-    const headerTexts = Array.from(headers).map(th => th.textContent.trim());
-    
-    // Thêm data-label cho tất cả td trong tbody hoặc các tr không phải đầu tiên
-    const bodyRows = table.querySelectorAll('tbody tr');
-    if (bodyRows.length > 0) {
-      // Có tbody
-      bodyRows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        cells.forEach((cell, index) => {
-          if (headerTexts[index]) {
-            cell.setAttribute('data-label', headerTexts[index]);
-          }
-        });
-      });
-    } else {
-      // Không có tbody, lấy tất cả tr trừ tr đầu tiên
-      const dataRows = table.querySelectorAll('tr:not(:first-child)');
-      dataRows.forEach(row => {
-        const cells = row.querySelectorAll('td, th');
-        cells.forEach((cell, index) => {
-          if (headerTexts[index] && cell.tagName.toLowerCase() === 'td') {
-            cell.setAttribute('data-label', headerTexts[index]);
-          }
-        });
-      });
-    }
-  });
-  
-  return tempDiv.innerHTML;
-}
-
 // Enhanced shortcode processing cho template
 function processShortcodes(body) {
   if (!body) return body;
@@ -162,7 +112,6 @@ function processShortcodes(body) {
   // Process CTA boxes: {{cta|title|description|price|image|link}}
   body = body.replace(/\{\{cta\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^}]+)\}\}/g, 
     (match, title, desc, price, image, link) => {
-      const hasDiscount = price.includes('đ') && price.split('đ').length > 2;
       return `
 <div class="cta-box">
   <div class="cta-content">
@@ -235,6 +184,42 @@ function processShortcodes(body) {
   });
 
   return body;
+}
+
+// Enhance tables với data-label cho responsive
+function enhanceTables(html) {
+  // Tạo một DOM parser tạm thời
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  const tables = tempDiv.querySelectorAll('table');
+  tables.forEach(table => {
+    // Thêm class và wrapper
+    table.classList.add('info-table');
+    
+    // Tạo wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-wrapper';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+    
+    // Lấy headers cho data-label
+    const headers = table.querySelectorAll('thead th, tr:first-child td');
+    const headerTexts = Array.from(headers).map(th => th.textContent.trim());
+    
+    // Thêm data-label cho tất cả td trong tbody
+    const rows = table.querySelectorAll('tbody tr, tr:not(:first-child)');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      cells.forEach((cell, index) => {
+        if (headerTexts[index]) {
+          cell.setAttribute('data-label', headerTexts[index]);
+        }
+      });
+    });
+  });
+  
+  return tempDiv.innerHTML;
 }
 
 function formatDate(dstr) {
@@ -662,7 +647,7 @@ async function renderSinglePost() {
     let html = DOMPurify.sanitize(marked.parse(processedBody));
     html = addHeadingIds(html);
     
-    // FIXED: Enhance tables sau khi convert markdown
+    // *** QUAN TRỌNG: Enhance tables sau khi convert markdown ***
     html = enhanceTables(html);
     
     document.title = `${title} - Blog ANARO Coffee`;
@@ -758,28 +743,3 @@ window.BlogUtils = {
   postUrlFromSlug,
   enhanceTables
 };
-
-// Compatibility functions for different pages
-function initBlog() {
-  if (typeof window.Blog !== 'undefined' && window.Blog.renderBlogList) {
-    console.log('[Blog] Initializing blog list...');
-    window.Blog.renderBlogList();
-  } else {
-    console.warn('[Blog] Blog object not ready, retrying...');
-    setTimeout(initBlog, 100);
-  }
-}
-
-function initSinglePost() {
-  if (typeof window.Blog !== 'undefined' && window.Blog.renderSinglePost) {
-    console.log('[Blog] Initializing single post...');
-    window.Blog.renderSinglePost();
-  } else {
-    console.warn('[Blog] Blog object not ready, retrying...');
-    setTimeout(initSinglePost, 100);
-  }
-}
-
-// Make functions globally available
-window.initBlog = initBlog;
-window.initSinglePost = initSinglePost;
