@@ -1,7 +1,9 @@
-<html lang="vi"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FAQ — Câu hỏi thường gặp về Cà phê </title>
+  <title>FAQ — Câu hỏi thường gặp về Cà phê</title>
   <style>
     :root{
       --bg:#f6efe9; --text:#2a221d; --panel:#a47148; --ink:#F8EBDD;
@@ -10,8 +12,183 @@
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
          background:linear-gradient(180deg,#fff,#f6efe9 50%,#f0e2d6);color:var(--text)}
-    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
-    header.page{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px;position:sticky;top:0;background:rgba(246,239,233,0.95);backdrop-filter:blur(10px);z-index:100;padding:12px 0;border-bottom:1px solid rgba(233,215,197,0.3)}
+
+    /* ========== COFFEE IMAGE GALLERY SLIDER ========== */
+    .coffee-gallery {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      margin: 20px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      background: #f8f9fa;
+    }
+
+    .coffee-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .coffee-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .coffee-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .coffee-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .coffee-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 40px 20px 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .coffee-slide:hover .coffee-info {
+      transform: translateY(0);
+    }
+
+    .coffee-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .coffee-desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    .coffee-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(164,113,72,0.9);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    }
+
+    .coffee-nav:hover {
+      background: rgba(164,113,72,1);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 4px 15px rgba(164,113,72,0.4);
+    }
+
+    .coffee-nav.prev {
+      left: 15px;
+    }
+
+    .coffee-nav.next {
+      right: 15px;
+    }
+
+    .coffee-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .coffee-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .coffee-dot.active {
+      background: white;
+      transform: scale(1.2);
+      border-color: rgba(164,113,72,0.8);
+    }
+
+    .coffee-thumbnails {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(164,113,72,0.1);
+      justify-content: center;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+    }
+
+    .coffee-thumb {
+      width: 80px;
+      height: 60px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      position: relative;
+    }
+
+    .coffee-thumb.active {
+      opacity: 1;
+      border-color: var(--panel);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(164,113,72,0.3);
+    }
+
+    .coffee-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .coffee-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(164,113,72,0.2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .coffee-thumb.active::after {
+      opacity: 1;
+    }
+    /* ================================================== */
+
+    .wrap{max-width:900px;margin:0 auto;padding:0 16px}
+    header.page{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:20px 0 8px;position:sticky;top:0;background:rgba(246,239,233,0.95);backdrop-filter:blur(10px);z-index:100;padding:12px 0;border-bottom:1px solid rgba(233,215,197,0.3)}
     header h1{margin:0;font-size:24px}
     .intro{margin:6px 0 14px;color:#6a5c54}
     .search{display:flex;gap:8px;margin-bottom:16px}
@@ -33,20 +210,17 @@
     .home{color:#6b3f25;text-decoration:none;border:1px solid var(--border);padding:8px 12px;border-radius:10px;background:var(--card);font-weight:700;transition:all 0.2s ease}
     .home:hover{background:#a47148;color:var(--ink);transform:translateY(-1px)}
     .strong{font-weight:700;color:#a47148}
-  </style>
-<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><style type="text/css">.index-module_type__E-SaG::after {
-  content: '|';
-  animation: index-module_cursor__PQg0P 1.1s infinite step-start;
-}
 
-@keyframes index-module_cursor__PQg0P {
-  50% {
-    opacity: 0;
-  }
-}
-</style></head>
-<body __processed_bc2082d6-c554-4074-8ea6-166cf9ccd305__="true" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZGlzYWJsZWQiLCJDT05GSUciOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMi4wLjI2Iiwic2NvcmUiOjIwMDI2fV0=">
-  <div class="wrap" bis_skin_checked="1">
+    @media (max-width: 768px) {
+      .coffee-gallery{height:280px}
+      .coffee-nav{width:40px;height:40px;font-size:16px}
+      .coffee-thumb{width:60px;height:45px}
+      .coffee-thumbnails{gap:8px;padding:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
     <header class="page">
       <h1>☕ Câu hỏi thường gặp</h1>
       <a class="home" href="https://anarocafe-vert.vercel.app/">← Về trang chủ</a>
@@ -54,15 +228,36 @@
 
     <p class="intro">Tổng hợp các câu hỏi thường gặp về cà phê từ chọn hạt, cách pha, bảo quản đến tác động sức khỏe. Gõ từ khóa để tìm kiếm nhanh.</p>
 
-    <div class="search" bis_skin_checked="1">
+    <!-- ========== COFFEE GALLERY SLIDER ========== -->
+    <section class="coffee-gallery" id="coffeeGallery">
+      <div class="coffee-slider">
+        <div class="coffee-track" id="coffeeTrack">
+          <!-- CÁC ẢNH SẼ ĐƯỢC LOAD TỪ GITHUB IMAGES FOLDER -->
+        </div>
+        
+        <button class="coffee-nav prev" id="coffeePrev">‹</button>
+        <button class="coffee-nav next" id="coffeeNext">›</button>
+        
+        <div class="coffee-dots" id="coffeeDots">
+          <!-- DOTS SẼ ĐƯỢC TẠO TỰ ĐỘNG -->
+        </div>
+      </div>
+      
+      <div class="coffee-thumbnails" id="coffeeThumbnails">
+        <!-- THUMBNAILS SẼ ĐƯỢC TẠO TỰ ĐỘNG -->
+      </div>
+    </section>
+    <!-- ============================================= -->
+
+    <div class="search">
       <input id="q" type="search" placeholder="Tìm kiếm: phin, robusta, caffeine, bảo quản...">
       <span class="badge" id="results">Hiển thị tất cả</span>
     </div>
 
     <nav class="chipnav">
       <a href="#food-pairing">Kết hợp thực phẩm</a>
-      <a href="#flavor-quality">Hương vị &amp; Chất lượng</a>
-      <a href="#brewing-equipment">Pha chế &amp; Dụng cụ</a>
+      <a href="#flavor-quality">Hương vị & Chất lượng</a>
+      <a href="#brewing-equipment">Pha chế & Dụng cụ</a>
       <a href="#health-effects">Tác động sức khỏe</a>
       <a href="#customization">Tùy chỉnh cá nhân</a>
     </nav>
@@ -72,29 +267,29 @@
       
       <details class="qa">
         <summary>Cà phê đen nên ăn kèm với bánh gì cho ngon?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Gợi ý:</span> Bánh quy bơ, bánh croissant, bánh mì nướng bơ, hay bánh bông lan nhẹ. Tránh bánh quá ngọt để không che lấp hương vị cà phê.
         </div>
       </details>
 
       <details class="qa">
         <summary>Tại sao người Việt thường uống cà phê với bánh mì nướng bơ?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           Bánh mì nướng bơ có vị béo ngậy giúp <span class="strong">cân bằng độ đắng</span> của cà phê, tạo cảm giác no nhẹ mà không quá nặng bụng. Đây là combo truyền thống phù hợp với khẩu vị Việt.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phê sữa đá có phù hợp với bánh ngọt không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Có</span>, nhưng nên chọn bánh ngọt vừa phải như flan, bánh bông lan. Tránh bánh quá ngọt vì cà phê sữa đã có độ ngọt cao.
         </div>
       </details>
 
       <details class="qa">
         <summary>Uống cà phê buổi sáng nên ăn kèm gì?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Buổi sáng:</span> Bánh mì, croissant, bánh quy. <br>
             <span class="strong">Chiều:</span> Bánh ngọt nhẹ, flan, bánh bông lan.
           </div>
@@ -103,7 +298,7 @@
 
       <details class="qa">
         <summary>Có nên ăn trước hay uống cà phê trước?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           Nên <span class="strong">ăn một chút trước</span> để tránh cà phê gây kích ứng dạ dày. Sau đó vừa ăn vừa uống để cân bằng hương vị.
         </div>
       </details>
@@ -114,8 +309,8 @@
       
       <details class="qa">
         <summary>Robusta và Arabica khác nhau như thế nào?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Robusta:</span> Đắng mạnh, caffeine cao (2-3%), body dày, giá rẻ<br>
             <span class="strong">Arabica:</span> Hương phức tạp, vị chua nhẹ, caffeine thấp (1-1.5%), giá cao hơn
           </div>
@@ -124,14 +319,14 @@
 
       <details class="qa">
         <summary>Tại sao người Việt thích cà phê Robusta?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           Robusta có <span class="strong">vị đắng đậm đà</span> phù hợp với khẩu vị Việt, body dày khi pha phin, và giá cả phải chăng. Khi pha với sữa đặc tạo độ cân bằng hoàn hảo.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phê rang nhạt và rang đậm khác nhau gì?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Rang nhạt:</span> Giữ được hương tự nhiên, vị chua rõ<br>
           <span class="strong">Rang đậm:</span> Vị đắng mạnh, hương rang nổi trội, ít chua
         </div>
@@ -139,29 +334,29 @@
 
       <details class="qa">
         <summary>Làm sao biết cà phê đã rang quá kỹ?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           Hạt cà phê <span class="strong">có màu đen bóng</span>, bề mặt nhiều dầu, vị đắng cháy, mất hết hương tự nhiên. Khi pha có vị khét và không thơm.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phê ngon phải có mùi như thế nào?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Hương thơm tự nhiên</span> không bị cháy khét, có thể là hương chocolate, caramel, hay trái cây tùy loại hạt. Tránh mùi chua, mốc hay quá gắt.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phê Buôn Ma Thuột có gì đặc biệt?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Đất đỏ bazan</span> và khí hậu cao nguyên tạo nên hương vị đặc trưng. Robusta Buôn Ma Thuột có độ đắng cân bằng, body dày và hương thơm đặc biệt.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phể rang xay để bao lâu thì hết ngon?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Hạt rang:</span> 2-4 tuần<br>
             <span class="strong">Bột xay:</span> 1-2 tuần<br>
             Bảo quản nơi khô ráo, tránh ánh sáng trực tiếp
@@ -171,7 +366,7 @@
 
       <details class="qa">
         <summary>Có nên để cà phê trong tủ lạnh không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Không nên</span>. Độ ẩm trong tủ lạnh làm cà phê bị ẩm mốc và hút mùi thức ăn khác. Chỉ nên bảo quản ở nhiệt độ phòng, hộp kín.
         </div>
       </details>
@@ -182,7 +377,7 @@
       
       <details class="qa">
         <summary>Phin inox hay phin nhôm tốt hơn?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Phin inox:</span> Bền, không gỉ, giữ nhiệt tốt, dễ vệ sinh<br>
           <span class="strong">Phin nhôm:</span> Nhẹ, rẻ, dẫn nhiệt nhanh nhưng dễ gỉ
         </div>
@@ -190,8 +385,8 @@
 
       <details class="qa">
         <summary>Làm sao pha phin cà phê đúng cách?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Bước 1:</span> Cho 2-3 thìa cà phê vào phin<br>
             <span class="strong">Bước 2:</span> Ấn nhẹ, đổ ít nước nóng (90-95°C) ủ 30s<br>
             <span class="strong">Bước 3:</span> Đổ thêm nước, để nhỏ giọt 4-6 phút
@@ -201,14 +396,14 @@
 
       <details class="qa">
         <summary>Tại sao cà phê phin của tôi nhạt quá?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Nguyên nhân:</span> Ít cà phê, xay quá thô, nước không đủ nóng, hoặc thời gian pha quá nhanh. Tăng lượng bột hoặc ép chặt hơn.
         </div>
       </details>
 
       <details class="qa">
         <summary>Tỷ lệ cà phê và nước chuẩn là bao nhiêu?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Phin:</span> 1:8 đến 1:10 (15-20g cà phê cho 150ml nước)<br>
           <span class="strong">Espresso:</span> 1:2 (18g cà phê cho 36ml)<br>
           <span class="strong">Pour over:</span> 1:15 đến 1:17
@@ -217,21 +412,21 @@
 
       <details class="qa">
         <summary>Máy espresso có pha được cà phê kiểu Việt không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Có</span>, nhưng cần điều chỉnh: dùng cà phê xay mịn hơn, tăng thời gian chiết xuất, có thể pha double shot để có độ đậm như phin.
         </div>
       </details>
 
       <details class="qa">
         <summary>Tại sao cà phê tôi pha bị chua?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Nguyên nhân:</span> Xay quá thô, nước không đủ nóng (dưới 85°C), hoặc thời gian pha quá ngắn. <span class="strong">Khắc phục:</span> Xay mịn hơn, tăng nhiệt độ nước.
         </div>
       </details>
 
       <details class="qa">
         <summary>Làm sao khắc phục cà phê quá đắng?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Giải pháp:</span> Xay thô hơn, giảm thời gian pha, hạ nhiệt độ nước xuống 85-90°C, hoặc giảm lượng cà phê.
         </div>
       </details>
@@ -242,7 +437,7 @@
       
       <details class="qa">
         <summary>Một ly cà phê phin có bao nhiều caffeine?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Cà phê phin:</span> 80-120mg caffeine/ly<br>
           <span class="strong">Espresso:</span> 60-80mg/shot<br>
           <span class="strong">Cà phê sữa:</span> 60-100mg/ly (do có sữa pha loãng)
@@ -251,8 +446,8 @@
 
       <details class="qa">
         <summary>Bao nhiêu ly cà phê một ngày là quá nhiều?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">An toàn:</span> 3-4 ly/ngày (400mg caffeine)<br>
             <span class="strong">Cảnh báo:</span> Trên 6 ly có thể gây run tay, mất ngủ, lo âu
           </div>
@@ -261,43 +456,43 @@
 
       <details class="qa">
         <summary>Cà phê có ảnh hưởng đến giấc ngủ không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Có</span>. Caffeine tồn tại trong cơ thể 6-8 tiếng. Tránh uống cà phê sau 2h chiều để không ảnh hưởng giấc ngủ đêm.
         </div>
       </details>
 
       <details class="qa">
         <summary>Tại sao uống cà phê tôi bị đau đầu?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Nguyên nhân:</span> Uống quá nhiều, thiếu nước, hoặc cai caffeine đột ngột. Giảm dần lượng caffeine và uống nhiều nước.
         </div>
       </details>
 
       <details class="qa">
         <summary>Uống cà phê có giúp giảm cân không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           Caffeine có thể <span class="strong">tăng trao đổi chất</span> tạm thời, nhưng hiệu quả giảm cân chủ yếu từ chế độ ăn và vận động. Cà phê sữa đường lại tăng cân.
         </div>
       </details>
 
       <details class="qa">
         <summary>Phụ nữ có thai có nên uống cà phê không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Hạn chế dưới 200mg caffeine/ngày</span> (1-2 ly nhỏ). Tốt nhất nên tham khảo ý kiến bác sĩ để đảm bảo an toàn cho mẹ và bé.
         </div>
       </details>
 
       <details class="qa">
         <summary>Có nên uống cà phê khi bụng đói không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Không nên</span>. Cà phê có thể gây kích ứng dạ dày, đau bụng. Nên ăn nhẹ trước khi uống cà phê.
         </div>
       </details>
 
       <details class="qa">
         <summary>Nên uống cà phê lúc nào trong ngày?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Tốt nhất:</span> 9-11h sáng và 1-2h chiều<br>
             <span class="strong">Tránh:</span> Sáng sớm khi thức dậy và sau 2h chiều
           </div>
@@ -310,7 +505,7 @@
       
       <details class="qa">
         <summary>Nên cho bao nhiêu sữa đặc vào cà phê?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Chuẩn:</span> 2-3 thìa cho 1 ly phin<br>
           Điều chỉnh theo khẩu vị: ít hơn nếu thích đắng, nhiều hơn nếu thích ngọt
         </div>
@@ -318,21 +513,21 @@
 
       <details class="qa">
         <summary>Có nên thay sữa đặc bằng sữa tươi không?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Được</span>, nhưng vị sẽ khác: nhẹ hơn, ít ngọt hơn. Có thể thêm đường để tăng độ ngọt nếu cần.
         </div>
       </details>
 
       <details class="qa">
         <summary>Làm sao để pha cà phê đậm mà không đắng?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Mẹo:</span> Dùng nhiều cà phê nhưng xay thô hơn, nước 90°C thay vì 95°C, thời gian pha ngắn hơn.
         </div>
       </details>
 
       <details class="qa">
         <summary>Cà phê nóng hay cà phê đá ngon hơn?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Tùy thời tiết:</span><br>
           Cà phê nóng giữ được hương thơm, phù hợp thời tiết mát<br>
           Cà phê đá mát lạnh, giải khát, hợp thời tiết nóng
@@ -341,8 +536,8 @@
 
       <details class="qa">
         <summary>Cà phê trứng làm thế nào cho ngon?</summary>
-        <div class="a" bis_skin_checked="1">
-          <div class="highlight" bis_skin_checked="1">
+        <div class="a">
+          <div class="highlight">
             <span class="strong">Công thức:</span> 1 lòng đỏ trứng + 1 thìa sữa đặc + 1 thìa đường<br>
             Đánh bông trong 5-7 phút, cho lên cà phê đen đậm
           </div>
@@ -351,7 +546,7 @@
 
       <details class="qa">
         <summary>Cà phê bạc xỉu khác gì với cà phê sữa?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Bạc xỉu:</span> Nhiều sữa hơn cà phê (70% sữa, 30% cà phê)<br>
           <span class="strong">Cà phê sữa:</span> Cà phê chủ đạo (60% cà phê, 40% sữa)
         </div>
@@ -359,23 +554,128 @@
 
       <details class="qa">
         <summary>Làm sao tìm ra công thức cà phê phù hợp với mình?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Thử nghiệm từ từ:</span> Bắt đầu tỷ lệ chuẩn, sau đó điều chỉnh lượng cà phê, sữa, đường cho đến khi tìm được vị ưng ý nhất.
         </div>
       </details>
 
       <details class="qa">
         <summary>Mùa hè nên uống cà phê như thế nào?</summary>
-        <div class="a" bis_skin_checked="1">
+        <div class="a">
           <span class="strong">Gợi ý mùa hè:</span> Cà phê đá, cold brew, cà phê cốt dừa. Tránh uống quá nóng và quá đậm vào ban ngày.
         </div>
       </details>
     </section>
 
-    <div class="footer" bis_skin_checked="1">☕ FAQ Cà phê Việt Nam · Cẩm nang từ A-Z</div>
+    <div class="footer">☕ FAQ Cà phê Việt Nam · Cẩm nang từ A-Z</div>
   </div>
 
   <script>
+    // Coffee Gallery Slider
+    const coffeeImages = [
+      {
+        src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=400&fit=crop',
+        title: 'Cà phê phin truyền thống',
+        desc: 'Hương vị đậm đà của cà phê Việt Nam qua phin nhôm'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=400&fit=crop',
+        title: 'Hạt cà phê rang mộc',
+        desc: 'Robusta Buôn Ma Thuột rang vừa, giữ nguyên hương tự nhiên'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=800&h=400&fit=crop',
+        title: 'Cà phê sữa đá',
+        desc: 'Thức uống quốc dân với sữa đặc ngọt ngào'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1497636577773-f1231844b336?w=800&h=400&fit=crop',
+        title: 'Espresso đậm đà',
+        desc: 'Tinh túy cà phê trong từng giọt espresso'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=400&fit=crop',
+        title: 'Cà phê rang xay',
+        desc: 'Quy trình rang và xay chuyên nghiệp'
+      }
+    ];
+
+    let currentSlide = 0;
+    
+    function initCoffeeGallery() {
+      const track = document.getElementById('coffeeTrack');
+      const dotsContainer = document.getElementById('coffeeDots');
+      const thumbnailsContainer = document.getElementById('coffeeThumbnails');
+      
+      // Tạo slides
+      coffeeImages.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'coffee-slide';
+        slide.innerHTML = `
+          <img src="${img.src}" alt="${img.title}">
+          <div class="coffee-info">
+            <div class="coffee-title">${img.title}</div>
+            <div class="coffee-desc">${img.desc}</div>
+          </div>
+        `;
+        track.appendChild(slide);
+        
+        // Tạo dots
+        const dot = document.createElement('div');
+        dot.className = `coffee-dot ${index === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+        
+        // Tạo thumbnails
+        const thumb = document.createElement('div');
+        thumb.className = `coffee-thumb ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${img.src}" alt="${img.title}">`;
+        thumb.addEventListener('click', () => goToSlide(index));
+        thumbnailsContainer.appendChild(thumb);
+      });
+    }
+    
+    function goToSlide(index) {
+      currentSlide = index;
+      const track = document.getElementById('coffeeTrack');
+      const dots = document.querySelectorAll('.coffee-dot');
+      const thumbs = document.querySelectorAll('.coffee-thumb');
+      
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+      
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === currentSlide);
+      });
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % coffeeImages.length;
+      goToSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + coffeeImages.length) % coffeeImages.length;
+      goToSlide(currentSlide);
+    }
+    
+    // Event listeners
+    document.getElementById('coffeeNext').addEventListener('click', nextSlide);
+    document.getElementById('coffeePrev').addEventListener('click', prevSlide);
+    
+    // Auto slide
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+    
+    // Pause auto slide on hover
+    const gallery = document.getElementById('coffeeGallery');
+    gallery.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    gallery.addEventListener('mouseleave', () => {
+      autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
     // Tìm kiếm FAQ
     const input = document.getElementById('q');
     const resultsSpan = document.getElementById('results');
@@ -420,7 +720,10 @@
         allDetails.forEach(d => d.open = !isAnyOpen);
       });
     });
+
+    // Initialize gallery when page loads
+    document.addEventListener('DOMContentLoaded', initCoffeeGallery);
   </script>
 
-
-<div id="gigabrain-shadow-global" name="gigabrain" bis_skin_checked="1"></div></body></html>
+</body>
+</html>
