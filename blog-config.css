@@ -1,0 +1,62 @@
+/* ANARO COFFEE BLOG - DESIGN TOKENS */
+/* DO NOT MODIFY WITHOUT TEAM APPROVAL */
+
+:root {
+  /* Colors extracted from index-cart.html */
+  --anaro-primary: #6b3f25;      /* Main brown */
+  --anaro-secondary: #a47148;    /* Light brown */
+  --anaro-bg: #f6efe9;          /* Cream background */
+  --anaro-text: #2a221d;        /* Dark text */
+  --anaro-accent: #f8ebdd;      /* Light accent */
+  --anaro-border: #e9d7c5;      /* Border color */
+  --anaro-dot: #6b3f25;         /* Dot/bullet color */
+  
+  /* Typography */
+  --anaro-font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --anaro-font-size-xl: 20px;    /* H1 equivalent */
+  --anaro-font-size-lg: 16px;    /* H2-H3 */
+  --anaro-font-size-base: 14px;  /* Body text */
+  --anaro-font-size-sm: 12px;    /* Small text */
+  --anaro-line-height: 1.5;
+  
+  /* Spacing scale */
+  --anaro-space-xs: 4px;
+  --anaro-space-sm: 8px;
+  --anaro-space-md: 12px;
+  --anaro-space-lg: 16px;
+  --anaro-space-xl: 24px;
+  --anaro-space-2xl: 32px;
+  
+  /* Border radius */
+  --anaro-radius-sm: 8px;
+  --anaro-radius-md: 10px;
+  --anaro-radius-lg: 12px;
+  --anaro-radius-xl: 14px;
+  
+  /* Shadows */
+  --anaro-shadow-sm: 0 1px 2px rgba(107, 63, 37, 0.1);
+  --anaro-shadow-md: 0 2px 4px rgba(107, 63, 37, 0.1);
+  --anaro-shadow-lg: 0 4px 8px rgba(107, 63, 37, 0.15);
+  
+  /* Layout */
+  --anaro-container-max: 1200px;
+  --anaro-container-padding: 16px;
+  
+  /* Transitions */
+  --anaro-transition-fast: 0.15s ease;
+  --anaro-transition-normal: 0.25s ease;
+}
+
+/* Base reset and defaults */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--anaro-font-family);
+  font-size: var(--anaro-font-size-base);
+  line-height: var(--anaro-line-height);
+  color: var(--anaro-text);
+  background: linear-gradient(180deg, #fff, var(--anaro-bg) 50%, #f0e2d6);
+  margin: 0;
+}
