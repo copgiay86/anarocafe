@@ -1,0 +1,34 @@
+/* IMPORT FOUNDATION FIRST */
+@import url('blog-config.css');
+
+/* Blog Typography System */
+
+/* Heading Hierarchy */
+.blog-h1 { }
+.blog-h2 { }
+.blog-h3 { }
+.blog-h4 { }
+
+/* Text Elements */
+.blog-paragraph { }
+.blog-lead { /* Larger intro text */ }
+.blog-small { }
+.blog-link { }
+
+/* Lists */
+.blog-ul { }
+.blog-ol { }
+.blog-li { }
+
+/* Table of Contents */
+.blog-toc { }
+.blog-toc-title { }
+.blog-toc-list { }
+.blog-toc-item { }
+.blog-toc-link { }
+.blog-toc-active { }
+
+/* Reading indicators */
+.blog-meta { /* Author, date info */ }
+.blog-reading-time { }
+.blog-breadcrumb { }

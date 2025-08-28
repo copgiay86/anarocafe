@@ -1,0 +1,548 @@
+/* ANARO BLOG - PRODUCT INTEGRATION STYLES */
+/* Dependencies: blog-config.css, blog-components.css */
+
+@import url('blog-config.css');
+@import url('blog-components.css');
+
+/* ========================================
+   PRODUCT CTA COMPONENTS
+======================================== */
+
+.blog-product-cta {
+  display: flex;
+  background: #fff;
+  border: 1px solid var(--anaro-border);
+  border-radius: var(--anaro-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--anaro-shadow-md);
+  margin: var(--anaro-space-xl) 0;
+  transition: all var(--anaro-transition-normal);
+}
+
+.blog-product-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--anaro-shadow-lg);
+}
+
+.blog-product-cta .blog-product-image {
+  flex: 0 0 200px;
+  background: var(--anaro-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--anaro-space-lg);
+}
+
+.blog-product-cta .blog-product-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--anaro-radius-md);
+}
+
+.blog-product-cta .blog-product-content {
+  flex: 1;
+  padding: var(--anaro-space-lg);
+}
+
+/* ========================================
+   PRODUCT CARDS (for grids)
+======================================== */
+
+.blog-product-card {
+  background: #fff;
+  border: 1px solid var(--anaro-border);
+  border-radius: var(--anaro-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--anaro-shadow-md);
+  transition: all var(--anaro-transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--anaro-shadow-lg);
+}
+
+.blog-product-card .blog-product-image {
+  background: var(--anaro-accent);
+  padding: var(--anaro-space-lg);
+  text-align: center;
+}
+
+.blog-product-card .blog-product-image img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--anaro-radius-md);
+}
+
+.blog-product-card .blog-product-info {
+  padding: var(--anaro-space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   PRODUCT GRIDS
+======================================== */
+
+.blog-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--anaro-space-lg);
+  margin: var(--anaro-space-lg) 0;
+}
+
+.blog-related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--anaro-space-lg);
+  margin: var(--anaro-space-lg) 0;
+}
+
+.blog-recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--anaro-space-xl);
+  margin: var(--anaro-space-xl) 0;
+}
+
+/* ========================================
+   PRODUCT INFORMATION DISPLAY
+======================================== */
+
+.blog-product-category {
+  font-size: var(--anaro-font-size-sm);
+  color: var(--anaro-secondary);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--anaro-space-xs);
+}
+
+.blog-product-name {
+  font-size: var(--anaro-font-size-lg);
+  font-weight: 600;
+  color: var(--anaro-primary);
+  margin: 0 0 var(--anaro-space-sm) 0;
+  line-height: 1.3;
+}
+
+.blog-product-description {
+  font-size: var(--anaro-font-size-base);
+  color: var(--anaro-text);
+  line-height: 1.5;
+  margin: 0 0 var(--anaro-space-sm) 0;
+}
+
+.blog-product-best {
+  font-size: var(--anaro-font-size-sm);
+  color: var(--anaro-secondary);
+  font-style: italic;
+  margin: 0 0 var(--anaro-space-md) 0;
+}
+
+.blog-product-price {
+  font-size: var(--anaro-font-size-lg);
+  font-weight: 700;
+  color: var(--anaro-primary);
+  margin: var(--anaro-space-md) 0;
+}
+
+/* ========================================
+   RATING SYSTEM (Dot System)
+======================================== */
+
+.blog-product-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--anaro-space-sm);
+  margin: var(--anaro-space-sm) 0;
+  font-size: var(--anaro-font-size-sm);
+  color: var(--anaro-secondary);
+}
+
+.blog-rating-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--anaro-border);
+  display: inline-block;
+  margin: 0 1px;
+  transition: all var(--anaro-transition-fast);
+}
+
+.blog-rating-dot.active {
+  background: var(--anaro-dot);
+  box-shadow: 0 0 4px rgba(107, 63, 37, 0.3);
+}
+
+/* ========================================
+   BREWING METHODS BADGES
+======================================== */
+
+.blog-product-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--anaro-space-xs);
+  margin: var(--anaro-space-sm) 0;
+}
+
+.blog-method-badge {
+  background: var(--anaro-accent);
+  color: var(--anaro-primary);
+  padding: var(--anaro-space-xs) var(--anaro-space-sm);
+  border-radius: var(--anaro-radius-sm);
+  font-size: var(--anaro-font-size-sm);
+  font-weight: 500;
+  border: 1px solid var(--anaro-border);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--anaro-space-xs);
+}
+
+.blog-method-badge:before {
+  content: '☕';
+  font-size: 12px;
+}
+
+/* ========================================
+   CTA BUTTONS
+======================================== */
+
+.blog-product-actions {
+  display: flex;
+  gap: var(--anaro-space-sm);
+  margin-top: auto;
+  padding-top: var(--anaro-space-md);
+}
+
+.blog-product-buy-btn {
+  flex: 1;
+  background: var(--anaro-primary);
+  color: #fff;
+  border: 1px solid var(--anaro-primary);
+  padding: var(--anaro-space-md) var(--anaro-space-lg);
+  border-radius: var(--anaro-radius-md);
+  font-size: var(--anaro-font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--anaro-transition-fast);
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-product-buy-btn:hover {
+  background: #5a3420;
+  border-color: #5a3420;
+  transform: translateY(-1px);
+  box-shadow: var(--anaro-shadow-md);
+}
+
+.blog-product-learn-btn {
+  background: transparent;
+  color: var(--anaro-primary);
+  border: 1px solid var(--anaro-primary);
+  padding: var(--anaro-space-md) var(--anaro-space-lg);
+  border-radius: var(--anaro-radius-md);
+  font-size: var(--anaro-font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--anaro-transition-fast);
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-product-learn-btn:hover {
+  background: var(--anaro-primary);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--anaro-shadow-sm);
+}
+
+/* ========================================
+   RELATED PRODUCTS SECTION
+======================================== */
+
+.blog-related-products {
+  background: linear-gradient(135deg, var(--anaro-bg) 0%, #fff 100%);
+  border: 1px solid var(--anaro-border);
+  border-radius: var(--anaro-radius-xl);
+  padding: var(--anaro-space-xl);
+  margin: var(--anaro-space-2xl) 0;
+  box-shadow: var(--anaro-shadow-sm);
+}
+
+.blog-related-products-title {
+  font-size: var(--anaro-font-size-lg);
+  font-weight: 600;
+  color: var(--anaro-primary);
+  margin: 0 0 var(--anaro-space-lg) 0;
+  text-align: center;
+  position: relative;
+}
+
+.blog-related-products-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--anaro-primary);
+  margin: var(--anaro-space-sm) auto 0;
+  border-radius: 1px;
+}
+
+/* ========================================
+   RECOMMENDATIONS SECTION
+======================================== */
+
+.blog-recommendations {
+  background: #fff;
+  border: 1px solid var(--anaro-border);
+  border-radius: var(--anaro-radius-xl);
+  padding: var(--anaro-space-xl);
+  margin: var(--anaro-space-2xl) 0;
+  box-shadow: var(--anaro-shadow-md);
+}
+
+.blog-recommendations-title {
+  font-size: var(--anaro-font-size-xl);
+  font-weight: 600;
+  color: var(--anaro-primary);
+  margin: 0 0 var(--anaro-space-lg) 0;
+  text-align: center;
+  position: relative;
+}
+
+.blog-recommendations-title::before {
+  content: '⭐';
+  margin-right: var(--anaro-space-sm);
+}
+
+.blog-recommendations-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--anaro-primary), var(--anaro-secondary));
+  margin: var(--anaro-space-md) auto 0;
+  border-radius: 2px;
+}
+
+/* ========================================
+   CART NOTIFICATION
+======================================== */
+
+.blog-cart-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--anaro-primary);
+  color: #fff;
+  padding: var(--anaro-space-lg);
+  border-radius: var(--anaro-radius-lg);
+  box-shadow: var(--anaro-shadow-lg);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: all var(--anaro-transition-normal);
+  max-width: 300px;
+}
+
+.blog-cart-notification.show {
+  transform: translateX(0);
+}
+
+.blog-cart-notification-content {
+  display: flex;
+  align-items: center;
+  gap: var(--anaro-space-sm);
+}
+
+.blog-cart-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   ERROR STATES
+======================================== */
+
+.blog-error {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-left: 4px solid #f56565;
+  border-radius: var(--anaro-radius-lg);
+  padding: var(--anaro-space-lg);
+  margin: var(--anaro-space-lg) 0;
+  color: #c53030;
+  font-size: var(--anaro-font-size-sm);
+}
+
+.blog-error::before {
+  content: '⚠️ ';
+  margin-right: var(--anaro-space-sm);
+}
+
+/* ========================================
+   LOADING STATES
+======================================== */
+
+.blog-product-loading {
+  background: var(--anaro-accent);
+  border-radius: var(--anaro-radius-xl);
+  padding: var(--anaro-space-xl);
+  text-align: center;
+  color: var(--anaro-secondary);
+  margin: var(--anaro-space-lg) 0;
+}
+
+.blog-product-loading::before {
+  content: '☕';
+  font-size: 32px;
+  display: block;
+  margin-bottom: var(--anaro-space-sm);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 768px) {
+  .blog-product-cta {
+    flex-direction: column;
+  }
+  
+  .blog-product-cta .blog-product-image {
+    flex: none;
+    height: 200px;
+  }
+  
+  .blog-product-actions {
+    flex-direction: column;
+  }
+  
+  .blog-product-grid,
+  .blog-related-products-grid,
+  .blog-recommendations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-method-badge {
+    font-size: var(--anaro-font-size-sm);
+    padding: var(--anaro-space-xs);
+  }
+  
+  .blog-cart-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    transform: translateY(-100%);
+  }
+  
+  .blog-cart-notification.show {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-related-products,
+  .blog-recommendations {
+    padding: var(--anaro-space-lg);
+    margin: var(--anaro-space-lg) 0;
+  }
+  
+  .blog-product-card .blog-product-image img {
+    height: 100px;
+  }
+  
+  .blog-product-name {
+    font-size: var(--anaro-font-size-base);
+  }
+  
+  .blog-product-price {
+    font-size: var(--anaro-font-size-base);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  .blog-product-cta,
+  .blog-product-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .blog-product-buy-btn,
+  .blog-product-learn-btn {
+    display: none;
+  }
+  
+  .blog-cart-notification {
+    display: none;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+======================================== */
+
+@media (prefers-contrast: high) {
+  .blog-product-cta,
+  .blog-product-card {
+    border-width: 2px;
+  }
+  
+  .blog-rating-dot.active {
+    border: 1px solid var(--anaro-text);
+  }
+  
+  .blog-method-badge {
+    border-width: 2px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-product-cta,
+  .blog-product-card,
+  .blog-product-buy-btn,
+  .blog-product-learn-btn,
+  .blog-rating-dot,
+  .blog-cart-notification {
+    transition: none;
+  }
+  
+  .blog-product-cta:hover,
+  .blog-product-card:hover,
+  .blog-product-buy-btn:hover,
+  .blog-product-learn-btn:hover {
+    transform: none;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(0deg); }
+  }
+}
