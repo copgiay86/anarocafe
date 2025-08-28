@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Blog ANARO Coffee - Kiến thức về cà phê</title>
+    <meta name="description" content="Khám phá những bài viết về cà phê, hướng dẫn pha chế và kiến thức chuyên sâu từ ANARO Coffee">
+    
+    <!-- Import all CSS from Tasks 1-3 -->
+    <link rel="stylesheet" href="blog-config.css">
+    <link rel="stylesheet" href="blog-base.css">
+    <link rel="stylesheet" href="blog-typography.css">
+    <link rel="stylesheet" href="blog-components.css">
+</head>
+<body>
+    <main class="blog-wrap">
+        <!-- ARCHIVE HEADER -->
+        <header class="blog-archive-header">
+            <h1 class="blog-h1">Blog ANARO Coffee</h1>
+            <p class="blog-lead">Khám phá thế giới cà phê cùng chúng tôi</p>
+        </header>
+
+        <!-- FILTERS & SEARCH -->
+        <aside class="blog-filters">
+            <div class="blog-search">
+                <input type="search" placeholder="Tìm kiếm bài viết..." id="search-input">
+            </div>
+            
+            <div class="blog-filter-categories">
+                <h4>Danh mục</h4>
+                <div id="category-filters">
+                    <!-- Auto-populated by blog-archive.js -->
+                </div>
+            </div>
+            
+            <div class="blog-filter-tags">
+                <h4>Thẻ</h4>
+                <div id="tag-filters">
+                    <!-- Auto-populated by blog-archive.js -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- POSTS CONTAINER -->
+        <section class="blog-posts-container">
+            <!-- FEATURED POST -->
+            <article class="blog-featured-post" id="featured-post">
+                <!-- Latest/featured post rendered by JS -->
+            </article>
+
+            <!-- POSTS GRID -->
+            <div class="blog-posts-grid" id="posts-container">
+                <!-- Post cards auto-populated by blog-archive.js -->
+            </div>
+
+            <!-- PAGINATION -->
+            <nav class="blog-pagination" id="pagination">
+                <!-- Auto-generated pagination -->
+            </nav>
+        </section>
+    </main>
+
+    <!-- Load Scripts -->
+    <script src="blog-index.js"></script>
+    <script src="blog-archive.js"></script>
+</body>
+</html>
