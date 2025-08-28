@@ -1,0 +1,38 @@
+/* ANARO BLOG - BASE LAYOUT CLASSES */
+/* Matching patterns from index-cart.html */
+
+.blog-wrap {
+  max-width: var(--anaro-container-max);
+  margin: 0 auto;
+  padding: 0 var(--anaro-container-padding);
+}
+
+.blog-container {
+  background: #fff;
+  border: 1px solid var(--anaro-border);
+  border-radius: var(--anaro-radius-xl);
+  padding: var(--anaro-space-xl);
+  margin: var(--anaro-space-lg) 0;
+  box-shadow: var(--anaro-shadow-md);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .blog-wrap {
+    padding: 0 var(--anaro-space-md);
+  }
+  
+  .blog-container {
+    padding: var(--anaro-space-lg);
+    margin: var(--anaro-space-md) 0;
+  }
+}
+
+/* Hide class for conditional content */
+.blog-hidden {
+  display: none !important;
+}
+
+.blog-visible {
+  display: block !important;
+}
