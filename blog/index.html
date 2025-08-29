@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO META -->
+    <title>Blog ANARO Coffee - Khám phá thế giới cà phê đặc biệt</title>
+    <meta name="description" content="Khám phá những bài viết chuyên sâu về cà phê từ ANARO Coffee. Hướng dẫn pha chế, kiến thức cà phê, và những câu chuyện thú vị từ thế giới cà phê đặc biệt.">
+    <meta name="keywords" content="blog cà phê, hướng dẫn pha chế, kiến thức cà phê, anaro coffee, cà phê đặc biệt">
+    
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Blog ANARO Coffee - Khám phá thế giới cà phê đặc biệt">
+    <meta property="og:description" content="Khám phá những bài viết chuyên sâu về cà phê từ ANARO Coffee">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ANARO Coffee">
+    
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://anaroCoffee.vercel.app/blog/">
+    
+    <!-- STYLES -->
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="blog-wrap">
+            <a href="/" class="site-logo">☕ ANARO COFFEE</a>
+            <nav class="site-nav">
+                <a href="/">Trang chủ</a>
+                <a href="/blog" class="active">Blog</a>
+                <a href="/products">Sản phẩm</a>
+                <a href="/about">Về chúng tôi</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="blog-wrap">
+        <!-- BLOG HERO -->
+        <section class="blog-hero">
+            <h1>Blog ANARO Coffee</h1>
+            <p>Khám phá những câu chuyện, kiến thức và bí quyết về thế giới cà phê đặc biệt. Từ hướng dẫn pha chế đến những khám phá về hương vị từ khắp nơi trên thế giới.</p>
+        </section>
+
+        <!-- CATEGORY FILTERS -->
+        <section class="blog-filters">
+            <button class="blog-filter-btn active" data-category="all">Tất cả</button>
+            <button class="blog-filter-btn" data-category="hướng dẫn pha chế">Hướng dẫn pha chế</button>
+            <button class="blog-filter-btn" data-category="coffee knowledge">Coffee Knowledge</button>
+            <button class="blog-filter-btn" data-category="pour over">Pour Over</button>
+            <button class="blog-filter-btn" data-category="espresso">Espresso</button>
+            <button class="blog-filter-btn" data-category="origin stories">Origin Stories</button>
+        </section>
+
+        <!-- POSTS GRID -->
+        <section class="blog-posts-grid" id="posts-container">
+            <!-- Posts will be loaded here dynamically -->
+        </section>
+
+        <!-- PAGINATION -->
+        <nav class="blog-pagination" id="pagination-container">
+            <!-- Pagination will be loaded here dynamically -->
+        </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="blog-wrap">
+            <p>&copy; 2025 ANARO Coffee. Tất cả quyền được bảo lưu.</p>
+            <p style="margin-top: var(--anaro-space-sm); font-size: var(--anaro-font-size-sm);">
+                Khám phá thế giới cà phê đặc biệt cùng ANARO
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Blog Post Manager - Quản lý blog posts
+        window.BlogPostManager = {
+            posts: [], // Sẽ được load từ metadata
+            currentPage: 1,
+            postsPerPage: 6,
+            currentCategory: 'all',
+
+            // Initialize blog
+            init: function() {
+                this.loadPosts();
+                this.bindEvents();
+                console.log('✅ Blog Post Manager initialized');
+            },
+
+            // Load posts from metadata files
+            loadPosts: async function() {
+                try {
+                    // Danh sách tất cả các bài post (sẽ được cập nhật tự động)
+                    const postFiles = [
+                        '2025-01-15-cach-pha-ca-phe-arabica-cau-dat-ngon-nhat',
+                        // Thêm các bài mới vào đây
+                    ];
+
+                    for (const slug of postFiles) {
+                        try {
+                            const response = await fetch(`${slug}.html`);
+                            if (response.ok) {
+                                const html = await response.text();
+                                const post = this.extractMetadata(html, slug);
+                                if (post) {
+                                    this.posts.push(post);
+                                }
+                            }
+                        } catch (error) {
+                            console.warn(`Could not load post: ${slug}`, error);
+                        }
+                    }
+
+                    // Sort posts by date (newest first)
+                    this.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
+                    this.renderPosts();
+                    this.renderPagination();
+                    
+                    console.log(`📝 Loaded ${this.posts.length} posts`);
+                } catch (error) {
+                    console.error('Error loading posts:', error);
+                    this.renderFallbackPosts();
+                }
+            },
+
+            // Extract metadata from HTML file
+            extractMetadata: function(html, slug) {
+                try {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    // Extract meta tags
+                    const getMeta = (name) => {
+                        const meta = doc.querySelector(`meta[name="anaro:${name}"]`);
+                        return meta ? meta.content : '';
+                    };
+
+                    return {
+                        slug: slug,
+                        url: `${slug}.html`,
+                        title: getMeta('title') || doc.querySelector('title')?.textContent || 'Untitled',
+                        description: getMeta('description') || '',
+                        category: getMeta('category') || 'Uncategorized',
+                        tags: getMeta('tags')?.split(',').map(tag => tag.trim()) || [],
+                        date: getMeta('date') || '2025-01-01',
+                        author: getMeta('author') || 'ANARO Coffee',
+                        readingTime: getMeta('reading-time') || '5',
+                        featuredImage: getMeta('featured-image') || ''
+                    };
+                } catch (error) {
+                    console.error('Error extracting metadata:', error);
+                    return null;
+                }
+            },
+
+            // Render posts grid
+            renderPosts: function() {
+                const container = document.getElementById('posts-container');
+                const filteredPosts = this.getFilteredPosts();
+                const startIndex = (this.currentPage - 1) * this.postsPerPage;
+                const endIndex = startIndex + this.postsPerPage;
+                const postsToShow = filteredPosts.slice(startIndex, endIndex);
+
+                if (postsToShow.length === 0) {
+                    container.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: var(--anaro-space-2xl); color: var(--anaro-secondary);">
+                            <h3>Không tìm thấy bài viết nào</h3>
+                            <p>Hãy thử thay đổi bộ lọc hoặc quay lại sau.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = postsToShow.map(post => this.renderPostCard(post)).join('');
+            },
+
+            // Render individual post card
+            renderPostCard: function(post) {
+                const imageUrl = post.featuredImage || `https://via.placeholder.com/400x200/f8ebdd/6b3f25?text=${encodeURIComponent(post.title)}`;
+                const formattedDate = this.formatDate(post.date);
+
+                return `
+                    <article class="blog-post-card" data-category="${post.category.toLowerCase()}">
+                        <div class="blog-post-image">
+                            ${post.featuredImage ? 
+                                `<img src="${imageUrl}" alt="${post.title}" loading="lazy">` :
+                                `<div>📝 ${post.title.substring(0, 30)}${post.title.length > 30 ? '...' : ''}</div>`
+                            }
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-category-badge">${post.category}</div>
+                            <h2 class="blog-post-title">
+                                <a href="${post.url}">${post.title}</a>
+                            </h2>
+                            <p class="blog-post-excerpt">${post.description}</p>
+                            <div class="blog-post-meta">
+                                <div class="blog-post-date">
+                                    📅 ${formattedDate}
+                                </div>
+                                <div class="blog-post-reading-time">
+                                    ⏱️ ${post.readingTime} phút đọc
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            },
+
+            // Get filtered posts based on current category
+            getFilteredPosts: function() {
+                if (this.currentCategory === 'all') {
+                    return this.posts;
+                }
+                return this.posts.filter(post => 
+                    post.category.toLowerCase() === this.currentCategory.toLowerCase()
+                );
+            },
+
+            // Render pagination
+            renderPagination: function() {
+                const container = document.getElementById('pagination-container');
+                const filteredPosts = this.getFilteredPosts();
+                const totalPages = Math.ceil(filteredPosts.length / this.postsPerPage);
+
+                if (totalPages <= 1) {
+                    container.innerHTML = '';
+                    return;
+                }
+
+                let paginationHTML = '';
+                
+                // Previous button
+                if (this.currentPage > 1) {
+                    paginationHTML += `<a href="#" data-page="${this.currentPage - 1}">« Trước</a>`;
+                }
+
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === this.currentPage) {
+                        paginationHTML += `<span class="current">${i}</span>`;
+                    } else {
+                        paginationHTML += `<a href="#" data-page="${i}">${i}</a>`;
+                    }
+                }
+
+                // Next button
+                if (this.currentPage < totalPages) {
+                    paginationHTML += `<a href="#" data-page="${this.currentPage + 1}">Sau »</a>`;
+                }
+
+                container.innerHTML = paginationHTML;
+            },
+
+            // Bind event listeners
+            bindEvents: function() {
+                // Category filter buttons
+                document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        // Update active button
+                        document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+
+                        // Update current category and reset page
+                        this.currentCategory = e.target.dataset.category;
+                        this.currentPage = 1;
+
+                        // Re-render
+                        this.renderPosts();
+                        this.renderPagination();
+                    });
+                });
+
+                // Pagination clicks
+                document.addEventListener('click', (e) => {
+                    if (e.target.matches('.blog-pagination a[data-page]')) {
+                        e.preventDefault();
+                        this.currentPage = parseInt(e.target.dataset.page);
+                        this.renderPosts();
+                        this.renderPagination();
+                        
+                        // Scroll to top
+                        document.querySelector('.blog-hero').scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                    }
+                });
+            },
+
+            // Format date for display
+            formatDate: function(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('vi-VN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            },
+
+            // Fallback posts if loading fails
+            renderFallbackPosts: function() {
+                const fallbackPosts = [
+                    {
+                        slug: 'sample-post',
+                        url: '#',
+                        title: 'Cách pha cà phê Arabica Cầu Đất ngon nhất - Bí quyết từ chuyên gia',
+                        description: 'Hướng dẫn chi tiết cách pha cà phê Arabica Cầu Đất để có ly cà phê thơm ngon, đậm đà nhất với hương vị trái cây tự nhiên',
+                        category: 'Hướng dẫn pha chế',
+                        date: '2025-01-15',
+                        readingTime: '8',
+                        featuredImage: ''
+                    }
+                ];
+
+                this.posts = fallbackPosts;
+                this.renderPosts();
+                this.renderPagination();
+                
+                console.warn('⚠️ Using fallback posts due to loading error');
+            }
+        };
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            BlogPostManager.init();
+            console.log('🚀 Blog index page loaded successfully');
+        });
+    </script>
+</body>
+</html>
