@@ -1,333 +1,815 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- SEO META -->
-    <title>Blog ANARO Coffee - Khám phá thế giới cà phê đặc biệt</title>
-    <meta name="description" content="Khám phá những bài viết chuyên sâu về cà phê từ ANARO Coffee. Hướng dẫn pha chế, kiến thức cà phê, và những câu chuyện thú vị từ thế giới cà phê đặc biệt.">
-    <meta name="keywords" content="blog cà phê, hướng dẫn pha chế, kiến thức cà phê, anaro coffee, cà phê đặc biệt">
-    
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Blog ANARO Coffee - Khám phá thế giới cà phê đặc biệt">
-    <meta property="og:description" content="Khám phá những bài viết chuyên sâu về cà phê từ ANARO Coffee">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="ANARO Coffee">
-    
-    <!-- CANONICAL URL -->
-    <link rel="canonical" href="https://anaroCoffee.vercel.app/blog/">
-    
-    <!-- STYLES -->
-    <link rel="stylesheet" href="blog.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anaro Coffee Collection Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f1eb 0%, #ede7df 100%);
+            color: #4a3c2a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0d0c0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #7a5c3f;
+            font-size: 1.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 400px;
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0d0c0;
+            border-radius: 25px;
+            background: #faf8f5;
+            color: #4a3c2a;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #7a5c3f;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(122, 92, 63, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #8b6b47;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            color: #7a5c3f;
+            font-size: 2.5em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #6b5b4d;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Navigation */
+        .filter-nav {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .filter-nav h3 {
+            color: #7a5c3f;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-tab {
+            background: #f8f5f0;
+            color: #4a3c2a;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid #e0d0c0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: #7a5c3f;
+            color: white;
+            border-color: #7a5c3f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.3);
+        }
+
+        /* Posts Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0ece6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #7a5c3f;
+            position: relative;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .post-date {
+            color: #8b6b47;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .post-reading-time {
+            color: #8b6b47;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-title {
+            color: #4a3c2a;
+            font-weight: 600;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .post-title a:hover {
+            color: #7a5c3f;
+        }
+
+        .post-excerpt {
+            color: #6b5b4d;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .post-tag {
+            background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: all 0.3s ease;
+        }
+
+        .post-tag:hover {
+            background: linear-gradient(135deg, #6b4d35 0%, #7a5c3f 100%);
+            transform: translateY(-1px);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8b6b47;
+        }
+
+        .no-results-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #7a5c3f;
+        }
+
+        .no-results p {
+            font-size: 1.1em;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Stats */
+        .stats {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid #e0d0c0;
+        }
+
+        .stats-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7a5c3f;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 1.2em;
+            color: #4a3c2a;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid #e0d0c0;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: #8b6b47;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #7a5c3f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #4a3c2a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .search-container {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .filter-tab {
+                white-space: nowrap;
+            }
+
+            .stats-content {
+                gap: 15px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .page-title h1 {
+                font-size: 2em;
+            }
+
+            .post-content {
+                padding: 20px;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0d0c0;
+            border-top: 4px solid #7a5c3f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
 <body>
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="blog-wrap">
-            <a href="/" class="site-logo">☕ ANARO COFFEE</a>
-            <nav class="site-nav">
-                <a href="/">Trang chủ</a>
-                <a href="/blog" class="active">Blog</a>
-                <a href="/products">Sản phẩm</a>
-                <a href="/about">Về chúng tôi</a>
-            </nav>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                ☕ Anaro Coffee Blog
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm bài viết...">
+            </div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="blog-wrap">
-        <!-- BLOG HERO -->
-        <section class="blog-hero">
-            <h1>Blog ANARO Coffee</h1>
-            <p>Khám phá những câu chuyện, kiến thức và bí quyết về thế giới cà phê đặc biệt. Từ hướng dẫn pha chế đến những khám phá về hương vị từ khắp nơi trên thế giới.</p>
-        </section>
+    <div class="container">
+        <div class="page-title">
+            <h1>☕ Coffee Blog</h1>
+            <p>Khám phá thế giới cà phê qua những câu chuyện, kiến thức và trải nghiệm thú vị</p>
+        </div>
 
-        <!-- CATEGORY FILTERS -->
-        <section class="blog-filters">
-            <button class="blog-filter-btn active" data-category="all">Tất cả</button>
-            <button class="blog-filter-btn" data-category="hướng dẫn pha chế">Hướng dẫn pha chế</button>
-            <button class="blog-filter-btn" data-category="coffee knowledge">Coffee Knowledge</button>
-            <button class="blog-filter-btn" data-category="pour over">Pour Over</button>
-            <button class="blog-filter-btn" data-category="espresso">Espresso</button>
-            <button class="blog-filter-btn" data-category="origin stories">Origin Stories</button>
-        </section>
+        <div class="stats">
+            <div class="stats-content">
+                <div class="stat-item">
+                    📝 <span class="stat-number" id="totalPosts">12</span> Bài viết
+                </div>
+                <div class="stat-item">
+                    🏷️ <span class="stat-number" id="totalTags">8</span> Chủ đề
+                </div>
+                <div class="stat-item">
+                    📅 Cập nhật <span class="stat-number">Hôm nay</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- POSTS GRID -->
-        <section class="blog-posts-grid" id="posts-container">
-            <!-- Posts will be loaded here dynamically -->
-        </section>
+        <div class="filter-nav">
+            <h3>🎯 Lọc theo chủ đề</h3>
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-tag="all">Tất cả</div>
+                <div class="filter-tab" data-tag="brewing">Pha chế</div>
+                <div class="filter-tab" data-tag="origin">Nguồn gốc</div>
+                <div class="filter-tab" data-tag="review">Đánh giá</div>
+                <div class="filter-tab" data-tag="tips">Mẹo hay</div>
+                <div class="filter-tab" data-tag="culture">Văn hóa</div>
+                <div class="filter-tab" data-tag="equipment">Dụng cụ</div>
+            </div>
+        </div>
 
-        <!-- PAGINATION -->
-        <nav class="blog-pagination" id="pagination-container">
-            <!-- Pagination will be loaded here dynamically -->
-        </nav>
-    </main>
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
+        </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="blog-wrap">
-            <p>&copy; 2025 ANARO Coffee. Tất cả quyền được bảo lưu.</p>
-            <p style="margin-top: var(--anaro-space-sm); font-size: var(--anaro-font-size-sm);">
-                Khám phá thế giới cà phê đặc biệt cùng ANARO
-            </p>
+        <div class="posts-grid" id="postsGrid">
+            <!-- Posts will be dynamically loaded here -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>Không tìm thấy bài viết</h3>
+            <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">Về chúng tôi</a>
+                <a href="#contact">Liên hệ</a>
+                <a href="#rss">RSS</a>
+                <a href="#github">GitHub</a>
+            </div>
+            <p>&copy; 2024 Anaro Coffee Collection. Made with ☕ and ❤️</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // Blog Post Manager - Quản lý blog posts
-        window.BlogPostManager = {
-            posts: [], // Sẽ được load từ metadata
-            currentPage: 1,
-            postsPerPage: 6,
-            currentCategory: 'all',
-
-            // Initialize blog
-            init: function() {
-                this.loadPosts();
-                this.bindEvents();
-                console.log('✅ Blog Post Manager initialized');
+        // Mock data - In real implementation, this would fetch from GitHub API
+        const mockPosts = [
+            {
+                id: 1,
+                title: "Bí quyết pha cà phê phin hoàn hảo",
+                excerpt: "Khám phá nghệ thuật pha cà phê phin truyền thống Việt Nam với những mẹo hay từ các chuyên gia...",
+                tags: ["brewing", "tips", "culture"],
+                date: "2024-09-12",
+                readTime: "5 phút",
+                image: "☕",
+                link: "#post-1"
             },
-
-            // Load posts from metadata files
-            loadPosts: async function() {
-                try {
-                    // Danh sách tất cả các bài post (sẽ được cập nhật tự động)
-                    const postFiles = [
-                        '2025-01-15-cach-pha-ca-phe-arabica-cau-dat-ngon-nhat',
-                        // Thêm các bài mới vào đây
-                    ];
-
-                    for (const slug of postFiles) {
-                        try {
-                            const response = await fetch(`${slug}.html`);
-                            if (response.ok) {
-                                const html = await response.text();
-                                const post = this.extractMetadata(html, slug);
-                                if (post) {
-                                    this.posts.push(post);
-                                }
-                            }
-                        } catch (error) {
-                            console.warn(`Could not load post: ${slug}`, error);
-                        }
-                    }
-
-                    // Sort posts by date (newest first)
-                    this.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    
-                    this.renderPosts();
-                    this.renderPagination();
-                    
-                    console.log(`📝 Loaded ${this.posts.length} posts`);
-                } catch (error) {
-                    console.error('Error loading posts:', error);
-                    this.renderFallbackPosts();
-                }
+            {
+                id: 2,
+                title: "Hành trình từ hạt cà phê Đắk Lắk đến tách cà phê",
+                excerpt: "Tìm hiểu về quá trình từ trồng, thu hoạch đến rang xay tại vùng cao nguyên Đắk Lắk nổi tiếng...",
+                tags: ["origin", "culture"],
+                date: "2024-09-10",
+                readTime: "8 phút",
+                image: "🌱",
+                link: "#post-2"
             },
-
-            // Extract metadata from HTML file
-            extractMetadata: function(html, slug) {
-                try {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-
-                    // Extract meta tags
-                    const getMeta = (name) => {
-                        const meta = doc.querySelector(`meta[name="anaro:${name}"]`);
-                        return meta ? meta.content : '';
-                    };
-
-                    return {
-                        slug: slug,
-                        url: `${slug}.html`,
-                        title: getMeta('title') || doc.querySelector('title')?.textContent || 'Untitled',
-                        description: getMeta('description') || '',
-                        category: getMeta('category') || 'Uncategorized',
-                        tags: getMeta('tags')?.split(',').map(tag => tag.trim()) || [],
-                        date: getMeta('date') || '2025-01-01',
-                        author: getMeta('author') || 'ANARO Coffee',
-                        readingTime: getMeta('reading-time') || '5',
-                        featuredImage: getMeta('featured-image') || ''
-                    };
-                } catch (error) {
-                    console.error('Error extracting metadata:', error);
-                    return null;
-                }
+            {
+                id: 3,
+                title: "Review 5 quán cà phê đặc sắc ở Sài Gòn",
+                excerpt: "Khám phá những quán cà phee độc đáo với không gian đẹp và hương vị đặc biệt tại Thành phố Hồ Chí Minh...",
+                tags: ["review", "culture"],
+                date: "2024-09-08",
+                readTime: "10 phút",
+                image: "🏪",
+                link: "#post-3"
             },
-
-            // Render posts grid
-            renderPosts: function() {
-                const container = document.getElementById('posts-container');
-                const filteredPosts = this.getFilteredPosts();
-                const startIndex = (this.currentPage - 1) * this.postsPerPage;
-                const endIndex = startIndex + this.postsPerPage;
-                const postsToShow = filteredPosts.slice(startIndex, endIndex);
-
-                if (postsToShow.length === 0) {
-                    container.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: var(--anaro-space-2xl); color: var(--anaro-secondary);">
-                            <h3>Không tìm thấy bài viết nào</h3>
-                            <p>Hãy thử thay đổi bộ lọc hoặc quay lại sau.</p>
-                        </div>
-                    `;
-                    return;
-                }
-
-                container.innerHTML = postsToShow.map(post => this.renderPostCard(post)).join('');
+            {
+                id: 4,
+                title: "Cách chọn máy pha cà phê phù hợp với gia đình",
+                excerpt: "Hướng dẫn chi tiết các loại máy pha cà phê từ cơ bản đến chuyên nghiệp, giúp bạn chọn đúng...",
+                tags: ["equipment", "tips"],
+                date: "2024-09-05",
+                readTime: "7 phút",
+                image: "⚙️",
+                link: "#post-4"
             },
-
-            // Render individual post card
-            renderPostCard: function(post) {
-                const imageUrl = post.featuredImage || `https://via.placeholder.com/400x200/f8ebdd/6b3f25?text=${encodeURIComponent(post.title)}`;
-                const formattedDate = this.formatDate(post.date);
-
-                return `
-                    <article class="blog-post-card" data-category="${post.category.toLowerCase()}">
-                        <div class="blog-post-image">
-                            ${post.featuredImage ? 
-                                `<img src="${imageUrl}" alt="${post.title}" loading="lazy">` :
-                                `<div>📝 ${post.title.substring(0, 30)}${post.title.length > 30 ? '...' : ''}</div>`
-                            }
-                        </div>
-                        <div class="blog-post-content">
-                            <div class="blog-category-badge">${post.category}</div>
-                            <h2 class="blog-post-title">
-                                <a href="${post.url}">${post.title}</a>
-                            </h2>
-                            <p class="blog-post-excerpt">${post.description}</p>
-                            <div class="blog-post-meta">
-                                <div class="blog-post-date">
-                                    📅 ${formattedDate}
-                                </div>
-                                <div class="blog-post-reading-time">
-                                    ⏱️ ${post.readingTime} phút đọc
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                `;
+            {
+                id: 5,
+                title: "Arabica vs Robusta: Sự khác biệt cần biết",
+                excerpt: "So sánh chi tiết hai loại cà phê phổ biến nhất thế giới về hương vị, caffeine và cách trồng...",
+                tags: ["origin", "tips"],
+                date: "2024-09-03",
+                readTime: "6 phút",
+                image: "🫘",
+                link: "#post-5"
             },
-
-            // Get filtered posts based on current category
-            getFilteredPosts: function() {
-                if (this.currentCategory === 'all') {
-                    return this.posts;
-                }
-                return this.posts.filter(post => 
-                    post.category.toLowerCase() === this.currentCategory.toLowerCase()
-                );
+            {
+                id: 6,
+                title: "Latte Art cho người mới bắt đầu",
+                excerpt: "Học cách tạo ra những họa tiết đẹp mắt trên tách cà phê với kỹ thuật đổ sữa cơ bản...",
+                tags: ["brewing", "tips"],
+                date: "2024-09-01",
+                readTime: "12 phút",
+                image: "🎨",
+                link: "#post-6"
             },
-
-            // Render pagination
-            renderPagination: function() {
-                const container = document.getElementById('pagination-container');
-                const filteredPosts = this.getFilteredPosts();
-                const totalPages = Math.ceil(filteredPosts.length / this.postsPerPage);
-
-                if (totalPages <= 1) {
-                    container.innerHTML = '';
-                    return;
-                }
-
-                let paginationHTML = '';
-                
-                // Previous button
-                if (this.currentPage > 1) {
-                    paginationHTML += `<a href="#" data-page="${this.currentPage - 1}">« Trước</a>`;
-                }
-
-                // Page numbers
-                for (let i = 1; i <= totalPages; i++) {
-                    if (i === this.currentPage) {
-                        paginationHTML += `<span class="current">${i}</span>`;
-                    } else {
-                        paginationHTML += `<a href="#" data-page="${i}">${i}</a>`;
-                    }
-                }
-
-                // Next button
-                if (this.currentPage < totalPages) {
-                    paginationHTML += `<a href="#" data-page="${this.currentPage + 1}">Sau »</a>`;
-                }
-
-                container.innerHTML = paginationHTML;
+            {
+                id: 7,
+                title: "Cold Brew - Xu hướng cà phê lạnh thời hiện đại",
+                excerpt: "Tìm hiểu về phương pháp pha cà phê lạnh đang được yêu thích và cách làm tại nhà...",
+                tags: ["brewing", "tips"],
+                date: "2024-08-28",
+                readTime: "9 phút",
+                image: "🧊",
+                link: "#post-7"
             },
-
-            // Bind event listeners
-            bindEvents: function() {
-                // Category filter buttons
-                document.querySelectorAll('.blog-filter-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        // Update active button
-                        document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
-                        e.target.classList.add('active');
-
-                        // Update current category and reset page
-                        this.currentCategory = e.target.dataset.category;
-                        this.currentPage = 1;
-
-                        // Re-render
-                        this.renderPosts();
-                        this.renderPagination();
-                    });
-                });
-
-                // Pagination clicks
-                document.addEventListener('click', (e) => {
-                    if (e.target.matches('.blog-pagination a[data-page]')) {
-                        e.preventDefault();
-                        this.currentPage = parseInt(e.target.dataset.page);
-                        this.renderPosts();
-                        this.renderPagination();
-                        
-                        // Scroll to top
-                        document.querySelector('.blog-hero').scrollIntoView({ 
-                            behavior: 'smooth' 
-                        });
-                    }
-                });
+            {
+                id: 8,
+                title: "Văn hóa cà phê Việt Nam qua các thế hệ",
+                excerpt: "Khám phá sự phát triển của văn hóa cà phê Việt Nam từ thời thuộc địa đến hiện tại...",
+                tags: ["culture", "origin"],
+                date: "2024-08-25",
+                readTime: "15 phút",
+                image: "📜",
+                link: "#post-8"
             },
-
-            // Format date for display
-            formatDate: function(dateString) {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('vi-VN', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
+            {
+                id: 9,
+                title: "Top 10 dụng cụ pha cà phê không thể thiếu",
+                excerpt: "Danh sách những dụng cụ cần thiết cho việc pha cà phê chuyên nghiệp tại nhà...",
+                tags: ["equipment", "tips"],
+                date: "2024-08-22",
+                readTime: "11 phút",
+                image: "🔧",
+                link: "#post-9"
             },
-
-            // Fallback posts if loading fails
-            renderFallbackPosts: function() {
-                const fallbackPosts = [
-                    {
-                        slug: 'sample-post',
-                        url: '#',
-                        title: 'Cách pha cà phê Arabica Cầu Đất ngon nhất - Bí quyết từ chuyên gia',
-                        description: 'Hướng dẫn chi tiết cách pha cà phê Arabica Cầu Đất để có ly cà phê thơm ngon, đậm đà nhất với hương vị trái cây tự nhiên',
-                        category: 'Hướng dẫn pha chế',
-                        date: '2025-01-15',
-                        readingTime: '8',
-                        featuredImage: ''
-                    }
-                ];
-
-                this.posts = fallbackPosts;
-                this.renderPosts();
-                this.renderPagination();
-                
-                console.warn('⚠️ Using fallback posts due to loading error');
+            {
+                id: 10,
+                title: "Cà phê và sức khỏe: Những lợi ích bất ngờ",
+                excerpt: "Các nghiên cứu khoa học mới nhất về tác động tích cực của cà phê đối với sức khỏe...",
+                tags: ["tips", "culture"],
+                date: "2024-08-20",
+                readTime: "8 phút",
+                image: "💪",
+                link: "#post-10"
+            },
+            {
+                id: 11,
+                title: "Espresso: Linh hồn của cà phê Ý",
+                excerpt: "Tìm hiểu về espresso - nền tảng của hầu hết các loại cà phê hiện đại và cách pha hoàn hảo...",
+                tags: ["brewing", "culture"],
+                date: "2024-08-18",
+                readTime: "7 phút",
+                image: "🇮🇹",
+                link: "#post-11"
+            },
+            {
+                id: 12,
+                title: "Cà phê specialty: Trải nghiệm hương vị cao cấp",
+                excerpt: "Khám phá thế giới cà phê specialty với những hương vị độc đáo và quy trình chế biến tinh tế...",
+                tags: ["review", "origin"],
+                date: "2024-08-15",
+                readTime: "13 phút",
+                image: "⭐",
+                link: "#post-12"
             }
-        };
+        ];
 
-        // Initialize when DOM is ready
+        let filteredPosts = [...mockPosts];
+        let currentFilter = 'all';
+
+        // DOM Elements
+        const postsGrid = document.getElementById('postsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const noResults = document.getElementById('noResults');
+        const totalPostsEl = document.getElementById('totalPosts');
+        const totalTagsEl = document.getElementById('totalTags');
+        const loading = document.getElementById('loading');
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            BlogPostManager.init();
-            console.log('🚀 Blog index page loaded successfully');
+            renderPosts();
+            updateStats();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Search functionality
+            searchInput.addEventListener('input', debounce(handleSearch, 300));
+
+            // Filter tabs
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Filter posts
+                    currentFilter = tab.dataset.tag;
+                    filterPosts();
+                });
+            });
+        }
+
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            filterPosts(query);
+        }
+
+        function filterPosts(searchQuery = '') {
+            showLoading();
+            
+            setTimeout(() => {
+                filteredPosts = mockPosts.filter(post => {
+                    const matchesTag = currentFilter === 'all' || post.tags.includes(currentFilter);
+                    const matchesSearch = searchQuery === '' || 
+                        post.title.toLowerCase().includes(searchQuery) ||
+                        post.excerpt.toLowerCase().includes(searchQuery) ||
+                        post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                    
+                    return matchesTag && matchesSearch;
+                });
+
+                hideLoading();
+                renderPosts();
+                updateStats();
+            }, 500);
+        }
+
+        function renderPosts() {
+            if (filteredPosts.length === 0) {
+                postsGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            postsGrid.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            postsGrid.innerHTML = filteredPosts.map(post => `
+                <article class="post-card fade-in">
+                    <div class="post-image">
+                        ${post.image}
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">${formatDate(post.date)}</span>
+                            <span class="post-reading-time">
+                                📖 ${post.readTime}
+                            </span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="${post.link}">${post.title}</a>
+                        </h2>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        <div class="post-tags">
+                            ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function updateStats() {
+            totalPostsEl.textContent = filteredPosts.length;
+            const uniqueTags = [...new Set(mockPosts.flatMap(post => post.tags))];
+            totalTagsEl.textContent = uniqueTags.length;
+        }
+
+        function showLoading() {
+            loading.style.display = 'block';
+            postsGrid.style.display = 'none';
+            noResults.style.display = 'none';
+        }
+
+        function hideLoading() {
+            loading.style.display = 'none';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 1) return 'Hôm qua';
+            if (diffDays <= 7) return `${diffDays} ngày trước`;
+            if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} tuần trước`;
+            
+            return date.toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Smooth scroll for anchor links
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('./posts/')) {
+                // Real post links - let them work normally
+                return;
+            } else if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                console.log('Navigate to:', e.target.getAttribute('href'));
+            }
+        });
+
+        // Add refresh button functionality
+        function addRefreshButton() {
+            const header = document.querySelector('.header-content');
+            const refreshBtn = document.createElement('button');
+            refreshBtn.innerHTML = '🔄';
+            refreshBtn.className = 'btn-primary';
+            refreshBtn.style.padding = '10px 15px';
+            refreshBtn.title = 'Tải lại posts';
+            refreshBtn.onclick = () => {
+                console.log('🔄 Đang tải lại posts...');
+                initializePosts();
+            };
+            header.appendChild(refreshBtn);
+        }
+
+        // Add refresh button on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(addRefreshButton, 1000);
         });
     </script>
 </body>
