@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cách pha cà phê phin nhỏ - Hướng dẫn chi tiết cho người mới</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f5f0 0%, #faf8f5 100%);
+            color: #4a3c2a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(122, 92, 63, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .coffee-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #7a5c3f;
+        }
+
+        .intro h2 {
+            color: #7a5c3f;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro p {
+            font-size: 1.1em;
+            color: #6b5b4d;
+            margin-bottom: 15px;
+        }
+
+        .materials {
+            background: #faf8f5;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 1px solid #e0d0c0;
+        }
+
+        .materials h3 {
+            color: #7a5c3f;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .material-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .material-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .material-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .material-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .step-container {
+            margin: 40px 0;
+        }
+
+        .step {
+            background: white;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-header {
+            background: linear-gradient(135deg, #8b6b47 0%, #7a5c3f 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .step-icon {
+            font-size: 2em;
+            margin-left: 15px;
+        }
+
+        .step-content {
+            padding: 30px;
+        }
+
+        .step-description {
+            font-size: 1.1em;
+            color: #4a3c2a;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .step-tips {
+            background: #f8f5f0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+            margin-top: 15px;
+        }
+
+        .step-tips strong {
+            color: #7a5c3f;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: #e0d0c0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #d4af37 0%, #7a5c3f 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .troubleshooting {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .troubleshooting h3 {
+            color: #7a5c3f;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .problem-item {
+            background: #faf8f5;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #8b6b47;
+        }
+
+        .problem-title {
+            color: #7a5c3f;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .problem-solution {
+            color: #6b5b4d;
+            line-height: 1.6;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(122, 92, 63, 0.3);
+        }
+
+        .conclusion h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .conclusion p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .time-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .step-header {
+                padding: 15px 20px;
+            }
+            
+            .step-content {
+                padding: 20px;
+            }
+            
+            .material-list {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0d0c0;
+            z-index: 1000;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #7a5c3f 100%);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+<!--
+    title: Cách pha cà phê phin nhỏ - Hướng dẫn chi tiết cho người mới
+    excerpt: Hướng dẫn từng bước chi tiết cách pha cà phê phin truyền thống Việt Nam
+    tags: brewing, tips, vietnamese, culture, phin
+    date: 2024-01-20
+    readTime: 10 phút
+    -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <span class="coffee-icon">☕</span>
+            <h1>Cách pha cà phê phin nhỏ</h1>
+            <p>Hướng dẫn chi tiết cho người mới bắt đầu</p>
+        </header>
+
+        <section class="intro">
+            <h2>🌟 Tại sao nên học pha phin?</h2>
+            <p>Cà phê phin là linh hồn của văn hóa cà phê Việt Nam. Không chỉ đơn giản là thức uống, đây là cả một nghệ thuật chậm rãi, giúp bạn thưởng thức từng giọt cà phê thơm ngon và tận hưởng những phút giây thư thái trong cuộc sống bận rộn.</p>
+            <p>Với hướng dẫn này, ngay cả người hoàn toàn mới bắt đầu cũng có thể pha được ly cà phê phin đậm đà, thơm ngon như các quán cà phê chuyên nghiệp.</p>
+        </section>
+
+        <div class="materials">
+            <h3>🛠️ Dụng cụ cần chuẩn bị</h3>
+            <div class="material-list">
+                <div class="material-item">
+                    <span class="material-icon">🔧</span>
+                    <strong>Phin nhôm nhỏ</strong>
+                    <p>Size 1 người (6-8cm)</p>
+                </div>
+                <div class="material-item">
+                    <span class="material-icon">☕</span>
+                    <strong>Cà phê bột</strong>
+                    <p>15-20g (2-3 thìa)</p>
+                </div>
+                <div class="material-item">
+                    <span class="material-icon">💧</span>
+                    <strong>Nước nóng</strong>
+                    <p>90-95°C</p>
+                </div>
+                <div class="material-item">
+                    <span class="material-icon">🥛</span>
+                    <strong>Sữa đặc</strong>
+                    <p>1-2 thìa (tùy khẩu vị)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="step-container">
+            <article class="step" data-step="1">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Chuẩn bị dụng cụ và nguyên liệu</div>
+                    <div class="step-icon">🧹</div>
+                    <div class="time-indicator">⏱️ 2 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Rửa sạch phin cà phê bằng nước nóng để loại bỏ mùi lạ và làm ấm phin. Chuẩn bị ly thủy tinh hoặc sứ, cho sẵn 1-2 thìa sữa đặc vào đáy ly (nếu uống cà phê sữa). Đun nước sôi rồi để nguội khoảng 2-3 phút để đạt nhiệt độ lý tưởng 90-95°C.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Mẹo nhỏ:</strong>
+                        Nước quá nóng sẽ làm cháy cà phê, tạo vị đắng khó chịu. Nước quá nguội sẽ không chiết xuất được hết tinh chất cà phê.
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-step="2">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Cho cà phê vào phin</div>
+                    <div class="step-icon">🥄</div>
+                    <div class="time-indicator">⏱️ 1 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Cho 15-20g cà phê bột vào phin (tương đương 2-3 thìa canh đầy). Dùng thìa hoặc lắc nhẹ phin để cà phê phẳng đều, tạo bề mặt phẳng. Không nén chặt cà phê vào phin.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Lưu ý:</strong>
+                        Lượng cà phê ảnh hưởng trực tiếp đến độ đậm nhạt. Người mới nên bắt đầu với 15g rồi tăng dần theo khẩu vị.
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-step="3">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Đặt nắp phin và ép nhẹ</div>
+                    <div class="step-icon">🔽</div>
+                    <div class="time-indicator">⏱️ 1 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Đặt nắp phin (tấm lọc) lên trên cà phê. Vặn nhẹ hoặc ép xuống để nắp tiếp xúc với cà phê, tạo áp lực nhẹ. Độ chặt vừa phải - không quá lỏng khiến nước chảy nhanh, không quá chặt khiến nước không chảy.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Bí quyết:</strong>
+                        Thử nghiệm vài lần để tìm độ chặt phù hợp. Nắp ép quá chặt sẽ làm cà phê chảy từng giọt rất chậm.
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-step="4">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Pha lần đầu - "Nở cà phê"</div>
+                    <div class="step-icon">💧</div>
+                    <div class="time-indicator">⏱️ 2 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Rót từ từ một lượng nhỏ nước nóng vào phin (khoảng 20-30ml), chỉ đủ để thấm ướt hết cà phê. Đợi khoảng 30 giây để cà phê "nở" và bọt khí thoát ra. Bạn sẽ thấy cà phê phình lên và có mùi thơm bay ra.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Giải thích:</strong>
+                        Bước này giúp cà phê giải phóng CO2, tạo điều kiện tốt nhất cho việc chiết xuất hương vị trong bước tiếp theo.
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-step="5">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Pha chính - Rót nước đầy</div>
+                    <div class="step-icon">🌊</div>
+                    <div class="time-indicator">⏱️ 3 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Rót nước nóng đầy phin (khoảng 80-100ml). Đậy nắp phin lại để giữ nhiệt. Cà phê sẽ bắt đầu nhỏ giọt xuống ly. Tốc độ lý tưởng là 1 giọt/giây. Quá trình này mất khoảng 4-6 phút.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Quan sát:</strong>
+                        Nếu chảy quá nhanh, ép nắp phin chặt hơn. Nếu chảy quá chậm, nới lỏng nắp hoặc giảm lượng cà phê.
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-step="6">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Chờ đợi và thưởng thức</div>
+                    <div class="step-icon">😌</div>
+                    <div class="time-indicator">⏱️ 5 phút</div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        Kiên nhẫn chờ đợi đến khi phin hết nước. Không ép hay gõ phin để cà phê chảy nhanh hơn. Khi cà phê ngừng nhỏ giọt, bỏ phin ra, khuấy đều cà phê với sữa đặc (nếu có) và thưởng thức ngay khi còn nóng.
+                    </p>
+                    <div class="step-tips">
+                        <strong>💡 Hoàn hảo:</strong>
+                        Ly cà phê phin chuẩn có màu nâu đậm, vị đắng dịu hòa quyện với vị ngọt của sữa đặc, hương thơm đặc trưng của cà phê Việt Nam.
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <section class="troubleshooting">
+            <h3>🔧 Khắc phục lỗi thường gặp</h3>
+            
+            <div class="problem-item">
+                <div class="problem-title">❌ Cà phê nhạt, không đậm đà</div>
+                <div class="problem-solution">
+                    <strong>Nguyên nhân:</strong> Quá ít cà phê hoặc nắp phin quá lỏng<br>
+                    <strong>Giải pháp:</strong> Tăng lượng cà phê lên 18-20g, ép nắp phin chặt hơn để nước chảy chậm
+                </div>
+            </div>
+
+            <div class="problem-item">
+                <div class="problem-title">❌ Cà phê đắng quá, khó uống</div>
+                <div class="problem-solution">
+                    <strong>Nguyên nhân:</strong> Nước quá nóng hoặc quá nhiều cà phê<br>
+                    <strong>Giải pháp:</strong> Để nước nguội hơn (90°C), giảm lượng cà phê xuống 15g
+                </div>
+            </div>
+
+            <div class="problem-item">
+                <div class="problem-title">❌ Nước không chảy hoặc chảy quá chậm</div>
+                <div class="problem-solution">
+                    <strong>Nguyên nhân:</strong> Nắp phin quá chặt hoặc cà phê bị nén chặt<br>
+                    <strong>Giải pháp:</strong> Nới lỏng nắp phin, rải cà phê tơi xốp hơn
+                </div>
+            </div>
+
+            <div class="problem-item">
+                <div class="problem-title">❌ Nước chảy quá nhanh, cà phê loãng</div>
+                <div class="problem-solution">
+                    <strong>Nguyên nhân:</strong> Nắp phin quá lỏng hoặc cà phê xay quá thô<br>
+                    <strong>Giải pháp:</strong> Ép nắp phin chặt hơn, dùng cà phê xay mịn vừa
+                </div>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h3>🎉 Chúc mừng bạn đã hoàn thành!</h3>
+            <p>
+                Bây giờ bạn đã biết cách pha một ly cà phê phin thơm ngon như người Việt Nam chính hiệu. 
+                Hãy luyện tập thường xuyên để tìm ra công thức phù hợp nhất với khẩu vị của mình. 
+                Mỗi buổi sáng sẽ trở nên đặc biệt hơn với ly cà phê phin do chính tay bạn pha chế!
+            </p>
+            <p style="margin-top: 20px; font-weight: 600;">
+                ☕ Thưởng thức và chia sẻ niềm vui với bạn bè nhé! ☕
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Progress bar animation
+        const steps = document.querySelectorAll('.step');
+        const progressFill = document.getElementById('progressFill');
+        
+        function updateProgress() {
+            const scrollPosition = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = (scrollPosition / documentHeight) * 100;
+            
+            document.getElementById('scrollProgress').querySelector('.scroll-progress-bar').style.width = scrollPercentage + '%';
+            
+            let currentStep = 0;
+            steps.forEach((step, index) => {
+                const stepTop = step.offsetTop;
+                const stepHeight = step.offsetHeight;
+                
+                if (scrollPosition >= stepTop - 200) {
+                    currentStep = index + 1;
+                }
+            });
+            
+            const stepProgress = (currentStep / steps.length) * 100;
+            progressFill.style.width = stepProgress + '%';
+        }
+
+        // Smooth scroll progress update
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        }
+
+        document.addEventListener('scroll', function() {
+            ticking = false;
+            requestTick();
+        });
+
+        // Initial progress update
+        updateProgress();
+
+        // Add hover effects for steps
+        steps.forEach((step, index) => {
+            step.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            step.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+        });
+
+        // Animate elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to steps
+        steps.forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(30px)';
+            step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(step);
+        });
+    </script>
+</body>
+</html>
