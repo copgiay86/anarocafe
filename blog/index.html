@@ -79,6 +79,24 @@
             color: #8b6b47;
         }
 
+        .refresh-btn {
+            background: linear-gradient(135deg, #8b6b47 0%, #7a5c3f 100%);
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .refresh-btn:hover {
+            background: linear-gradient(135deg, #7a5c3f 0%, #6b4d35 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 92, 63, 0.3);
+        }
+
         /* Main Container */
         .container {
             max-width: 1200px;
@@ -176,20 +194,12 @@
         .post-image {
             width: 100%;
             height: 220px;
-            object-fit: cover;
             background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3em;
             color: #7a5c3f;
-            position: relative;
-        }
-
-        .post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .post-content {
@@ -354,6 +364,37 @@
             color: #4a3c2a;
         }
 
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0d0c0;
+            border-top: 4px solid #7a5c3f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -403,42 +444,6 @@
             .post-content {
                 padding: 20px;
             }
-
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e0d0c0;
-            border-top: 4px solid #7a5c3f;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Fade in animation */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -451,6 +456,7 @@
             <div class="search-container">
                 <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm bài viết...">
             </div>
+            <button class="refresh-btn" id="refreshBtn" title="Tải lại posts">🔄</button>
         </div>
     </header>
 
@@ -463,10 +469,10 @@
         <div class="stats">
             <div class="stats-content">
                 <div class="stat-item">
-                    📝 <span class="stat-number" id="totalPosts">12</span> Bài viết
+                    📝 <span class="stat-number" id="totalPosts">0</span> Bài viết
                 </div>
                 <div class="stat-item">
-                    🏷️ <span class="stat-number" id="totalTags">8</span> Chủ đề
+                    🏷️ <span class="stat-number" id="totalTags">0</span> Chủ đề
                 </div>
                 <div class="stat-item">
                     📅 Cập nhật <span class="stat-number">Hôm nay</span>
@@ -516,131 +522,30 @@
     </footer>
 
     <script>
-        // Mock data - In real implementation, this would fetch from GitHub API
-        const mockPosts = [
-            {
-                id: 1,
-                title: "Bí quyết pha cà phê phin hoàn hảo",
-                excerpt: "Khám phá nghệ thuật pha cà phê phin truyền thống Việt Nam với những mẹo hay từ các chuyên gia...",
-                tags: ["brewing", "tips", "culture"],
-                date: "2024-09-12",
-                readTime: "5 phút",
-                image: "☕",
-                link: "#post-1"
-            },
-            {
-                id: 2,
-                title: "Hành trình từ hạt cà phê Đắk Lắk đến tách cà phê",
-                excerpt: "Tìm hiểu về quá trình từ trồng, thu hoạch đến rang xay tại vùng cao nguyên Đắk Lắk nổi tiếng...",
-                tags: ["origin", "culture"],
-                date: "2024-09-10",
-                readTime: "8 phút",
-                image: "🌱",
-                link: "#post-2"
-            },
-            {
-                id: 3,
-                title: "Review 5 quán cà phê đặc sắc ở Sài Gòn",
-                excerpt: "Khám phá những quán cà phee độc đáo với không gian đẹp và hương vị đặc biệt tại Thành phố Hồ Chí Minh...",
-                tags: ["review", "culture"],
-                date: "2024-09-08",
-                readTime: "10 phút",
-                image: "🏪",
-                link: "#post-3"
-            },
-            {
-                id: 4,
-                title: "Cách chọn máy pha cà phê phù hợp với gia đình",
-                excerpt: "Hướng dẫn chi tiết các loại máy pha cà phê từ cơ bản đến chuyên nghiệp, giúp bạn chọn đúng...",
-                tags: ["equipment", "tips"],
-                date: "2024-09-05",
-                readTime: "7 phút",
-                image: "⚙️",
-                link: "#post-4"
-            },
-            {
-                id: 5,
-                title: "Arabica vs Robusta: Sự khác biệt cần biết",
-                excerpt: "So sánh chi tiết hai loại cà phê phổ biến nhất thế giới về hương vị, caffeine và cách trồng...",
-                tags: ["origin", "tips"],
-                date: "2024-09-03",
-                readTime: "6 phút",
-                image: "🫘",
-                link: "#post-5"
-            },
-            {
-                id: 6,
-                title: "Latte Art cho người mới bắt đầu",
-                excerpt: "Học cách tạo ra những họa tiết đẹp mắt trên tách cà phê với kỹ thuật đổ sữa cơ bản...",
-                tags: ["brewing", "tips"],
-                date: "2024-09-01",
-                readTime: "12 phút",
-                image: "🎨",
-                link: "#post-6"
-            },
-            {
-                id: 7,
-                title: "Cold Brew - Xu hướng cà phê lạnh thời hiện đại",
-                excerpt: "Tìm hiểu về phương pháp pha cà phê lạnh đang được yêu thích và cách làm tại nhà...",
-                tags: ["brewing", "tips"],
-                date: "2024-08-28",
-                readTime: "9 phút",
-                image: "🧊",
-                link: "#post-7"
-            },
-            {
-                id: 8,
-                title: "Văn hóa cà phê Việt Nam qua các thế hệ",
-                excerpt: "Khám phá sự phát triển của văn hóa cà phê Việt Nam từ thời thuộc địa đến hiện tại...",
-                tags: ["culture", "origin"],
-                date: "2024-08-25",
-                readTime: "15 phút",
-                image: "📜",
-                link: "#post-8"
-            },
-            {
-                id: 9,
-                title: "Top 10 dụng cụ pha cà phê không thể thiếu",
-                excerpt: "Danh sách những dụng cụ cần thiết cho việc pha cà phê chuyên nghiệp tại nhà...",
-                tags: ["equipment", "tips"],
-                date: "2024-08-22",
-                readTime: "11 phút",
-                image: "🔧",
-                link: "#post-9"
-            },
-            {
-                id: 10,
-                title: "Cà phê và sức khỏe: Những lợi ích bất ngờ",
-                excerpt: "Các nghiên cứu khoa học mới nhất về tác động tích cực của cà phê đối với sức khỏe...",
-                tags: ["tips", "culture"],
-                date: "2024-08-20",
-                readTime: "8 phút",
-                image: "💪",
-                link: "#post-10"
-            },
-            {
-                id: 11,
-                title: "Espresso: Linh hồn của cà phê Ý",
-                excerpt: "Tìm hiểu về espresso - nền tảng của hầu hết các loại cà phê hiện đại và cách pha hoàn hảo...",
-                tags: ["brewing", "culture"],
-                date: "2024-08-18",
-                readTime: "7 phút",
-                image: "🇮🇹",
-                link: "#post-11"
-            },
-            {
-                id: 12,
-                title: "Cà phê specialty: Trải nghiệm hương vị cao cấp",
-                excerpt: "Khám phá thế giới cà phê specialty với những hương vị độc đáo và quy trình chế biến tinh tế...",
-                tags: ["review", "origin"],
-                date: "2024-08-15",
-                readTime: "13 phút",
-                image: "⭐",
-                link: "#post-12"
-            }
+        // ====================================================================
+        // 🔧 CONFIGURATION - CHỈNH SỬA PHẦN NÀY
+        // ====================================================================
+        
+        const POSTS_FOLDER = './posts/';    // Đường dẫn đến thư mục chứa posts
+        const AUTO_SCAN = false;            // true: tự động quét, false: danh sách thủ công
+        
+        // 📝 MANUAL POST LIST - Danh sách các file posts (khi AUTO_SCAN = false)
+        // Thêm tên file posts vào đây, mỗi file một dòng:
+        const manualPosts = [
+            // 'bai-viet-1.html',
+            // 'bai-viet-2.html', 
+            // 'review-quan-ca-phe.html',
+            // 'cach-pha-cold-brew.html',
+            // 'van-hoa-ca-phe-viet.html'
+            // Uncomment và thêm file mới ở đây...
         ];
+        
+        // ====================================================================
+        // ⚠️  KHÔNG CHỈNH SỬA PHẦN DƯỚI NÀY (Trừ khi bạn hiểu code)
+        // ====================================================================
 
-        let filteredPosts = [...mockPosts];
+        let allPosts = [];
+        let filteredPosts = [];
         let currentFilter = 'all';
 
         // DOM Elements
@@ -651,13 +556,172 @@
         const totalPostsEl = document.getElementById('totalPosts');
         const totalTagsEl = document.getElementById('totalTags');
         const loading = document.getElementById('loading');
+        const refreshBtn = document.getElementById('refreshBtn');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            renderPosts();
-            updateStats();
+            initializePosts();
             setupEventListeners();
         });
+
+        // Initialize posts based on configuration
+        async function initializePosts() {
+            console.log('🚀 Đang khởi tạo posts...');
+            showLoading();
+            
+            try {
+                if (AUTO_SCAN) {
+                    allPosts = await scanPostsFolder();
+                } else {
+                    allPosts = await loadManualPosts();
+                }
+                
+                console.log(`📚 Đã tải ${allPosts.length} bài viết`);
+                filteredPosts = [...allPosts];
+                hideLoading();
+                renderPosts();
+                updateStats();
+                
+            } catch (error) {
+                console.error('❌ Lỗi khi tải posts:', error);
+                allPosts = [];
+                filteredPosts = [];
+                hideLoading();
+                renderPosts();
+                updateStats();
+            }
+        }
+
+        // Scan posts folder automatically
+        async function scanPostsFolder() {
+            console.log('🔍 Đang quét thư mục posts...');
+            // Note: This method requires server support for directory listing
+            // For static hosting, use manual method instead
+            console.warn('⚠️ Tự động quét cần server hỗ trợ. Chuyển sang chế độ thủ công.');
+            return await loadManualPosts();
+        }
+
+        // Load posts from manual list
+        async function loadManualPosts() {
+            console.log('📝 Đang tải posts từ danh sách thủ công...');
+            
+            if (manualPosts.length === 0) {
+                console.warn('⚠️ Danh sách manualPosts trống. Vui lòng thêm file posts.');
+                return [];
+            }
+            
+            const posts = [];
+            
+            for (let i = 0; i < manualPosts.length; i++) {
+                const filename = manualPosts[i];
+                try {
+                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
+                    if (postData) {
+                        posts.push(postData);
+                        console.log(`✅ Đã tải: ${filename}`);
+                    }
+                } catch (error) {
+                    console.warn(`❌ Không thể tải ${filename}:`, error.message);
+                }
+            }
+            
+            return posts;
+        }
+
+        // Load metadata from individual post file
+        async function loadPostMetadata(filepath, id) {
+            try {
+                const response = await fetch(filepath);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const html = await response.text();
+                const metadata = parsePostMetadata(html);
+                
+                return {
+                    id: id,
+                    title: metadata.title || 'Bài viết không có tiêu đề',
+                    excerpt: metadata.excerpt || 'Không có mô tả',
+                    tags: metadata.tags || ['uncategorized'],
+                    date: metadata.date || new Date().toISOString().split('T')[0],
+                    readTime: metadata.readTime || '5 phút',
+                    image: getEmojiForTags(metadata.tags || ['coffee']),
+                    link: filepath
+                };
+            } catch (error) {
+                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
+            }
+        }
+
+        // Parse metadata from HTML content
+        function parsePostMetadata(html) {
+            const metadata = {};
+            
+            // Look for metadata in HTML comments
+            const commentMatch = html.match(/<!--\s*([\s\S]*?)\s*-->/);
+            if (commentMatch) {
+                const metaContent = commentMatch[1];
+                
+                // Parse each metadata field
+                const titleMatch = metaContent.match(/title:\s*(.+)/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+                
+                const excerptMatch = metaContent.match(/excerpt:\s*(.+)/i);
+                if (excerptMatch) metadata.excerpt = excerptMatch[1].trim();
+                
+                const tagsMatch = metaContent.match(/tags:\s*(.+)/i);
+                if (tagsMatch) {
+                    metadata.tags = tagsMatch[1].split(',').map(tag => tag.trim());
+                }
+                
+                const dateMatch = metaContent.match(/date:\s*(.+)/i);
+                if (dateMatch) metadata.date = dateMatch[1].trim();
+                
+                const readTimeMatch = metaContent.match(/readTime:\s*(.+)/i);
+                if (readTimeMatch) metadata.readTime = readTimeMatch[1].trim();
+            }
+            
+            // Fallback: try to extract from HTML title and meta tags
+            if (!metadata.title) {
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+            }
+            
+            if (!metadata.excerpt) {
+                const descMatch = html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
+                if (descMatch) metadata.excerpt = descMatch[1].trim();
+            }
+            
+            return metadata;
+        }
+
+        // Get appropriate emoji for tags
+        function getEmojiForTags(tags) {
+            const emojiMap = {
+                'brewing': '☕',
+                'tips': '💡', 
+                'culture': '🏛️',
+                'origin': '🌱',
+                'review': '⭐',
+                'equipment': '⚙️',
+                'coffee': '☕',
+                'latte': '🥛',
+                'espresso': '🇮🇹',
+                'cold': '🧊',
+                'health': '💪',
+                'specialty': '⭐',
+                'vietnamese': '🇻🇳'
+            };
+            
+            for (const tag of tags) {
+                if (emojiMap[tag.toLowerCase()]) {
+                    return emojiMap[tag.toLowerCase()];
+                }
+            }
+            
+            return '📄'; // Default
+        }
 
         function setupEventListeners() {
             // Search functionality
@@ -675,6 +739,12 @@
                     filterPosts();
                 });
             });
+
+            // Refresh button
+            refreshBtn.addEventListener('click', () => {
+                console.log('🔄 Đang tải lại posts...');
+                initializePosts();
+            });
         }
 
         function handleSearch() {
@@ -686,7 +756,7 @@
             showLoading();
             
             setTimeout(() => {
-                filteredPosts = mockPosts.filter(post => {
+                filteredPosts = allPosts.filter(post => {
                     const matchesTag = currentFilter === 'all' || post.tags.includes(currentFilter);
                     const matchesSearch = searchQuery === '' || 
                         post.title.toLowerCase().includes(searchQuery) ||
@@ -699,7 +769,7 @@
                 hideLoading();
                 renderPosts();
                 updateStats();
-            }, 500);
+            }, 300);
         }
 
         function renderPosts() {
@@ -738,7 +808,7 @@
 
         function updateStats() {
             totalPostsEl.textContent = filteredPosts.length;
-            const uniqueTags = [...new Set(mockPosts.flatMap(post => post.tags))];
+            const uniqueTags = [...new Set(allPosts.flatMap(post => post.tags))];
             totalTagsEl.textContent = uniqueTags.length;
         }
 
@@ -780,37 +850,6 @@
                 timeout = setTimeout(later, wait);
             };
         }
-
-        // Smooth scroll for anchor links
-        document.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('./posts/')) {
-                // Real post links - let them work normally
-                return;
-            } else if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                console.log('Navigate to:', e.target.getAttribute('href'));
-            }
-        });
-
-        // Add refresh button functionality
-        function addRefreshButton() {
-            const header = document.querySelector('.header-content');
-            const refreshBtn = document.createElement('button');
-            refreshBtn.innerHTML = '🔄';
-            refreshBtn.className = 'btn-primary';
-            refreshBtn.style.padding = '10px 15px';
-            refreshBtn.title = 'Tải lại posts';
-            refreshBtn.onclick = () => {
-                console.log('🔄 Đang tải lại posts...');
-                initializePosts();
-            };
-            header.appendChild(refreshBtn);
-        }
-
-        // Add refresh button on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(addRefreshButton, 1000);
-        });
     </script>
 </body>
 </html>
