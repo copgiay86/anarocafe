@@ -200,6 +200,19 @@
             justify-content: center;
             font-size: 3em;
             color: #7a5c3f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .post-image.emoji {
+            background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
         }
 
         .post-content {
@@ -559,6 +572,179 @@
         const loading = document.getElementById('loading');
         const refreshBtn = document.getElementById('refreshBtn');
 
+        // Extract first image URL from HTML content
+        function extractFirstImage(html) {
+            const patterns = [
+                // OpenGraph image
+                /<meta\s+property="og:image"\s+content="([^"]+)"/i,
+                // Twitter card image
+                /<meta\s+name="twitter:image"\s+content="([^"]+)"/i,
+                // Regular img tags
+                /<img[^>]+src="([^"]+)"[^>]*>/i,
+                // CSS background-image in style attributes
+                /background(-image)?\s*:\s*url\(['"]?([^'"]+)['"]?\)/i,
+                // CSS background-image in .hero-image or .content-image classes
+                /\.hero-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i,
+                /\.content-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i
+            ];
+
+            for (const pattern of patterns) {
+                const match = html.match(pattern);
+                if (match) {
+                    let imageUrl = match[1] || match[2] || match[3];
+                    if (imageUrl) {
+                        // Clean up the URL
+                        imageUrl = imageUrl.trim();
+                        // Skip data URLs and very short URLs
+                        if (!imageUrl.startsWith('data:') && imageUrl.length > 10) {
+                            return imageUrl;
+                        }
+                    }
+                }
+            }
+            
+            return null;
+        }
+
+        // Parse metadata from HTML content
+        function parsePostMetadata(html) {
+            const metadata = {};
+            
+            // Look for metadata in HTML comments
+            const commentMatch = html.match(/<!--\s*([\s\S]*?)\s*-->/);
+            if (commentMatch) {
+                const metaContent = commentMatch[1];
+                
+                // Parse each metadata field
+                const titleMatch = metaContent.match(/title:\s*(.+)/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+                
+                const excerptMatch = metaContent.match(/excerpt:\s*(.+)/i);
+                if (excerptMatch) metadata.excerpt = excerptMatch[1].trim();
+                
+                const tagsMatch = metaContent.match(/tags:\s*(.+)/i);
+                if (tagsMatch) {
+                    metadata.tags = tagsMatch[1].split(',').map(tag => tag.trim());
+                }
+                
+                const dateMatch = metaContent.match(/date:\s*(.+)/i);
+                if (dateMatch) metadata.date = dateMatch[1].trim();
+                
+                const readTimeMatch = metaContent.match(/readTime:\s*(.+)/i);
+                if (readTimeMatch) metadata.readTime = readTimeMatch[1].trim();
+            }
+            
+            // Extract first image from content
+            const firstImage = extractFirstImage(html);
+            if (firstImage) {
+                metadata.image = firstImage;
+                metadata.imageType = 'image';
+            }
+            
+            // Fallback: try to extract from HTML title and meta tags
+            if (!metadata.title) {
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+            }
+            
+            if (!metadata.excerpt) {
+                const descMatch = html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
+                if (descMatch) metadata.excerpt = descMatch[1].trim();
+            }
+            
+            return metadata;
+        }
+
+        // Load metadata from individual post file
+        async function loadPostMetadata(filepath, id) {
+            try {
+                const response = await fetch(filepath);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const html = await response.text();
+                const metadata = parsePostMetadata(html);
+                
+                return {
+                    id: id,
+                    title: metadata.title || 'Bài viết không có tiêu đề',
+                    excerpt: metadata.excerpt || 'Không có mô tả',
+                    tags: metadata.tags || ['uncategorized'],
+                    date: metadata.date || new Date().toISOString().split('T')[0],
+                    readTime: metadata.readTime || '8 phút',
+                    image: metadata.image || getEmojiForTags(metadata.tags || ['coffee']),
+                    imageType: metadata.imageType || 'emoji', // 'image' or 'emoji'
+                    link: filepath
+                };
+            } catch (error) {
+                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
+            }
+        }
+
+        // Get appropriate emoji for tags
+        function getEmojiForTags(tags) {
+            const emojiMap = {
+                'brewing': '☕',
+                'tips': '💡', 
+                'culture': '🏛️',
+                'origin': '🌱',
+                'review': '⭐',
+                'equipment': '⚙️',
+                'coffee': '☕',
+                'latte': '🥛',
+                'espresso': '🇮🇹',
+                'cold': '🧊',
+                'health': '💪',
+                'specialty': '⭐',
+                'vietnamese': '🇻🇳'
+            };
+            
+            for (const tag of tags) {
+                if (emojiMap[tag.toLowerCase()]) {
+                    return emojiMap[tag.toLowerCase()];
+                }
+            }
+            
+            return '📄'; // Default
+        }
+
+        // Load posts from manual list
+        async function loadManualPosts() {
+            console.log('📝 Đang tải posts từ danh sách thủ công...');
+            
+            if (manualPosts.length === 0) {
+                console.warn('⚠️ Danh sách manualPosts trống. Vui lòng thêm file posts.');
+                return [];
+            }
+            
+            const posts = [];
+            
+            for (let i = 0; i < manualPosts.length; i++) {
+                const filename = manualPosts[i];
+                try {
+                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
+                    if (postData) {
+                        posts.push(postData);
+                        console.log(`✅ Đã tải: ${filename}`);
+                    }
+                } catch (error) {
+                    console.warn(`❌ Không thể tải ${filename}:`, error.message);
+                }
+            }
+            
+            return posts;
+        }
+
+        // Scan posts folder automatically
+        async function scanPostsFolder() {
+            console.log('🔍 Đang quét thư mục posts...');
+            // Note: This method requires server support for directory listing
+            // For static hosting, use manual method instead
+            console.warn('⚠️ Tự động quét cần server hỗ trợ. Chuyển sang chế độ thủ công.');
+            return await loadManualPosts();
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             initializePosts();
@@ -591,137 +777,6 @@
                 renderPosts();
                 updateStats();
             }
-        }
-
-        // Scan posts folder automatically
-        async function scanPostsFolder() {
-            console.log('🔍 Đang quét thư mục posts...');
-            // Note: This method requires server support for directory listing
-            // For static hosting, use manual method instead
-            console.warn('⚠️ Tự động quét cần server hỗ trợ. Chuyển sang chế độ thủ công.');
-            return await loadManualPosts();
-        }
-
-        // Load posts from manual list
-        async function loadManualPosts() {
-            console.log('📝 Đang tải posts từ danh sách thủ công...');
-            
-            if (manualPosts.length === 0) {
-                console.warn('⚠️ Danh sách manualPosts trống. Vui lòng thêm file posts.');
-                return [];
-            }
-            
-            const posts = [];
-            
-            for (let i = 0; i < manualPosts.length; i++) {
-                const filename = manualPosts[i];
-                try {
-                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
-                    if (postData) {
-                        posts.push(postData);
-                        console.log(`✅ Đã tải: ${filename}`);
-                    }
-                } catch (error) {
-                    console.warn(`❌ Không thể tải ${filename}:`, error.message);
-                }
-            }
-            
-            return posts;
-        }
-
-        // Load metadata from individual post file
-        async function loadPostMetadata(filepath, id) {
-            try {
-                const response = await fetch(filepath);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
-                const html = await response.text();
-                const metadata = parsePostMetadata(html);
-                
-                return {
-                    id: id,
-                    title: metadata.title || 'Bài viết không có tiêu đề',
-                    excerpt: metadata.excerpt || 'Không có mô tả',
-                    tags: metadata.tags || ['uncategorized'],
-                    date: metadata.date || new Date().toISOString().split('T')[0],
-                    readTime: metadata.readTime || '5 phút',
-                    image: getEmojiForTags(metadata.tags || ['coffee']),
-                    link: filepath
-                };
-            } catch (error) {
-                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
-            }
-        }
-
-        // Parse metadata from HTML content
-        function parsePostMetadata(html) {
-            const metadata = {};
-            
-            // Look for metadata in HTML comments
-            const commentMatch = html.match(/<!--\s*([\s\S]*?)\s*-->/);
-            if (commentMatch) {
-                const metaContent = commentMatch[1];
-                
-                // Parse each metadata field
-                const titleMatch = metaContent.match(/title:\s*(.+)/i);
-                if (titleMatch) metadata.title = titleMatch[1].trim();
-                
-                const excerptMatch = metaContent.match(/excerpt:\s*(.+)/i);
-                if (excerptMatch) metadata.excerpt = excerptMatch[1].trim();
-                
-                const tagsMatch = metaContent.match(/tags:\s*(.+)/i);
-                if (tagsMatch) {
-                    metadata.tags = tagsMatch[1].split(',').map(tag => tag.trim());
-                }
-                
-                const dateMatch = metaContent.match(/date:\s*(.+)/i);
-                if (dateMatch) metadata.date = dateMatch[1].trim();
-                
-                const readTimeMatch = metaContent.match(/readTime:\s*(.+)/i);
-                if (readTimeMatch) metadata.readTime = readTimeMatch[1].trim();
-            }
-            
-            // Fallback: try to extract from HTML title and meta tags
-            if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-                if (titleMatch) metadata.title = titleMatch[1].trim();
-            }
-            
-            if (!metadata.excerpt) {
-                const descMatch = html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
-                if (descMatch) metadata.excerpt = descMatch[1].trim();
-            }
-            
-            return metadata;
-        }
-
-        // Get appropriate emoji for tags
-        function getEmojiForTags(tags) {
-            const emojiMap = {
-                'brewing': '☕',
-                'tips': '💡', 
-                'culture': '🏛️',
-                'origin': '🌱',
-                'review': '⭐',
-                'equipment': '⚙️',
-                'coffee': '☕',
-                'latte': '🥛',
-                'espresso': '🇮🇹',
-                'cold': '🧊',
-                'health': '💪',
-                'specialty': '⭐',
-                'vietnamese': '🇻🇳'
-            };
-            
-            for (const tag of tags) {
-                if (emojiMap[tag.toLowerCase()]) {
-                    return emojiMap[tag.toLowerCase()];
-                }
-            }
-            
-            return '📄'; // Default
         }
 
         function setupEventListeners() {
@@ -785,8 +840,11 @@
 
             postsGrid.innerHTML = filteredPosts.map(post => `
                 <article class="post-card fade-in">
-                    <div class="post-image">
-                        ${post.image}
+                    <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                        ${post.imageType === 'image' ? 
+                            `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                            post.image
+                        }
                     </div>
                     <div class="post-content">
                         <div class="post-meta">
