@@ -1,0 +1,1385 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các Mức Rang Cà Phê: Light, Medium, Dark Ảnh Hưởng Đến Hương Vị Ra Sao?</title>
+    <meta name="description" content="Khám phá 3 mức rang cà phê chính: Light, Medium, Dark. Tìm hiểu cách mức rang ảnh hưởng đến hương vị, độ chua, đắng và chọn mức rang phù hợp với khẩu vị của bạn.">
+    <meta name="keywords" content="các mức rang cà phê, light roast, medium roast, dark roast, rang cà phê, hương vị cà phê">
+    <link rel="canonical" href="https://anarocafe-vert.vercel.app/blog/posts/cac-muc-rang-ca-phe.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Các Mức Rang Cà Phê: Light, Medium, Dark Ảnh Hưởng Đến Hương Vị Ra Sao?">
+    <meta property="og:description" content="Khám phá 3 mức rang cà phê chính và cách chúng ảnh hưởng đến hương vị ly cà phê của bạn.">
+    <meta property="og:url" content="https://anarocafe-vert.vercel.app/blog/posts/cac-muc-rang-ca-phe.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #8B4513;
+            --primary-dark: #5D2F0A;
+            --secondary: #D2B48C;
+            --accent: #CD853F;
+            --white: #FFFFFF;
+            --light: #F5F5DC;
+            --text: #2C1810;
+            --muted: #8B7355;
+            --border: #E5DDD5;
+            --shadow: rgba(139, 69, 19, 0.1);
+            --radius: 12px;
+            
+            /* Shopee Colors */
+            --shopee-primary: #ee4d2d;
+            --shopee-hover: #d73527;
+            --shopee-orange: #ff6b35;
+            --shopee-bg: #fff9f7;
+            --product-shadow: rgba(238, 77, 45, 0.15);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--light);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav span {
+            color: var(--muted);
+        }
+
+        /* Social Share */
+        .social-share {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 50;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .facebook { background: #3b5998; }
+        .twitter { background: #1da1f2; }
+        .linkedin { background: #0077b5; }
+        .pinterest { background: #bd081c; }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            padding: 40px 0;
+        }
+
+        .article {
+            background: var(--white);
+        }
+
+        .article-header {
+            margin-bottom: 30px;
+        }
+
+        .article-title {
+            font-size: 36px;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Hero Image */
+        .hero-image-container {
+            margin: 30px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary);
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 28px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* CTA Sections */
+        .cta-large {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .cta-large h3 {
+            color: var(--white);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-large p {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        /* Comparison Images */
+        .comparison-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .comparison-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .comparison-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px 15px 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Table Styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tr:hover {
+            background: var(--light);
+        }
+
+        /* Shopee Product Styles */
+        .shopee-product-single {
+            margin: 40px 0;
+            background: var(--shopee-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 2px solid var(--shopee-primary);
+        }
+
+        .product-card {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 25px var(--product-shadow);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--shopee-primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-size: 22px;
+            color: var(--primary);
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 28px;
+            color: var(--shopee-primary);
+            font-weight: 700;
+        }
+
+        .shopee-buy-btn {
+            background: linear-gradient(135deg, var(--shopee-primary) 0%, var(--shopee-orange) 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .shopee-buy-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px var(--product-shadow);
+        }
+
+        /* Products Grid */
+        .shopee-products-section {
+            margin: 50px 0;
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--radius);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h3 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card-mini {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card-mini:hover {
+            transform: translateY(-5px);
+            border-color: var(--shopee-primary);
+            box-shadow: 0 8px 25px var(--product-shadow);
+        }
+
+        .mini-product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .mini-product-name {
+            font-size: 16px;
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .mini-product-price {
+            font-size: 18px;
+            color: var(--shopee-primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .mini-buy-btn {
+            background: var(--shopee-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .mini-buy-btn:hover {
+            background: var(--shopee-hover);
+            transform: scale(1.05);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 40px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .widget {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px var(--shadow);
+            overflow: hidden;
+        }
+
+        .widget-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .widget-content {
+            padding: 20px;
+        }
+
+        /* TOC Widget */
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 10px;
+        }
+
+        .toc-list a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .toc-list a:hover {
+            color: var(--primary);
+        }
+
+        /* Shopee Sidebar Widget */
+        .shopee-widget {
+            background: linear-gradient(135deg, var(--shopee-primary) 0%, var(--shopee-orange) 100%);
+            color: white;
+        }
+
+        .shopee-widget .widget-header {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .sidebar-product {
+            display: flex;
+            gap: 15px;
+        }
+
+        .sidebar-product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-product-info h6 {
+            color: white;
+            font-size: 14px;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+
+        .sidebar-price {
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-shopee-btn {
+            background: white;
+            color: var(--shopee-primary);
+            padding: 8px 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-shopee-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+        }
+
+        /* Related Posts */
+        .related-posts {
+            margin: 40px 0;
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--radius);
+        }
+
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .related-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .related-item {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .related-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .related-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .related-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .social-share {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                right: 15px;
+                flex-direction: row;
+                transform: none;
+            }
+
+            .social-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .article-title {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .comparison-images {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .comparison-image {
+                height: 200px;
+            }
+
+            .product-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+            .current-price {
+                font-size: 24px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-list {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar-product {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sidebar-product-image {
+                width: 100%;
+                height: 120px;
+            }
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">☕ Coffee Expert</a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="/">Trang chủ</a>
+                <span>›</span>
+                <a href="/blog">Blog</a>
+                <span>›</span>
+                <span>Các mức rang cà phê</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Social Share -->
+    <div class="social-share">
+        <a href="#" class="social-btn facebook" onclick="shareOnFacebook()" aria-label="Chia sẻ Facebook">📘</a>
+        <a href="#" class="social-btn twitter" onclick="shareOnTwitter()" aria-label="Chia sẻ Twitter">🐦</a>
+        <a href="#" class="social-btn linkedin" onclick="shareOnLinkedIn()" aria-label="Chia sẻ LinkedIn">💼</a>
+        <a href="#" class="social-btn pinterest" onclick="shareOnPinterest()" aria-label="Chia sẻ Pinterest">📌</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Article -->
+            <article class="article" itemscope="" itemtype="https://schema.org/Article">
+                <div class="article-header">
+                    <h1 class="article-title" itemprop="headline">Các Mức Rang Cà Phê: Light, Medium, Dark Ảnh Hưởng Đến Hương Vị Ra Sao?</h1>
+                    
+                    <div class="article-meta">
+                        <span>📅 17/9/2025</span>
+                        <span>👤 Coffee Expert</span>
+                        <span>⏱️ 8 phút đọc</span>
+                        <span>🏷️ Kiến thức cà phê</span>
+                    </div>
+                    
+                    <meta itemprop="datePublished" content="2025-09-17">
+                    <meta itemprop="author" content="Coffee Expert">
+                </div>
+
+                <!-- Introduction -->
+                <div itemprop="articleBody">
+                    <p><strong>Bạn có biết rằng chỉ cần thay đổi mức rang cà phê có thể hoàn toàn thay đổi trải nghiệm tách cà phê của bạn?</strong> Từ hương vị chua nhẹ của light roast cho đến vị đắng đậm đà của dark roast, mỗi mức rang mang lại những đặc trưng riêng biệt.</p>
+
+                    <p>Nhiều người yêu cà phê thường bối rối khi đứng trước các loại cà phê được ghi "light roast", "medium roast" hay "dark roast" mà không hiểu được sự khác biệt thực sự. Việc hiểu rõ <strong>các mức rang cà phê</strong> không chỉ giúp bạn chọn được loại cà phê phù hợp với khẩu vị mà còn nâng cao trải nghiệm thưởng thức.</p>
+
+                    <!-- Hero Image -->
+                    <div class="hero-image-container" itemscope="" itemtype="https://schema.org/ImageObject">
+                        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&amp;h=400&amp;fit=crop" alt="Ba mức rang cà phê từ light roast, medium roast đến dark roast xếp theo thứ tự từ sáng đến đậm" class="hero-image" loading="eager" width="1200" height="400" itemprop="contentUrl">
+                        <div class="image-caption">
+                            <span itemprop="caption">📸 Ba mức rang cà phê cơ bản: Light, Medium, và Dark Roast</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Large #1 -->
+                    <div class="cta-large">
+                        <h3>🔥 Khám Phá Ngay Bí Mật Đằng Sau Từng Mức Rang!</h3>
+                        <p>Hành trình từ hạt cà phê xanh đến ly cà phê hoàn hảo bắt đầu từ việc hiểu rõ mức rang phù hợp</p>
+                    </div>
+
+                    <!-- Main Content Sections -->
+                    <h2 id="light-roast">☀️ Light Roast - Mức Rang Nhẹ</h2>
+                    
+                    <h3>Đặc điểm ngoại quan và màu sắc</h3>
+                    <p><strong>Light roast</strong> có màu nâu nhạt, gần giống màu quế (cinnamon). Bề mặt hạt cà phê khô ráo, không có dầu bóng và vẫn giữ được nhiều đặc trưng nguyên bản của hạt. Khi nhìn vào, bạn có thể thấy rõ đường nứt đầu tiên (first crack) trên bề mặt hạt.</p>
+
+                    <h3>Hương vị và độ acid</h3>
+                    <p>Light roast nổi bật với <strong>độ acid cao</strong>, mang lại vị chua nhẹ tươi mát. Hương vị chủ đạo là các note hoa quả, có thể là cam quýt, táo xanh hoặc các loại berry. Đây là mức rang giữ lại nhiều hương vị tự nhiên nhất của hạt cà phê gốc.</p>
+
+                    <h3>Thời điểm rang và "first crack"</h3>
+                    <p>Light roast được dừng ngay sau <strong>first crack</strong> (tiếng nứt đầu tiên), thường ở nhiệt độ khoảng 180-205°C. Quá trình rang ngắn giúp bảo tồn caffeine và các acid tự nhiên trong hạt.</p>
+
+                    <h3>Phù hợp với loại cà phê nào</h3>
+                    <p>Light roast lý tưởng cho <strong>cà phê Arabica chất lượng cao</strong>, đặc biệt là các loại single origin với hương vị đặc trưng như Ethiopia, Kenya, hay Guatemala.</p>
+
+                    <h2 id="medium-roast">⚖️ Medium Roast - Mức Rang Vừa</h2>
+                    
+                    <h3>Cân bằng giữa acid và đắng</h3>
+                    <p><strong>Medium roast</strong> được coi là "vùng vàng" của cà phê, tạo ra sự cân bằng hoàn hảo giữa độ acid tự nhiên và vị đắng từ quá trình rang. Đây là lý do tại sao medium roast được ưa chuộng rộng rãi nhất.</p>
+
+                    <h3>Màu sắc đặc trưng "cinnamon" đến "city roast"</h3>
+                    <p>Hạt cà phê medium roast có màu nâu vừa phải, từ màu quế đậm (cinnamon) đến màu nâu thành phố (city roast). Bề mặt hạt bắt đầu có chút dầu nhẹ nhưng không quá bóng.</p>
+
+                    <h3>Hương vị phổ biến nhất</h3>
+                    <p>Medium roast mang lại <strong>hương vị cân bằng</strong> với độ acid vừa phải, vị ngọt tự nhiên và một chút đắng nhẹ. Các note hương vị thường là chocolate, caramel, nuts và một số hương hoa quả nhẹ.</p>
+
+                    <!-- Comparison Images -->
+                    <div class="comparison-images">
+                        <div class="comparison-item">
+                            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&amp;h=250&amp;fit=crop" alt="Light roast coffee beans - màu nâu nhạt, bề mặt khô" class="comparison-image fade-in" loading="lazy">
+                            <div class="comparison-label">Light Roast</div>
+                        </div>
+                        <div class="comparison-item">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&amp;h=250&amp;fit=crop" alt="Medium roast coffee beans - màu nâu vừa, cân bằng" class="comparison-image fade-in" loading="lazy">
+                            <div class="comparison-label">Medium Roast</div>
+                        </div>
+                        <div class="comparison-item">
+                            <img src="https://images.unsplash.com/photo-1559056199-4d2c50c5b1aa?w=400&amp;h=250&amp;fit=crop" alt="Dark roast coffee beans - màu nâu đen, bề mặt có dầu" class="comparison-image" loading="lazy" style="display: none;">
+                            <div class="comparison-label">Dark Roast</div>
+                        </div>
+                    </div>
+
+                    <h2 id="dark-roast">🔥 Dark Roast - Mức Rang Đậm</h2>
+                    
+                    <h3>Dầu bề mặt và màu nâu đen</h3>
+                    <p><strong>Dark roast</strong> có màu nâu đậm đến nâu đen, bề mặt hạt bóng do dầu tự nhiên tiết ra. Hạt cà phê dark roast thường có kích thước lớn hơn do quá trình rang lâu làm tăng thể tích.</p>
+
+                    <h3>Vị đắng nổi trội, acid thấp</h3>
+                    <p>Dark roast có <strong>vị đắng đậm đà</strong>, độ acid thấp và hương vị chủ đạo từ quá trình rang như chocolate đen, caramel cháy, và có thể có chút khói. Hương vị tự nhiên của hạt cà phê gốc gần như biến mất.</p>
+
+                    <h3>"Second crack" và beyond</h3>
+                    <p>Dark roast được rang qua <strong>second crack</strong> (tiếng nứt thứ hai), thường ở nhiệt độ 215-230°C. Một số loại dark roast như French roast hay Italian roast được rang đến gần điểm cháy.</p>
+
+                    <h3>Lý tưởng cho espresso</h3>
+                    <p>Dark roast là lựa chọn phổ biến cho <strong>pha espresso</strong> vì vị đắng đậm đà và khả năng tạo crema dày. Cũng phù hợp cho những ai thích cà phê có vị mạnh, đậm đà.</p>
+
+                    <!-- Shopee Product #1 -->
+                    <div class="shopee-product-single" itemscope="" itemtype="https://schema.org/Product">
+                        <div class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&amp;h=300&amp;fit=crop" alt="Bộ Tách cafe gốm sứ cao cấp kèm đĩa - chất lượng cao" class="product-image fade-in" loading="lazy" itemprop="image">
+                                <div class="product-badge">🔥 Hot</div>
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name" itemprop="name">Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa</h4>
+                                <div class="product-price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                    <span class="current-price" itemprop="price" content="90000">90.000₫</span>
+                                    <meta itemprop="priceCurrency" content="VND">
+                                    <meta itemprop="availability" content="https://schema.org/InStock">
+                                    <meta itemprop="url" content="https://s.shopee.vn/1LWRLK1RkU">
+                                </div>
+                                <div class="product-features">
+                                    <span class="feature">✅ Chất liệu gốm sứ cao cấp</span>
+                                    <span class="feature">✅ Giữ nhiệt tốt, bền đẹp</span>
+                                    <span class="feature">✅ Phù hợp mọi mức rang cà phê</span>
+                                </div>
+                                <a href="https://s.shopee.vn/1LWRLK1RkU" class="shopee-buy-btn" target="_blank" onclick="trackShopeeClick('Bộ Tách Cafe Gốm Sứ')">
+                                    🛒 MUA NGAY TRÊN SHOPEE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="chon-muc-rang">🎯 Làm Thế Nào Để Chọn Mức Rang Phù Hợp?</h2>
+                    
+                    <p>Việc chọn mức rang phù hợp phụ thuộc vào nhiều yếu tố như khẩu vị cá nhân, phương pháp pha và loại cà phê bạn sử dụng. Dưới đây là bảng so sánh chi tiết:</p>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Đặc điểm</th>
+                                <th>Light Roast</th>
+                                <th>Medium Roast</th>
+                                <th>Dark Roast</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Độ acid</strong></td>
+                                <td>Cao</td>
+                                <td>Vừa phải</td>
+                                <td>Thấp</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vị đắng</strong></td>
+                                <td>Nhẹ</td>
+                                <td>Cân bằng</td>
+                                <td>Đậm đà</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hàm lượng caffeine</strong></td>
+                                <td>Cao nhất</td>
+                                <td>Trung bình</td>
+                                <td>Thấp nhất</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hương vị chính</strong></td>
+                                <td>Hoa quả, floral</td>
+                                <td>Chocolate, caramel</td>
+                                <td>Đắng, khói</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phù hợp với</strong></td>
+                                <td>Pour over, French press</td>
+                                <td>Mọi phương pháp</td>
+                                <td>Espresso, Moka pot</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Gợi ý dựa theo khẩu vị cá nhân</h3>
+                    <p>🌟 <strong>Nếu bạn thích vị chua tươi mát:</strong> Light roast là lựa chọn hoàn hảo, đặc biệt khi pha bằng phương pháp pour over hoặc cold brew.</p>
+                    
+                    <p>⚖️ <strong>Nếu bạn mới bắt đầu uống cà phê:</strong> Medium roast sẽ dễ uống nhất với hương vị cân bằng, không quá chua cũng không quá đắng.</p>
+                    
+                    <p>🔥 <strong>Nếu bạn yêu thích vị đậm đà:</strong> Dark roast phù hợp với những ai thích cà phê có vị mạnh, đặc biệt khi pha espresso.</p>
+
+                    <p>Để có trải nghiệm tốt nhất, hãy kết hợp hiểu biết về mức rang với <a href="https://anarocafe-vert.vercel.app/blog/posts/arabica-robusta-blog.html" style="color: var(--primary); font-weight: 600;">sự khác biệt giữa Arabica và Robusta</a> và nắm vững <a href="https://anarocafe-vert.vercel.app/blog/posts/cach-pha-ca-phe-phin.html" style="color: var(--primary); font-weight: 600;">các phương pháp pha cà phê</a> để có ly cà phê hoàn hảo.</p>
+
+                    <!-- CTA Large #2 -->
+                    <div class="cta-large">
+                        <h3>🚀 Bắt Đầu Hành Trình Khám Phá Mức Rang Yêu Thích!</h3>
+                        <p>Đừng ngại thử nghiệm các mức rang khác nhau để tìm ra ly cà phê hoàn hảo dành riêng cho bạn</p>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <h2 id="faq">❓ Câu Hỏi Thường Gặp</h2>
+                    <div class="faq-section">
+                        <div class="faq-item fade-in">
+                            <div class="faq-question">Mức rang nào chứa nhiều caffeine nhất?</div>
+                            <div class="faq-answer">Light roast chứa nhiều caffeine nhất. Quá trình rang càng lâu, hàm lượng caffeine càng giảm do bị phân hủy bởi nhiệt độ cao.</div>
+                        </div>
+                        
+                        <div class="faq-item fade-in">
+                            <div class="faq-question">Light roast có thực sự chua hơn dark roast?</div>
+                            <div class="faq-answer">Đúng vậy. Light roast giữ lại nhiều acid chlorogenic tự nhiên, tạo vị chua đặc trưng. Dark roast có độ acid thấp hơn nhiều do acid bị phân hủy trong quá trình rang.</div>
+                        </div>
+                        
+                        <div class="faq-item fade-in">
+                            <div class="faq-question">Làm thế nào để bảo quản cà phê đã rang?</div>
+                            <div class="faq-answer">Bảo quản trong hộp kín, tránh ánh sáng, ở nơi khô ráo và mát mẻ. Nên sử dụng trong vòng 2-4 tuần sau khi rang để đảm bảo hương vị tốt nhất.</div>
+                        </div>
+                        
+                        <div class="faq-item fade-in">
+                            <div class="faq-question">Mức rang nào phù hợp cho người mới bắt đầu?</div>
+                            <div class="faq-answer">Medium roast là lựa chọn tốt nhất cho người mới bắt đầu vì có hương vị cân bằng, không quá chua cũng không quá đắng, dễ uống và phù hợp với nhiều phương pháp pha.</div>
+                        </div>
+                        
+                        <div class="faq-item fade-in">
+                            <div class="faq-question">Có thể rang lại cà phê đã rang rồi không?</div>
+                            <div class="faq-answer">Không nên rang lại cà phê đã rang. Việc này sẽ làm hỏng hương vị và có thể tạo ra vị đắng khó chịu. Mỗi hạt cà phê chỉ nên rang một lần duy nhất.</div>
+                        </div>
+                    </div>
+
+                    <!-- Related Posts -->
+                    <div class="related-posts">
+                        <h3>📚 Bài Viết Liên Quan</h3>
+                        <div class="related-list">
+                            <div class="related-item fade-in">
+                                <a href="https://anarocafe-vert.vercel.app/blog/posts/arabica-robusta-blog.html">
+                                    <h4>☕ Sự Khác Nhau Của Arabica Và Robusta</h4>
+                                    <p>Tìm hiểu sự khác biệt giữa hai loại hạt cà phê phổ biến nhất thế giới</p>
+                                </a>
+                            </div>
+                            <div class="related-item fade-in">
+                                <a href="https://anarocafe-vert.vercel.app/blog/posts/cach-pha-ca-phe-phin.html">
+                                    <h4>🫖 Cách Pha Cà Phê Phin Tại Nhà</h4>
+                                    <p>Hướng dẫn chi tiết cách pha cà phê phin đậm đà, thơm ngon</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final CTA + Products Grid -->
+                    <div class="shopee-products-section">
+                        <div class="section-header">
+                            <h3>🛍️ Sản Phẩm Coffee Đề Xuất</h3>
+                            <p>Những sản phẩm chất lượng cao được nhiều người tin dùng để thưởng thức cà phê</p>
+                        </div>
+                        <div class="products-grid">
+                            <div class="product-card-mini fade-in">
+                                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=250&amp;h=180&amp;fit=crop" alt="Bộ Tách cafe gốm sứ cao cấp" class="mini-product-image">
+                                <div class="mini-product-info">
+                                    <h5 class="mini-product-name">Bộ Tách Cafe Gốm Sứ Cao Cấp</h5>
+                                    <div class="mini-product-price">90.000₫</div>
+                                    <a href="https://s.shopee.vn/1LWRLK1RkU" class="mini-buy-btn" onclick="trackShopeeClick('Bộ Tách Cafe Gốm Sứ')" target="_blank">
+                                        Xem Ngay
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-card-mini fade-in">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=250&amp;h=180&amp;fit=crop" alt="Ấm rót nước cổ ngỗng cho pha cà phê" class="mini-product-image">
+                                <div class="mini-product-info">
+                                    <h5 class="mini-product-name">Ấm Rót Nước Cổ Ngỗng</h5>
+                                    <div class="mini-product-price">189.000₫</div>
+                                    <a href="https://s.shopee.vn/1VprXd0oPX" class="mini-buy-btn" onclick="trackShopeeClick('Ấm Rót Nước Cổ Ngỗng')" target="_blank">
+                                        Xem Ngay
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-card-mini fade-in">
+                                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=250&amp;h=180&amp;fit=crop" alt="Bình pha cà phê nhỏ giọt cold brew" class="mini-product-image">
+                                <div class="mini-product-info">
+                                    <h5 class="mini-product-name">Bình Pha Cà Phê Nhỏ Giọt</h5>
+                                    <div class="mini-product-price">669.000₫</div>
+                                    <a href="https://s.shopee.vn/10tawi2iQS" class="mini-buy-btn" onclick="trackShopeeClick('Bình Pha Cà Phê Nhỏ Giọt')" target="_blank">
+                                        Xem Ngay
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <h2>🎯 Kết Luận</h2>
+                    <p>Hiểu rõ <strong>các mức rang cà phê</strong> là bước đầu tiên để có được ly cà phê hoàn hảo. Mỗi mức rang - từ light roast với vị chua tươi mát, medium roast cân bằng, đến dark roast đậm đà - đều có những ưu điểm riêng và phù hợp với các phương pháp pha khác nhau.</p>
+                    
+                    <p>Đừng ngại thử nghiệm các mức rang khác nhau để tìm ra sở thích của riêng bạn. Hãy nhớ rằng, cà phê ngon nhất là cà phê phù hợp với khẩu vị cá nhân và được pha với tình yêu!</p>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- TOC Widget -->
+                <div class="widget">
+                    <div class="widget-header">📋 Mục Lục</div>
+                    <div class="widget-content">
+                        <ul class="toc-list">
+                            <li><a href="#light-roast">Light Roast - Mức Rang Nhẹ</a></li>
+                            <li><a href="#medium-roast">Medium Roast - Mức Rang Vừa</a></li>
+                            <li><a href="#dark-roast">Dark Roast - Mức Rang Đậm</a></li>
+                            <li><a href="#chon-muc-rang">Cách Chọn Mức Rang Phù Hợp</a></li>
+                            <li><a href="#faq">Câu Hỏi Thường Gặp</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Shopee Sidebar Widget -->
+                <div class="widget shopee-widget">
+                    <div class="widget-header">🛒 Deal Hot Hôm Nay</div>
+                    <div class="widget-content">
+                        <div class="sidebar-product">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&amp;h=80&amp;fit=crop" alt="Ấm rót nước cổ ngỗng" class="sidebar-product-image">
+                            <div class="sidebar-product-info">
+                                <h6>Ấm Rót Nước Cổ Ngỗng</h6>
+                                <div class="sidebar-price">189.000₫</div>
+                                <a href="https://s.shopee.vn/1VprXd0oPX" class="sidebar-shopee-btn" onclick="trackShopeeClick('Ấm Rót Nước Sidebar')" target="_blank">
+                                    🔥 Mua Ngay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Posts Widget -->
+                
+
+                <!-- Newsletter Widget -->
+                
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Analytics Tracking Functions
+        function trackShopeeClick(productName) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'shopee_click', {
+                    'event_category': 'ecommerce',
+                    'event_label': productName,
+                    'value': 1
+                });
+            }
+            console.log('Shopee click tracked:', productName);
+        }
+
+        function trackImageView(imageType, imageName) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'image_view', {
+                    'event_category': 'engagement',
+                    'event_label': `${imageType}_${imageName}`
+                });
+            }
+        }
+
+        // Social Share Functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share', {
+                    'method': 'Facebook',
+                    'content_type': 'article',
+                    'item_id': 'cac-muc-rang-ca-phe'
+                });
+            }
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Các Mức Rang Cà Phê: Light, Medium, Dark Ảnh Hưởng Đến Hương Vị Ra Sao?');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share', {
+                    'method': 'Twitter',
+                    'content_type': 'article',
+                    'item_id': 'cac-muc-rang-ca-phe'
+                });
+            }
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share', {
+                    'method': 'LinkedIn',
+                    'content_type': 'article',
+                    'item_id': 'cac-muc-rang-ca-phe'
+                });
+            }
+        }
+
+        function shareOnPinterest() {
+            const url = encodeURIComponent(window.location.href);
+            const description = encodeURIComponent('Khám phá 3 mức rang cà phê: Light, Medium, Dark và cách chúng ảnh hưởng đến hương vị');
+            const media = encodeURIComponent('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200');
+            window.open(`https://pinterest.com/pin/create/button/?url=${url}&description=${description}&media=${media}`, '_blank', 'width=600,height=400');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share', {
+                    'method': 'Pinterest',
+                    'content_type': 'article',
+                    'item_id': 'cac-muc-rang-ca-phe'
+                });
+            }
+        }
+
+        // Image Lazy Loading with Intersection Observer
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.add('fade-in');
+                    
+                    // Track image view
+                    const imageType = img.closest('.hero-image-container') ? 'hero' : 
+                                    img.closest('.comparison-images') ? 'comparison' :
+                                    img.closest('.product-card') ? 'product' : 'other';
+                    
+                    trackImageView(imageType, img.alt.substring(0, 30));
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // Scroll Tracking
+        let maxScroll = 0;
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                if (scrollPercent % 25 === 0 && scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'scroll', {
+                            'event_category': 'engagement',
+                            'event_label': `${scrollPercent}%`
+                        });
+                    }
+                }
+            }, 100);
+        });
+
+        // Product Card Hover Tracking
+        document.querySelectorAll('.product-card, .product-card-mini').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const productName = this.querySelector('.product-name, .mini-product-name');
+                if (productName && typeof gtag !== 'undefined') {
+                    gtag('event', 'product_hover', {
+                        'event_category': 'ecommerce',
+                        'event_label': productName.textContent
+                    });
+                }
+            });
+        });
+
+        // Reading Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // You can add a progress bar here if needed
+        });
+
+        // Smooth Scroll for TOC Links
+        document.querySelectorAll('.toc-list a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Track TOC click
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'toc_click', {
+                            'event_category': 'navigation',
+                            'event_label': this.textContent
+                        });
+                    }
+                }
+            });
+        });
+
+        // Track time spent on page
+        let startTime = Date.now();
+        window.addEventListener('beforeunload', () => {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            if (typeof gtag !== 'undefined' && timeSpent > 10) {
+                gtag('event', 'timing_complete', {
+                    'name': 'read_time',
+                    'value': timeSpent
+                });
+            }
+        });
+
+        // FAQ Interaction Tracking
+        document.querySelectorAll('.faq-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'faq_click', {
+                        'event_category': 'engagement',
+                        'event_label': `FAQ_${index + 1}`,
+                        'value': 1
+                    });
+                }
+            });
+        });
+
+        // Newsletter signup tracking (if implemented)
+        const newsletterBtn = document.querySelector('.widget button');
+        if (newsletterBtn) {
+            newsletterBtn.addEventListener('click', function() {
+                const email = document.querySelector('.widget input[type="email"]').value;
+                if (email && typeof gtag !== 'undefined') {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'sidebar_widget'
+                    });
+                }
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            if (typeof gtag !== 'undefined') {
+                gtag('config', 'GA_MEASUREMENT_ID', {
+                    page_title: 'Các Mức Rang Cà Phê: Light, Medium, Dark',
+                    page_location: window.location.href
+                });
+            }
+
+            // Add animation classes
+            const animatedElements = document.querySelectorAll('.product-card-mini, .faq-item, .related-item');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('fade-in');
+                }, index * 100);
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('mobile-active');
+        }
+
+        // Error handling for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                console.log('Image failed to load:', this.src);
+            });
+        });
+    </script>
+
+</body></html>
