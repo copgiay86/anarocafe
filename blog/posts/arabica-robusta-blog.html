@@ -660,27 +660,87 @@ image: https://anarocafe-vert.vercel.app/images/phan_biet_arabica_robusta.jpg
                 padding: 10px;
             }
         }
+        /* Navigation Button */
+.article-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.home-button {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .article-nav {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .home-button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Đảm bảo header có position relative */
+.article-header {
+    position: relative;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    text-align: center;
+}
     </style>
 </head>
 <body>
     <div class="main-container">
         <main class="content">
-            <header class="article-header">
-                <div class="article-category">Kiến Thức Cà Phê</div>
-                <h1 class="article-title">Sự Khác Nhau Giữa Arabica và Robusta: So Sánh Chi Tiết 2025</h1>
-                <p class="article-excerpt">Khám phá sự khác biệt về hương vị, caffeine, và đặc điểm của hai loại cà phê phổ biến nhất thế giới để chọn được loại phù hợp với sở thích của bạn</p>
-                <div class="article-meta">
-                    <div class="meta-item">
-                        <span>📅</span>
-                        <span>17 tháng 9, 2025</span>
-                    </div>
-                    <div class="meta-item">
-                        <span>👤</span>
-                        <span>Coffee Expert</span>
-                    </div>
-                    <div class="reading-time">⏱ 8 phút đọc</div>
-                </div>
-            </header>
+            
+           <header class="article-header">
+    <!-- Thêm navigation bar -->
+    <nav class="article-nav">
+        <a href="https://anarocafe-vert.vercel.app/blog/index.html" class="home-button">
+            ← Trang Chủ
+        </a>
+    </nav>
+    
+    <div class="article-category">Kiến Thức Cà Phê</div>
+    <h1 class="article-title">Sự Khác Nhau Giữa Arabica và Robusta: So Sánh Chi Tiết 2025</h1>
+    <p class="article-excerpt">Khám phá sự khác biệt về hương vị, caffeine, và đặc điểm của hai loại cà phê phổ biến nhất thế giới để chọn được loại phù hợp với sở thích của bạn</p>
+    <div class="article-meta">
+        <div class="meta-item">
+            <span>📅</span>
+            <span>17 tháng 9, 2025</span>
+        </div>
+        <div class="meta-item">
+            <span>👤</span>
+            <span>Coffee Expert</span>
+        </div>
+        <div class="reading-time">⏱ 8 phút đọc</div>
+    </div>
+</header>
 
             <!-- Hero Image Section - Tối ưu Facebook -->
             <div class="hero-image-section">
