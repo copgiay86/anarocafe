@@ -252,19 +252,6 @@
             background: #6b4d35;
         }
 
-        /* Mobile responsive dropdown */
-        @media (max-width: 768px) {
-            .filter-container {
-                min-width: 250px;
-                width: 100%;
-                max-width: 400px;
-            }
-            
-            .filter-options {
-                max-height: 200px;
-            }
-        }
-
         /* Posts Grid */
         .posts-grid {
             display: grid;
@@ -522,6 +509,16 @@
                 gap: 20px;
             }
 
+            .filter-container {
+                min-width: 250px;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .filter-options {
+                max-height: 200px;
+            }
+
             .stats-content {
                 gap: 15px;
             }
@@ -636,8 +633,8 @@
             'cach-pha-ca-phe-phin.html',
             'cach-bao-quan-ca-phe.html',
             'arabica-vs-robusta.html',
-            'arabica-robusta-blog.html',
-            'cac-muc-rang-ca-phe.html',
+             'arabica-robusta-blog.html',
+             'cac-muc-rang-ca-phe.html',
             // Thêm file posts khác ở đây...
         ];
         
@@ -739,7 +736,7 @@
                     if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
                     if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
                 } catch (e) {
-                    console.log('Error parsing JSON-LD:', e);
+                    // Ignore JSON parse errors
                 }
             }
             
@@ -763,7 +760,96 @@
                 metadata.tags = analyzeContentForTags(html, filename);
             }
             
-            // Extract first image URL from HTML content
+            // Extract other metadata with fallbacks
+            if (!metadata.title) {
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+            }
+            
+            if (!metadata.excerpt) {
+                // Try to extract first paragraph
+                const paragraphMatch = html.match(/<p[^>]*>([^<]+)<\/p>/i);
+                if (paragraphMatch) {
+                    metadata.excerpt = paragraphMatch[1].trim().substring(0, 150) + '...';
+                }
+            }
+            
+            // Extract first image
+            const firstImage = extractFirstImage(html);
+            if (firstImage) {
+                metadata.image = firstImage;
+                metadata.imageType = 'image';
+            }
+            
+            // Set defaults
+            metadata.title = metadata.title || `Bài viết ${filename}`;
+            metadata.excerpt = metadata.excerpt || 'Không có mô tả';
+            metadata.tags = metadata.tags || ['coffee'];
+            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
+            metadata.readTime = metadata.readTime || '5 phút đọc';
+            
+            if (!metadata.image) {
+                metadata.image = getEmojiForTags(metadata.tags);
+                metadata.imageType = 'emoji';
+            }
+            
+            return metadata;
+        }
+
+        // AI-powered content analysis for tag extraction
+        function analyzeContentForTags(html, filename) {
+            const tags = [];
+            const content = html.toLowerCase();
+            
+            // Vietnamese coffee terms mapping
+            const termMap = {
+                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip'],
+                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
+                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
+                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
+                'arabica': ['arabica'],
+                'robusta': ['robusta'],
+                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
+                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
+                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
+                'review': ['đánh giá', 'review', 'tasting', 'thử'],
+                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
+                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
+                'latte': ['latte', 'sữa'],
+                'espresso': ['espresso']
+            };
+            
+            // Analyze filename
+            const filenameLower = filename.toLowerCase();
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                if (terms.some(term => filenameLower.includes(term))) {
+                    tags.push(tag);
+                }
+            });
+            
+            // Analyze content
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                const score = terms.reduce((acc, term) => {
+                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
+                    return acc + matches;
+                }, 0);
+                
+                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag);
+                    }
+                }
+            });
+            
+            // Always include 'coffee' as base tag if no other tags found
+            if (tags.length === 0) {
+                tags.push('coffee');
+            }
+            
+            return tags;
+        }
+
+        // Extract first image URL from HTML content
         function extractFirstImage(html) {
             const patterns = [
                 /<meta\s+property="og:image"\s+content="([^"]+)"/i,
@@ -843,15 +929,13 @@
                     link: filepath
                 };
             } catch (error) {
-                console.error(`Error loading ${filepath}:`, error);
-                throw new Error(`Error loading ${filepath}: ${error.message}`);
+                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
             }
         }
 
         // Load posts from manual list
-        async function loadManualPosts() {
+        async function loadManualPosts() {            
             if (manualPosts.length === 0) {
-                console.warn('Manual posts list is empty. Please add post files.');
                 return [];
             }
             
@@ -865,7 +949,7 @@
                         posts.push(postData);
                     }
                 } catch (error) {
-                    console.error(`Cannot load ${filename}:`, error.message);
+                    // Skip failed posts
                 }
             }
             
@@ -874,7 +958,6 @@
 
         // Scan posts folder automatically
         async function scanPostsFolder() {
-            console.warn('Auto scan needs server support. Switching to manual mode.');
             return await loadManualPosts();
         }
 
@@ -902,7 +985,6 @@
                 updateStats();
                 
             } catch (error) {
-                console.error('Error loading posts:', error);
                 allPosts = [];
                 filteredPosts = [];
                 hideLoading();
@@ -1101,93 +1183,7 @@
                 clearTimeout(timeout);
                 timeout = setTimeout(later, wait);
             };
-        } other metadata with fallbacks
-            if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-                if (titleMatch) metadata.title = titleMatch[1].trim();
-            }
-            
-            if (!metadata.excerpt) {
-                // Try to extract first paragraph
-                const paragraphMatch = html.match(/<p[^>]*>([^<]+)<\/p>/i);
-                if (paragraphMatch) {
-                    metadata.excerpt = paragraphMatch[1].trim().substring(0, 150) + '...';
-                }
-            }
-            
-            // Extract first image
-            const firstImage = extractFirstImage(html);
-            if (firstImage) {
-                metadata.image = firstImage;
-                metadata.imageType = 'image';
-            }
-            
-            // Set defaults
-            metadata.title = metadata.title || `Bài viết ${filename}`;
-            metadata.excerpt = metadata.excerpt || 'Không có mô tả';
-            metadata.tags = metadata.tags || ['coffee'];
-            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
-            metadata.readTime = metadata.readTime || '5 phút đọc';
-            
-            if (!metadata.image) {
-                metadata.image = getEmojiForTags(metadata.tags);
-                metadata.imageType = 'emoji';
-            }
-            
-            return metadata;
         }
-
-        // AI-powered content analysis for tag extraction
-        function analyzeContentForTags(html, filename) {
-            const tags = [];
-            const content = html.toLowerCase();
-            
-            // Vietnamese coffee terms mapping
-            const termMap = {
-                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip'],
-                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
-                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
-                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
-                'arabica': ['arabica'],
-                'robusta': ['robusta'],
-                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
-                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
-                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
-                'review': ['đánh giá', 'review', 'tasting', 'thử'],
-                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
-                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
-                'latte': ['latte', 'sữa'],
-                'espresso': ['espresso']
-            };
-            
-            // Analyze filename
-            const filenameLower = filename.toLowerCase();
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                if (terms.some(term => filenameLower.includes(term))) {
-                    tags.push(tag);
-                }
-            });
-            
-            // Analyze content
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                const score = terms.reduce((acc, term) => {
-                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
-                    return acc + matches;
-                }, 0);
-                
-                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
-                    if (!tags.includes(tag)) {
-                        tags.push(tag);
-                    }
-                }
-            });
-            
-            // Always include 'coffee' as base tag if no other tags found
-            if (tags.length === 0) {
-                tags.push('coffee');
-            }
-            
-            return tags;
-        }
-
-        // Extract
+    </script>
+</body>
+</html>
