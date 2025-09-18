@@ -134,36 +134,7 @@
             margin: 0 auto;
         }
 
-        /* Debug Panel */
-        .debug-panel {
-            background: #f8f5f0;
-            border: 1px solid #e0d0c0;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            font-family: monospace;
-            font-size: 0.9em;
-            max-height: 200px;
-            overflow-y: auto;
-            display: none;
-        }
-
-        .debug-panel.show {
-            display: block;
-        }
-
-        .debug-toggle {
-            background: #7a5c3f;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-
-        /* Filter Navigation */
+        /* Filter Navigation with Dropdown */
         .filter-nav {
             margin-bottom: 40px;
             text-align: center;
@@ -178,32 +149,120 @@
             letter-spacing: 1px;
         }
 
-        .filter-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+        .filter-container {
+            position: relative;
+            display: inline-block;
+            min-width: 300px;
         }
 
-        .filter-tab {
-            background: #f8f5f0;
-            color: #4a3c2a;
+        .filter-dropdown {
+            background: white;
+            border: 2px solid #e0d0c0;
+            border-radius: 12px;
             padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid #e0d0c0;
             cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #4a3c2a;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-dropdown:hover {
+            border-color: #7a5c3f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.2);
+        }
+
+        .filter-dropdown.active {
+            border-color: #7a5c3f;
+            background: #f8f5f0;
+        }
+
+        .dropdown-arrow {
+            color: #7a5c3f;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .filter-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #7a5c3f;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .filter-options.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .filter-option {
+            padding: 12px 20px;
+            cursor: pointer;
+            color: #4a3c2a;
             font-weight: 500;
             text-transform: capitalize;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .filter-tab:hover,
-        .filter-tab.active {
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option:hover {
+            background: #f8f5f0;
+            color: #7a5c3f;
+            transform: translateX(5px);
+        }
+
+        .filter-option.selected {
             background: #7a5c3f;
             color: white;
-            border-color: #7a5c3f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.3);
+        }
+
+        .filter-option.selected:hover {
+            background: #6b4d35;
+        }
+
+        /* Mobile responsive dropdown */
+        @media (max-width: 768px) {
+            .filter-container {
+                min-width: 250px;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .filter-options {
+                max-height: 200px;
+            }
         }
 
         /* Posts Grid */
@@ -463,16 +522,6 @@
                 gap: 20px;
             }
 
-            .filter-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-
-            .filter-tab {
-                white-space: nowrap;
-            }
-
             .stats-content {
                 gap: 15px;
             }
@@ -517,11 +566,6 @@
             <p>Khám phá thế giới cà phê qua những câu chuyện, kiến thức và trải nghiệm thú vị</p>
         </div>
 
-        <button class="debug-toggle" id="debugToggle">🔧 Debug Info</button>
-        <div class="debug-panel" id="debugPanel">
-            <div id="debugContent">Debug information will appear here...</div>
-        </div>
-
         <div class="stats">
             <div class="stats-content">
                 <div class="stat-item">
@@ -538,9 +582,15 @@
 
         <div class="filter-nav">
             <h3>🎯 Lọc theo chủ đề</h3>
-            <div class="filter-tabs" id="filterTabs">
-                <div class="filter-tab active" data-tag="all">Tất cả</div>
-                <!-- Dynamic filter tabs will be added here -->
+            <div class="filter-container">
+                <div class="filter-dropdown" id="filterDropdown">
+                    <span id="selectedFilter">Tất cả</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="filter-options" id="filterOptions">
+                    <div class="filter-option selected" data-tag="all">Tất cả</div>
+                    <!-- Dynamic filter options will be added here -->
+                </div>
             </div>
         </div>
 
@@ -586,8 +636,8 @@
             'cach-pha-ca-phe-phin.html',
             'cach-bao-quan-ca-phe.html',
             'arabica-vs-robusta.html',
-             'arabica-robusta-blog.html',
-             'cac-muc-rang-ca-phe.html',
+            'arabica-robusta-blog.html',
+            'cac-muc-rang-ca-phe.html',
             // Thêm file posts khác ở đây...
         ];
         
@@ -598,38 +648,22 @@
         let allPosts = [];
         let filteredPosts = [];
         let currentFilter = 'all';
-        let debugMode = false;
 
         // DOM Elements
         const postsGrid = document.getElementById('postsGrid');
         const searchInput = document.getElementById('searchInput');
-        const filterTabsContainer = document.getElementById('filterTabs');
+        const filterDropdown = document.getElementById('filterDropdown');
+        const filterOptions = document.getElementById('filterOptions');
+        const selectedFilterEl = document.getElementById('selectedFilter');
         const noResults = document.getElementById('noResults');
         const totalPostsEl = document.getElementById('totalPosts');
         const totalTagsEl = document.getElementById('totalTags');
         const loading = document.getElementById('loading');
         const refreshBtn = document.getElementById('refreshBtn');
-        const debugToggle = document.getElementById('debugToggle');
-        const debugPanel = document.getElementById('debugPanel');
-        const debugContent = document.getElementById('debugContent');
-
-        // Debug logging function
-        function debugLog(message, data = null) {
-            console.log(message, data || '');
-            if (debugMode) {
-                const timestamp = new Date().toLocaleTimeString();
-                debugContent.innerHTML += `<div>[${timestamp}] ${message}</div>`;
-                if (data) {
-                    debugContent.innerHTML += `<div style="margin-left: 20px; color: #666;">${JSON.stringify(data, null, 2)}</div>`;
-                }
-                debugPanel.scrollTop = debugPanel.scrollHeight;
-            }
-        }
 
         // Enhanced metadata parser with better pattern matching
         function parsePostMetadata(html, filename) {
             const metadata = {};
-            debugLog(`🔍 Đang phân tích metadata cho: ${filename}`);
             
             // Method 1: HTML Comments (<!-- metadata -->)
             const commentPatterns = [
@@ -641,7 +675,6 @@
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
                     const content = match[1];
-                    debugLog(`📋 Tìm thấy comment block`, content.substring(0, 100));
                     
                     // Parse key-value pairs from comment
                     const lines = content.split('\n');
@@ -653,7 +686,6 @@
                             
                             if (key === 'tags' && value) {
                                 metadata.tags = value.split(',').map(tag => tag.trim().toLowerCase());
-                                debugLog(`🏷️ Tags từ comment: ${metadata.tags.join(', ')}`);
                             } else if (key === 'title') {
                                 metadata.title = value;
                             } else if (key === 'excerpt' || key === 'description') {
@@ -681,10 +713,8 @@
             for (const { pattern, key } of metaPatterns) {
                 const match = html.match(pattern);
                 if (match) {
-                    debugLog(`🎯 Tìm thấy meta ${key}: ${match[1]}`);
                     if (key === 'tags') {
                         metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
-                        debugLog(`🏷️ Tags từ meta: ${metadata.tags.join(', ')}`);
                     } else {
                         metadata[key] = match[1];
                     }
@@ -696,7 +726,6 @@
             if (jsonLdMatch) {
                 try {
                     const jsonData = JSON.parse(jsonLdMatch[1]);
-                    debugLog(`📊 Tìm thấy JSON-LD`, jsonData);
                     
                     if (jsonData.keywords) {
                         if (typeof jsonData.keywords === 'string') {
@@ -704,14 +733,13 @@
                         } else if (Array.isArray(jsonData.keywords)) {
                             metadata.tags = jsonData.keywords.map(tag => tag.toLowerCase());
                         }
-                        debugLog(`🏷️ Tags từ JSON-LD: ${metadata.tags.join(', ')}`);
                     }
                     
                     if (jsonData.headline && !metadata.title) metadata.title = jsonData.headline;
                     if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
                     if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
                 } catch (e) {
-                    debugLog(`❌ Lỗi parse JSON-LD: ${e.message}`);
+                    console.log('Error parsing JSON-LD:', e);
                 }
             }
             
@@ -725,111 +753,17 @@
             for (const pattern of dataPatterns) {
                 const match = html.match(pattern);
                 if (match) {
-                    debugLog(`📌 Tìm thấy data tags: ${match[1]}`);
                     metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
-                    debugLog(`🏷️ Tags từ data attribute: ${metadata.tags.join(', ')}`);
                     break;
                 }
             }
             
             // Method 5: Fallback - analyze content for common Vietnamese coffee terms
             if (!metadata.tags || metadata.tags.length === 0) {
-                debugLog(`🤖 Sử dụng AI phân tích nội dung...`);
                 metadata.tags = analyzeContentForTags(html, filename);
-                debugLog(`🏷️ Tags từ AI: ${metadata.tags.join(', ')}`);
             }
             
-            // Extract other metadata with fallbacks
-            if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-                if (titleMatch) metadata.title = titleMatch[1].trim();
-            }
-            
-            if (!metadata.excerpt) {
-                // Try to extract first paragraph
-                const paragraphMatch = html.match(/<p[^>]*>([^<]+)<\/p>/i);
-                if (paragraphMatch) {
-                    metadata.excerpt = paragraphMatch[1].trim().substring(0, 150) + '...';
-                }
-            }
-            
-            // Extract first image
-            const firstImage = extractFirstImage(html);
-            if (firstImage) {
-                metadata.image = firstImage;
-                metadata.imageType = 'image';
-            }
-            
-            // Set defaults
-            metadata.title = metadata.title || `Bài viết ${filename}`;
-            metadata.excerpt = metadata.excerpt || 'Không có mô tả';
-            metadata.tags = metadata.tags || ['coffee'];
-            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
-            metadata.readTime = metadata.readTime || '5 phút đọc';
-            
-            if (!metadata.image) {
-                metadata.image = getEmojiForTags(metadata.tags);
-                metadata.imageType = 'emoji';
-            }
-            
-            debugLog(`✅ Metadata cuối cùng cho ${filename}:`, metadata);
-            return metadata;
-        }
-
-        // AI-powered content analysis for tag extraction
-        function analyzeContentForTags(html, filename) {
-            const tags = [];
-            const content = html.toLowerCase();
-            
-            // Vietnamese coffee terms mapping
-            const termMap = {
-                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip'],
-                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
-                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
-                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
-                'arabica': ['arabica'],
-                'robusta': ['robusta'],
-                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
-                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
-                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
-                'review': ['đánh giá', 'review', 'tasting', 'thử'],
-                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
-                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
-                'latte': ['latte', 'sữa'],
-                'espresso': ['espresso']
-            };
-            
-            // Analyze filename
-            const filenameLower = filename.toLowerCase();
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                if (terms.some(term => filenameLower.includes(term))) {
-                    tags.push(tag);
-                }
-            });
-            
-            // Analyze content
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                const score = terms.reduce((acc, term) => {
-                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
-                    return acc + matches;
-                }, 0);
-                
-                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
-                    if (!tags.includes(tag)) {
-                        tags.push(tag);
-                    }
-                }
-            });
-            
-            // Always include 'coffee' as base tag if no other tags found
-            if (tags.length === 0) {
-                tags.push('coffee');
-            }
-            
-            return tags;
-        }
-
-        // Extract first image URL from HTML content
+            // Extract first image URL from HTML content
         function extractFirstImage(html) {
             const patterns = [
                 /<meta\s+property="og:image"\s+content="([^"]+)"/i,
@@ -888,7 +822,6 @@
         // Load metadata from individual post file
         async function loadPostMetadata(filepath, id) {
             try {
-                debugLog(`📥 Đang tải file: ${filepath}`);
                 const response = await fetch(filepath);
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);
@@ -910,17 +843,15 @@
                     link: filepath
                 };
             } catch (error) {
-                debugLog(`❌ Lỗi khi đọc ${filepath}: ${error.message}`);
-                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
+                console.error(`Error loading ${filepath}:`, error);
+                throw new Error(`Error loading ${filepath}: ${error.message}`);
             }
         }
 
         // Load posts from manual list
         async function loadManualPosts() {
-            debugLog('📝 Đang tải posts từ danh sách thủ công...');
-            
             if (manualPosts.length === 0) {
-                debugLog('⚠️ Danh sách manualPosts trống. Vui lòng thêm file posts.');
+                console.warn('Manual posts list is empty. Please add post files.');
                 return [];
             }
             
@@ -932,10 +863,9 @@
                     const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
                     if (postData) {
                         posts.push(postData);
-                        debugLog(`✅ Đã tải: ${filename}`, postData.tags);
                     }
                 } catch (error) {
-                    debugLog(`❌ Không thể tải ${filename}:`, error.message);
+                    console.error(`Cannot load ${filename}:`, error.message);
                 }
             }
             
@@ -944,8 +874,7 @@
 
         // Scan posts folder automatically
         async function scanPostsFolder() {
-            debugLog('🔍 Đang quét thư mục posts...');
-            debugLog('⚠️ Tự động quét cần server hỗ trợ. Chuyển sang chế độ thủ công.');
+            console.warn('Auto scan needs server support. Switching to manual mode.');
             return await loadManualPosts();
         }
 
@@ -957,7 +886,6 @@
 
         // Initialize posts based on configuration
         async function initializePosts() {
-            debugLog('🚀 Đang khởi tạo posts...');
             showLoading();
             
             try {
@@ -967,15 +895,14 @@
                     allPosts = await loadManualPosts();
                 }
                 
-                debugLog(`📚 Đã tải ${allPosts.length} bài viết`);
                 filteredPosts = [...allPosts];
                 hideLoading();
-                generateFilterTabs();
+                generateFilterOptions();
                 renderPosts();
                 updateStats();
                 
             } catch (error) {
-                debugLog('❌ Lỗi khi tải posts:', error);
+                console.error('Error loading posts:', error);
                 allPosts = [];
                 filteredPosts = [];
                 hideLoading();
@@ -984,13 +911,12 @@
             }
         }
 
-        // Generate dynamic filter tabs based on available tags
-        function generateFilterTabs() {
+        // Generate dynamic filter options based on available tags
+        function generateFilterOptions() {
             const allTags = [...new Set(allPosts.flatMap(post => post.tags))];
-            debugLog('🏷️ Tất cả tags tìm thấy:', allTags);
             
-            // Keep the "Tất cả" tab and add dynamic tabs
-            filterTabsContainer.innerHTML = '<div class="filter-tab active" data-tag="all">Tất cả</div>';
+            // Keep the "Tất cả" option and add dynamic options
+            filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
             
             // Map Vietnamese display names
             const tagDisplayNames = {
@@ -1013,27 +939,34 @@
             
             allTags.sort().forEach(tag => {
                 const displayName = tagDisplayNames[tag] || tag.charAt(0).toUpperCase() + tag.slice(1);
-                const tabElement = document.createElement('div');
-                tabElement.className = 'filter-tab';
-                tabElement.setAttribute('data-tag', tag);
-                tabElement.textContent = displayName;
-                filterTabsContainer.appendChild(tabElement);
+                const optionElement = document.createElement('div');
+                optionElement.className = 'filter-option';
+                optionElement.setAttribute('data-tag', tag);
+                optionElement.textContent = displayName;
+                filterOptions.appendChild(optionElement);
             });
             
-            // Re-attach event listeners to new tabs
-            attachFilterTabListeners();
+            // Re-attach event listeners to new options
+            attachFilterOptionListeners();
         }
 
-        function attachFilterTabListeners() {
-            const filterTabs = document.querySelectorAll('.filter-tab');
-            filterTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Update active tab
-                    filterTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
+        function attachFilterOptionListeners() {
+            const filterOptionElements = document.querySelectorAll('.filter-option');
+            filterOptionElements.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Update selected option
+                    filterOptionElements.forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    
+                    // Update dropdown display
+                    selectedFilterEl.textContent = option.textContent;
+                    
+                    // Hide dropdown
+                    filterOptions.classList.remove('show');
+                    filterDropdown.classList.remove('active');
                     
                     // Filter posts
-                    currentFilter = tab.dataset.tag;
+                    currentFilter = option.dataset.tag;
                     filterPosts();
                 });
             });
@@ -1043,19 +976,23 @@
             // Search functionality
             searchInput.addEventListener('input', debounce(handleSearch, 300));
 
-            // Refresh button
-            refreshBtn.addEventListener('click', () => {
-                debugLog('🔄 Đang tải lại posts...');
-                initializePosts();
+            // Dropdown toggle
+            filterDropdown.addEventListener('click', () => {
+                filterDropdown.classList.toggle('active');
+                filterOptions.classList.toggle('show');
             });
 
-            // Debug toggle
-            debugToggle.addEventListener('click', () => {
-                debugMode = !debugMode;
-                debugPanel.classList.toggle('show');
-                if (debugMode) {
-                    debugContent.innerHTML = '<div>Debug mode activated. Refresh to see detailed logs.</div>';
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.filter-container')) {
+                    filterDropdown.classList.remove('active');
+                    filterOptions.classList.remove('show');
                 }
+            });
+
+            // Refresh button
+            refreshBtn.addEventListener('click', () => {
+                initializePosts();
             });
         }
 
@@ -1081,7 +1018,6 @@
                 hideLoading();
                 renderPosts();
                 updateStats();
-                debugLog(`🔍 Filtered ${filteredPosts.length}/${allPosts.length} posts with filter:'${currentFilter}' search:'${searchQuery}'`);
             }, 300);
         }
 
@@ -1165,7 +1101,93 @@
                 clearTimeout(timeout);
                 timeout = setTimeout(later, wait);
             };
+        } other metadata with fallbacks
+            if (!metadata.title) {
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+                if (titleMatch) metadata.title = titleMatch[1].trim();
+            }
+            
+            if (!metadata.excerpt) {
+                // Try to extract first paragraph
+                const paragraphMatch = html.match(/<p[^>]*>([^<]+)<\/p>/i);
+                if (paragraphMatch) {
+                    metadata.excerpt = paragraphMatch[1].trim().substring(0, 150) + '...';
+                }
+            }
+            
+            // Extract first image
+            const firstImage = extractFirstImage(html);
+            if (firstImage) {
+                metadata.image = firstImage;
+                metadata.imageType = 'image';
+            }
+            
+            // Set defaults
+            metadata.title = metadata.title || `Bài viết ${filename}`;
+            metadata.excerpt = metadata.excerpt || 'Không có mô tả';
+            metadata.tags = metadata.tags || ['coffee'];
+            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
+            metadata.readTime = metadata.readTime || '5 phút đọc';
+            
+            if (!metadata.image) {
+                metadata.image = getEmojiForTags(metadata.tags);
+                metadata.imageType = 'emoji';
+            }
+            
+            return metadata;
         }
-    </script>
-</body>
-</html>
+
+        // AI-powered content analysis for tag extraction
+        function analyzeContentForTags(html, filename) {
+            const tags = [];
+            const content = html.toLowerCase();
+            
+            // Vietnamese coffee terms mapping
+            const termMap = {
+                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip'],
+                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
+                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
+                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
+                'arabica': ['arabica'],
+                'robusta': ['robusta'],
+                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
+                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
+                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
+                'review': ['đánh giá', 'review', 'tasting', 'thử'],
+                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
+                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
+                'latte': ['latte', 'sữa'],
+                'espresso': ['espresso']
+            };
+            
+            // Analyze filename
+            const filenameLower = filename.toLowerCase();
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                if (terms.some(term => filenameLower.includes(term))) {
+                    tags.push(tag);
+                }
+            });
+            
+            // Analyze content
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                const score = terms.reduce((acc, term) => {
+                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
+                    return acc + matches;
+                }, 0);
+                
+                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag);
+                    }
+                }
+            });
+            
+            // Always include 'coffee' as base tag if no other tags found
+            if (tags.length === 0) {
+                tags.push('coffee');
+            }
+            
+            return tags;
+        }
+
+        // Extract
