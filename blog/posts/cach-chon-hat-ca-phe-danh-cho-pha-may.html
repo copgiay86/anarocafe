@@ -834,18 +834,19 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .container {
-                padding: 0 15px;
+                padding: 0 10px;
             }
             
             .header-content {
                 flex-direction: column;
                 gap: 15px;
+                padding: 15px;
             }
             
             .nav-menu {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 20px;
+                gap: 15px;
             }
             
             .social-share {
@@ -858,75 +859,193 @@
             
             .main-wrapper {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
+                margin: 20px 0;
             }
             
             .main-content {
-                padding: 20px;
+                padding: 15px;
+                margin: 0 -10px;
+                border-radius: 0;
             }
             
             .article-title {
-                font-size: 28px;
+                font-size: 24px;
+                line-height: 1.2;
             }
             
             .article-meta {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
+                font-size: 13px;
+            }
+            
+            .hero-image-container {
+                margin: 20px -15px;
             }
             
             .hero-image {
-                height: 250px;
+                height: 200px;
+                border-radius: 0;
+            }
+            
+            .section-image-container {
+                margin: 20px -15px;
             }
             
             .section-image {
-                height: 200px;
+                height: 180px;
+                border-radius: 0;
             }
             
             .comparison-images {
                 grid-template-columns: 1fr;
                 gap: 15px;
+                margin: 20px -15px;
             }
             
             .comparison-image {
-                height: 200px;
+                height: 180px;
+            }
+            
+            .shopee-product-single {
+                margin: 30px -15px;
+                padding: 15px;
+                border-radius: 0;
             }
             
             .product-card {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
+                gap: 15px;
+                padding: 15px;
             }
             
             .product-image {
-                height: 250px;
+                height: 200px;
+            }
+            
+            .product-name {
+                font-size: 18px;
             }
             
             .current-price {
-                font-size: 24px;
+                font-size: 22px;
+            }
+            
+            .shopee-buy-btn {
+                padding: 12px 20px;
+                font-size: 14px;
             }
             
             .cta-section {
-                padding: 25px 20px;
+                padding: 20px 15px;
+                margin: 30px -15px;
+                border-radius: 0;
             }
             
             .cta-title {
-                font-size: 24px;
+                font-size: 20px;
             }
             
             .cta-text {
-                font-size: 16px;
+                font-size: 15px;
+            }
+            
+            .comparison-table {
+                margin: 20px -15px;
+            }
+            
+            .table th,
+            .table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+            
+            .faq-section {
+                margin: 30px -15px;
+            }
+            
+            .faq-item {
+                border-radius: 0;
+                margin-bottom: 10px;
+            }
+            
+            .faq-question {
+                padding: 15px;
+                font-size: 15px;
+            }
+            
+            .faq-answer {
+                padding: 15px;
+                font-size: 14px;
+            }
+            
+            .related-posts {
+                margin: 40px -15px;
+                padding: 20px 15px;
+                border-radius: 0;
             }
             
             .related-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .related-item {
+                padding: 15px;
             }
             
             h2 {
-                font-size: 24px;
+                font-size: 22px;
+                margin: 30px 0 15px 0;
             }
             
             h3 {
+                font-size: 18px;
+                margin: 20px 0 10px 0;
+            }
+            
+            p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+            }
+            
+            li {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-title {
                 font-size: 20px;
+            }
+            
+            .hero-image {
+                height: 160px;
+            }
+            
+            .section-image {
+                height: 140px;
+            }
+            
+            .comparison-image {
+                height: 140px;
+            }
+            
+            .product-image {
+                height: 160px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            h3 {
+                font-size: 16px;
             }
         }
     </style>
@@ -1264,48 +1383,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- Hot Posts Widget -->
-                <div class="sidebar-widget">
-                    <div class="widget-header">🔥 Bài Viết Hot</div>
-                    <div class="widget-content">
-                        <div class="hot-post">
-                            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80" alt="Cách pha cà phê cold brew" class="hot-post-image">
-                            <div class="hot-post-content">
-                                <h5><a href="#">Cách Pha Cold Brew Cà Phê Tại Nhà</a></h5>
-                                <div class="hot-post-meta">3.2K lượt xem • 2 ngày trước</div>
-                            </div>
-                        </div>
-                        
-                        <div class="hot-post">
-                            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80" alt="Máy pha cà phê tốt nhất" class="hot-post-image">
-                            <div class="hot-post-content">
-                                <h5><a href="#">Top 5 Máy Pha Cà Phê Tốt Nhất 2025</a></h5>
-                                <div class="hot-post-meta">5.1K lượt xem • 5 ngày trước</div>
-                            </div>
-                        </div>
-                        
-                        <div class="hot-post">
-                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80" alt="Latte art cơ bản" class="hot-post-image">
-                            <div class="hot-post-content">
-                                <h5><a href="#">Hướng Dẫn Latte Art Cơ Bản</a></h5>
-                                <div class="hot-post-meta">4.7K lượt xem • 1 tuần trước</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Newsletter Widget -->
-                <div class="sidebar-widget">
-                    <div class="widget-header">📬 Nhận Tin Mới</div>
-                    <div class="widget-content">
-                        <p>Đăng ký nhận những bài viết mới nhất về cà phê!</p>
-                        <form class="newsletter-form" onsubmit="submitNewsletter(event)">
-                            <input type="email" placeholder="Email của bạn..." class="newsletter-input" required>
-                            <button type="submit" class="newsletter-btn">Đăng Ký</button>
-                        </form>
-                    </div>
-                </div>
             </aside>
         </div>
     </div>
@@ -1389,30 +1466,8 @@
             }
         }
 
-        // Enhanced Newsletter Submission with validation
-        function submitNewsletter(event) {
-            event.preventDefault();
-            const emailInput = event.target.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Vui lòng nhập email hợp lệ!');
-                return;
-            }
-            
-            // Track newsletter signup
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'newsletter_signup', {
-                    'event_category': 'engagement',
-                    'event_label': 'sidebar_widget'
-                });
-            }
-            
-            alert('Cảm ơn bạn đã đăng ký nhận tin! Email: ' + email);
-            event.target.reset();
-        }
+        // Enhanced Newsletter Submission with validation - REMOVED
+        // (Đã xóa newsletter form)
 
         // Enhanced FAQ Toggle with error handling
         function toggleFAQ(element) {
@@ -1628,4 +1683,3 @@
                              width="800" 
                              height="300">
                         <div class="image-caption">
-                            
