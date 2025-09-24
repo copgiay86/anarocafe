@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -27,7 +28,7 @@
         }
 
         /* Mobile Search Header */
-        .mobile-search {
+        .mobile-header {
             display: none;
             position: sticky;
             top: 0;
@@ -39,14 +40,27 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        .mobile-header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mobile-logo {
+            color: #7a5c3f;
+            font-size: 1.2em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
         .mobile-search-input {
-            width: 100%;
-            padding: 12px 20px;
+            flex: 1;
+            padding: 10px 15px;
             border: 2px solid #e0d0c0;
-            border-radius: 25px;
+            border-radius: 20px;
             background: #faf8f5;
             color: #4a3c2a;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: all 0.3s ease;
         }
 
@@ -55,6 +69,17 @@
             border-color: #7a5c3f;
             background: white;
             box-shadow: 0 0 0 3px rgba(122, 92, 63, 0.1);
+        }
+
+        .mobile-refresh-btn {
+            background: linear-gradient(135deg, #8b6b47 0%, #7a5c3f 100%);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 40px;
         }
 
         /* Header */
@@ -292,6 +317,7 @@
             font-weight: 500;
             text-transform: capitalize;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .featured-tag:hover {
@@ -349,6 +375,7 @@
 
         .filter-option.selected:hover {
             background: #6b4d35;
+            transform: translateX(5px);
         }
 
         /* Posts Grid */
@@ -363,7 +390,7 @@
 
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
@@ -471,6 +498,7 @@
             font-weight: 500;
             text-transform: capitalize;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .post-tag:hover {
@@ -498,12 +526,14 @@
             transition: all 0.3s ease;
             min-width: 45px;
             text-align: center;
+            user-select: none;
         }
 
-        .pagination-btn:hover {
+        .pagination-btn:hover:not(:disabled) {
             background: #7a5c3f;
             color: white;
             border-color: #7a5c3f;
+            transform: translateY(-1px);
         }
 
         .pagination-btn.active {
@@ -515,11 +545,13 @@
         .pagination-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
 
         .pagination-info {
             color: #8b6b47;
             font-weight: 500;
+            margin: 0 10px;
         }
 
         /* No Results */
@@ -650,7 +682,7 @@
                 display: none;
             }
 
-            .mobile-search {
+            .mobile-header {
                 display: block;
             }
 
@@ -663,6 +695,7 @@
             .sidebar {
                 order: -1;
                 position: static;
+                top: auto;
             }
 
             .filter-nav {
@@ -713,6 +746,7 @@
             .pagination-btn {
                 padding: 8px 12px;
                 min-width: 40px;
+                font-size: 0.9em;
             }
         }
 
@@ -728,13 +762,25 @@
             .post-content {
                 padding: 15px;
             }
+
+            .mobile-header-content {
+                gap: 10px;
+            }
+
+            .mobile-logo {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Search Header -->
-    <div class="mobile-search">
-        <input type="text" class="mobile-search-input" id="mobileSearchInput" placeholder="Tìm kiếm bài viết...">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="mobile-header-content">
+            <div class="mobile-logo">☕ Anaro</div>
+            <input type="text" class="mobile-search-input" id="mobileSearchInput" placeholder="Tìm kiếm...">
+            <button class="mobile-refresh-btn" id="mobileRefreshBtn" title="Tải lại">🔄</button>
+        </div>
     </div>
 
     <!-- Desktop Header -->
@@ -759,10 +805,10 @@
         <div class="stats">
             <div class="stats-content">
                 <div class="stat-item">
-                    📝 <span class="stat-number" id="totalPosts">6</span> Bài viết
+                    📝 <span class="stat-number" id="totalPosts">0</span> Bài viết
                 </div>
                 <div class="stat-item">
-                    🏷️ <span class="stat-number" id="totalTags">29</span> Chủ đề
+                    🏷️ <span class="stat-number" id="totalTags">0</span> Chủ đề
                 </div>
                 <div class="stat-item">
                     📅 Cập nhật <span class="stat-number">Hôm nay</span>
@@ -773,7 +819,7 @@
         <div class="main-content">
             <!-- Featured Post Section -->
             <div class="featured-section">
-                <div class="featured-label">🌟 Bài Viết Mới Nhất</div>
+                <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
                 <div class="featured-post" id="featuredPost">
                     <!-- Featured post will be inserted here -->
                 </div>
@@ -800,7 +846,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination" id="pagination" style="display: none;">
-                    <button class="pagination-btn" id="prevBtn">‹ Trước</button>
+                    <button class="pagination-btn" id="prevBtn" disabled>‹ Trước</button>
                     <div class="pagination-info" id="paginationInfo"></div>
                     <button class="pagination-btn" id="nextBtn">Sau ›</button>
                 </div>
@@ -832,59 +878,74 @@
     </footer>
 
     <script>
-        // Configuration
+        // ====================================================================
+        // 🔧 CONFIGURATION
+        // ====================================================================
+        
         const POSTS_FOLDER = './posts/';
         const AUTO_SCAN = false;
         const POSTS_PER_PAGE = 5;
         
+        // Fixed and verified post filenames
         const manualPosts = [
             'cach-chon-hat-ca-phe-danh-cho-pha-may.html',
-            'cac-muc-rang-ca-phe.html',
+            'cac-muc-rang-ca-phe.html', 
             'cach-bao-quan-ca-phe.html',
             'arabica-robusta-blog.html',
             'cach-pha-ca-phe-phin.html',
             'bai-viet-dau-tien.html',
         ];
 
+        // ====================================================================
+        // 🎯 GLOBAL VARIABLES
+        // ====================================================================
+        
         let allPosts = [];
         let filteredPosts = [];
         let currentFilter = 'all';
         let currentPage = 1;
         let totalPages = 1;
 
-        // DOM Elements
-        const featuredPost = document.getElementById('featuredPost');
-        const postsGrid = document.getElementById('postsGrid');
-        const searchInput = document.getElementById('searchInput');
-        const mobileSearchInput = document.getElementById('mobileSearchInput');
-        const filterOptions = document.getElementById('filterOptions');
-        const noResults = document.getElementById('noResults');
-        const totalPostsEl = document.getElementById('totalPosts');
-        const totalTagsEl = document.getElementById('totalTags');
-        const loading = document.getElementById('loading');
-        const refreshBtn = document.getElementById('refreshBtn');
-        const pagination = document.getElementById('pagination');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const paginationInfo = document.getElementById('paginationInfo');
+        // Cached DOM Elements for performance
+        const DOM = {
+            featuredPost: document.getElementById('featuredPost'),
+            postsGrid: document.getElementById('postsGrid'),
+            searchInput: document.getElementById('searchInput'),
+            mobileSearchInput: document.getElementById('mobileSearchInput'),
+            filterOptions: document.getElementById('filterOptions'),
+            noResults: document.getElementById('noResults'),
+            totalPostsEl: document.getElementById('totalPosts'),
+            totalTagsEl: document.getElementById('totalTags'),
+            loading: document.getElementById('loading'),
+            refreshBtn: document.getElementById('refreshBtn'),
+            mobileRefreshBtn: document.getElementById('mobileRefreshBtn'),
+            pagination: document.getElementById('pagination'),
+            prevBtn: document.getElementById('prevBtn'),
+            nextBtn: document.getElementById('nextBtn'),
+            paginationInfo: document.getElementById('paginationInfo')
+        };
 
-        // Enhanced metadata parser with better pattern matching
+        // ====================================================================
+        // 🔍 METADATA PARSING FUNCTIONS
+        // ====================================================================
+
+        // Enhanced metadata parser with complete functionality
         function parsePostMetadata(html, filename) {
+            console.log(`🔍 Parsing metadata for: ${filename}`);
             const metadata = {};
             
-            // Method 1: HTML Comments (<!-- metadata -->)
+            // Method 1: HTML Comments
             const commentPatterns = [
                 /<!--\s*([\s\S]*?)\s*-->/g,
-                /\/\*\s*([\s\S]*?)\s*\*\//g // CSS comments
+                /\/\*\s*([\s\S]*?)\s*\*\//g
             ];
             
             for (const pattern of commentPatterns) {
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
                     const content = match[1];
-                    
-                    // Parse key-value pairs from comment
                     const lines = content.split('\n');
+                    
                     for (const line of lines) {
                         const keyValue = line.match(/(\w+):\s*(.+)/);
                         if (keyValue) {
@@ -920,6 +981,7 @@
             for (const { pattern, key } of metaPatterns) {
                 const match = html.match(pattern);
                 if (match) {
+                    console.log(`🏷️ Found meta tag: ${key} = ${match[1]}`);
                     if (key === 'tags') {
                         metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
                     } else {
@@ -933,6 +995,7 @@
             if (jsonLdMatch) {
                 try {
                     const jsonData = JSON.parse(jsonLdMatch[1]);
+                    console.log(`📊 Found JSON-LD data:`, jsonData);
                     
                     if (jsonData.keywords) {
                         if (typeof jsonData.keywords === 'string') {
@@ -946,7 +1009,7 @@
                     if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
                     if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
                 } catch (e) {
-                    // Ignore JSON parse errors
+                    console.log(`❌ JSON-LD parse error:`, e);
                 }
             }
             
@@ -959,17 +1022,680 @@
             
             for (const pattern of dataPatterns) {
                 const match = html.match(pattern);
-                if (match) {
+                if (match && match[1].trim()) {
+                    console.log(`🏷️ Found data tags: ${match[1]}`);
                     metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
                     break;
                 }
             }
             
-            // Method 5: Fallback - analyze content for common Vietnamese coffee terms
+            // Method 5: Fallback - analyze content for Vietnamese coffee terms
             if (!metadata.tags || metadata.tags.length === 0) {
+                console.log(`🔍 No tags found, analyzing content...`);
                 metadata.tags = analyzeContentForTags(html, filename);
             }
             
-            // Extract other metadata
+            // Extract title
             if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+                if (titleMatch) {
+                    metadata.title = titleMatch[1].trim();
+                } else {
+                    // Fallback to h1
+                    const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+                    if (h1Match) metadata.title = h1Match[1].trim();
+                }
+            }
+            
+            // Extract excerpt
+            if (!metadata.excerpt) {
+                // Try to find first meaningful paragraph
+                const paragraphMatches = html.match(/<p[^>]*>([^<]+)<\/p>/gi);
+                if (paragraphMatches) {
+                    for (const p of paragraphMatches) {
+                        const content = p.replace(/<[^>]*>/g, '').trim();
+                        if (content.length > 50) {
+                            metadata.excerpt = content.substring(0, 150) + '...';
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Extract first image
+            const firstImage = extractFirstImage(html);
+            if (firstImage) {
+                metadata.image = firstImage;
+                metadata.imageType = 'image';
+            }
+            
+            // Set defaults
+            metadata.title = metadata.title || `Bài viết ${filename.replace('.html', '')}`;
+            metadata.excerpt = metadata.excerpt || 'Đọc bài viết để khám phá thêm...';
+            metadata.tags = metadata.tags && metadata.tags.length > 0 ? metadata.tags : ['coffee'];
+            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
+            metadata.readTime = metadata.readTime || '5 phút đọc';
+            
+            if (!metadata.image) {
+                metadata.image = getEmojiForTags(metadata.tags);
+                metadata.imageType = 'emoji';
+            }
+            
+            console.log(`✅ Final metadata for ${filename}:`, metadata);
+            return metadata;
+        }
+
+        // AI-powered content analysis for tag extraction
+        function analyzeContentForTags(html, filename) {
+            const tags = [];
+            const content = html.toLowerCase();
+            
+            // Vietnamese coffee terms mapping
+            const termMap = {
+                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip', 'pour over'],
+                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
+                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
+                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
+                'arabica': ['arabica'],
+                'robusta': ['robusta'],
+                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
+                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
+                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
+                'review': ['đánh giá', 'review', 'tasting', 'thử'],
+                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
+                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
+                'latte': ['latte', 'sữa'],
+                'espresso': ['espresso'],
+                'phin': ['phin'],
+                'bảo quản cà phê': ['bảo quản', 'lưu trữ', 'storage'],
+                'rang cà phê': ['rang', 'roast', 'roasting'],
+                'light roast': ['rang nhẹ', 'light roast'],
+                'medium roast': ['rang vừa', 'medium roast'],
+                'dark roast': ['rang đậm', 'dark roast']
+            };
+            
+            // Analyze filename first
+            const filenameLower = filename.toLowerCase();
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                if (terms.some(term => filenameLower.includes(term))) {
+                    tags.push(tag);
+                }
+            });
+            
+            // Analyze content
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                const score = terms.reduce((acc, term) => {
+                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
+                    return acc + matches;
+                }, 0);
+                
+                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag);
+                    }
+                }
+            });
+            
+            // Always include 'coffee' as base tag if no other tags found
+            if (tags.length === 0) {
+                tags.push('coffee');
+            }
+            
+            return tags;
+        }
+
+        // Extract first image URL from HTML content
+        function extractFirstImage(html) {
+            const patterns = [
+                /<meta\s+property="og:image"\s+content="([^"]+)"/i,
+                /<meta\s+name="twitter:image"\s+content="([^"]+)"/i,
+                /<img[^>]+src="([^"]+)"[^>]*>/i,
+                /background(-image)?\s*:\s*url\(['"]?([^'"]+)['"]?\)/i,
+                /\.hero-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i,
+                /\.content-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i
+            ];
+
+            for (const pattern of patterns) {
+                const match = html.match(pattern);
+                if (match) {
+                    let imageUrl = match[1] || match[2] || match[3];
+                    if (imageUrl) {
+                        imageUrl = imageUrl.trim();
+                        if (!imageUrl.startsWith('data:') && imageUrl.length > 10) {
+                            return imageUrl;
+                        }
+                    }
+                }
+            }
+            
+            return null;
+        }
+
+        // Get appropriate emoji for tags
+        function getEmojiForTags(tags) {
+            const emojiMap = {
+                'brewing': '☕',
+                'tips': '💡', 
+                'culture': '🏛️',
+                'origin': '🌱',
+                'review': '⭐',
+                'equipment': '⚙️',
+                'coffee': '☕',
+                'latte': '🥛',
+                'espresso': '🇮🇹',
+                'cold': '🧊',
+                'health': '💪',
+                'specialty': '⭐',
+                'vietnamese': '🇻🇳',
+                'arabica': '🌿',
+                'robusta': '💪',
+                'phin': '☕',
+                'bảo quản cà phê': '📦',
+                'rang cà phê': '🔥',
+                'light roast': '🌅',
+                'medium roast': '☀️',
+                'dark roast': '🌚'
+            };
+            
+            for (const tag of tags) {
+                if (emojiMap[tag.toLowerCase()]) {
+                    return emojiMap[tag.toLowerCase()];
+                }
+            }
+            
+            return '📄';
+        }
+
+        // ====================================================================
+        // 📖 POST LOADING FUNCTIONS
+        // ====================================================================
+
+        // Load metadata from individual post file
+        async function loadPostMetadata(filepath, id) {
+            try {
+                console.log(`📄 Loading post: ${filepath}`);
+                const response = await fetch(filepath);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const html = await response.text();
+                const filename = filepath.split('/').pop();
+                const metadata = parsePostMetadata(html, filename);
+                
+                return {
+                    id: id,
+                    title: metadata.title,
+                    excerpt: metadata.excerpt,
+                    tags: metadata.tags,
+                    date: metadata.date,
+                    readTime: metadata.readTime,
+                    image: metadata.image,
+                    imageType: metadata.imageType,
+                    link: filepath
+                };
+            } catch (error) {
+                console.error(`❌ Error loading ${filepath}:`, error);
+                return null;
+            }
+        }
+
+        // Load posts from manual list
+        async function loadManualPosts() {            
+            if (manualPosts.length === 0) {
+                console.log('📝 No manual posts configured');
+                return [];
+            }
+            
+            const posts = [];
+            console.log(`📚 Loading ${manualPosts.length} manual posts...`);
+            
+            for (let i = 0; i < manualPosts.length; i++) {
+                const filename = manualPosts[i];
+                try {
+                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
+                    if (postData) {
+                        posts.push(postData);
+                        console.log(`✅ Loaded: ${postData.title}`);
+                    }
+                } catch (error) {
+                    console.error(`❌ Failed to load: ${filename}`, error);
+                }
+            }
+            
+            console.log(`📊 Successfully loaded ${posts.length}/${manualPosts.length} posts`);
+            return posts;
+        }
+
+        // ====================================================================
+        // 🎨 RENDERING FUNCTIONS  
+        // ====================================================================
+
+        // Render featured post (first/newest post)
+        function renderFeaturedPost() {
+            if (filteredPosts.length === 0) {
+                DOM.featuredPost.innerHTML = `
+                    <div class="featured-content">
+                        <div class="no-results">
+                            <div class="no-results-icon">📝</div>
+                            <h3>Chưa có bài viết nổi bật</h3>
+                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const post = filteredPosts[0];
+            DOM.featuredPost.innerHTML = `
+                <div class="featured-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                    ${post.imageType === 'image' ? 
+                        `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                        post.image
+                    }
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="featured-date">${formatDate(post.date)}</span>
+                        <span class="featured-reading-time">
+                            📖 ${post.readTime}
+                        </span>
+                    </div>
+                    <h2 class="featured-title">
+                        <a href="${post.link}">${post.title}</a>
+                    </h2>
+                    <p class="featured-excerpt">${post.excerpt}</p>
+                    <div class="featured-tags">
+                        ${post.tags.map(tag => `<span class="featured-tag" data-tag="${tag}">${getDisplayName(tag)}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Add click handlers for featured tags
+            DOM.featuredPost.querySelectorAll('.featured-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const tagValue = tag.dataset.tag;
+                    filterByTag(tagValue);
+                });
+            });
+        }
+
+        // Render posts grid (excluding featured post)
+        function renderPosts() {
+            const startIndex = currentFilter === 'all' && filteredPosts.length > 0 ? 1 : 0; // Skip featured post for "all" filter
+            const postsToShow = filteredPosts.slice(startIndex);
+            
+            // Calculate pagination
+            totalPages = Math.ceil(postsToShow.length / POSTS_PER_PAGE);
+            const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
+            const endIdx = startIdx + POSTS_PER_PAGE;
+            const currentPosts = postsToShow.slice(startIdx, endIdx);
+
+            if (currentPosts.length === 0 && startIndex === 0) {
+                DOM.postsGrid.style.display = 'none';
+                DOM.noResults.style.display = 'block';
+                DOM.pagination.style.display = 'none';
+                return;
+            }
+
+            DOM.postsGrid.style.display = 'grid';
+            DOM.noResults.style.display = 'none';
+
+            DOM.postsGrid.innerHTML = currentPosts.map(post => `
+                <article class="post-card fade-in">
+                    <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                        ${post.imageType === 'image' ? 
+                            `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                            post.image
+                        }
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">${formatDate(post.date)}</span>
+                            <span class="post-reading-time">
+                                📖 ${post.readTime}
+                            </span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="${post.link}">${post.title}</a>
+                        </h2>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        <div class="post-tags">
+                            ${post.tags.map(tag => `<span class="post-tag" data-tag="${tag}">${getDisplayName(tag)}</span>`).join('')}
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+
+            // Add click handlers for post tags
+            DOM.postsGrid.querySelectorAll('.post-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const tagValue = tag.dataset.tag;
+                    filterByTag(tagValue);
+                });
+            });
+
+            // Update pagination
+            updatePagination();
+        }
+
+        // ====================================================================
+        // 🎯 FILTER & SEARCH FUNCTIONS
+        // ====================================================================
+
+        // Generate dynamic filter options
+        function generateFilterOptions() {
+            const allTags = [...new Set(allPosts.flatMap(post => post.tags))];
+            
+            // Keep the "Tất cả" option and add dynamic options
+            DOM.filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
+            
+            allTags.sort().forEach(tag => {
+                const displayName = getDisplayName(tag);
+                const optionElement = document.createElement('div');
+                optionElement.className = 'filter-option';
+                optionElement.setAttribute('data-tag', tag);
+                optionElement.textContent = displayName;
+                DOM.filterOptions.appendChild(optionElement);
+            });
+            
+            // Attach event listeners
+            attachFilterOptionListeners();
+        }
+
+        // Get display name for tags
+        function getDisplayName(tag) {
+            const displayNames = {
+                'brewing': 'Pha chế',
+                'origin': 'Nguồn gốc', 
+                'review': 'Đánh giá',
+                'tips': 'Mẹo hay',
+                'culture': 'Văn hóa',
+                'equipment': 'Dụng cụ',
+                'coffee': 'Cà phê',
+                'vietnamese': 'Việt Nam',
+                'arabica': 'Arabica',
+                'robusta': 'Robusta',
+                'specialty': 'Đặc biệt',
+                'health': 'Sức khỏe',
+                'cold': 'Lạnh',
+                'latte': 'Latte',
+                'espresso': 'Espresso',
+                'phin': 'Phin',
+                'bảo quản cà phê': 'Bảo quản cà phê',
+                'cách bảo quản cà phê': 'Cách bảo quản',
+                'cà phê hạt': 'Cà phê hạt',
+                'cà phê xay': 'Cà phê xay',
+                'hướng dẫn cà phê': 'Hướng dẫn',
+                'rang cà phê': 'Rang cà phê',
+                'các mức rang cà phê': 'Các mức rang',
+                'light roast': 'Light roast',
+                'medium roast': 'Medium roast', 
+                'dark roast': 'Dark roast',
+                'hương vị cà phê': 'Hương vị',
+                'arabica vs robusta': 'Arabica vs Robusta',
+                'sự khác nhau arabica robusta': 'So sánh Arabica Robusta',
+                'phân biệt arabica robusta': 'Phân biệt loại hạt',
+                'cà phê arabica': 'Cà phê Arabica',
+                'cà phê robusta': 'Cà phê Robusta'
+            };
+            
+            return displayNames[tag.toLowerCase()] || tag.charAt(0).toUpperCase() + tag.slice(1);
+        }
+
+        // Attach filter option event listeners
+        function attachFilterOptionListeners() {
+            const filterOptionElements = DOM.filterOptions.querySelectorAll('.filter-option');
+            filterOptionElements.forEach(option => {
+                option.addEventListener('click', () => {
+                    const tagValue = option.dataset.tag;
+                    filterByTag(tagValue);
+                });
+            });
+        }
+
+        // Filter by tag
+        function filterByTag(tag) {
+            // Update UI
+            DOM.filterOptions.querySelectorAll('.filter-option').forEach(o => o.classList.remove('selected'));
+            const selectedOption = DOM.filterOptions.querySelector(`[data-tag="${tag}"]`);
+            if (selectedOption) selectedOption.classList.add('selected');
+            
+            // Reset page and apply filter
+            currentPage = 1;
+            currentFilter = tag;
+            filterPosts();
+        }
+
+        // Handle search with debouncing
+        function handleSearch(query = '') {
+            filterPosts(query.toLowerCase().trim());
+        }
+
+        // Main filter function
+        function filterPosts(searchQuery = '') {
+            showLoading();
+            
+            setTimeout(() => {
+                filteredPosts = allPosts.filter(post => {
+                    const matchesTag = currentFilter === 'all' || post.tags.includes(currentFilter);
+                    const matchesSearch = searchQuery === '' || 
+                        post.title.toLowerCase().includes(searchQuery) ||
+                        post.excerpt.toLowerCase().includes(searchQuery) ||
+                        post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                    
+                    return matchesTag && matchesSearch;
+                });
+
+                // Reset to first page when filtering
+                currentPage = 1;
+                
+                hideLoading();
+                renderFeaturedPost();
+                renderPosts();
+                updateStats();
+            }, 300);
+        }
+
+        // ====================================================================
+        // 📄 PAGINATION FUNCTIONS
+        // ====================================================================
+
+        // Update pagination UI
+        function updatePagination() {
+            if (totalPages <= 1) {
+                DOM.pagination.style.display = 'none';
+                return;
+            }
+
+            DOM.pagination.style.display = 'flex';
+            DOM.prevBtn.disabled = currentPage === 1;
+            DOM.nextBtn.disabled = currentPage === totalPages;
+            
+            DOM.paginationInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
+        }
+
+        // Go to previous page
+        function goToPrevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPosts();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Go to next page  
+        function goToNextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPosts();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ====================================================================
+        // 🎛️ UI UTILITY FUNCTIONS
+        // ====================================================================
+
+        // Update statistics
+        function updateStats() {
+            DOM.totalPostsEl.textContent = allPosts.length;
+            const uniqueTags = [...new Set(allPosts.flatMap(post => post.tags))];
+            DOM.totalTagsEl.textContent = uniqueTags.length;
+        }
+
+        // Show loading state
+        function showLoading() {
+            DOM.loading.style.display = 'block';
+            DOM.postsGrid.style.display = 'none';
+            DOM.noResults.style.display = 'none';
+            DOM.pagination.style.display = 'none';
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            DOM.loading.style.display = 'none';
+        }
+
+        // Format date for display
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 1) return 'Hôm qua';
+            if (diffDays <= 7) return `${diffDays} ngày trước`;
+            if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} tuần trước`;
+            
+            return date.toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Debounce utility function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ====================================================================
+        // 🚀 INITIALIZATION & EVENT LISTENERS
+        // ====================================================================
+
+        // Initialize the blog
+        async function initializePosts() {
+            console.log('🚀 Initializing Anaro Coffee Blog...');
+            showLoading();
+            
+            try {
+                if (AUTO_SCAN) {
+                    console.log('🔍 Auto-scanning posts folder...');
+                    allPosts = await scanPostsFolder();
+                } else {
+                    console.log('📋 Loading manual posts list...');
+                    allPosts = await loadManualPosts();
+                }
+                
+                filteredPosts = [...allPosts];
+                console.log(`✅ Loaded ${allPosts.length} posts total`);
+                
+                hideLoading();
+                generateFilterOptions();
+                renderFeaturedPost();
+                renderPosts();
+                updateStats();
+                
+                console.log('🎉 Blog initialized successfully!');
+                
+            } catch (error) {
+                console.error('❌ Failed to initialize blog:', error);
+                allPosts = [];
+                filteredPosts = [];
+                hideLoading();
+                renderFeaturedPost();
+                renderPosts();
+                updateStats();
+            }
+        }
+
+        // Setup all event listeners
+        function setupEventListeners() {
+            // Search functionality with debouncing
+            const debouncedSearch = debounce(() => {
+                const query = DOM.searchInput.value;
+                handleSearch(query);
+            }, 300);
+            
+            const debouncedMobileSearch = debounce(() => {
+                const query = DOM.mobileSearchInput.value;
+                // Sync search inputs
+                DOM.searchInput.value = query;
+                handleSearch(query);
+            }, 300);
+
+            DOM.searchInput.addEventListener('input', debouncedSearch);
+            DOM.mobileSearchInput.addEventListener('input', debouncedMobileSearch);
+
+            // Refresh functionality
+            DOM.refreshBtn.addEventListener('click', () => {
+                console.log('🔄 Refreshing posts...');
+                initializePosts();
+            });
+            
+            DOM.mobileRefreshBtn.addEventListener('click', () => {
+                console.log('🔄 Refreshing posts (mobile)...');
+                initializePosts();
+            });
+
+            // Pagination
+            DOM.prevBtn.addEventListener('click', goToPrevPage);
+            DOM.nextBtn.addEventListener('click', goToNextPage);
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey || e.metaKey) {
+                    if (e.key === 'k') {
+                        e.preventDefault();
+                        DOM.searchInput.focus();
+                    } else if (e.key === 'r') {
+                        e.preventDefault();
+                        initializePosts();
+                    }
+                }
+            });
+
+            console.log('📱 Event listeners initialized');
+        }
+
+        // ====================================================================
+        // 🎬 MAIN EXECUTION
+        // ====================================================================
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM Content Loaded');
+            setupEventListeners();
+            initializePosts();
+        });
+
+        // Handle errors globally
+        window.addEventListener('error', (e) => {
+            console.error('💥 Global error:', e.error);
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('💥 Unhandled promise rejection:', e.reason);
+        });
+
+        console.log('☕ Anaro Coffee Blog script loaded successfully!');
+    </script>
