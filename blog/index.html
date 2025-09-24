@@ -1,13 +1,11 @@
-<!DOCTYPE html>
 <html lang="vi">
 <head>
-     <!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-P3RFV6Q9QV');
 </script>
     <meta charset="UTF-8">
@@ -26,6 +24,37 @@
             color: #4a3c2a;
             line-height: 1.6;
             min-height: 100vh;
+        }
+
+        /* Mobile Search Header */
+        .mobile-search {
+            display: none;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0d0c0;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0d0c0;
+            border-radius: 25px;
+            background: #faf8f5;
+            color: #4a3c2a;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-search-input:focus {
+            outline: none;
+            border-color: #7a5c3f;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(122, 92, 63, 0.1);
         }
 
         /* Header */
@@ -111,11 +140,25 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 120px;
         }
 
         .page-title {
             text-align: center;
             margin-bottom: 40px;
+            grid-column: 1 / -1;
         }
 
         .page-title h1 {
@@ -134,10 +177,135 @@
             margin: 0 auto;
         }
 
-        /* Filter Navigation with Dropdown */
-        .filter-nav {
+        /* Featured Post Spotlight */
+        .featured-section {
             margin-bottom: 40px;
-            text-align: center;
+        }
+
+        .featured-label {
+            background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.3);
+        }
+
+        .featured-post {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #f0ece6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .featured-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: #7a5c3f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .featured-date {
+            color: #8b6b47;
+            font-weight: 500;
+        }
+
+        .featured-reading-time {
+            color: #8b6b47;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .featured-title {
+            color: #4a3c2a;
+            font-weight: 700;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .featured-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .featured-title a:hover {
+            color: #7a5c3f;
+        }
+
+        .featured-excerpt {
+            color: #6b5b4d;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .featured-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .featured-tag {
+            background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: all 0.3s ease;
+        }
+
+        .featured-tag:hover {
+            background: linear-gradient(135deg, #6b4d35 0%, #7a5c3f 100%);
+            transform: translateY(-2px);
+        }
+
+        /* Sidebar Filter Navigation */
+        .filter-nav {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e0d0c0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .filter-nav h3 {
@@ -147,94 +315,24 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .filter-container {
-            position: relative;
-            display: inline-block;
-            min-width: 300px;
-        }
-
-        .filter-dropdown {
-            background: white;
-            border: 2px solid #e0d0c0;
-            border-radius: 12px;
-            padding: 12px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            color: #4a3c2a;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .filter-dropdown:hover {
-            border-color: #7a5c3f;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.2);
-        }
-
-        .filter-dropdown.active {
-            border-color: #7a5c3f;
-            background: #f8f5f0;
-        }
-
-        .dropdown-arrow {
-            color: #7a5c3f;
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-        }
-
-        .filter-dropdown.active .dropdown-arrow {
-            transform: rotate(180deg);
+            text-align: center;
         }
 
         .filter-options {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 2px solid #7a5c3f;
-            border-top: none;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
-        }
-
-        .filter-options.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .filter-option {
-            padding: 12px 20px;
+            padding: 12px 16px;
             cursor: pointer;
             color: #4a3c2a;
             font-weight: 500;
             text-transform: capitalize;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .filter-option:last-child {
-            border-bottom: none;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            border: 2px solid transparent;
         }
 
         .filter-option:hover {
@@ -246,6 +344,7 @@
         .filter-option.selected {
             background: #7a5c3f;
             color: white;
+            border-color: #7a5c3f;
         }
 
         .filter-option.selected:hover {
@@ -253,10 +352,19 @@
         }
 
         /* Posts Grid */
+        .posts-section h2 {
+            color: #7a5c3f;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
@@ -264,25 +372,25 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #f0ece6;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .post-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
 
         .post-image {
             width: 100%;
-            height: 220px;
+            height: 180px;
             background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3em;
+            font-size: 2.5em;
             color: #7a5c3f;
             position: relative;
             overflow: hidden;
@@ -292,7 +400,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0;
         }
 
         .post-image.emoji {
@@ -300,14 +407,14 @@
         }
 
         .post-content {
-            padding: 25px;
+            padding: 20px;
         }
 
         .post-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .post-date {
@@ -327,8 +434,8 @@
         .post-title {
             color: #4a3c2a;
             font-weight: 600;
-            font-size: 1.4em;
-            margin-bottom: 12px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
             line-height: 1.3;
         }
 
@@ -344,23 +451,23 @@
 
         .post-excerpt {
             color: #6b5b4d;
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 15px;
         }
 
         .post-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .post-tag {
             background: linear-gradient(135deg, #7a5c3f 0%, #8b6b47 100%);
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
             font-weight: 500;
             text-transform: capitalize;
             transition: all 0.3s ease;
@@ -369,6 +476,50 @@
         .post-tag:hover {
             background: linear-gradient(135deg, #6b4d35 0%, #7a5c3f 100%);
             transform: translateY(-1px);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .pagination-btn {
+            background: white;
+            color: #7a5c3f;
+            border: 2px solid #e0d0c0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .pagination-btn:hover {
+            background: #7a5c3f;
+            color: white;
+            border-color: #7a5c3f;
+        }
+
+        .pagination-btn.active {
+            background: #7a5c3f;
+            color: white;
+            border-color: #7a5c3f;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            color: #8b6b47;
+            font-weight: 500;
         }
 
         /* No Results */
@@ -404,6 +555,7 @@
             margin-bottom: 30px;
             text-align: center;
             border: 1px solid #e0d0c0;
+            grid-column: 1 / -1;
         }
 
         .stats-content {
@@ -492,16 +644,35 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
+            .header {
+                display: none;
             }
 
-            .search-container {
-                margin: 0;
-                max-width: 100%;
+            .mobile-search {
+                display: block;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+                gap: 30px;
+            }
+
+            .sidebar {
+                order: -1;
+                position: static;
+            }
+
+            .filter-nav {
+                padding: 20px;
+            }
+
+            .filter-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 8px;
             }
 
             .posts-grid {
@@ -509,14 +680,21 @@
                 gap: 20px;
             }
 
-            .filter-container {
-                min-width: 250px;
-                width: 100%;
-                max-width: 400px;
+            .featured-image {
+                height: 220px;
+                font-size: 3em;
             }
-            
-            .filter-options {
-                max-height: 200px;
+
+            .featured-content {
+                padding: 20px;
+            }
+
+            .featured-title {
+                font-size: 1.5em;
+            }
+
+            .page-title h1 {
+                font-size: 2em;
             }
 
             .stats-content {
@@ -527,24 +705,39 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .pagination {
+                gap: 10px;
+            }
+
+            .pagination-btn {
+                padding: 8px 12px;
+                min-width: 40px;
+            }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 20px 15px;
+                padding: 15px 10px;
             }
 
-            .page-title h1 {
-                font-size: 2em;
+            .featured-content {
+                padding: 15px;
             }
 
             .post-content {
-                padding: 20px;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Search Header -->
+    <div class="mobile-search">
+        <input type="text" class="mobile-search-input" id="mobileSearchInput" placeholder="Tìm kiếm bài viết...">
+    </div>
+
+    <!-- Desktop Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">
@@ -566,10 +759,10 @@
         <div class="stats">
             <div class="stats-content">
                 <div class="stat-item">
-                    📝 <span class="stat-number" id="totalPosts">0</span> Bài viết
+                    📝 <span class="stat-number" id="totalPosts">6</span> Bài viết
                 </div>
                 <div class="stat-item">
-                    🏷️ <span class="stat-number" id="totalTags">0</span> Chủ đề
+                    🏷️ <span class="stat-number" id="totalTags">29</span> Chủ đề
                 </div>
                 <div class="stat-item">
                     📅 Cập nhật <span class="stat-number">Hôm nay</span>
@@ -577,33 +770,52 @@
             </div>
         </div>
 
-        <div class="filter-nav">
-            <h3>🎯 Lọc theo chủ đề</h3>
-            <div class="filter-container">
-                <div class="filter-dropdown" id="filterDropdown">
-                    <span id="selectedFilter">Tất cả</span>
-                    <span class="dropdown-arrow">▼</span>
+        <div class="main-content">
+            <!-- Featured Post Section -->
+            <div class="featured-section">
+                <div class="featured-label">🌟 Bài Viết Mới Nhất</div>
+                <div class="featured-post" id="featuredPost">
+                    <!-- Featured post will be inserted here -->
                 </div>
-                <div class="filter-options" id="filterOptions">
-                    <div class="filter-option selected" data-tag="all">Tất cả</div>
-                    <!-- Dynamic filter options will be added here -->
+            </div>
+
+            <!-- Other Posts Section -->
+            <div class="posts-section">
+                <h2>📚 Các Bài Viết Khác</h2>
+                
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
+                </div>
+
+                <div class="posts-grid" id="postsGrid">
+                    <!-- Posts will be inserted here -->
+                </div>
+
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>Không tìm thấy bài viết</h3>
+                    <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button class="pagination-btn" id="prevBtn">‹ Trước</button>
+                    <div class="pagination-info" id="paginationInfo"></div>
+                    <button class="pagination-btn" id="nextBtn">Sau ›</button>
                 </div>
             </div>
         </div>
 
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
-        </div>
-
-        <div class="posts-grid" id="postsGrid">
-            <!-- Posts will be dynamically loaded here -->
-        </div>
-
-        <div class="no-results" id="noResults" style="display: none;">
-            <div class="no-results-icon">🔍</div>
-            <h3>Không tìm thấy bài viết</h3>
-            <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="filter-nav">
+                <h3>🎯 Lọc theo chủ đề</h3>
+                <div class="filter-options" id="filterOptions">
+                    <div class="filter-option selected" data-tag="all">Tất cả</div>
+                    <!-- Dynamic options will be added here -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -615,66 +827,61 @@
                 <a href="#rss">RSS</a>
                 <a href="#github">GitHub</a>
             </div>
-            <p>&copy; 2024 Anaro Coffee Collection. Made with ☕ and ❤️</p>
+            <p>© 2024 Anaro Coffee Collection. Made with ☕ and ❤️</p>
         </div>
     </footer>
 
     <script>
-        // ====================================================================
-        // 🔧 CONFIGURATION - CHỈNH SỬA PHẦN NÀY
-        // ====================================================================
+        // Configuration
+        const POSTS_FOLDER = './posts/';
+        const AUTO_SCAN = false;
+        const POSTS_PER_PAGE = 5;
         
-        const POSTS_FOLDER = './posts/';    // Đường dẫn đến thư mục chứa posts
-        const AUTO_SCAN = false;            // true: tự động quét, false: danh sách thủ công
-        
-        // 📝 MANUAL POST LIST - Danh sách các file posts (khi AUTO_SCAN = false)
         const manualPosts = [
-            'bai-viet-dau-tien.html',
-            'cach-pha-ca-phe-phin.html',
+            'cach-chon-hat-ca-phe-danh-cho-pha-may.html',
+            'cac-muc-rang-ca-phe.html',
             'cach-bao-quan-ca-phe.html',
-            'arabica-vs-robusta.html',
-             'arabica-robusta-blog.html',
-             'cac-muc-rang-ca-phe.html',
-             'cach-chon-hat-ca-phe-danh-cho-pha-may.html',
-            // Thêm file posts khác ở đây...
+            'arabica-robusta-blog.html',
+            'cach-pha-ca-phe-phin.html',
+            'bai-viet-dau-tien.html',
         ];
-        
-        // ====================================================================
-        // ⚠️  KHÔNG CHỈNH SỬA PHẦN DƯỚI NÀY (Trừ khi bạn hiểu code)
-        // ====================================================================
 
         let allPosts = [];
         let filteredPosts = [];
         let currentFilter = 'all';
+        let currentPage = 1;
+        let totalPages = 1;
 
         // DOM Elements
+        const featuredPost = document.getElementById('featuredPost');
         const postsGrid = document.getElementById('postsGrid');
         const searchInput = document.getElementById('searchInput');
-        const filterDropdown = document.getElementById('filterDropdown');
+        const mobileSearchInput = document.getElementById('mobileSearchInput');
         const filterOptions = document.getElementById('filterOptions');
-        const selectedFilterEl = document.getElementById('selectedFilter');
         const noResults = document.getElementById('noResults');
         const totalPostsEl = document.getElementById('totalPosts');
         const totalTagsEl = document.getElementById('totalTags');
         const loading = document.getElementById('loading');
         const refreshBtn = document.getElementById('refreshBtn');
+        const pagination = document.getElementById('pagination');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const paginationInfo = document.getElementById('paginationInfo');
 
-        // Enhanced metadata parser with better pattern matching
+        // Enhanced metadata parser
         function parsePostMetadata(html, filename) {
             const metadata = {};
             
-            // Method 1: HTML Comments (<!-- metadata -->)
+            // Parse from HTML comments, meta tags, etc. (same as before)
             const commentPatterns = [
                 /<!--\s*([\s\S]*?)\s*-->/g,
-                /\/\*\s*([\s\S]*?)\s*\*\//g // CSS comments
+                /\/\*\s*([\s\S]*?)\s*\*\//g
             ];
             
             for (const pattern of commentPatterns) {
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
                     const content = match[1];
-                    
-                    // Parse key-value pairs from comment
                     const lines = content.split('\n');
                     for (const line of lines) {
                         const keyValue = line.match(/(\w+):\s*(.+)/);
@@ -698,14 +905,12 @@
                 }
             }
             
-            // Method 2: Meta tags
+            // Meta tags parsing
             const metaPatterns = [
                 { pattern: /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i, key: 'tags' },
                 { pattern: /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
                 { pattern: /<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i, key: 'title' },
                 { pattern: /<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
-                { pattern: /<meta\s+name=["']tags["']\s+content=["']([^"']+)["']/i, key: 'tags' },
-                { pattern: /<meta\s+name=["']post-tags["']\s+content=["']([^"']+)["']/i, key: 'tags' }
             ];
             
             for (const { pattern, key } of metaPatterns) {
@@ -719,472 +924,11 @@
                 }
             }
             
-            // Method 3: JSON-LD structured data
-            const jsonLdMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
-            if (jsonLdMatch) {
-                try {
-                    const jsonData = JSON.parse(jsonLdMatch[1]);
-                    
-                    if (jsonData.keywords) {
-                        if (typeof jsonData.keywords === 'string') {
-                            metadata.tags = jsonData.keywords.split(',').map(tag => tag.trim().toLowerCase());
-                        } else if (Array.isArray(jsonData.keywords)) {
-                            metadata.tags = jsonData.keywords.map(tag => tag.toLowerCase());
-                        }
-                    }
-                    
-                    if (jsonData.headline && !metadata.title) metadata.title = jsonData.headline;
-                    if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
-                    if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
-                } catch (e) {
-                    // Ignore JSON parse errors
-                }
-            }
-            
-            // Method 4: Data attributes or special divs
-            const dataPatterns = [
-                /data-tags=["']([^"']+)["']/i,
-                /<div\s+class=["']post-tags["'][^>]*>([^<]*)</i,
-                /<span\s+class=["']tags["'][^>]*>([^<]*)</i
-            ];
-            
-            for (const pattern of dataPatterns) {
-                const match = html.match(pattern);
-                if (match) {
-                    metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
-                    break;
-                }
-            }
-            
-            // Method 5: Fallback - analyze content for common Vietnamese coffee terms
+            // Fallback analysis
             if (!metadata.tags || metadata.tags.length === 0) {
                 metadata.tags = analyzeContentForTags(html, filename);
             }
             
-            // Extract other metadata with fallbacks
+            // Extract other metadata
             if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-                if (titleMatch) metadata.title = titleMatch[1].trim();
-            }
-            
-            if (!metadata.excerpt) {
-                // Try to extract first paragraph
-                const paragraphMatch = html.match(/<p[^>]*>([^<]+)<\/p>/i);
-                if (paragraphMatch) {
-                    metadata.excerpt = paragraphMatch[1].trim().substring(0, 150) + '...';
-                }
-            }
-            
-            // Extract first image
-            const firstImage = extractFirstImage(html);
-            if (firstImage) {
-                metadata.image = firstImage;
-                metadata.imageType = 'image';
-            }
-            
-            // Set defaults
-            metadata.title = metadata.title || `Bài viết ${filename}`;
-            metadata.excerpt = metadata.excerpt || 'Không có mô tả';
-            metadata.tags = metadata.tags || ['coffee'];
-            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
-            metadata.readTime = metadata.readTime || '5 phút đọc';
-            
-            if (!metadata.image) {
-                metadata.image = getEmojiForTags(metadata.tags);
-                metadata.imageType = 'emoji';
-            }
-            
-            return metadata;
-        }
-
-        // AI-powered content analysis for tag extraction
-        function analyzeContentForTags(html, filename) {
-            const tags = [];
-            const content = html.toLowerCase();
-            
-            // Vietnamese coffee terms mapping
-            const termMap = {
-                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip'],
-                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
-                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
-                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
-                'arabica': ['arabica'],
-                'robusta': ['robusta'],
-                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
-                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
-                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
-                'review': ['đánh giá', 'review', 'tasting', 'thử'],
-                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
-                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
-                'latte': ['latte', 'sữa'],
-                'espresso': ['espresso']
-            };
-            
-            // Analyze filename
-            const filenameLower = filename.toLowerCase();
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                if (terms.some(term => filenameLower.includes(term))) {
-                    tags.push(tag);
-                }
-            });
-            
-            // Analyze content
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                const score = terms.reduce((acc, term) => {
-                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
-                    return acc + matches;
-                }, 0);
-                
-                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
-                    if (!tags.includes(tag)) {
-                        tags.push(tag);
-                    }
-                }
-            });
-            
-            // Always include 'coffee' as base tag if no other tags found
-            if (tags.length === 0) {
-                tags.push('coffee');
-            }
-            
-            return tags;
-        }
-
-        // Extract first image URL from HTML content
-        function extractFirstImage(html) {
-            const patterns = [
-                /<meta\s+property="og:image"\s+content="([^"]+)"/i,
-                /<meta\s+name="twitter:image"\s+content="([^"]+)"/i,
-                /<img[^>]+src="([^"]+)"[^>]*>/i,
-                /background(-image)?\s*:\s*url\(['"]?([^'"]+)['"]?\)/i,
-                /\.hero-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i,
-                /\.content-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i
-            ];
-
-            for (const pattern of patterns) {
-                const match = html.match(pattern);
-                if (match) {
-                    let imageUrl = match[1] || match[2] || match[3];
-                    if (imageUrl) {
-                        imageUrl = imageUrl.trim();
-                        if (!imageUrl.startsWith('data:') && imageUrl.length > 10) {
-                            return imageUrl;
-                        }
-                    }
-                }
-            }
-            
-            return null;
-        }
-
-        // Get appropriate emoji for tags
-        function getEmojiForTags(tags) {
-            const emojiMap = {
-                'brewing': '☕',
-                'tips': '💡', 
-                'culture': '🏛️',
-                'origin': '🌱',
-                'review': '⭐',
-                'equipment': '⚙️',
-                'coffee': '☕',
-                'latte': '🥛',
-                'espresso': '🇮🇹',
-                'cold': '🧊',
-                'health': '💪',
-                'specialty': '⭐',
-                'vietnamese': '🇻🇳',
-                'arabica': '🌿',
-                'robusta': '💪'
-            };
-            
-            for (const tag of tags) {
-                if (emojiMap[tag.toLowerCase()]) {
-                    return emojiMap[tag.toLowerCase()];
-                }
-            }
-            
-            return '📄';
-        }
-
-        // Load metadata from individual post file
-        async function loadPostMetadata(filepath, id) {
-            try {
-                const response = await fetch(filepath);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
-                const html = await response.text();
-                const filename = filepath.split('/').pop();
-                const metadata = parsePostMetadata(html, filename);
-                
-                return {
-                    id: id,
-                    title: metadata.title,
-                    excerpt: metadata.excerpt,
-                    tags: metadata.tags,
-                    date: metadata.date,
-                    readTime: metadata.readTime,
-                    image: metadata.image,
-                    imageType: metadata.imageType,
-                    link: filepath
-                };
-            } catch (error) {
-                throw new Error(`Lỗi khi đọc ${filepath}: ${error.message}`);
-            }
-        }
-
-        // Load posts from manual list
-        async function loadManualPosts() {            
-            if (manualPosts.length === 0) {
-                return [];
-            }
-            
-            const posts = [];
-            
-            for (let i = 0; i < manualPosts.length; i++) {
-                const filename = manualPosts[i];
-                try {
-                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
-                    if (postData) {
-                        posts.push(postData);
-                    }
-                } catch (error) {
-                    // Skip failed posts
-                }
-            }
-            
-            return posts;
-        }
-
-        // Scan posts folder automatically
-        async function scanPostsFolder() {
-            return await loadManualPosts();
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            initializePosts();
-            setupEventListeners();
-        });
-
-        // Initialize posts based on configuration
-        async function initializePosts() {
-            showLoading();
-            
-            try {
-                if (AUTO_SCAN) {
-                    allPosts = await scanPostsFolder();
-                } else {
-                    allPosts = await loadManualPosts();
-                }
-                
-                filteredPosts = [...allPosts];
-                hideLoading();
-                generateFilterOptions();
-                renderPosts();
-                updateStats();
-                
-            } catch (error) {
-                allPosts = [];
-                filteredPosts = [];
-                hideLoading();
-                renderPosts();
-                updateStats();
-            }
-        }
-
-        // Generate dynamic filter options based on available tags
-        function generateFilterOptions() {
-            const allTags = [...new Set(allPosts.flatMap(post => post.tags))];
-            
-            // Keep the "Tất cả" option and add dynamic options
-            filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
-            
-            // Map Vietnamese display names
-            const tagDisplayNames = {
-                'brewing': 'Pha chế',
-                'origin': 'Nguồn gốc', 
-                'review': 'Đánh giá',
-                'tips': 'Mẹo hay',
-                'culture': 'Văn hóa',
-                'equipment': 'Dụng cụ',
-                'coffee': 'Cà phê',
-                'vietnamese': 'Việt Nam',
-                'arabica': 'Arabica',
-                'robusta': 'Robusta',
-                'specialty': 'Đặc biệt',
-                'health': 'Sức khỏe',
-                'cold': 'Lạnh',
-                'latte': 'Latte',
-                'espresso': 'Espresso'
-            };
-            
-            allTags.sort().forEach(tag => {
-                const displayName = tagDisplayNames[tag] || tag.charAt(0).toUpperCase() + tag.slice(1);
-                const optionElement = document.createElement('div');
-                optionElement.className = 'filter-option';
-                optionElement.setAttribute('data-tag', tag);
-                optionElement.textContent = displayName;
-                filterOptions.appendChild(optionElement);
-            });
-            
-            // Re-attach event listeners to new options
-            attachFilterOptionListeners();
-        }
-
-        function attachFilterOptionListeners() {
-            const filterOptionElements = document.querySelectorAll('.filter-option');
-            filterOptionElements.forEach(option => {
-                option.addEventListener('click', () => {
-                    // Update selected option
-                    filterOptionElements.forEach(o => o.classList.remove('selected'));
-                    option.classList.add('selected');
-                    
-                    // Update dropdown display
-                    selectedFilterEl.textContent = option.textContent;
-                    
-                    // Hide dropdown
-                    filterOptions.classList.remove('show');
-                    filterDropdown.classList.remove('active');
-                    
-                    // Filter posts
-                    currentFilter = option.dataset.tag;
-                    filterPosts();
-                });
-            });
-        }
-
-        function setupEventListeners() {
-            // Search functionality
-            searchInput.addEventListener('input', debounce(handleSearch, 300));
-
-            // Dropdown toggle
-            filterDropdown.addEventListener('click', () => {
-                filterDropdown.classList.toggle('active');
-                filterOptions.classList.toggle('show');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.filter-container')) {
-                    filterDropdown.classList.remove('active');
-                    filterOptions.classList.remove('show');
-                }
-            });
-
-            // Refresh button
-            refreshBtn.addEventListener('click', () => {
-                initializePosts();
-            });
-        }
-
-        function handleSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            filterPosts(query);
-        }
-
-        function filterPosts(searchQuery = '') {
-            showLoading();
-            
-            setTimeout(() => {
-                filteredPosts = allPosts.filter(post => {
-                    const matchesTag = currentFilter === 'all' || post.tags.includes(currentFilter);
-                    const matchesSearch = searchQuery === '' || 
-                        post.title.toLowerCase().includes(searchQuery) ||
-                        post.excerpt.toLowerCase().includes(searchQuery) ||
-                        post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
-                    
-                    return matchesTag && matchesSearch;
-                });
-
-                hideLoading();
-                renderPosts();
-                updateStats();
-            }, 300);
-        }
-
-        function renderPosts() {
-            if (filteredPosts.length === 0) {
-                postsGrid.style.display = 'none';
-                noResults.style.display = 'block';
-                return;
-            }
-
-            postsGrid.style.display = 'grid';
-            noResults.style.display = 'none';
-
-            postsGrid.innerHTML = filteredPosts.map(post => `
-                <article class="post-card fade-in">
-                    <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
-                        ${post.imageType === 'image' ? 
-                            `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
-                            post.image
-                        }
-                    </div>
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span class="post-date">${formatDate(post.date)}</span>
-                            <span class="post-reading-time">
-                                📖 ${post.readTime}
-                            </span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="${post.link}">${post.title}</a>
-                        </h2>
-                        <p class="post-excerpt">${post.excerpt}</p>
-                        <div class="post-tags">
-                            ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                </article>
-            `).join('');
-        }
-
-        function updateStats() {
-            totalPostsEl.textContent = filteredPosts.length;
-            const uniqueTags = [...new Set(allPosts.flatMap(post => post.tags))];
-            totalTagsEl.textContent = uniqueTags.length;
-        }
-
-        function showLoading() {
-            loading.style.display = 'block';
-            postsGrid.style.display = 'none';
-            noResults.style.display = 'none';
-        }
-
-        function hideLoading() {
-            loading.style.display = 'none';
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            if (diffDays === 1) return 'Hôm qua';
-            if (diffDays <= 7) return `${diffDays} ngày trước`;
-            if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} tuần trước`;
-            
-            return date.toLocaleDateString('vi-VN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-    </script>
-</body>
-</html>
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/
