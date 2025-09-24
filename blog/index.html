@@ -868,20 +868,22 @@
         const nextBtn = document.getElementById('nextBtn');
         const paginationInfo = document.getElementById('paginationInfo');
 
-        // Enhanced metadata parser
+        // Enhanced metadata parser with better pattern matching
         function parsePostMetadata(html, filename) {
             const metadata = {};
             
-            // Parse from HTML comments, meta tags, etc. (same as before)
+            // Method 1: HTML Comments (<!-- metadata -->)
             const commentPatterns = [
                 /<!--\s*([\s\S]*?)\s*-->/g,
-                /\/\*\s*([\s\S]*?)\s*\*\//g
+                /\/\*\s*([\s\S]*?)\s*\*\//g // CSS comments
             ];
             
             for (const pattern of commentPatterns) {
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
                     const content = match[1];
+                    
+                    // Parse key-value pairs from comment
                     const lines = content.split('\n');
                     for (const line of lines) {
                         const keyValue = line.match(/(\w+):\s*(.+)/);
@@ -905,12 +907,14 @@
                 }
             }
             
-            // Meta tags parsing
+            // Method 2: Meta tags
             const metaPatterns = [
                 { pattern: /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i, key: 'tags' },
                 { pattern: /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
                 { pattern: /<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i, key: 'title' },
                 { pattern: /<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
+                { pattern: /<meta\s+name=["']tags["']\s+content=["']([^"']+)["']/i, key: 'tags' },
+                { pattern: /<meta\s+name=["']post-tags["']\s+content=["']([^"']+)["']/i, key: 'tags' }
             ];
             
             for (const { pattern, key } of metaPatterns) {
@@ -924,7 +928,44 @@
                 }
             }
             
-            // Fallback analysis
+            // Method 3: JSON-LD structured data
+            const jsonLdMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
+            if (jsonLdMatch) {
+                try {
+                    const jsonData = JSON.parse(jsonLdMatch[1]);
+                    
+                    if (jsonData.keywords) {
+                        if (typeof jsonData.keywords === 'string') {
+                            metadata.tags = jsonData.keywords.split(',').map(tag => tag.trim().toLowerCase());
+                        } else if (Array.isArray(jsonData.keywords)) {
+                            metadata.tags = jsonData.keywords.map(tag => tag.toLowerCase());
+                        }
+                    }
+                    
+                    if (jsonData.headline && !metadata.title) metadata.title = jsonData.headline;
+                    if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
+                    if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
+                } catch (e) {
+                    // Ignore JSON parse errors
+                }
+            }
+            
+            // Method 4: Data attributes or special divs
+            const dataPatterns = [
+                /data-tags=["']([^"']+)["']/i,
+                /<div\s+class=["']post-tags["'][^>]*>([^<]*)</i,
+                /<span\s+class=["']tags["'][^>]*>([^<]*)</i
+            ];
+            
+            for (const pattern of dataPatterns) {
+                const match = html.match(pattern);
+                if (match) {
+                    metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
+                    break;
+                }
+            }
+            
+            // Method 5: Fallback - analyze content for common Vietnamese coffee terms
             if (!metadata.tags || metadata.tags.length === 0) {
                 metadata.tags = analyzeContentForTags(html, filename);
             }
