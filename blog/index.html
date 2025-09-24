@@ -165,25 +165,15 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 40px;
-            align-items: start;
         }
 
         .main-content {
             min-width: 0;
         }
 
-        .sidebar {
-            position: sticky;
-            top: 120px;
-        }
-
         .page-title {
             text-align: center;
             margin-bottom: 40px;
-            grid-column: 1 / -1;
         }
 
         .page-title h1 {
@@ -325,13 +315,10 @@
             transform: translateY(-2px);
         }
 
-        /* Sidebar Filter Navigation */
+        /* Filter Navigation with Dropdown */
         .filter-nav {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #e0d0c0;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
         }
 
         .filter-nav h3 {
@@ -341,24 +328,94 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-align: center;
+        }
+
+        .filter-container {
+            position: relative;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .filter-dropdown {
+            background: white;
+            border: 2px solid #e0d0c0;
+            border-radius: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #4a3c2a;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-dropdown:hover {
+            border-color: #7a5c3f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(122, 92, 63, 0.2);
+        }
+
+        .filter-dropdown.active {
+            border-color: #7a5c3f;
+            background: #f8f5f0;
+        }
+
+        .dropdown-arrow {
+            color: #7a5c3f;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         .filter-options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #7a5c3f;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .filter-options.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .filter-option {
-            padding: 12px 16px;
+            padding: 12px 20px;
             cursor: pointer;
             color: #4a3c2a;
             font-weight: 500;
             text-transform: capitalize;
-            transition: all 0.3s ease;
-            border-radius: 10px;
-            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
         }
 
         .filter-option:hover {
@@ -370,12 +427,202 @@
         .filter-option.selected {
             background: #7a5c3f;
             color: white;
-            border-color: #7a5c3f;
         }
 
         .filter-option.selected:hover {
             background: #6b4d35;
-            transform: translateX(5px);
+        }
+
+        /* Shopee Products Widget - Enhanced */
+        .shopee-widget {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e0d0c0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .shopee-widget h3 {
+            color: #7a5c3f;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .shopee-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .shopee-product {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #f0ece6;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .shopee-product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: #ff6b35;
+        }
+
+        .shopee-product-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #f8f5f0 0%, #e0d0c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #7a5c3f;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shopee-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .shopee-product:hover .shopee-product-image img {
+            transform: scale(1.15);
+        }
+
+        .shopee-product-info {
+            padding: 20px;
+        }
+
+        .shopee-product-name {
+            font-size: 1em;
+            font-weight: 600;
+            color: #4a3c2a;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.6em;
+        }
+
+        .shopee-product-price {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .shopee-product-old-price {
+            color: #999;
+            font-size: 0.9em;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .shopee-cta-button {
+            background: linear-gradient(135deg, #ff6b35 0%, #e74c3c 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .shopee-cta-button:hover {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .shopee-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, #ff6b35, #f39c12);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .shopee-discount {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 700;
+        }
+
+        /* Mobile Responsive for Shopee */
+        @media (max-width: 768px) {
+            .shopee-products {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .shopee-product-image {
+                height: 200px;
+                font-size: 4em;
+            }
+
+            .shopee-widget {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .shopee-widget h3 {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+
+            .shopee-product-info {
+                padding: 15px;
+            }
+
+            .shopee-product-name {
+                font-size: 1.1em;
+            }
+
+            .shopee-product-price {
+                font-size: 1.3em;
+            }
+
+            .shopee-cta-button {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
         }
 
         /* Posts Grid */
@@ -587,7 +834,6 @@
             margin-bottom: 30px;
             text-align: center;
             border: 1px solid #e0d0c0;
-            grid-column: 1 / -1;
         }
 
         .stats-content {
@@ -687,30 +933,27 @@
             }
 
             .container {
-                grid-template-columns: 1fr;
                 padding: 20px 15px;
-                gap: 30px;
             }
 
-            .sidebar {
-                order: -1;
-                position: static;
-                top: auto;
+            .filter-container {
+                min-width: 250px;
+                width: 100%;
+                max-width: 400px;
             }
-
-            .filter-nav {
-                padding: 20px;
-            }
-
+            
             .filter-options {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 8px;
+                max-height: 200px;
             }
 
             .posts-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+
+            .shopee-products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
 
             .featured-image {
@@ -816,15 +1059,38 @@
             </div>
         </div>
 
-        <div class="main-content">
-            <!-- Featured Post Section -->
-            <div class="featured-section">
-                <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
-                <div class="featured-post" id="featuredPost">
-                    <!-- Featured post will be inserted here -->
+        <!-- Featured Post Section -->
+        <div class="featured-section">
+            <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
+            <div class="featured-post" id="featuredPost">
+                <!-- Featured post will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Shopee Products Widget -->
+        <div class="shopee-widget" id="shopeeWidget" style="display: none;">
+            <h3>🛒 Sản Phẩm Từ Bài Viết</h3>
+            <div class="shopee-products" id="shopeeProducts">
+                <!-- Products will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Filter Navigation with Dropdown -->
+        <div class="filter-nav">
+            <h3>🎯 Lọc theo chủ đề</h3>
+            <div class="filter-container">
+                <div class="filter-dropdown" id="filterDropdown">
+                    <span id="selectedFilter">Tất cả</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="filter-options" id="filterOptions">
+                    <div class="filter-option selected" data-tag="all">Tất cả</div>
+                    <!-- Dynamic options will be added here -->
                 </div>
             </div>
+        </div>
 
+        <div class="main-content">
             <!-- Other Posts Section -->
             <div class="posts-section">
                 <h2>📚 Các Bài Viết Khác</h2>
@@ -852,17 +1118,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="filter-nav">
-                <h3>🎯 Lọc theo chủ đề</h3>
-                <div class="filter-options" id="filterOptions">
-                    <div class="filter-option selected" data-tag="all">Tất cả</div>
-                    <!-- Dynamic options will be added here -->
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="footer">
@@ -878,6 +1133,221 @@
     </footer>
 
     <script>
+        // ====================================================================
+        // 🔒 SECURITY UTILITIES
+        // ====================================================================
+
+        // HTML escape function to prevent XSS
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Validate image URL
+        function isValidImageUrl(url) {
+            if (!url || typeof url !== 'string') return false;
+            
+            try {
+                const urlObj = new URL(url);
+                return (urlObj.protocol === 'https:' || urlObj.protocol === 'http:') &&
+                       urlObj.hostname &&
+                       !url.startsWith('javascript:') &&
+                       !url.startsWith('data:');
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Sanitize and validate URL
+        function sanitizeUrl(url) {
+            if (!url || typeof url !== 'string') return '';
+            
+            try {
+                const urlObj = new URL(url);
+                if (urlObj.protocol === 'https:' || urlObj.protocol === 'http:') {
+                    return url;
+                }
+            } catch (e) {
+                // Invalid URL
+            }
+            return '';
+        }
+
+        // ====================================================================
+        // 🛒 SHOPEE EXTRACTION FUNCTIONS (ENHANCED)
+        // ====================================================================
+
+        // Extract Shopee links and product info from HTML content
+        function extractShopeeProducts(html, postTitle) {
+            const products = [];
+            
+            if (!html || !postTitle) return products;
+            
+            // Patterns to find Shopee links
+            const shopeeLinkPatterns = [
+                /https?:\/\/(?:www\.)?shopee\.vn\/[^\s"'<>)]+/gi,
+                /https?:\/\/(?:www\.)?shp\.ee\/[^\s"'<>)]+/gi,
+                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shopee\.vn\/[^"']+)["'][^>]*>/gi,
+                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shp\.ee\/[^"']+)["'][^>]*>/gi
+            ];
+            
+            const foundLinks = new Set();
+            
+            // Extract all Shopee links
+            for (const pattern of shopeeLinkPatterns) {
+                let match;
+                while ((match = pattern.exec(html)) !== null) {
+                    const link = match[1] || match[0];
+                    const sanitizedLink = sanitizeUrl(link);
+                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
+                        foundLinks.add(sanitizedLink);
+                    }
+                }
+            }
+            
+            // If no links found, return empty
+            if (foundLinks.size === 0) {
+                return [];
+            }
+            
+            // Extract product images from the post
+            const images = extractProductImages(html);
+            
+            // Create products from found links
+            Array.from(foundLinks).forEach((link, index) => {
+                // Try to extract product name from link or surrounding text
+                const productName = extractProductNameFromLink(link, html, postTitle);
+                
+                // Try to extract price from surrounding text
+                const price = extractPriceFromContent(html, link);
+                
+                products.push({
+                    name: escapeHtml(productName),
+                    price: escapeHtml(price || "Xem giá trên Shopee"),
+                    url: link,
+                    image: images[index % images.length] || null,
+                    badge: "Từ bài viết",
+                    postTitle: escapeHtml(postTitle)
+                });
+            });
+            
+            return products.slice(0, 4); // Limit to 4 products per post
+        }
+
+        // Extract product images from HTML (enhanced)
+        function extractProductImages(html) {
+            const images = [];
+            
+            if (!html) return images;
+            
+            // Patterns to find images
+            const imagePatterns = [
+                /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
+                /<meta\s+property="og:image"\s+content="([^"]+)"/gi,
+                /background-image\s*:\s*url\(['"]?([^'"]+)['"]?\)/gi
+            ];
+            
+            for (const pattern of imagePatterns) {
+                let match;
+                while ((match = pattern.exec(html)) !== null) {
+                    const imageUrl = match[1];
+                    if (isValidImageUrl(imageUrl) && 
+                        imageUrl.length > 20 &&
+                        !images.includes(imageUrl)) {
+                        images.push(imageUrl);
+                    }
+                }
+            }
+            
+            return images;
+        }
+
+        // Extract product name from Shopee link or surrounding content (enhanced)
+        function extractProductNameFromLink(link, html, postTitle) {
+            // Try to extract from URL path
+            try {
+                const urlObj = new URL(link);
+                const pathParts = urlObj.pathname.split('/');
+                
+                // Look for product name in URL path
+                for (const part of pathParts) {
+                    if (part.length > 10 && part.includes('-')) {
+                        const decoded = decodeURIComponent(part.replace(/-/g, ' '))
+                                       .replace(/\b\w/g, l => l.toUpperCase())
+                                       .substring(0, 50);
+                        if (decoded && decoded.trim()) {
+                            return decoded.trim();
+                        }
+                    }
+                }
+            } catch (e) {
+                // URL parsing failed
+            }
+            
+            // Try to find product name near the link in HTML
+            if (html && html.indexOf) {
+                const linkIndex = html.indexOf(link);
+                if (linkIndex > -1) {
+                    const before = html.substring(Math.max(0, linkIndex - 200), linkIndex);
+                    const after = html.substring(linkIndex, linkIndex + 200);
+                    
+                    // Look for text in <a> tags or nearby
+                    const namePatterns = [
+                        /<a[^>]*>[^<]*([^<]{10,50})[^<]*<\/a>/i,
+                        /alt=["']([^"']{10,50})["']/i,
+                        /title=["']([^"']{10,50})["']/i
+                    ];
+                    
+                    for (const pattern of namePatterns) {
+                        const match = (before + after).match(pattern);
+                        if (match && match[1] && match[1].trim()) {
+                            return match[1].trim().substring(0, 50);
+                        }
+                    }
+                }
+            }
+            
+            // Fallback to post title + "sản phẩm"
+            return `${postTitle.substring(0, 30)} - Sản phẩm`;
+        }
+
+        // Extract price information from content near Shopee links (enhanced)
+        function extractPriceFromContent(html, link) {
+            if (!html || !link) return null;
+            
+            const linkIndex = html.indexOf(link);
+            if (linkIndex === -1) return null;
+            
+            // Look for price patterns around the link (±300 characters)
+            const searchText = html.substring(
+                Math.max(0, linkIndex - 300), 
+                linkIndex + 300
+            );
+            
+            // Vietnamese price patterns
+            const pricePatterns = [
+                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:đ|dong|vnd|₫)/gi,
+                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k)/gi,
+                /giá\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
+                /price\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi
+            ];
+            
+            for (const pattern of pricePatterns) {
+                const match = searchText.match(pattern);
+                if (match && match[1]) {
+                    const price = match[1] || match[0];
+                    return price.includes('đ') ? price : `${price}đ`;
+                }
+            }
+            
+            return null;
+        }
+
         // ====================================================================
         // 🔧 CONFIGURATION
         // ====================================================================
@@ -905,6 +1375,7 @@
         let currentFilter = 'all';
         let currentPage = 1;
         let totalPages = 1;
+        let filterCache = new Map(); // Cache for filter results
 
         // Cached DOM Elements for performance
         const DOM = {
@@ -912,7 +1383,11 @@
             postsGrid: document.getElementById('postsGrid'),
             searchInput: document.getElementById('searchInput'),
             mobileSearchInput: document.getElementById('mobileSearchInput'),
+            filterDropdown: document.getElementById('filterDropdown'),
             filterOptions: document.getElementById('filterOptions'),
+            selectedFilter: document.getElementById('selectedFilter'),
+            shopeeProducts: document.getElementById('shopeeProducts'),
+            shopeeWidget: document.getElementById('shopeeWidget'),
             noResults: document.getElementById('noResults'),
             totalPostsEl: document.getElementById('totalPosts'),
             totalTagsEl: document.getElementById('totalTags'),
@@ -925,11 +1400,14 @@
             paginationInfo: document.getElementById('paginationInfo')
         };
 
+        // Global array to store extracted Shopee products from posts
+        let extractedShopeeProducts = [];
+
         // ====================================================================
-        // 🔍 METADATA PARSING FUNCTIONS
+        // 🔍 METADATA PARSING FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Enhanced metadata parser with complete functionality
+        // Enhanced metadata parser - KEEP ORIGINAL LOGIC, only add safety checks
         function parsePostMetadata(html, filename) {
             console.log(`🔍 Parsing metadata for: ${filename}`);
             const metadata = {};
@@ -1085,9 +1563,25 @@
             return metadata;
         }
 
-        // AI-powered content analysis for tag extraction
+        // Get default metadata when parsing fails
+        function getDefaultMetadata(filename) {
+            return {
+                title: `Bài viết ${filename.replace('.html', '')}`,
+                excerpt: 'Đọc bài viết để khám phá thêm...',
+                tags: ['coffee'],
+                date: new Date().toISOString().split('T')[0],
+                readTime: '5 phút đọc',
+                image: '☕',
+                imageType: 'emoji'
+            };
+        }
+
+        // AI-powered content analysis for tag extraction (enhanced)
         function analyzeContentForTags(html, filename) {
             const tags = [];
+            
+            if (!html || !filename) return ['coffee'];
+            
             const content = html.toLowerCase();
             
             // Vietnamese coffee terms mapping
@@ -1144,8 +1638,10 @@
             return tags;
         }
 
-        // Extract first image URL from HTML content
+        // Extract first image URL from HTML content (enhanced)
         function extractFirstImage(html) {
+            if (!html) return null;
+            
             const patterns = [
                 /<meta\s+property="og:image"\s+content="([^"]+)"/i,
                 /<meta\s+name="twitter:image"\s+content="([^"]+)"/i,
@@ -1161,7 +1657,7 @@
                     let imageUrl = match[1] || match[2] || match[3];
                     if (imageUrl) {
                         imageUrl = imageUrl.trim();
-                        if (!imageUrl.startsWith('data:') && imageUrl.length > 10) {
+                        if (isValidImageUrl(imageUrl)) {
                             return imageUrl;
                         }
                     }
@@ -1173,6 +1669,8 @@
 
         // Get appropriate emoji for tags
         function getEmojiForTags(tags) {
+            if (!Array.isArray(tags)) return '📄';
+            
             const emojiMap = {
                 'brewing': '☕',
                 'tips': '💡', 
@@ -1198,7 +1696,7 @@
             };
             
             for (const tag of tags) {
-                if (emojiMap[tag.toLowerCase()]) {
+                if (tag && emojiMap[tag.toLowerCase()]) {
                     return emojiMap[tag.toLowerCase()];
                 }
             }
@@ -1207,32 +1705,37 @@
         }
 
         // ====================================================================
-        // 📖 POST LOADING FUNCTIONS
+        // 📖 POST LOADING FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Load metadata from individual post file
+        // Load metadata from individual post file (enhanced with error handling)
         async function loadPostMetadata(filepath, id) {
             try {
                 console.log(`📄 Loading post: ${filepath}`);
+                
                 const response = await fetch(filepath);
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
                 }
                 
                 const html = await response.text();
                 const filename = filepath.split('/').pop();
                 const metadata = parsePostMetadata(html, filename);
                 
+                // Extract Shopee products from this post
+                const shopeeProducts = extractShopeeProducts(html, metadata.title);
+                
                 return {
                     id: id,
-                    title: metadata.title,
-                    excerpt: metadata.excerpt,
-                    tags: metadata.tags,
+                    title: escapeHtml(metadata.title),
+                    excerpt: escapeHtml(metadata.excerpt),
+                    tags: metadata.tags || ['coffee'],
                     date: metadata.date,
-                    readTime: metadata.readTime,
+                    readTime: escapeHtml(metadata.readTime),
                     image: metadata.image,
                     imageType: metadata.imageType,
-                    link: filepath
+                    link: sanitizeUrl(filepath) || filepath,
+                    shopeeProducts: shopeeProducts
                 };
             } catch (error) {
                 console.error(`❌ Error loading ${filepath}:`, error);
@@ -1240,9 +1743,9 @@
             }
         }
 
-        // Load posts from manual list
+        // Load posts from manual list (enhanced)
         async function loadManualPosts() {            
-            if (manualPosts.length === 0) {
+            if (!Array.isArray(manualPosts) || manualPosts.length === 0) {
                 console.log('📝 No manual posts configured');
                 return [];
             }
@@ -1250,30 +1753,125 @@
             const posts = [];
             console.log(`📚 Loading ${manualPosts.length} manual posts...`);
             
-            for (let i = 0; i < manualPosts.length; i++) {
-                const filename = manualPosts[i];
+            const loadPromises = manualPosts.map(async (filename, index) => {
                 try {
-                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, i + 1);
-                    if (postData) {
-                        posts.push(postData);
-                        console.log(`✅ Loaded: ${postData.title}`);
+                    if (!filename || typeof filename !== 'string') {
+                        console.warn(`⚠️ Invalid filename at index ${index}:`, filename);
+                        return null;
                     }
+                    
+                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, index + 1);
+                    if (postData) {
+                        console.log(`✅ Loaded: ${postData.title}`);
+                        return postData;
+                    }
+                    return null;
                 } catch (error) {
                     console.error(`❌ Failed to load: ${filename}`, error);
+                    return null;
                 }
-            }
+            });
             
-            console.log(`📊 Successfully loaded ${posts.length}/${manualPosts.length} posts`);
-            return posts;
+            const results = await Promise.all(loadPromises);
+            const validPosts = results.filter(post => post !== null);
+            
+            console.log(`📊 Successfully loaded ${validPosts.length}/${manualPosts.length} posts`);
+            return validPosts;
+        }
+
+        // Process all posts to extract Shopee products (enhanced)
+        function processShopeeProducts() {
+            extractedShopeeProducts = [];
+            
+            if (!Array.isArray(allPosts)) return;
+            
+            allPosts.forEach(post => {
+                if (post && Array.isArray(post.shopeeProducts)) {
+                    extractedShopeeProducts.push(...post.shopeeProducts);
+                }
+            });
+            
+            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
+        }
+
+        // Demo Shopee products data
+        const demoShopeeProducts = [
+            {
+                name: "Cà Phê Arabica Rang Vừa Premium 500g",
+                price: "195.000đ",
+                oldPrice: "250.000đ",
+                image: "https://images.unsplash.com/photo-1587734195503-904fca47e7d9?w=300&h=200&fit=crop",
+                url: "https://shopee.vn/sample-product-1",
+                discount: "-22%",
+                badge: "Bán chạy"
+            },
+            {
+                name: "Phin Cà Phê Nhôm Cao Cấp Size 8",
+                price: "85.000đ", 
+                oldPrice: "120.000đ",
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop",
+                url: "https://shopee.vn/sample-product-2",
+                discount: "-29%",
+                badge: "Deal sốc"
+            },
+            {
+                name: "Máy Xay Cà Phê Cầm Tay Mini",
+                price: "299.000đ",
+                oldPrice: "399.000đ", 
+                image: "https://images.unsplash.com/photo-1611564635773-3217d88450ed?w=300&h=200&fit=crop",
+                url: "https://shopee.vn/sample-product-3",
+                discount: "-25%",
+                badge: "Mới"
+            }
+        ];
+
+        // Render Shopee products widget (enhanced with demo data)
+        function renderShopeeProducts() {
+            if (!DOM.shopeeWidget || !DOM.shopeeProducts) return;
+            
+            // Always show demo products for demonstration
+            const productsToShow = demoShopeeProducts;
+            
+            DOM.shopeeWidget.style.display = 'block';
+            
+            DOM.shopeeProducts.innerHTML = productsToShow.map((product, index) => {
+                if (!product || !product.url) return '';
+                
+                const imageContent = product.image && isValidImageUrl(product.image) ? 
+                    `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name || 'Sản phẩm')}" onerror="this.parentElement.innerHTML='☕';">` : 
+                    '☕';
+                
+                return `
+                    <div class="shopee-product" onclick="window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
+                        ${product.discount ? `<div class="shopee-discount">${escapeHtml(product.discount)}</div>` : ''}
+                        <div class="shopee-product-image">
+                            ${imageContent}
+                        </div>
+                        <div class="shopee-product-info">
+                            <div class="shopee-product-name">${escapeHtml(product.name || 'Sản phẩm')}</div>
+                            <div class="shopee-product-price">
+                                ${escapeHtml(product.price || 'Xem giá')}
+                                ${product.oldPrice ? `<span class="shopee-product-old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
+                            </div>
+                            <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
+                                🛒 Mua ngay
+                            </button>
+                        </div>
+                        <div class="shopee-badge">${escapeHtml(product.badge || 'Sản phẩm')}</div>
+                    </div>
+                `;
+            }).join('');
         }
 
         // ====================================================================
-        // 🎨 RENDERING FUNCTIONS  
+        // 🎨 RENDERING FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Render featured post (first/newest post)
+        // Render featured post (first/newest post) with security enhancements
         function renderFeaturedPost() {
-            if (filteredPosts.length === 0) {
+            if (!DOM.featuredPost) return;
+            
+            if (!Array.isArray(filteredPosts) || filteredPosts.length === 0) {
                 DOM.featuredPost.innerHTML = `
                     <div class="featured-content">
                         <div class="no-results">
@@ -1287,43 +1885,53 @@
             }
 
             const post = filteredPosts[0];
+            if (!post) return;
+
+            const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
+                `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                escapeHtml(post.image || '📄');
+
             DOM.featuredPost.innerHTML = `
                 <div class="featured-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
-                    ${post.imageType === 'image' ? 
-                        `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
-                        post.image
-                    }
+                    ${imageContent}
                 </div>
                 <div class="featured-content">
                     <div class="featured-meta">
-                        <span class="featured-date">${formatDate(post.date)}</span>
+                        <span class="featured-date">${escapeHtml(formatDate(post.date))}</span>
                         <span class="featured-reading-time">
-                            📖 ${post.readTime}
+                            📖 ${post.readTime || '5 phút đọc'}
                         </span>
                     </div>
                     <h2 class="featured-title">
-                        <a href="${post.link}">${post.title}</a>
+                        <a href="${escapeHtml(post.link)}">${post.title}</a>
                     </h2>
                     <p class="featured-excerpt">${post.excerpt}</p>
                     <div class="featured-tags">
-                        ${post.tags.map(tag => `<span class="featured-tag" data-tag="${tag}">${getDisplayName(tag)}</span>`).join('')}
+                        ${Array.isArray(post.tags) ? post.tags.map(tag => 
+                            `<span class="featured-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
+                        ).join('') : ''}
                     </div>
                 </div>
             `;
 
             // Add click handlers for featured tags
             DOM.featuredPost.querySelectorAll('.featured-tag').forEach(tag => {
-                tag.addEventListener('click', () => {
+                tag.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const tagValue = tag.dataset.tag;
-                    filterByTag(tagValue);
+                    if (tagValue) {
+                        filterByTag(tagValue);
+                    }
                 });
             });
         }
 
-        // Render posts grid (excluding featured post)
+        // Render posts grid (excluding featured post) with security enhancements
         function renderPosts() {
-            const startIndex = currentFilter === 'all' && filteredPosts.length > 0 ? 1 : 0; // Skip featured post for "all" filter
-            const postsToShow = filteredPosts.slice(startIndex);
+            if (!DOM.postsGrid || !DOM.noResults || !DOM.pagination) return;
+            
+            const startIndex = currentFilter === 'all' && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? 1 : 0;
+            const postsToShow = Array.isArray(filteredPosts) ? filteredPosts.slice(startIndex) : [];
             
             // Calculate pagination
             totalPages = Math.ceil(postsToShow.length / POSTS_PER_PAGE);
@@ -1341,37 +1949,47 @@
             DOM.postsGrid.style.display = 'grid';
             DOM.noResults.style.display = 'none';
 
-            DOM.postsGrid.innerHTML = currentPosts.map(post => `
-                <article class="post-card fade-in">
-                    <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
-                        ${post.imageType === 'image' ? 
-                            `<img src="${post.image}" alt="${post.title}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
-                            post.image
-                        }
-                    </div>
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span class="post-date">${formatDate(post.date)}</span>
-                            <span class="post-reading-time">
-                                📖 ${post.readTime}
-                            </span>
+            DOM.postsGrid.innerHTML = currentPosts.map(post => {
+                if (!post) return '';
+                
+                const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
+                    `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                    escapeHtml(post.image || '📄');
+
+                return `
+                    <article class="post-card fade-in">
+                        <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                            ${imageContent}
                         </div>
-                        <h2 class="post-title">
-                            <a href="${post.link}">${post.title}</a>
-                        </h2>
-                        <p class="post-excerpt">${post.excerpt}</p>
-                        <div class="post-tags">
-                            ${post.tags.map(tag => `<span class="post-tag" data-tag="${tag}">${getDisplayName(tag)}</span>`).join('')}
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">${escapeHtml(formatDate(post.date))}</span>
+                                <span class="post-reading-time">
+                                    📖 ${post.readTime || '5 phút đọc'}
+                                </span>
+                            </div>
+                            <h2 class="post-title">
+                                <a href="${escapeHtml(post.link)}">${post.title}</a>
+                            </h2>
+                            <p class="post-excerpt">${post.excerpt}</p>
+                            <div class="post-tags">
+                                ${Array.isArray(post.tags) ? post.tags.map(tag => 
+                                    `<span class="post-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
+                                ).join('') : ''}
+                            </div>
                         </div>
-                    </div>
-                </article>
-            `).join('');
+                    </article>
+                `;
+            }).join('');
 
             // Add click handlers for post tags
             DOM.postsGrid.querySelectorAll('.post-tag').forEach(tag => {
-                tag.addEventListener('click', () => {
+                tag.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const tagValue = tag.dataset.tag;
-                    filterByTag(tagValue);
+                    if (tagValue) {
+                        filterByTag(tagValue);
+                    }
                 });
             });
 
@@ -1380,31 +1998,39 @@
         }
 
         // ====================================================================
-        // 🎯 FILTER & SEARCH FUNCTIONS
+        // 🎯 FILTER & SEARCH FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Generate dynamic filter options
+        // Generate dynamic filter options with caching
         function generateFilterOptions() {
-            const allTags = [...new Set(allPosts.flatMap(post => post.tags))];
+            if (!Array.isArray(allPosts) || !DOM.filterOptions) return;
+            
+            const allTags = [...new Set(allPosts.flatMap(post => 
+                Array.isArray(post.tags) ? post.tags : []
+            ))].filter(Boolean);
             
             // Keep the "Tất cả" option and add dynamic options
             DOM.filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
             
             allTags.sort().forEach(tag => {
-                const displayName = getDisplayName(tag);
-                const optionElement = document.createElement('div');
-                optionElement.className = 'filter-option';
-                optionElement.setAttribute('data-tag', tag);
-                optionElement.textContent = displayName;
-                DOM.filterOptions.appendChild(optionElement);
+                if (tag && typeof tag === 'string') {
+                    const displayName = getDisplayName(tag);
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'filter-option';
+                    optionElement.setAttribute('data-tag', escapeHtml(tag));
+                    optionElement.textContent = displayName;
+                    DOM.filterOptions.appendChild(optionElement);
+                }
             });
             
             // Attach event listeners
             attachFilterOptionListeners();
         }
 
-        // Get display name for tags
+        // Get display name for tags (enhanced)
         function getDisplayName(tag) {
+            if (!tag || typeof tag !== 'string') return 'Không rõ';
+            
             const displayNames = {
                 'brewing': 'Pha chế',
                 'origin': 'Nguồn gốc', 
@@ -1440,82 +2066,172 @@
                 'cà phê robusta': 'Cà phê Robusta'
             };
             
-            return displayNames[tag.toLowerCase()] || tag.charAt(0).toUpperCase() + tag.slice(1);
+            const lowerTag = tag.toLowerCase();
+            return displayNames[lowerTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
         }
 
-        // Attach filter option event listeners
+        // Attach filter option listeners with enhanced error handling
         function attachFilterOptionListeners() {
+            if (!DOM.filterOptions) return;
+            
             const filterOptionElements = DOM.filterOptions.querySelectorAll('.filter-option');
             filterOptionElements.forEach(option => {
-                option.addEventListener('click', () => {
-                    const tagValue = option.dataset.tag;
-                    filterByTag(tagValue);
+                option.addEventListener('click', (e) => {
+                    try {
+                        e.preventDefault();
+                        
+                        // Update selected option
+                        filterOptionElements.forEach(o => o.classList.remove('selected'));
+                        option.classList.add('selected');
+                        
+                        // Update dropdown display
+                        if (DOM.selectedFilter) {
+                            DOM.selectedFilter.textContent = option.textContent || 'Tất cả';
+                        }
+                        
+                        // Hide dropdown
+                        if (DOM.filterOptions && DOM.filterDropdown) {
+                            DOM.filterOptions.classList.remove('show');
+                            DOM.filterDropdown.classList.remove('active');
+                        }
+                        
+                        // Filter posts
+                        const tagValue = option.dataset.tag;
+                        if (tagValue) {
+                            filterByTag(tagValue);
+                        }
+                    } catch (error) {
+                        console.error('Error in filter option click:', error);
+                    }
                 });
             });
         }
 
-        // Filter by tag
+        // Filter by tag with caching
         function filterByTag(tag) {
-            // Update UI
-            DOM.filterOptions.querySelectorAll('.filter-option').forEach(o => o.classList.remove('selected'));
-            const selectedOption = DOM.filterOptions.querySelector(`[data-tag="${tag}"]`);
-            if (selectedOption) selectedOption.classList.add('selected');
+            if (!tag || typeof tag !== 'string') return;
             
             // Reset page and apply filter
             currentPage = 1;
             currentFilter = tag;
-            filterPosts();
-        }
-
-        // Handle search with debouncing
-        function handleSearch(query = '') {
-            filterPosts(query.toLowerCase().trim());
-        }
-
-        // Main filter function
-        function filterPosts(searchQuery = '') {
-            showLoading();
             
-            setTimeout(() => {
-                filteredPosts = allPosts.filter(post => {
-                    const matchesTag = currentFilter === 'all' || post.tags.includes(currentFilter);
-                    const matchesSearch = searchQuery === '' || 
-                        post.title.toLowerCase().includes(searchQuery) ||
-                        post.excerpt.toLowerCase().includes(searchQuery) ||
-                        post.tags.some(tag => tag.toLowerCase().includes(searchQuery));
-                    
-                    return matchesTag && matchesSearch;
-                });
+            // Use cached result if available
+            const cacheKey = `${tag}_${DOM.searchInput?.value || ''}`;
+            if (filterCache.has(cacheKey)) {
+                filteredPosts = filterCache.get(cacheKey);
+                renderFeaturedPost();
+                renderPosts();
+                updateStats();
+            } else {
+                filterPosts();
+            }
+        }
 
-                // Reset to first page when filtering
-                currentPage = 1;
-                
+        // Handle search with enhanced debouncing and validation
+        function handleSearch(query = '') {
+            if (typeof query !== 'string') query = '';
+            
+            const sanitizedQuery = query.toLowerCase().trim();
+            
+            // Sync search inputs
+            if (DOM.searchInput && DOM.mobileSearchInput) {
+                if (DOM.searchInput.value !== query) DOM.searchInput.value = query;
+                if (DOM.mobileSearchInput.value !== query) DOM.mobileSearchInput.value = query;
+            }
+            
+            filterPosts(sanitizedQuery);
+        }
+
+        // Main filter function with caching and performance optimization
+        function filterPosts(searchQuery = '') {
+            if (!Array.isArray(allPosts)) {
+                filteredPosts = [];
                 hideLoading();
                 renderFeaturedPost();
                 renderPosts();
                 updateStats();
+                return;
+            }
+            
+            showLoading();
+            
+            // Use cache if available
+            const cacheKey = `${currentFilter}_${searchQuery}`;
+            if (filterCache.has(cacheKey)) {
+                filteredPosts = filterCache.get(cacheKey);
+                hideLoading();
+                renderFeaturedPost();
+                renderPosts();
+                updateStats();
+                return;
+            }
+            
+            setTimeout(() => {
+                try {
+                    filteredPosts = allPosts.filter(post => {
+                        if (!post) return false;
+                        
+                        const matchesTag = currentFilter === 'all' || 
+                            (Array.isArray(post.tags) && post.tags.includes(currentFilter));
+                        
+                        const matchesSearch = searchQuery === '' || 
+                            (post.title && post.title.toLowerCase().includes(searchQuery)) ||
+                            (post.excerpt && post.excerpt.toLowerCase().includes(searchQuery)) ||
+                            (Array.isArray(post.tags) && post.tags.some(tag => 
+                                tag && tag.toLowerCase().includes(searchQuery)));
+                        
+                        return matchesTag && matchesSearch;
+                    });
+
+                    // Cache result
+                    filterCache.set(cacheKey, [...filteredPosts]);
+                    
+                    // Limit cache size
+                    if (filterCache.size > 50) {
+                        const firstKey = filterCache.keys().next().value;
+                        filterCache.delete(firstKey);
+                    }
+
+                    // Reset to first page when filtering
+                    currentPage = 1;
+                    
+                } catch (error) {
+                    console.error('Error in filterPosts:', error);
+                    filteredPosts = [];
+                } finally {
+                    hideLoading();
+                    renderFeaturedPost();
+                    renderPosts();
+                    updateStats();
+                }
             }, 300);
         }
 
         // ====================================================================
-        // 📄 PAGINATION FUNCTIONS
+        // 📄 PAGINATION FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Update pagination UI
+        // Update pagination UI with error handling
         function updatePagination() {
-            if (totalPages <= 1) {
-                DOM.pagination.style.display = 'none';
-                return;
-            }
-
-            DOM.pagination.style.display = 'flex';
-            DOM.prevBtn.disabled = currentPage === 1;
-            DOM.nextBtn.disabled = currentPage === totalPages;
+            if (!DOM.pagination || !DOM.prevBtn || !DOM.nextBtn || !DOM.paginationInfo) return;
             
-            DOM.paginationInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
+            try {
+                if (totalPages <= 1) {
+                    DOM.pagination.style.display = 'none';
+                    return;
+                }
+
+                DOM.pagination.style.display = 'flex';
+                DOM.prevBtn.disabled = currentPage === 1;
+                DOM.nextBtn.disabled = currentPage === totalPages;
+                
+                DOM.paginationInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
+            } catch (error) {
+                console.error('Error updating pagination:', error);
+            }
         }
 
-        // Go to previous page
+        // Go to previous page with validation
         function goToPrevPage() {
             if (currentPage > 1) {
                 currentPage--;
@@ -1524,7 +2240,7 @@
             }
         }
 
-        // Go to next page  
+        // Go to next page with validation
         function goToNextPage() {
             if (currentPage < totalPages) {
                 currentPage++;
@@ -1534,45 +2250,66 @@
         }
 
         // ====================================================================
-        // 🎛️ UI UTILITY FUNCTIONS
+        // 🎛️ UI UTILITY FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Update statistics
+        // Update statistics with error handling
         function updateStats() {
-            DOM.totalPostsEl.textContent = allPosts.length;
-            const uniqueTags = [...new Set(allPosts.flatMap(post => post.tags))];
-            DOM.totalTagsEl.textContent = uniqueTags.length;
+            try {
+                if (DOM.totalPostsEl) {
+                    DOM.totalPostsEl.textContent = Array.isArray(allPosts) ? allPosts.length : 0;
+                }
+                
+                if (DOM.totalTagsEl) {
+                    const uniqueTags = Array.isArray(allPosts) ? 
+                        [...new Set(allPosts.flatMap(post => 
+                            Array.isArray(post.tags) ? post.tags : []
+                        ))].filter(Boolean) : [];
+                    DOM.totalTagsEl.textContent = uniqueTags.length;
+                }
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
         }
 
         // Show loading state
         function showLoading() {
-            DOM.loading.style.display = 'block';
-            DOM.postsGrid.style.display = 'none';
-            DOM.noResults.style.display = 'none';
-            DOM.pagination.style.display = 'none';
+            if (DOM.loading) DOM.loading.style.display = 'block';
+            if (DOM.postsGrid) DOM.postsGrid.style.display = 'none';
+            if (DOM.noResults) DOM.noResults.style.display = 'none';
+            if (DOM.pagination) DOM.pagination.style.display = 'none';
         }
 
         // Hide loading state
         function hideLoading() {
-            DOM.loading.style.display = 'none';
+            if (DOM.loading) DOM.loading.style.display = 'none';
         }
 
-        // Format date for display
+        // Format date for display with validation
         function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            try {
+                if (!dateString) return 'Không rõ';
+                
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return 'Không rõ';
+                
+                const now = new Date();
+                const diffTime = Math.abs(now - date);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-            if (diffDays === 1) return 'Hôm qua';
-            if (diffDays <= 7) return `${diffDays} ngày trước`;
-            if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} tuần trước`;
-            
-            return date.toLocaleDateString('vi-VN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+                if (diffDays === 1) return 'Hôm qua';
+                if (diffDays <= 7) return `${diffDays} ngày trước`;
+                if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} tuần trước`;
+                
+                return date.toLocaleDateString('vi-VN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                console.error('Error formatting date:', error);
+                return 'Không rõ';
+            }
         }
 
         // Debounce utility function
@@ -1589,15 +2326,21 @@
         }
 
         // ====================================================================
-        // 🚀 INITIALIZATION & EVENT LISTENERS
+        // 🚀 INITIALIZATION & EVENT LISTENERS (ENHANCED)
         // ====================================================================
 
-        // Initialize the blog
+        // Initialize the blog with comprehensive error handling
         async function initializePosts() {
             console.log('🚀 Initializing Anaro Coffee Blog...');
             showLoading();
             
             try {
+                // Clear previous data
+                allPosts = [];
+                filteredPosts = [];
+                extractedShopeeProducts = [];
+                filterCache.clear();
+                
                 if (AUTO_SCAN) {
                     console.log('🔍 Auto-scanning posts folder...');
                     allPosts = await scanPostsFolder();
@@ -1606,75 +2349,144 @@
                     allPosts = await loadManualPosts();
                 }
                 
+                // Ensure allPosts is an array
+                if (!Array.isArray(allPosts)) {
+                    allPosts = [];
+                }
+                
                 filteredPosts = [...allPosts];
                 console.log(`✅ Loaded ${allPosts.length} posts total`);
                 
-                hideLoading();
-                generateFilterOptions();
-                renderFeaturedPost();
-                renderPosts();
-                updateStats();
-                
-                console.log('🎉 Blog initialized successfully!');
+                // Process Shopee products from all posts
+                processShopeeProducts();
                 
             } catch (error) {
                 console.error('❌ Failed to initialize blog:', error);
                 allPosts = [];
                 filteredPosts = [];
+                extractedShopeeProducts = [];
+            } finally {
                 hideLoading();
+                generateFilterOptions();
                 renderFeaturedPost();
                 renderPosts();
+                renderShopeeProducts();
                 updateStats();
+                
+                console.log('🎉 Blog initialization completed!');
             }
         }
 
-        // Setup all event listeners
+        // Setup all event listeners with enhanced error handling
         function setupEventListeners() {
-            // Search functionality with debouncing
-            const debouncedSearch = debounce(() => {
-                const query = DOM.searchInput.value;
-                handleSearch(query);
-            }, 300);
-            
-            const debouncedMobileSearch = debounce(() => {
-                const query = DOM.mobileSearchInput.value;
-                // Sync search inputs
-                DOM.searchInput.value = query;
-                handleSearch(query);
-            }, 300);
-
-            DOM.searchInput.addEventListener('input', debouncedSearch);
-            DOM.mobileSearchInput.addEventListener('input', debouncedMobileSearch);
-
-            // Refresh functionality
-            DOM.refreshBtn.addEventListener('click', () => {
-                console.log('🔄 Refreshing posts...');
-                initializePosts();
-            });
-            
-            DOM.mobileRefreshBtn.addEventListener('click', () => {
-                console.log('🔄 Refreshing posts (mobile)...');
-                initializePosts();
-            });
-
-            // Pagination
-            DOM.prevBtn.addEventListener('click', goToPrevPage);
-            DOM.nextBtn.addEventListener('click', goToNextPage);
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey || e.metaKey) {
-                    if (e.key === 'k') {
-                        e.preventDefault();
-                        DOM.searchInput.focus();
-                    } else if (e.key === 'r') {
-                        e.preventDefault();
-                        initializePosts();
+            try {
+                // Search functionality with debouncing
+                const debouncedSearch = debounce(() => {
+                    try {
+                        const query = DOM.searchInput?.value || '';
+                        handleSearch(query);
+                    } catch (error) {
+                        console.error('Error in search handler:', error);
                     }
-                }
-            });
+                }, 300);
+                
+                const debouncedMobileSearch = debounce(() => {
+                    try {
+                        const query = DOM.mobileSearchInput?.value || '';
+                        handleSearch(query);
+                    } catch (error) {
+                        console.error('Error in mobile search handler:', error);
+                    }
+                }, 300);
 
-            console.log('📱 Event listeners initialized');
+                if (DOM.searchInput) {
+                    DOM.searchInput.addEventListener('input', debouncedSearch);
+                }
+                
+                if (DOM.mobileSearchInput) {
+                    DOM.mobileSearchInput.addEventListener('input', debouncedMobileSearch);
+                }
+
+                // Filter dropdown functionality
+                if (DOM.filterDropdown) {
+                    DOM.filterDropdown.addEventListener('click', (e) => {
+                        try {
+                            e.preventDefault();
+                            DOM.filterDropdown.classList.toggle('active');
+                            if (DOM.filterOptions) {
+                                DOM.filterOptions.classList.toggle('show');
+                            }
+                        } catch (error) {
+                            console.error('Error in filter dropdown:', error);
+                        }
+                    });
+                }
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    try {
+                        if (!e.target.closest('.filter-container')) {
+                            if (DOM.filterDropdown) DOM.filterDropdown.classList.remove('active');
+                            if (DOM.filterOptions) DOM.filterOptions.classList.remove('show');
+                        }
+                    } catch (error) {
+                        console.error('Error in outside click handler:', error);
+                    }
+                });
+
+                // Refresh functionality
+                if (DOM.refreshBtn) {
+                    DOM.refreshBtn.addEventListener('click', () => {
+                        try {
+                            console.log('🔄 Refreshing posts...');
+                            initializePosts();
+                        } catch (error) {
+                            console.error('Error in refresh:', error);
+                        }
+                    });
+                }
+                
+                if (DOM.mobileRefreshBtn) {
+                    DOM.mobileRefreshBtn.addEventListener('click', () => {
+                        try {
+                            console.log('🔄 Refreshing posts (mobile)...');
+                            initializePosts();
+                        } catch (error) {
+                            console.error('Error in mobile refresh:', error);
+                        }
+                    });
+                }
+
+                // Pagination
+                if (DOM.prevBtn) {
+                    DOM.prevBtn.addEventListener('click', goToPrevPage);
+                }
+                if (DOM.nextBtn) {
+                    DOM.nextBtn.addEventListener('click', goToNextPage);
+                }
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    try {
+                        if (e.ctrlKey || e.metaKey) {
+                            if (e.key === 'k') {
+                                e.preventDefault();
+                                if (DOM.searchInput) DOM.searchInput.focus();
+                            } else if (e.key === 'r') {
+                                e.preventDefault();
+                                initializePosts();
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error in keyboard shortcut:', error);
+                    }
+                });
+
+                console.log('📱 Event listeners initialized');
+                
+            } catch (error) {
+                console.error('❌ Error setting up event listeners:', error);
+            }
         }
 
         // ====================================================================
@@ -1684,8 +2496,12 @@
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             console.log('📄 DOM Content Loaded');
-            setupEventListeners();
-            initializePosts();
+            try {
+                setupEventListeners();
+                initializePosts();
+            } catch (error) {
+                console.error('❌ Error in DOMContentLoaded:', error);
+            }
         });
 
         // Handle errors globally
@@ -1699,3 +2515,5 @@
 
         console.log('☕ Anaro Coffee Blog script loaded successfully!');
     </script>
+</body>
+</html>
