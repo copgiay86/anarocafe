@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
+<html lang="vi"><head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -142,7 +140,7 @@
             color: #8b6b47;
         }
 
-        .refresh-btn {
+        .refresh-btn, .shopee-refresh-btn {
             background: linear-gradient(135deg, #8b6b47 0%, #7a5c3f 100%);
             color: white;
             padding: 12px 15px;
@@ -154,7 +152,7 @@
             font-size: 1.2em;
         }
 
-        .refresh-btn:hover {
+        .refresh-btn:hover, .shopee-refresh-btn:hover {
             background: linear-gradient(135deg, #7a5c3f 0%, #6b4d35 100%);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(122, 92, 63, 0.3);
@@ -433,7 +431,7 @@
             background: #6b4d35;
         }
 
-        /* Shopee Products Widget - Enhanced */
+        /* Shopee Products Widget - Enhanced with Mobile Carousel */
         .shopee-widget {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -463,6 +461,72 @@
             gap: 20px;
         }
 
+        /* Mobile Carousel Styles */
+        .shopee-products.mobile-carousel {
+            display: block;
+            position: relative;
+        }
+
+        .mobile-carousel-container {
+            display: flex;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-carousel-container .shopee-product {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e0d0c0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #7a5c3f;
+            transform: scale(1.2);
+        }
+
+        .carousel-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .carousel-nav-btn {
+            background: linear-gradient(135deg, #8b6b47 0%, #7a5c3f 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-nav-btn:hover {
+            background: linear-gradient(135deg, #7a5c3f 0%, #6b4d35 100%);
+            transform: translateY(-2px);
+        }
+
+        .shopee-refresh-btn {
+            margin-bottom: 20px;
+            font-size: 1em;
+            padding: 10px 20px;
+        }
+
         .shopee-product {
             background: white;
             border-radius: 15px;
@@ -473,6 +537,7 @@
             text-decoration: none;
             color: inherit;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .shopee-product:hover {
@@ -583,46 +648,6 @@
             border-radius: 10px;
             font-size: 0.7em;
             font-weight: 700;
-        }
-
-        /* Mobile Responsive for Shopee */
-        @media (max-width: 768px) {
-            .shopee-products {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .shopee-product-image {
-                height: 200px;
-                font-size: 4em;
-            }
-
-            .shopee-widget {
-                padding: 20px;
-                margin-bottom: 30px;
-            }
-
-            .shopee-widget h3 {
-                font-size: 1.2em;
-                margin-bottom: 20px;
-            }
-
-            .shopee-product-info {
-                padding: 15px;
-            }
-
-            .shopee-product-name {
-                font-size: 1.1em;
-            }
-
-            .shopee-product-price {
-                font-size: 1.3em;
-            }
-
-            .shopee-cta-button {
-                padding: 15px 20px;
-                font-size: 1em;
-            }
         }
 
         /* Posts Grid */
@@ -952,8 +977,40 @@
             }
 
             .shopee-products {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .shopee-product-image {
+                height: 200px;
+                font-size: 4em;
+            }
+
+            .shopee-widget {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .shopee-widget h3 {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+
+            .shopee-product-info {
+                padding: 15px;
+            }
+
+            .shopee-product-name {
+                font-size: 1.1em;
+            }
+
+            .shopee-product-price {
+                font-size: 1.3em;
+            }
+
+            .shopee-cta-button {
+                padding: 15px 20px;
+                font-size: 1em;
             }
 
             .featured-image {
@@ -1063,16 +1120,134 @@
         <div class="featured-section">
             <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
             <div class="featured-post" id="featuredPost">
-                <!-- Featured post will be inserted here -->
-            </div>
+                    <div class="featured-content">
+                        <div class="no-results">
+                            <div class="no-results-icon">📝</div>
+                            <h3>Chưa có bài viết nổi bật</h3>
+                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
+                        </div>
+                    </div>
+                </div>
         </div>
 
         <!-- Shopee Products Widget -->
-        <div class="shopee-widget" id="shopeeWidget" style="display: none;">
+        <div class="shopee-widget" id="shopeeWidget" style="display: block;">
             <h3>🛒 Sản Phẩm Từ Bài Viết</h3>
-            <div class="shopee-products" id="shopeeProducts">
-                <!-- Products will be inserted here -->
-            </div>
+            <div class="shopee-products mobile-carousel" id="shopeeProducts">
+                    <button class="shopee-refresh-btn" onclick="nextProduct()">🔄 Sản phẩm khác</button>
+                    <div class="mobile-carousel-container" id="carouselContainer" style="transform: translateX(0%);">
+                        
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&amp;h=200&amp;fit=crop" alt="Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa" onerror="this.parentElement.innerHTML='☕';">
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa</div>
+                        <div class="shopee-product-price">
+                            90.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Cao cấp</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/1VprXd0oPX', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&amp;h=200&amp;fit=crop" alt="Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp" onerror="this.parentElement.innerHTML='☕';">
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp</div>
+                        <div class="shopee-product-price">
+                            189.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/1VprXd0oPX', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Best seller</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/10tawi2iQS', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">☕</div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Bình Pha Cà Phê Nhỏ Giọt Cold Brew</div>
+                        <div class="shopee-product-price">
+                            669.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/10tawi2iQS', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Premium</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/5pz01sG37t', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">☕</div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Hũ Đựng Cà Phê Chống Oxy Hóa</div>
+                        <div class="shopee-product-price">
+                            Xem giá
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/5pz01sG37t', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Tiện dụng</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/sample5', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&amp;h=200&amp;fit=crop" alt="Bộ Pha Cà Phê Phin Truyền Thống" onerror="this.parentElement.innerHTML='☕';">
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Bộ Pha Cà Phê Phin Truyền Thống</div>
+                        <div class="shopee-product-price">
+                            125.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/sample5', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Truyền thống</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/sample6', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">☕</div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Máy Xay Cà Phê Cầm Tay</div>
+                        <div class="shopee-product-price">
+                            299.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/sample6', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Tiện lợi</div>
+                </div>
+            
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <div class="carousel-dot active" onclick="goToProduct(0)"></div><div class="carousel-dot " onclick="goToProduct(1)"></div><div class="carousel-dot " onclick="goToProduct(2)"></div><div class="carousel-dot " onclick="goToProduct(3)"></div><div class="carousel-dot " onclick="goToProduct(4)"></div><div class="carousel-dot " onclick="goToProduct(5)"></div>
+                    </div>
+                    <div class="carousel-navigation">
+                        <button class="carousel-nav-btn" onclick="prevProduct()">‹</button>
+                        <button class="carousel-nav-btn" onclick="nextProduct()">›</button>
+                    </div>
+                </div>
         </div>
 
         <!-- Filter Navigation with Dropdown -->
@@ -1083,10 +1258,7 @@
                     <span id="selectedFilter">Tất cả</span>
                     <span class="dropdown-arrow">▼</span>
                 </div>
-                <div class="filter-options" id="filterOptions">
-                    <div class="filter-option selected" data-tag="all">Tất cả</div>
-                    <!-- Dynamic options will be added here -->
-                </div>
+                <div class="filter-options" id="filterOptions"><div class="filter-option selected" data-tag="all">Tất cả</div></div>
             </div>
         </div>
 
@@ -1095,16 +1267,16 @@
             <div class="posts-section">
                 <h2>📚 Các Bài Viết Khác</h2>
                 
-                <div class="loading" id="loading">
+                <div class="loading" id="loading" style="display: none;">
                     <div class="loading-spinner"></div>
                     <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
                 </div>
 
-                <div class="posts-grid" id="postsGrid">
+                <div class="posts-grid" id="postsGrid" style="display: none;">
                     <!-- Posts will be inserted here -->
                 </div>
 
-                <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results" id="noResults" style="display: block;">
                     <div class="no-results-icon">🔍</div>
                     <h3>Không tìm thấy bài viết</h3>
                     <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
@@ -1112,7 +1284,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination" id="pagination" style="display: none;">
-                    <button class="pagination-btn" id="prevBtn" disabled>‹ Trước</button>
+                    <button class="pagination-btn" id="prevBtn" disabled="">‹ Trước</button>
                     <div class="pagination-info" id="paginationInfo"></div>
                     <button class="pagination-btn" id="nextBtn">Sau ›</button>
                 </div>
@@ -1134,10 +1306,71 @@
 
     <script>
         // ====================================================================
-        // 🔒 SECURITY UTILITIES
+        // 🛒 SHOPEE WIDGET - COMPLETE MODULE (From Document 1)
         // ====================================================================
 
-        // HTML escape function to prevent XSS
+        // Configuration
+        const SHOPEE_CONFIG = {
+            maxProductsPerPost: 6,
+            desktopProductsCount: 3,
+            mobileProductsCount: 1
+        };
+
+        // Global variables for Shopee
+        let currentProductIndex = 0;
+        let isMobile = false;
+        let extractedShopeeProducts = [];
+
+        // Demo Shopee products data with your links
+        const demoShopeeProducts = [
+            {
+                name: "Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa",
+                price: "90.000đ",
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/1LWRLK1RkU",
+                badge: "Cao cấp"
+            },
+            {
+                name: "Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp",
+                price: "189.000đ",
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/1VprXd0oPX",
+                badge: "Best seller"
+            },
+            {
+                name: "Bình Pha Cà Phê Nhỏ Giọt Cold Brew",
+                price: "669.000đ",
+                image: "https://images.unsplash.com/photo-1611564635773-3217d88450ed?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/10tawi2iQS",
+                badge: "Premium"
+            },
+            {
+                name: "Hũ Đựng Cà Phê Chống Oxy Hóa",
+                price: "Xem giá",
+                image: "https://images.unsplash.com/photo-1587734195503-904fca47e7d9?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/5pz01sG37t",
+                badge: "Tiện dụng"
+            },
+            {
+                name: "Bộ Pha Cà Phê Phin Truyền Thống",
+                price: "125.000đ",
+                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/sample5",
+                badge: "Truyền thống"
+            },
+            {
+                name: "Máy Xay Cà Phê Cầm Tay",
+                price: "299.000đ",
+                image: "https://images.unsplash.com/photo-1504627298434-2119687def7e?w=300&h=200&fit=crop",
+                url: "https://s.shopee.vn/sample6",
+                badge: "Tiện lợi"
+            }
+        ];
+
+        // ====================================================================
+        // 🔒 SECURITY UTILITIES (From Document 1)
+        // ====================================================================
+
         function escapeHtml(unsafe) {
             if (typeof unsafe !== 'string') return '';
             return unsafe
@@ -1148,7 +1381,6 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Validate image URL
         function isValidImageUrl(url) {
             if (!url || typeof url !== 'string') return false;
             
@@ -1163,7 +1395,6 @@
             }
         }
 
-        // Sanitize and validate URL
         function sanitizeUrl(url) {
             if (!url || typeof url !== 'string') return '';
             
@@ -1179,21 +1410,22 @@
         }
 
         // ====================================================================
-        // 🛒 SHOPEE EXTRACTION FUNCTIONS (ENHANCED)
+        // 🔍 SHOPEE EXTRACTION FUNCTIONS (From Document 1)
         // ====================================================================
 
-        // Extract Shopee links and product info from HTML content
         function extractShopeeProducts(html, postTitle) {
             const products = [];
             
             if (!html || !postTitle) return products;
             
-            // Patterns to find Shopee links
+            // Enhanced patterns to find Shopee links including s.shopee.vn
             const shopeeLinkPatterns = [
                 /https?:\/\/(?:www\.)?shopee\.vn\/[^\s"'<>)]+/gi,
                 /https?:\/\/(?:www\.)?shp\.ee\/[^\s"'<>)]+/gi,
+                /https?:\/\/s\.shopee\.vn\/[^\s"'<>)]+/gi,
                 /<a[^>]*href=["'](https?:\/\/(?:www\.)?shopee\.vn\/[^"']+)["'][^>]*>/gi,
-                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shp\.ee\/[^"']+)["'][^>]*>/gi
+                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shp\.ee\/[^"']+)["'][^>]*>/gi,
+                /<a[^>]*href=["'](https?:\/\/s\.shopee\.vn\/[^"']+)["'][^>]*>/gi
             ];
             
             const foundLinks = new Set();
@@ -1210,20 +1442,25 @@
                 }
             }
             
-            // If no links found, return empty
+            // Also search for s.shopee.vn in plain text
+            const shortLinkMatches = html.match(/https?:\/\/s\.shopee\.vn\/[A-Za-z0-9]+/gi);
+            if (shortLinkMatches) {
+                shortLinkMatches.forEach(link => {
+                    const sanitizedLink = sanitizeUrl(link);
+                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
+                        foundLinks.add(sanitizedLink);
+                    }
+                });
+            }
+            
             if (foundLinks.size === 0) {
                 return [];
             }
             
-            // Extract product images from the post
             const images = extractProductImages(html);
             
-            // Create products from found links
             Array.from(foundLinks).forEach((link, index) => {
-                // Try to extract product name from link or surrounding text
                 const productName = extractProductNameFromLink(link, html, postTitle);
-                
-                // Try to extract price from surrounding text
                 const price = extractPriceFromContent(html, link);
                 
                 products.push({
@@ -1236,16 +1473,14 @@
                 });
             });
             
-            return products.slice(0, 4); // Limit to 4 products per post
+            return products.slice(0, SHOPEE_CONFIG.maxProductsPerPost);
         }
 
-        // Extract product images from HTML (enhanced)
         function extractProductImages(html) {
             const images = [];
             
             if (!html) return images;
             
-            // Patterns to find images
             const imagePatterns = [
                 /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
                 /<meta\s+property="og:image"\s+content="([^"]+)"/gi,
@@ -1267,14 +1502,11 @@
             return images;
         }
 
-        // Extract product name from Shopee link or surrounding content (enhanced)
         function extractProductNameFromLink(link, html, postTitle) {
-            // Try to extract from URL path
             try {
                 const urlObj = new URL(link);
                 const pathParts = urlObj.pathname.split('/');
                 
-                // Look for product name in URL path
                 for (const part of pathParts) {
                     if (part.length > 10 && part.includes('-')) {
                         const decoded = decodeURIComponent(part.replace(/-/g, ' '))
@@ -1289,14 +1521,12 @@
                 // URL parsing failed
             }
             
-            // Try to find product name near the link in HTML
             if (html && html.indexOf) {
                 const linkIndex = html.indexOf(link);
                 if (linkIndex > -1) {
                     const before = html.substring(Math.max(0, linkIndex - 200), linkIndex);
                     const after = html.substring(linkIndex, linkIndex + 200);
                     
-                    // Look for text in <a> tags or nearby
                     const namePatterns = [
                         /<a[^>]*>[^<]*([^<]{10,50})[^<]*<\/a>/i,
                         /alt=["']([^"']{10,50})["']/i,
@@ -1312,24 +1542,20 @@
                 }
             }
             
-            // Fallback to post title + "sản phẩm"
             return `${postTitle.substring(0, 30)} - Sản phẩm`;
         }
 
-        // Extract price information from content near Shopee links (enhanced)
         function extractPriceFromContent(html, link) {
             if (!html || !link) return null;
             
             const linkIndex = html.indexOf(link);
             if (linkIndex === -1) return null;
             
-            // Look for price patterns around the link (±300 characters)
             const searchText = html.substring(
                 Math.max(0, linkIndex - 300), 
                 linkIndex + 300
             );
             
-            // Vietnamese price patterns
             const pricePatterns = [
                 /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:đ|dong|vnd|₫)/gi,
                 /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k)/gi,
@@ -1349,7 +1575,282 @@
         }
 
         // ====================================================================
-        // 🔧 CONFIGURATION
+        // 📱 MOBILE/DESKTOP DETECTION (From Document 1)
+        // ====================================================================
+
+        function checkIfMobile() {
+            isMobile = window.innerWidth <= 768;
+            return isMobile;
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // ====================================================================
+        // 🎨 RENDERING FUNCTIONS (From Document 1)
+        // ====================================================================
+
+        function renderShopeeProducts(containerId = 'shopeeProducts', widgetId = 'shopeeWidget') {
+            const shopeeWidget = document.getElementById(widgetId);
+            const shopeeProducts = document.getElementById(containerId);
+            
+            if (!shopeeWidget || !shopeeProducts) return;
+            
+            checkIfMobile();
+            
+            let productsToShow = [...demoShopeeProducts];
+            
+            shopeeWidget.style.display = 'block';
+            
+            if (isMobile) {
+                // Mobile: Carousel with single product
+                shopeeProducts.className = 'shopee-products mobile-carousel';
+                currentProductIndex = 0;
+                
+                shopeeProducts.innerHTML = `
+                    <button class="shopee-refresh-btn" onclick="nextProduct()">🔄 Sản phẩm khác</button>
+                    <div class="mobile-carousel-container" id="carouselContainer">
+                        ${productsToShow.map((product, index) => renderSingleProduct(product, index)).join('')}
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        ${productsToShow.map((_, index) => 
+                            `<div class="carousel-dot ${index === 0 ? 'active' : ''}" onclick="goToProduct(${index})"></div>`
+                        ).join('')}
+                    </div>
+                    <div class="carousel-navigation">
+                        <button class="carousel-nav-btn" onclick="prevProduct()">‹</button>
+                        <button class="carousel-nav-btn" onclick="nextProduct()">›</button>
+                    </div>
+                `;
+                
+                updateCarouselPosition();
+                addTouchSupport();
+                
+            } else {
+                // Desktop: 3 random products
+                shopeeProducts.className = 'shopee-products';
+                const randomProducts = shuffleArray(productsToShow).slice(0, SHOPEE_CONFIG.desktopProductsCount);
+                
+                shopeeProducts.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 15px;">
+                        <button class="shopee-refresh-btn" onclick="refreshDesktopProducts()">🔄 Sản phẩm khác</button>
+                    </div>
+                    ${randomProducts.map((product, index) => renderSingleProduct(product, index)).join('')}
+                `;
+            }
+        }
+
+        function renderSingleProduct(product, index) {
+            if (!product || !product.url) return '';
+            
+            const imageContent = product.image && isValidImageUrl(product.image) ? 
+                `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name || 'Sản phẩm')}" onerror="this.parentElement.innerHTML='☕';">` : 
+                '☕';
+            
+            return `
+                <div class="shopee-product" onclick="window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
+                    ${product.discount ? `<div class="shopee-discount">${escapeHtml(product.discount)}</div>` : ''}
+                    <div class="shopee-product-image">
+                        ${imageContent}
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">${escapeHtml(product.name || 'Sản phẩm')}</div>
+                        <div class="shopee-product-price">
+                            ${escapeHtml(product.price || 'Xem giá')}
+                            ${product.oldPrice ? `<span class="shopee-product-old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">${escapeHtml(product.badge || 'Sản phẩm')}</div>
+                </div>
+            `;
+        }
+
+        // ====================================================================
+        // 🎮 NAVIGATION FUNCTIONS (From Document 1)
+        // ====================================================================
+
+        function updateCarouselPosition() {
+            const container = document.getElementById('carouselContainer');
+            const indicators = document.querySelectorAll('.carousel-dot');
+            
+            if (container) {
+                container.style.transform = `translateX(-${currentProductIndex * 100}%)`;
+            }
+            
+            indicators.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentProductIndex);
+            });
+        }
+
+        function nextProduct() {
+            if (!isMobile) return;
+            currentProductIndex = (currentProductIndex + 1) % demoShopeeProducts.length;
+            updateCarouselPosition();
+        }
+
+        function prevProduct() {
+            if (!isMobile) return;
+            currentProductIndex = (currentProductIndex - 1 + demoShopeeProducts.length) % demoShopeeProducts.length;
+            updateCarouselPosition();
+        }
+
+        function goToProduct(index) {
+            if (!isMobile) return;
+            currentProductIndex = index;
+            updateCarouselPosition();
+        }
+
+        function refreshDesktopProducts() {
+            if (isMobile) return;
+            
+            const randomProducts = shuffleArray(demoShopeeProducts).slice(0, SHOPEE_CONFIG.desktopProductsCount);
+            const productContainer = document.getElementById('shopeeProducts');
+            
+            if (!productContainer) return;
+            
+            const newProductsHTML = randomProducts.map((product, index) => renderSingleProduct(product, index)).join('');
+            productContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 15px;">
+                    <button class="shopee-refresh-btn" onclick="refreshDesktopProducts()">🔄 Sản phẩm khác</button>
+                </div>
+                ${newProductsHTML}
+            `;
+        }
+
+        // ====================================================================
+        // 👆 TOUCH SUPPORT (From Document 1)
+        // ====================================================================
+
+        function addTouchSupport() {
+            const container = document.getElementById('carouselContainer');
+            if (!container) return;
+            
+            let startX = 0;
+            let startY = 0;
+            let isDragging = false;
+            
+            const handleStart = (e) => {
+                isDragging = true;
+                const touch = e.touches ? e.touches[0] : e;
+                startX = touch.clientX;
+                startY = touch.clientY;
+            };
+            
+            const handleMove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+            };
+            
+            const handleEnd = (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const touch = e.changedTouches ? e.changedTouches[0] : e;
+                const endX = touch.clientX;
+                const endY = touch.clientY;
+                
+                const deltaX = startX - endX;
+                const deltaY = startY - endY;
+                
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        nextProduct();
+                    } else {
+                        prevProduct();
+                    }
+                }
+            };
+            
+            container.addEventListener('touchstart', handleStart, { passive: true });
+            container.addEventListener('touchmove', handleMove, { passive: false });
+            container.addEventListener('touchend', handleEnd, { passive: true });
+            
+            container.addEventListener('mousedown', handleStart);
+            container.addEventListener('mousemove', handleMove);
+            container.addEventListener('mouseup', handleEnd);
+            container.addEventListener('mouseleave', handleEnd);
+        }
+
+        // ====================================================================
+        // 🔄 RESPONSIVE HANDLER (From Document 1)
+        // ====================================================================
+
+        function handleWindowResize() {
+            const wasMobile = isMobile;
+            checkIfMobile();
+            
+            if (wasMobile !== isMobile) {
+                renderShopeeProducts();
+            }
+        }
+
+        function processShopeeProducts(allPosts) {
+            extractedShopeeProducts = [];
+            
+            if (!Array.isArray(allPosts)) return;
+            
+            allPosts.forEach(post => {
+                if (post && Array.isArray(post.shopeeProducts)) {
+                    extractedShopeeProducts.push(...post.shopeeProducts);
+                }
+            });
+            
+            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
+        }
+
+        // ====================================================================
+        // 🚀 INITIALIZATION (From Document 1)
+        // ====================================================================
+
+        function initShopeeWidget() {
+            // Expose functions to global scope
+            window.nextProduct = nextProduct;
+            window.prevProduct = prevProduct;
+            window.goToProduct = goToProduct;
+            window.refreshDesktopProducts = refreshDesktopProducts;
+            
+            // Add keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (isMobile) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        prevProduct();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        nextProduct();
+                    }
+                }
+            });
+            
+            // Add resize listener
+            const debounce = (func, wait) => {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            };
+            
+            window.addEventListener('resize', debounce(handleWindowResize, 300));
+            
+            console.log('🛒 Shopee Widget initialized');
+        }
+
+        // ====================================================================
+        // 🔧 ORIGINAL BLOG CONFIGURATION (From Document 2)
         // ====================================================================
         
         const POSTS_FOLDER = './posts/';
@@ -1367,7 +1868,7 @@
         ];
 
         // ====================================================================
-        // 🎯 GLOBAL VARIABLES
+        // 🎯 GLOBAL VARIABLES (From Document 2)
         // ====================================================================
         
         let allPosts = [];
@@ -1399,9 +1900,6 @@
             nextBtn: document.getElementById('nextBtn'),
             paginationInfo: document.getElementById('paginationInfo')
         };
-
-        // Global array to store extracted Shopee products from posts
-        let extractedShopeeProducts = [];
 
         // ====================================================================
         // 🔍 METADATA PARSING FUNCTIONS (ENHANCED)
@@ -1777,90 +2275,6 @@
             
             console.log(`📊 Successfully loaded ${validPosts.length}/${manualPosts.length} posts`);
             return validPosts;
-        }
-
-        // Process all posts to extract Shopee products (enhanced)
-        function processShopeeProducts() {
-            extractedShopeeProducts = [];
-            
-            if (!Array.isArray(allPosts)) return;
-            
-            allPosts.forEach(post => {
-                if (post && Array.isArray(post.shopeeProducts)) {
-                    extractedShopeeProducts.push(...post.shopeeProducts);
-                }
-            });
-            
-            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
-        }
-
-        // Demo Shopee products data
-        const demoShopeeProducts = [
-            {
-                name: "Cà Phê Arabica Rang Vừa Premium 500g",
-                price: "195.000đ",
-                oldPrice: "250.000đ",
-                image: "https://images.unsplash.com/photo-1587734195503-904fca47e7d9?w=300&h=200&fit=crop",
-                url: "https://shopee.vn/sample-product-1",
-                discount: "-22%",
-                badge: "Bán chạy"
-            },
-            {
-                name: "Phin Cà Phê Nhôm Cao Cấp Size 8",
-                price: "85.000đ", 
-                oldPrice: "120.000đ",
-                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop",
-                url: "https://shopee.vn/sample-product-2",
-                discount: "-29%",
-                badge: "Deal sốc"
-            },
-            {
-                name: "Máy Xay Cà Phê Cầm Tay Mini",
-                price: "299.000đ",
-                oldPrice: "399.000đ", 
-                image: "https://images.unsplash.com/photo-1611564635773-3217d88450ed?w=300&h=200&fit=crop",
-                url: "https://shopee.vn/sample-product-3",
-                discount: "-25%",
-                badge: "Mới"
-            }
-        ];
-
-        // Render Shopee products widget (enhanced with demo data)
-        function renderShopeeProducts() {
-            if (!DOM.shopeeWidget || !DOM.shopeeProducts) return;
-            
-            // Always show demo products for demonstration
-            const productsToShow = demoShopeeProducts;
-            
-            DOM.shopeeWidget.style.display = 'block';
-            
-            DOM.shopeeProducts.innerHTML = productsToShow.map((product, index) => {
-                if (!product || !product.url) return '';
-                
-                const imageContent = product.image && isValidImageUrl(product.image) ? 
-                    `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name || 'Sản phẩm')}" onerror="this.parentElement.innerHTML='☕';">` : 
-                    '☕';
-                
-                return `
-                    <div class="shopee-product" onclick="window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
-                        ${product.discount ? `<div class="shopee-discount">${escapeHtml(product.discount)}</div>` : ''}
-                        <div class="shopee-product-image">
-                            ${imageContent}
-                        </div>
-                        <div class="shopee-product-info">
-                            <div class="shopee-product-name">${escapeHtml(product.name || 'Sản phẩm')}</div>
-                            <div class="shopee-product-price">
-                                ${escapeHtml(product.price || 'Xem giá')}
-                                ${product.oldPrice ? `<span class="shopee-product-old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                            </div>
-                            <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('${escapeHtml(product.url)}', '_blank', 'noopener,noreferrer')">
-                                🛒 Mua ngay
-                            </button>
-                        </div>
-                        <div class="shopee-badge">${escapeHtml(product.badge || 'Sản phẩm')}</div>
-                    </div>
-                `;
-            }).join('');
         }
 
         // ====================================================================
@@ -2358,7 +2772,7 @@
                 console.log(`✅ Loaded ${allPosts.length} posts total`);
                 
                 // Process Shopee products from all posts
-                processShopeeProducts();
+                processShopeeProducts(allPosts);
                 
             } catch (error) {
                 console.error('❌ Failed to initialize blog:', error);
@@ -2493,6 +2907,13 @@
         // 🎬 MAIN EXECUTION
         // ====================================================================
 
+        // Auto-initialize Shopee widget when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initShopeeWidget);
+        } else {
+            initShopeeWidget();
+        }
+
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             console.log('📄 DOM Content Loaded');
@@ -2513,7 +2934,20 @@
             console.error('💥 Unhandled promise rejection:', e.reason);
         });
 
-        console.log('☕ Anaro Coffee Blog script loaded successfully!');
+        // Make ShopeeWidget available globally
+        const ShopeeWidget = {
+            render: renderShopeeProducts,
+            extract: extractShopeeProducts,
+            process: processShopeeProducts,
+            init: initShopeeWidget,
+            config: SHOPEE_CONFIG
+        };
+
+        if (typeof window !== 'undefined') {
+            window.ShopeeWidget = ShopeeWidget;
+        }
+
+        console.log('☕ Anaro Coffee Blog with Shopee Widget loaded successfully!');
     </script>
-</body>
-</html>
+
+</body></html>
