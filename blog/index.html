@@ -1,6 +1,14 @@
-<html lang="vi"><head>
+năng khác của blog.
+
+
+
+Continue
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
     <!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -1120,77 +1128,16 @@
         <div class="featured-section">
             <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
             <div class="featured-post" id="featuredPost">
-                    <div class="featured-content">
-                        <div class="no-results">
-                            <div class="no-results-icon">📝</div>
-                            <h3>Chưa có bài viết nổi bật</h3>
-                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Featured post will be inserted here -->
+            </div>
         </div>
 
         <!-- Shopee Products Widget -->
-        <div class="shopee-widget" id="shopeeWidget" style="display: block;">
+        <div class="shopee-widget" id="shopeeWidget" style="display: none;">
             <h3>🛒 Sản Phẩm Từ Bài Viết</h3>
             <div class="shopee-products" id="shopeeProducts">
-                    <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 15px;">
-                        <button class="shopee-refresh-btn" onclick="refreshDesktopProducts()">🔄 Sản phẩm khác</button>
-                    </div>
-                    
-                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/sample5', '_blank', 'noopener,noreferrer')">
-                    
-                    <div class="shopee-product-image">
-                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&amp;h=200&amp;fit=crop" alt="Bộ Pha Cà Phê Phin Truyền Thống" onerror="this.parentElement.innerHTML='☕';">
-                    </div>
-                    <div class="shopee-product-info">
-                        <div class="shopee-product-name">Bộ Pha Cà Phê Phin Truyền Thống</div>
-                        <div class="shopee-product-price">
-                            125.000đ
-                            
-                        </div>
-                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/sample5', '_blank', 'noopener,noreferrer')">
-                            🛒 Mua ngay
-                        </button>
-                    </div>
-                    <div class="shopee-badge">Truyền thống</div>
-                </div>
-            
-                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/sample6', '_blank', 'noopener,noreferrer')">
-                    
-                    <div class="shopee-product-image">☕</div>
-                    <div class="shopee-product-info">
-                        <div class="shopee-product-name">Máy Xay Cà Phê Cầm Tay</div>
-                        <div class="shopee-product-price">
-                            299.000đ
-                            
-                        </div>
-                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/sample6', '_blank', 'noopener,noreferrer')">
-                            🛒 Mua ngay
-                        </button>
-                    </div>
-                    <div class="shopee-badge">Tiện lợi</div>
-                </div>
-            
-                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
-                    
-                    <div class="shopee-product-image">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&amp;h=200&amp;fit=crop" alt="Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa" onerror="this.parentElement.innerHTML='☕';">
-                    </div>
-                    <div class="shopee-product-info">
-                        <div class="shopee-product-name">Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa</div>
-                        <div class="shopee-product-price">
-                            90.000đ
-                            
-                        </div>
-                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
-                            🛒 Mua ngay
-                        </button>
-                    </div>
-                    <div class="shopee-badge">Cao cấp</div>
-                </div>
-            
-                </div>
+                <!-- Products will be inserted here -->
+            </div>
         </div>
 
         <!-- Filter Navigation with Dropdown -->
@@ -1201,7 +1148,10 @@
                     <span id="selectedFilter">Tất cả</span>
                     <span class="dropdown-arrow">▼</span>
                 </div>
-                <div class="filter-options" id="filterOptions"><div class="filter-option selected" data-tag="all">Tất cả</div></div>
+                <div class="filter-options" id="filterOptions">
+                    <div class="filter-option selected" data-tag="all">Tất cả</div>
+                    <!-- Dynamic options will be added here -->
+                </div>
             </div>
         </div>
 
@@ -1210,16 +1160,16 @@
             <div class="posts-section">
                 <h2>📚 Các Bài Viết Khác</h2>
                 
-                <div class="loading" id="loading" style="display: none;">
+                <div class="loading" id="loading">
                     <div class="loading-spinner"></div>
                     <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
                 </div>
 
-                <div class="posts-grid" id="postsGrid" style="display: none;">
+                <div class="posts-grid" id="postsGrid">
                     <!-- Posts will be inserted here -->
                 </div>
 
-                <div class="no-results" id="noResults" style="display: block;">
+                <div class="no-results" id="noResults" style="display: none;">
                     <div class="no-results-icon">🔍</div>
                     <h3>Không tìm thấy bài viết</h3>
                     <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
@@ -1227,7 +1177,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination" id="pagination" style="display: none;">
-                    <button class="pagination-btn" id="prevBtn" disabled="">‹ Trước</button>
+                    <button class="pagination-btn" id="prevBtn" disabled>‹ Trước</button>
                     <div class="pagination-info" id="paginationInfo"></div>
                     <button class="pagination-btn" id="nextBtn">Sau ›</button>
                 </div>
@@ -1249,7 +1199,7 @@
 
     <script>
         // ====================================================================
-        // 🛒 SHOPEE WIDGET - COMPLETE MODULE (From Document 1)
+        // 🛒 SHOPEE WIDGET - UPDATED EXTRACTION MODULE (FROM FILE 2)
         // ====================================================================
 
         // Configuration
@@ -1288,7 +1238,7 @@
                 badge: "Premium"
             },
             {
-                name: "Hũ Đựng Cà Phê Chống Oxy Hóa",
+                name: "Hủ Đựng Cà Phê Chống Oxy Hóa",
                 price: "Xem giá",
                 image: "https://images.unsplash.com/photo-1587734195503-904fca47e7d9?w=300&h=200&fit=crop",
                 url: "https://s.shopee.vn/5pz01sG37t",
@@ -1311,7 +1261,7 @@
         ];
 
         // ====================================================================
-        // 🔒 SECURITY UTILITIES (From Document 1)
+        // 🔒 SECURITY UTILITIES
         // ====================================================================
 
         function escapeHtml(unsafe) {
@@ -1353,163 +1303,138 @@
         }
 
         // ====================================================================
-        // 🔍 SHOPEE EXTRACTION FUNCTIONS (From Document 1)
+        // 🛒 UPDATED SHOPEE EXTRACTION FUNCTIONS (FROM FILE 2)
         // ====================================================================
 
-        function extractShopeeProducts(html, postTitle) {
+        // Validate Shopee URLs - only s.shopee.vn (UPDATED FROM FILE 2)
+        function isValidShopeeUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                // Only accept s.shopee.vn
+                return urlObj.hostname.toLowerCase() === 's.shopee.vn';
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Extract from meta tags (NEW FROM FILE 2)
+        function extractProductsFromMetaTags(html) {
+            if (!html) return [];
+            
             const products = [];
             
-            if (!html || !postTitle) return products;
+            // Look for product meta tags
+            const productNamePattern = /<meta[^>]*name=["']product:name["'][^>]*content=["']([^"']+)["']/gi;
+            const productPricePattern = /<meta[^>]*name=["']product:price["'][^>]*content=["']([^"']+)["']/gi;
+            const productImagePattern = /<meta[^>]*name=["']product:image["'][^>]*content=["']([^"']+)["']/gi;
+            const productUrlPattern = /<meta[^>]*name=["']product:url["'][^>]*content=["']([^"']+)["']/gi;
             
-            // Enhanced patterns to find Shopee links including s.shopee.vn
-            const shopeeLinkPatterns = [
-                /https?:\/\/(?:www\.)?shopee\.vn\/[^\s"'<>)]+/gi,
-                /https?:\/\/(?:www\.)?shp\.ee\/[^\s"'<>)]+/gi,
-                /https?:\/\/s\.shopee\.vn\/[^\s"'<>)]+/gi,
-                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shopee\.vn\/[^"']+)["'][^>]*>/gi,
-                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shp\.ee\/[^"']+)["'][^>]*>/gi,
-                /<a[^>]*href=["'](https?:\/\/s\.shopee\.vn\/[^"']+)["'][^>]*>/gi
+            const names = Array.from(html.matchAll(productNamePattern), m => m[1]);
+            const prices = Array.from(html.matchAll(productPricePattern), m => m[1]);
+            const images = Array.from(html.matchAll(productImagePattern), m => m[1]);
+            const urls = Array.from(html.matchAll(productUrlPattern), m => m[1]);
+            
+            // Combine data
+            const maxLength = Math.max(names.length, prices.length, images.length, urls.length);
+            for (let i = 0; i < maxLength; i++) {
+                if (urls[i] && isValidShopeeUrl(urls[i])) {
+                    products.push({
+                        name: names[i] || null,
+                        price: prices[i] || null,
+                        image: images[i] || null,
+                        url: urls[i],
+                        badge: "Từ bài viết"
+                    });
+                }
+            }
+            
+            return products;
+        }
+
+        // Extract s.shopee.vn links (UPDATED FROM FILE 2)
+        function extractShopeeLinks(html) {
+            const links = new Set();
+            
+            const patterns = [
+                // Focus on s.shopee.vn short links
+                /https?:\/\/s\.shopee\.vn\/[A-Za-z0-9]+/gi,
+                /<a[^>]*href=["'](https?:\/\/s\.shopee\.vn\/[^"']+)["']/gi
             ];
             
-            const foundLinks = new Set();
-            
-            // Extract all Shopee links
-            for (const pattern of shopeeLinkPatterns) {
+            patterns.forEach(pattern => {
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
                     const link = match[1] || match[0];
-                    const sanitizedLink = sanitizeUrl(link);
-                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
-                        foundLinks.add(sanitizedLink);
+                    if (isValidShopeeUrl(link)) {
+                        links.add(link);
                     }
                 }
-            }
-            
-            // Also search for s.shopee.vn in plain text
-            const shortLinkMatches = html.match(/https?:\/\/s\.shopee\.vn\/[A-Za-z0-9]+/gi);
-            if (shortLinkMatches) {
-                shortLinkMatches.forEach(link => {
-                    const sanitizedLink = sanitizeUrl(link);
-                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
-                        foundLinks.add(sanitizedLink);
-                    }
-                });
-            }
-            
-            if (foundLinks.size === 0) {
-                return [];
-            }
-            
-            const images = extractProductImages(html);
-            
-            Array.from(foundLinks).forEach((link, index) => {
-                const productName = extractProductNameFromLink(link, html, postTitle);
-                const price = extractPriceFromContent(html, link);
-                
-                products.push({
-                    name: escapeHtml(productName),
-                    price: escapeHtml(price || "Xem giá trên Shopee"),
-                    url: link,
-                    image: images[index % images.length] || null,
-                    badge: "Từ bài viết",
-                    postTitle: escapeHtml(postTitle)
-                });
             });
             
-            return products.slice(0, SHOPEE_CONFIG.maxProductsPerPost);
+            return Array.from(links);
         }
 
-        function extractProductImages(html) {
-            const images = [];
-            
-            if (!html) return images;
-            
-            const imagePatterns = [
-                /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
-                /<meta\s+property="og:image"\s+content="([^"]+)"/gi,
-                /background-image\s*:\s*url\(['"]?([^'"]+)['"]?\)/gi
+        // Check if text is too generic (NEW FROM FILE 2)
+        function isGenericText(text) {
+            const genericTerms = [
+                'click here', 'mua ngay', 'xem thêm', 'đọc tiếp', 'shopee', 'link', 'here', 'this',
+                'sản phẩm', 'cà phê', 'coffee', 'buy now', 'shop now', 'tại đây'
             ];
             
-            for (const pattern of imagePatterns) {
-                let match;
-                while ((match = pattern.exec(html)) !== null) {
-                    const imageUrl = match[1];
-                    if (isValidImageUrl(imageUrl) && 
-                        imageUrl.length > 20 &&
-                        !images.includes(imageUrl)) {
-                        images.push(imageUrl);
-                    }
-                }
-            }
-            
-            return images;
+            const lowerText = text.toLowerCase();
+            return genericTerms.some(term => lowerText.includes(term)) || text.length < 10;
         }
 
-        function extractProductNameFromLink(link, html, postTitle) {
-            try {
-                const urlObj = new URL(link);
-                const pathParts = urlObj.pathname.split('/');
-                
-                for (const part of pathParts) {
-                    if (part.length > 10 && part.includes('-')) {
-                        const decoded = decodeURIComponent(part.replace(/-/g, ' '))
-                                       .replace(/\b\w/g, l => l.toUpperCase())
-                                       .substring(0, 50);
-                        if (decoded && decoded.trim()) {
-                            return decoded.trim();
-                        }
-                    }
-                }
-            } catch (e) {
-                // URL parsing failed
-            }
+        // Extract name from context (NEW FROM FILE 2)
+        function extractNameFromContext(context, shopeeUrl) {
+            // Patterns to find product names in context
+            const namePatterns = [
+                // Look for quoted text near the link
+                /["']([^"']{10,60})["'][^>]*href[^>]*shopee/i,
+                /href[^>]*shopee[^>]*>([^<]{10,60})</i,
+                // Look for text in strong/b tags
+                /<(?:strong|b)[^>]*>([^<]{10,60})<\/(?:strong|b)>/i,
+                // Look for text in headings near the link
+                /<h[1-6][^>]*>([^<]{10,60})<\/h[1-6]>/i,
+                // Look for alt text in nearby images
+                /alt=["']([^"']{10,60})["']/i,
+                // Look for title attributes
+                /title=["']([^"']{10,60})["']/i
+            ];
             
-            if (html && html.indexOf) {
-                const linkIndex = html.indexOf(link);
-                if (linkIndex > -1) {
-                    const before = html.substring(Math.max(0, linkIndex - 200), linkIndex);
-                    const after = html.substring(linkIndex, linkIndex + 200);
-                    
-                    const namePatterns = [
-                        /<a[^>]*>[^<]*([^<]{10,50})[^<]*<\/a>/i,
-                        /alt=["']([^"']{10,50})["']/i,
-                        /title=["']([^"']{10,50})["']/i
-                    ];
-                    
-                    for (const pattern of namePatterns) {
-                        const match = (before + after).match(pattern);
-                        if (match && match[1] && match[1].trim()) {
-                            return match[1].trim().substring(0, 50);
-                        }
+            for (const pattern of namePatterns) {
+                const match = context.match(pattern);
+                if (match && match[1] && match[1].trim()) {
+                    const name = match[1].trim();
+                    // Avoid generic text
+                    if (!isGenericText(name)) {
+                        return name;
                     }
                 }
             }
             
-            return `${postTitle.substring(0, 30)} - Sản phẩm`;
+            return null;
         }
 
-        function extractPriceFromContent(html, link) {
-            if (!html || !link) return null;
-            
-            const linkIndex = html.indexOf(link);
-            if (linkIndex === -1) return null;
-            
-            const searchText = html.substring(
-                Math.max(0, linkIndex - 300), 
-                linkIndex + 300
-            );
-            
+        // Extract price with better patterns (UPDATED FROM FILE 2)
+        function extractPriceFromContext(context) {
             const pricePatterns = [
+                // Vietnamese prices
                 /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:đ|dong|vnd|₫)/gi,
-                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k)/gi,
+                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k|thousand)/gi,
+                // Price labels
                 /giá\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
-                /price\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi
+                /price\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
+                /cost\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
+                // Discount prices
+                /chỉ\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
+                /only\s*(\d{1,3}(?:[,.]?\d{3})*)/gi
             ];
             
             for (const pattern of pricePatterns) {
-                const match = searchText.match(pattern);
-                if (match && match[1]) {
-                    const price = match[1] || match[0];
+                const match = context.match(pattern);
+                if (match) {
+                    const price = match[1];
                     return price.includes('đ') ? price : `${price}đ`;
                 }
             }
@@ -1517,8 +1442,126 @@
             return null;
         }
 
+        // Extract image from context (NEW FROM FILE 2)
+        function extractImageFromContext(context, fullHtml, linkIndex) {
+            // Look for images near the link (within 500 chars)
+            const searchStart = Math.max(0, linkIndex - 500);
+            const searchEnd = Math.min(fullHtml.length, linkIndex + 500);
+            const searchArea = fullHtml.substring(searchStart, searchEnd);
+            
+            const imagePatterns = [
+                /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
+                /background-image\s*:\s*url\(['"]?([^'"]+)['"]?\)/gi
+            ];
+            
+            for (const pattern of imagePatterns) {
+                const matches = Array.from(searchArea.matchAll(pattern));
+                for (const match of matches) {
+                    const imageUrl = match[1];
+                    if (isValidImageUrl(imageUrl)) {
+                        return imageUrl;
+                    }
+                }
+            }
+            
+            return null;
+        }
+
+        // Extract product from surrounding context (NEW FROM FILE 2)
+        function extractProductFromContext(html, shopeeUrl, postTitle, index) {
+            const linkIndex = html.indexOf(shopeeUrl);
+            if (linkIndex === -1) return null;
+            
+            // Get context around the link (300 chars before and after)
+            const contextStart = Math.max(0, linkIndex - 300);
+            const contextEnd = Math.min(html.length, linkIndex + 300);
+            const context = html.substring(contextStart, contextEnd);
+            
+            // Try to extract product name from context
+            let productName = extractNameFromContext(context, shopeeUrl);
+            
+            // If no valid name found, skip this product
+            if (!productName) {
+                console.log(`❌ No valid product name found for ${shopeeUrl}`);
+                return null;
+            }
+            
+            // Try to extract price from context
+            const price = extractPriceFromContext(context);
+            
+            // Try to get image from nearby content
+            const image = extractImageFromContext(context, html, linkIndex);
+            
+            return {
+                name: escapeHtml(productName),
+                price: escapeHtml(price || "Xem giá trên Shopee"),
+                url: shopeeUrl,
+                image: image,
+                badge: "Từ bài viết",
+                postTitle: escapeHtml(postTitle)
+            };
+        }
+
+        // Main extraction function with proper priority (UPDATED FROM FILE 2)
+        function extractShopeeProducts(html, postTitle) {
+            if (!html) return [];
+            
+            const products = [];
+            
+            // PRIORITY 1: Try meta tags first
+            const metaProducts = extractProductsFromMetaTags(html);
+            if (metaProducts.length > 0) {
+                console.log('🏷️ Found meta tag products:', metaProducts);
+                return metaProducts.filter(p => p.name || p.url);
+            }
+            
+            // PRIORITY 2: Fallback to link extraction + context analysis
+            const shopeeLinks = extractShopeeLinks(html);
+            if (shopeeLinks.length === 0) return [];
+            
+            console.log('🔗 Found s.shopee.vn links, extracting context:', shopeeLinks);
+            
+            // Try to extract context around each link
+            shopeeLinks.forEach((link, index) => {
+                const contextProduct = extractProductFromContext(html, link, postTitle, index);
+                if (contextProduct) {
+                    products.push(contextProduct);
+                }
+            });
+            
+            return products.slice(0, SHOPEE_CONFIG.maxProductsPerPost);
+        }
+
+        // Process and render products (UPDATED FROM FILE 2)
+        function processAndRenderShopeeProducts(allPosts) {
+            extractedShopeeProducts = [];
+            
+            if (!Array.isArray(allPosts)) return;
+            
+            allPosts.forEach(post => {
+                if (post && post.shopeeProducts && Array.isArray(post.shopeeProducts)) {
+                    // Filter out products with generic names
+                    const validProducts = post.shopeeProducts.filter(product => {
+                        return product.name && 
+                               !isGenericText(product.name) &&
+                               !product.name.includes('Sản phẩm') &&
+                               product.url;
+                    });
+                    
+                    extractedShopeeProducts.push(...validProducts);
+                }
+            });
+            
+            console.log(`🛒 Processed ${extractedShopeeProducts.length} valid Shopee products`);
+            
+            // Render the widget
+            if (extractedShopeeProducts.length > 0) {
+                renderShopeeProducts();
+            }
+        }
+
         // ====================================================================
-        // 📱 MOBILE/DESKTOP DETECTION (From Document 1)
+        // 📱 MOBILE/DESKTOP DETECTION
         // ====================================================================
 
         function checkIfMobile() {
@@ -1536,7 +1579,7 @@
         }
 
         // ====================================================================
-        // 🎨 RENDERING FUNCTIONS (From Document 1)
+        // 🎨 RENDERING FUNCTIONS
         // ====================================================================
 
         function renderShopeeProducts(containerId = 'shopeeProducts', widgetId = 'shopeeWidget') {
@@ -1621,7 +1664,7 @@
         }
 
         // ====================================================================
-        // 🎮 NAVIGATION FUNCTIONS (From Document 1)
+        // 🎮 NAVIGATION FUNCTIONS (UPDATED FROM FILE 2)
         // ====================================================================
 
         function updateCarouselPosition() {
@@ -1639,13 +1682,15 @@
 
         function nextProduct() {
             if (!isMobile) return;
-            currentProductIndex = (currentProductIndex + 1) % demoShopeeProducts.length;
+            const productsToShow = extractedShopeeProducts.length > 0 ? extractedShopeeProducts : demoShopeeProducts;
+            currentProductIndex = (currentProductIndex + 1) % productsToShow.length;
             updateCarouselPosition();
         }
 
         function prevProduct() {
             if (!isMobile) return;
-            currentProductIndex = (currentProductIndex - 1 + demoShopeeProducts.length) % demoShopeeProducts.length;
+            const productsToShow = extractedShopeeProducts.length > 0 ? extractedShopeeProducts : demoShopeeProducts;
+            currentProductIndex = (currentProductIndex - 1 + productsToShow.length) % productsToShow.length;
             updateCarouselPosition();
         }
 
@@ -1658,7 +1703,8 @@
         function refreshDesktopProducts() {
             if (isMobile) return;
             
-            const randomProducts = shuffleArray(demoShopeeProducts).slice(0, SHOPEE_CONFIG.desktopProductsCount);
+            const productsToShow = extractedShopeeProducts.length > 0 ? extractedShopeeProducts : demoShopeeProducts;
+            const randomProducts = shuffleArray(productsToShow).slice(0, SHOPEE_CONFIG.desktopProductsCount);
             const productContainer = document.getElementById('shopeeProducts');
             
             if (!productContainer) return;
@@ -1673,7 +1719,7 @@
         }
 
         // ====================================================================
-        // 👆 TOUCH SUPPORT (From Document 1)
+        // 👆 TOUCH SUPPORT
         // ====================================================================
 
         function addTouchSupport() {
@@ -1727,7 +1773,7 @@
         }
 
         // ====================================================================
-        // 🔄 RESPONSIVE HANDLER (From Document 1)
+        // 📄 RESPONSIVE HANDLER
         // ====================================================================
 
         function handleWindowResize() {
@@ -1739,22 +1785,8 @@
             }
         }
 
-        function processShopeeProducts(allPosts) {
-            extractedShopeeProducts = [];
-            
-            if (!Array.isArray(allPosts)) return;
-            
-            allPosts.forEach(post => {
-                if (post && Array.isArray(post.shopeeProducts)) {
-                    extractedShopeeProducts.push(...post.shopeeProducts);
-                }
-            });
-            
-            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
-        }
-
         // ====================================================================
-        // 🚀 INITIALIZATION (From Document 1)
+        // 🚀 SHOPEE INITIALIZATION
         // ====================================================================
 
         function initShopeeWidget() {
@@ -1796,7 +1828,7 @@
         }
 
         // ====================================================================
-        // 🔧 ORIGINAL BLOG CONFIGURATION (From Document 2)
+        // 🧠 ORIGINAL BLOG CONFIGURATION
         // ====================================================================
         
         const POSTS_FOLDER = './posts/';
@@ -1815,7 +1847,7 @@
         ];
 
         // ====================================================================
-        // 🎯 GLOBAL VARIABLES (From Document 2)
+        // 🎯 GLOBAL VARIABLES
         // ====================================================================
         
         let allPosts = [];
@@ -1823,7 +1855,7 @@
         let currentFilter = 'all';
         let currentPage = 1;
         let totalPages = 1;
-        let filterCache = new Map(); // Cache for filter results
+        let filterCache = new Map();
 
         // Cached DOM Elements for performance
         const DOM = {
@@ -1849,10 +1881,9 @@
         };
 
         // ====================================================================
-        // 🔍 METADATA PARSING FUNCTIONS (ENHANCED)
+        // 📝 METADATA PARSING FUNCTIONS (ENHANCED)
         // ====================================================================
 
-        // Enhanced metadata parser - KEEP ORIGINAL LOGIC, only add safety checks
         function parsePostMetadata(html, filename) {
             console.log(`🔍 Parsing metadata for: ${filename}`);
             const metadata = {};
@@ -1913,30 +1944,7 @@
                 }
             }
             
-            // Method 3: JSON-LD structured data
-            const jsonLdMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
-            if (jsonLdMatch) {
-                try {
-                    const jsonData = JSON.parse(jsonLdMatch[1]);
-                    console.log(`📊 Found JSON-LD data:`, jsonData);
-                    
-                    if (jsonData.keywords) {
-                        if (typeof jsonData.keywords === 'string') {
-                            metadata.tags = jsonData.keywords.split(',').map(tag => tag.trim().toLowerCase());
-                        } else if (Array.isArray(jsonData.keywords)) {
-                            metadata.tags = jsonData.keywords.map(tag => tag.toLowerCase());
-                        }
-                    }
-                    
-                    if (jsonData.headline && !metadata.title) metadata.title = jsonData.headline;
-                    if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
-                    if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
-                } catch (e) {
-                    console.log(`❌ JSON-LD parse error:`, e);
-                }
-            }
-            
-            // Method 4: Data attributes or special divs
+            // Method 3: Data attributes or special divs
             const dataPatterns = [
                 /data-tags=["']([^"']+)["']/i,
                 /<div\s+class=["']post-tags["'][^>]*>([^<]*)</i,
@@ -1952,7 +1960,7 @@
                 }
             }
             
-            // Method 5: Fallback - analyze content for Vietnamese coffee terms
+            // Method 4: Fallback - analyze content for Vietnamese coffee terms
             if (!metadata.tags || metadata.tags.length === 0) {
                 console.log(`🔍 No tags found, analyzing content...`);
                 metadata.tags = analyzeContentForTags(html, filename);
@@ -1964,7 +1972,6 @@
                 if (titleMatch) {
                     metadata.title = titleMatch[1].trim();
                 } else {
-                    // Fallback to h1
                     const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
                     if (h1Match) metadata.title = h1Match[1].trim();
                 }
@@ -1972,7 +1979,6 @@
             
             // Extract excerpt
             if (!metadata.excerpt) {
-                // Try to find first meaningful paragraph
                 const paragraphMatches = html.match(/<p[^>]*>([^<]+)<\/p>/gi);
                 if (paragraphMatches) {
                     for (const p of paragraphMatches) {
@@ -2008,20 +2014,6 @@
             return metadata;
         }
 
-        // Get default metadata when parsing fails
-        function getDefaultMetadata(filename) {
-            return {
-                title: `Bài viết ${filename.replace('.html', '')}`,
-                excerpt: 'Đọc bài viết để khám phá thêm...',
-                tags: ['coffee'],
-                date: new Date().toISOString().split('T')[0],
-                readTime: '5 phút đọc',
-                image: '☕',
-                imageType: 'emoji'
-            };
-        }
-
-        // AI-powered content analysis for tag extraction (enhanced)
         function analyzeContentForTags(html, filename) {
             const tags = [];
             
@@ -2075,7 +2067,6 @@
                 }
             });
             
-            // Always include 'coffee' as base tag if no other tags found
             if (tags.length === 0) {
                 tags.push('coffee');
             }
@@ -2083,7 +2074,6 @@
             return tags;
         }
 
-        // Extract first image URL from HTML content (enhanced)
         function extractFirstImage(html) {
             if (!html) return null;
             
@@ -2112,7 +2102,6 @@
             return null;
         }
 
-        // Get appropriate emoji for tags
         function getEmojiForTags(tags) {
             if (!Array.isArray(tags)) return '📄';
             
@@ -2150,10 +2139,9 @@
         }
 
         // ====================================================================
-        // 📖 POST LOADING FUNCTIONS (ENHANCED)
+        // 📖 POST LOADING FUNCTIONS
         // ====================================================================
 
-        // Load metadata from individual post file (enhanced with error handling)
         async function loadPostMetadata(filepath, id) {
             try {
                 console.log(`📄 Loading post: ${filepath}`);
@@ -2188,10 +2176,9 @@
             }
         }
 
-        // Load posts from manual list (enhanced)
         async function loadManualPosts() {            
             if (!Array.isArray(manualPosts) || manualPosts.length === 0) {
-                console.log('📝 No manual posts configured');
+                console.log('📋 No manual posts configured');
                 return [];
             }
             
@@ -2225,10 +2212,9 @@
         }
 
         // ====================================================================
-        // 🎨 RENDERING FUNCTIONS (ENHANCED)
+        // 🎨 RENDERING FUNCTIONS
         // ====================================================================
 
-        // Render featured post (first/newest post) with security enhancements
         function renderFeaturedPost() {
             if (!DOM.featuredPost) return;
             
@@ -2236,7 +2222,7 @@
                 DOM.featuredPost.innerHTML = `
                     <div class="featured-content">
                         <div class="no-results">
-                            <div class="no-results-icon">📝</div>
+                            <div class="no-results-icon">📋</div>
                             <h3>Chưa có bài viết nổi bật</h3>
                             <p>Hãy thêm bài viết để hiển thị ở đây</p>
                         </div>
@@ -2275,7 +2261,6 @@
                 </div>
             `;
 
-            // Add click handlers for featured tags
             DOM.featuredPost.querySelectorAll('.featured-tag').forEach(tag => {
                 tag.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2287,14 +2272,12 @@
             });
         }
 
-        // Render posts grid (excluding featured post) with security enhancements
         function renderPosts() {
             if (!DOM.postsGrid || !DOM.noResults || !DOM.pagination) return;
             
             const startIndex = currentFilter === 'all' && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? 1 : 0;
             const postsToShow = Array.isArray(filteredPosts) ? filteredPosts.slice(startIndex) : [];
             
-            // Calculate pagination
             totalPages = Math.ceil(postsToShow.length / POSTS_PER_PAGE);
             const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
             const endIdx = startIdx + POSTS_PER_PAGE;
@@ -2343,7 +2326,6 @@
                 `;
             }).join('');
 
-            // Add click handlers for post tags
             DOM.postsGrid.querySelectorAll('.post-tag').forEach(tag => {
                 tag.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2354,15 +2336,13 @@
                 });
             });
 
-            // Update pagination
             updatePagination();
         }
 
         // ====================================================================
-        // 🎯 FILTER & SEARCH FUNCTIONS (ENHANCED)
+        // 🎯 FILTER & SEARCH FUNCTIONS
         // ====================================================================
 
-        // Generate dynamic filter options with caching
         function generateFilterOptions() {
             if (!Array.isArray(allPosts) || !DOM.filterOptions) return;
             
@@ -2370,7 +2350,6 @@
                 Array.isArray(post.tags) ? post.tags : []
             ))].filter(Boolean);
             
-            // Keep the "Tất cả" option and add dynamic options
             DOM.filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
             
             allTags.sort().forEach(tag => {
@@ -2384,11 +2363,9 @@
                 }
             });
             
-            // Attach event listeners
             attachFilterOptionListeners();
         }
 
-        // Get display name for tags (enhanced)
         function getDisplayName(tag) {
             if (!tag || typeof tag !== 'string') return 'Không rõ';
             
@@ -2410,28 +2387,16 @@
                 'espresso': 'Espresso',
                 'phin': 'Phin',
                 'bảo quản cà phê': 'Bảo quản cà phê',
-                'cách bảo quản cà phê': 'Cách bảo quản',
-                'cà phê hạt': 'Cà phê hạt',
-                'cà phê xay': 'Cà phê xay',
-                'hướng dẫn cà phê': 'Hướng dẫn',
                 'rang cà phê': 'Rang cà phê',
-                'các mức rang cà phê': 'Các mức rang',
                 'light roast': 'Light roast',
                 'medium roast': 'Medium roast', 
-                'dark roast': 'Dark roast',
-                'hương vị cà phê': 'Hương vị',
-                'arabica vs robusta': 'Arabica vs Robusta',
-                'sự khác nhau arabica robusta': 'So sánh Arabica Robusta',
-                'phân biệt arabica robusta': 'Phân biệt loại hạt',
-                'cà phê arabica': 'Cà phê Arabica',
-                'cà phê robusta': 'Cà phê Robusta'
+                'dark roast': 'Dark roast'
             };
             
             const lowerTag = tag.toLowerCase();
             return displayNames[lowerTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
         }
 
-        // Attach filter option listeners with enhanced error handling
         function attachFilterOptionListeners() {
             if (!DOM.filterOptions) return;
             
@@ -2441,22 +2406,18 @@
                     try {
                         e.preventDefault();
                         
-                        // Update selected option
                         filterOptionElements.forEach(o => o.classList.remove('selected'));
                         option.classList.add('selected');
                         
-                        // Update dropdown display
                         if (DOM.selectedFilter) {
                             DOM.selectedFilter.textContent = option.textContent || 'Tất cả';
                         }
                         
-                        // Hide dropdown
                         if (DOM.filterOptions && DOM.filterDropdown) {
                             DOM.filterOptions.classList.remove('show');
                             DOM.filterDropdown.classList.remove('active');
                         }
                         
-                        // Filter posts
                         const tagValue = option.dataset.tag;
                         if (tagValue) {
                             filterByTag(tagValue);
@@ -2468,15 +2429,12 @@
             });
         }
 
-        // Filter by tag with caching
         function filterByTag(tag) {
             if (!tag || typeof tag !== 'string') return;
             
-            // Reset page and apply filter
             currentPage = 1;
             currentFilter = tag;
             
-            // Use cached result if available
             const cacheKey = `${tag}_${DOM.searchInput?.value || ''}`;
             if (filterCache.has(cacheKey)) {
                 filteredPosts = filterCache.get(cacheKey);
@@ -2488,13 +2446,11 @@
             }
         }
 
-        // Handle search with enhanced debouncing and validation
         function handleSearch(query = '') {
             if (typeof query !== 'string') query = '';
             
             const sanitizedQuery = query.toLowerCase().trim();
             
-            // Sync search inputs
             if (DOM.searchInput && DOM.mobileSearchInput) {
                 if (DOM.searchInput.value !== query) DOM.searchInput.value = query;
                 if (DOM.mobileSearchInput.value !== query) DOM.mobileSearchInput.value = query;
@@ -2503,7 +2459,6 @@
             filterPosts(sanitizedQuery);
         }
 
-        // Main filter function with caching and performance optimization
         function filterPosts(searchQuery = '') {
             if (!Array.isArray(allPosts)) {
                 filteredPosts = [];
@@ -2516,7 +2471,6 @@
             
             showLoading();
             
-            // Use cache if available
             const cacheKey = `${currentFilter}_${searchQuery}`;
             if (filterCache.has(cacheKey)) {
                 filteredPosts = filterCache.get(cacheKey);
@@ -2544,16 +2498,13 @@
                         return matchesTag && matchesSearch;
                     });
 
-                    // Cache result
                     filterCache.set(cacheKey, [...filteredPosts]);
                     
-                    // Limit cache size
                     if (filterCache.size > 50) {
                         const firstKey = filterCache.keys().next().value;
                         filterCache.delete(firstKey);
                     }
 
-                    // Reset to first page when filtering
                     currentPage = 1;
                     
                 } catch (error) {
@@ -2569,10 +2520,9 @@
         }
 
         // ====================================================================
-        // 📄 PAGINATION FUNCTIONS (ENHANCED)
+        // 📄 PAGINATION FUNCTIONS
         // ====================================================================
 
-        // Update pagination UI with error handling
         function updatePagination() {
             if (!DOM.pagination || !DOM.prevBtn || !DOM.nextBtn || !DOM.paginationInfo) return;
             
@@ -2592,7 +2542,6 @@
             }
         }
 
-        // Go to previous page with validation
         function goToPrevPage() {
             if (currentPage > 1) {
                 currentPage--;
@@ -2601,7 +2550,6 @@
             }
         }
 
-        // Go to next page with validation
         function goToNextPage() {
             if (currentPage < totalPages) {
                 currentPage++;
@@ -2611,10 +2559,9 @@
         }
 
         // ====================================================================
-        // 🎛️ UI UTILITY FUNCTIONS (ENHANCED)
+        // 🎛️ UI UTILITY FUNCTIONS
         // ====================================================================
 
-        // Update statistics with error handling
         function updateStats() {
             try {
                 if (DOM.totalPostsEl) {
@@ -2633,7 +2580,6 @@
             }
         }
 
-        // Show loading state
         function showLoading() {
             if (DOM.loading) DOM.loading.style.display = 'block';
             if (DOM.postsGrid) DOM.postsGrid.style.display = 'none';
@@ -2641,12 +2587,10 @@
             if (DOM.pagination) DOM.pagination.style.display = 'none';
         }
 
-        // Hide loading state
         function hideLoading() {
             if (DOM.loading) DOM.loading.style.display = 'none';
         }
 
-        // Format date for display with validation
         function formatDate(dateString) {
             try {
                 if (!dateString) return 'Không rõ';
@@ -2673,7 +2617,6 @@
             }
         }
 
-        // Debounce utility function
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -2687,16 +2630,14 @@
         }
 
         // ====================================================================
-        // 🚀 INITIALIZATION & EVENT LISTENERS (ENHANCED)
+        // 🚀 INITIALIZATION & EVENT LISTENERS
         // ====================================================================
 
-        // Initialize the blog with comprehensive error handling
         async function initializePosts() {
             console.log('🚀 Initializing Anaro Coffee Blog...');
             showLoading();
             
             try {
-                // Clear previous data
                 allPosts = [];
                 filteredPosts = [];
                 extractedShopeeProducts = [];
@@ -2710,7 +2651,6 @@
                     allPosts = await loadManualPosts();
                 }
                 
-                // Ensure allPosts is an array
                 if (!Array.isArray(allPosts)) {
                     allPosts = [];
                 }
@@ -2718,8 +2658,8 @@
                 filteredPosts = [...allPosts];
                 console.log(`✅ Loaded ${allPosts.length} posts total`);
                 
-                // Process Shopee products from all posts
-                processShopeeProducts(allPosts);
+                // UPDATED: Use the new function from file 2
+                processAndRenderShopeeProducts(allPosts);
                 
             } catch (error) {
                 console.error('❌ Failed to initialize blog:', error);
@@ -2738,10 +2678,8 @@
             }
         }
 
-        // Setup all event listeners with enhanced error handling
         function setupEventListeners() {
             try {
-                // Search functionality with debouncing
                 const debouncedSearch = debounce(() => {
                     try {
                         const query = DOM.searchInput?.value || '';
@@ -2768,7 +2706,6 @@
                     DOM.mobileSearchInput.addEventListener('input', debouncedMobileSearch);
                 }
 
-                // Filter dropdown functionality
                 if (DOM.filterDropdown) {
                     DOM.filterDropdown.addEventListener('click', (e) => {
                         try {
@@ -2783,7 +2720,6 @@
                     });
                 }
 
-                // Close dropdown when clicking outside
                 document.addEventListener('click', (e) => {
                     try {
                         if (!e.target.closest('.filter-container')) {
@@ -2795,7 +2731,6 @@
                     }
                 });
 
-                // Refresh functionality
                 if (DOM.refreshBtn) {
                     DOM.refreshBtn.addEventListener('click', () => {
                         try {
@@ -2818,7 +2753,6 @@
                     });
                 }
 
-                // Pagination
                 if (DOM.prevBtn) {
                     DOM.prevBtn.addEventListener('click', goToPrevPage);
                 }
@@ -2826,7 +2760,6 @@
                     DOM.nextBtn.addEventListener('click', goToNextPage);
                 }
 
-                // Keyboard shortcuts
                 document.addEventListener('keydown', (e) => {
                     try {
                         if (e.ctrlKey || e.metaKey) {
@@ -2854,14 +2787,12 @@
         // 🎬 MAIN EXECUTION
         // ====================================================================
 
-        // Auto-initialize Shopee widget when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initShopeeWidget);
         } else {
             initShopeeWidget();
         }
 
-        // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             console.log('📄 DOM Content Loaded');
             try {
@@ -2872,7 +2803,6 @@
             }
         });
 
-        // Handle errors globally
         window.addEventListener('error', (e) => {
             console.error('💥 Global error:', e.error);
         });
@@ -2881,11 +2811,11 @@
             console.error('💥 Unhandled promise rejection:', e.reason);
         });
 
-        // Make ShopeeWidget available globally
+        // Make ShopeeWidget available globally (UPDATED FROM FILE 2)
         const ShopeeWidget = {
             render: renderShopeeProducts,
             extract: extractShopeeProducts,
-            process: processShopeeProducts,
+            process: processAndRenderShopeeProducts, // UPDATED function name
             init: initShopeeWidget,
             config: SHOPEE_CONFIG
         };
@@ -2894,8 +2824,7 @@
             window.ShopeeWidget = ShopeeWidget;
         }
 
-        console.log('☕ Anaro Coffee Blog with Shopee Widget loaded successfully!');
+        console.log('☕ Anaro Coffee Blog with Updated Shopee Widget loaded successfully!');
     </script>
-
-
-</body></html>
+</body>
+</html>
