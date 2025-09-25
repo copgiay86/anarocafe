@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
+<html lang="vi"><head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P3RFV6Q9QV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -978,30 +976,6 @@
                 gap: 20px;
             }
 
-            .shopee-products {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .shopee-product-image {
-                height: 200px;
-                font-size: 4em;
-            }
-
-            .shopee-widget {
-                padding: 20px;
-                margin-bottom: 30px;
-            }
-
-            .shopee-widget h3 {
-                font-size: 1.2em;
-                margin-bottom: 20px;
-            }
-
-            .shopee-product-info {
-                padding: 15px;
-            }
-
             .shopee-product-name {
                 font-size: 1.1em;
             }
@@ -1107,7 +1081,7 @@
         <div class="stats">
             <div class="stats-content">
                 <div class="stat-item">
-                    📝 <span class="stat-number" id="totalPosts">0</span> Bài viết
+                    📚 <span class="stat-number" id="totalPosts">0</span> Bài viết
                 </div>
                 <div class="stat-item">
                     🏷️ <span class="stat-number" id="totalTags">0</span> Chủ đề
@@ -1122,16 +1096,84 @@
         <div class="featured-section">
             <div class="featured-label">🌟 Bài Viết Nổi Bật</div>
             <div class="featured-post" id="featuredPost">
-                <!-- Featured post will be inserted here -->
-            </div>
+                    <div class="featured-content">
+                        <div class="no-results">
+                            <div class="no-results-icon">🔍</div>
+                            <h3>Chưa có bài viết nổi bật</h3>
+                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
+                        </div>
+                    </div>
+                </div>
         </div>
 
         <!-- Shopee Products Widget -->
-        <div class="shopee-widget" id="shopeeWidget" style="display: none;">
+        <div class="shopee-widget" id="shopeeWidget" style="display: block;">
             <h3>🛒 Sản Phẩm Từ Bài Viết</h3>
-            <div class="shopee-products" id="shopeeProducts">
-                <!-- Products will be inserted here -->
-            </div>
+            <div class="shopee-products mobile-carousel" id="shopeeProducts">
+                    <button class="shopee-refresh-btn" onclick="nextProduct()">🔄 Sản phẩm khác</button>
+                    <div class="mobile-carousel-container" id="carouselContainer" style="transform: translateX(0%);">
+                        
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&amp;h=200&amp;fit=crop" alt="Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa" onerror="this.parentElement.innerHTML='☕';">
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa</div>
+                        <div class="shopee-product-price">
+                            90.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/1LWRLK1RkU', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Cao cấp</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/1VprXd0oPX', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&amp;h=200&amp;fit=crop" alt="Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp" onerror="this.parentElement.innerHTML='☕';">
+                    </div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp</div>
+                        <div class="shopee-product-price">
+                            189.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/1VprXd0oPX', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Best seller</div>
+                </div>
+            
+                <div class="shopee-product" onclick="window.open('https://s.shopee.vn/10tawi2iQS', '_blank', 'noopener,noreferrer')">
+                    
+                    <div class="shopee-product-image">☕</div>
+                    <div class="shopee-product-info">
+                        <div class="shopee-product-name">Bình Pha Cà Phê Nhỏ Giọt Cold Brew</div>
+                        <div class="shopee-product-price">
+                            669.000đ
+                            
+                        </div>
+                        <button class="shopee-cta-button" onclick="event.stopPropagation(); window.open('https://s.shopee.vn/10tawi2iQS', '_blank', 'noopener,noreferrer')">
+                            🛒 Mua ngay
+                        </button>
+                    </div>
+                    <div class="shopee-badge">Premium</div>
+                </div>
+            
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <div class="carousel-dot active" onclick="goToProduct(0)"></div><div class="carousel-dot " onclick="goToProduct(1)"></div><div class="carousel-dot " onclick="goToProduct(2)"></div>
+                    </div>
+                    <div class="carousel-navigation">
+                        <button class="carousel-nav-btn" onclick="prevProduct()">‹</button>
+                        <button class="carousel-nav-btn" onclick="nextProduct()">›</button>
+                    </div>
+                </div>
         </div>
 
         <!-- Filter Navigation with Dropdown -->
@@ -1142,10 +1184,7 @@
                     <span id="selectedFilter">Tất cả</span>
                     <span class="dropdown-arrow">▼</span>
                 </div>
-                <div class="filter-options" id="filterOptions">
-                    <div class="filter-option selected" data-tag="all">Tất cả</div>
-                    <!-- Dynamic options will be added here -->
-                </div>
+                <div class="filter-options" id="filterOptions"><div class="filter-option selected" data-tag="all">Tất cả</div></div>
             </div>
         </div>
 
@@ -1154,16 +1193,16 @@
             <div class="posts-section">
                 <h2>📚 Các Bài Viết Khác</h2>
                 
-                <div class="loading" id="loading">
+                <div class="loading" id="loading" style="display: none;">
                     <div class="loading-spinner"></div>
                     <p style="margin-top: 15px; color: #8b6b47;">Đang tải bài viết...</p>
                 </div>
 
-                <div class="posts-grid" id="postsGrid">
+                <div class="posts-grid" id="postsGrid" style="display: none;">
                     <!-- Posts will be inserted here -->
                 </div>
 
-                <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results" id="noResults" style="display: block;">
                     <div class="no-results-icon">🔍</div>
                     <h3>Không tìm thấy bài viết</h3>
                     <p>Thử tìm kiếm với từ khóa khác hoặc chọn chủ đề khác</p>
@@ -1171,7 +1210,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination" id="pagination" style="display: none;">
-                    <button class="pagination-btn" id="prevBtn" disabled>‹ Trước</button>
+                    <button class="pagination-btn" id="prevBtn" disabled="">‹ Trước</button>
                     <div class="pagination-info" id="paginationInfo"></div>
                     <button class="pagination-btn" id="nextBtn">Sau ›</button>
                 </div>
@@ -1193,69 +1232,67 @@
 
     <script>
         // ====================================================================
-        // 🛒 SHOPEE WIDGET - COMPLETE MODULE (From Document 1)
+        // 📱 CONFIGURATION & GLOBALS (IMPROVED)
         // ====================================================================
+        
+        const POSTS_FOLDER = './posts/';
+        const AUTO_SCAN = false;
+        const POSTS_PER_PAGE = 5;
+        
+        // FIXED: Updated manual posts list with correct filenames
+        const manualPosts = [
+            'caffein-cold-brew-ca-phe.html',
+            'cach-chon-hat-ca-phe-danh-cho-pha-may.html',
+            'cac-muc-rang-ca-phe.html',
+            'cach-bao-quan-ca-phe.html',
+            'arabica-robusta-blog.html',
+            'cach-pha-ca-phe-phin.html',
+            'bai-viet-dau-tien.html'
+        ];
 
-        // Configuration
+        // Shopee configuration
         const SHOPEE_CONFIG = {
             maxProductsPerPost: 6,
             desktopProductsCount: 3,
             mobileProductsCount: 1
         };
 
-        // Global variables for Shopee
+        // Global state
+        let allPosts = [];
+        let filteredPosts = [];
+        let currentFilter = 'all';
+        let currentPage = 1;
+        let totalPages = 1;
+        let filterCache = new Map();
         let currentProductIndex = 0;
         let isMobile = false;
         let extractedShopeeProducts = [];
 
-        // Demo Shopee products data with your links
-        const demoShopeeProducts = [
-            {
-                name: "Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa",
-                price: "90.000đ",
-                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/1LWRLK1RkU",
-                badge: "Cao cấp"
-            },
-            {
-                name: "Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp",
-                price: "189.000đ",
-                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/1VprXd0oPX",
-                badge: "Best seller"
-            },
-            {
-                name: "Bình Pha Cà Phê Nhỏ Giọt Cold Brew",
-                price: "669.000đ",
-                image: "https://images.unsplash.com/photo-1611564635773-3217d88450ed?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/10tawi2iQS",
-                badge: "Premium"
-            },
-            {
-                name: "Hũ Đựng Cà Phê Chống Oxy Hóa",
-                price: "Xem giá",
-                image: "https://images.unsplash.com/photo-1587734195503-904fca47e7d9?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/5pz01sG37t",
-                badge: "Tiện dụng"
-            },
-            {
-                name: "Bộ Pha Cà Phê Phin Truyền Thống",
-                price: "125.000đ",
-                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/sample5",
-                badge: "Truyền thống"
-            },
-            {
-                name: "Máy Xay Cà Phê Cầm Tay",
-                price: "299.000đ",
-                image: "https://images.unsplash.com/photo-1504627298434-2119687def7e?w=300&h=200&fit=crop",
-                url: "https://s.shopee.vn/sample6",
-                badge: "Tiện lợi"
-            }
-        ];
+        // Cached DOM elements
+        const DOM = {
+            featuredPost: document.getElementById('featuredPost'),
+            postsGrid: document.getElementById('postsGrid'),
+            searchInput: document.getElementById('searchInput'),
+            mobileSearchInput: document.getElementById('mobileSearchInput'),
+            filterDropdown: document.getElementById('filterDropdown'),
+            filterOptions: document.getElementById('filterOptions'),
+            selectedFilter: document.getElementById('selectedFilter'),
+            shopeeProducts: document.getElementById('shopeeProducts'),
+            shopeeWidget: document.getElementById('shopeeWidget'),
+            noResults: document.getElementById('noResults'),
+            totalPostsEl: document.getElementById('totalPosts'),
+            totalTagsEl: document.getElementById('totalTags'),
+            loading: document.getElementById('loading'),
+            refreshBtn: document.getElementById('refreshBtn'),
+            mobileRefreshBtn: document.getElementById('mobileRefreshBtn'),
+            pagination: document.getElementById('pagination'),
+            prevBtn: document.getElementById('prevBtn'),
+            nextBtn: document.getElementById('nextBtn'),
+            paginationInfo: document.getElementById('paginationInfo')
+        };
 
         // ====================================================================
-        // 🔒 SECURITY UTILITIES (From Document 1)
+        // 🔒 SECURITY UTILITIES (IMPROVED)
         // ====================================================================
 
         function escapeHtml(unsafe) {
@@ -1271,12 +1308,35 @@
         function isValidImageUrl(url) {
             if (!url || typeof url !== 'string') return false;
             
+            // FIXED: Clean URL first - remove whitespace and line breaks
+            url = url.trim().replace(/\s+/g, '');
+            
             try {
                 const urlObj = new URL(url);
-                return (urlObj.protocol === 'https:' || urlObj.protocol === 'http:') &&
-                       urlObj.hostname &&
-                       !url.startsWith('javascript:') &&
-                       !url.startsWith('data:');
+                const isValidProtocol = urlObj.protocol === 'https:' || urlObj.protocol === 'http:';
+                const hasValidHost = urlObj.hostname && !urlObj.hostname.includes('javascript');
+                const notDataOrJs = !url.toLowerCase().startsWith('javascript:') && !url.toLowerCase().startsWith('data:text/html');
+                
+                // IMPROVED: More flexible image detection
+                const hasImageExtension = /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|tiff)(\?.*)?$/i.test(url);
+                const isImageDomain = /unsplash\.com|pixabay\.com|pexels\.com|cloudinary\.com|amazonaws\.com|anarocafe.*\.vercel\.app/.test(urlObj.hostname);
+                const hasImagesPath = /\/images?\//i.test(url);
+                const isImageUrl = hasImageExtension || isImageDomain || hasImagesPath;
+                
+                return isValidProtocol && hasValidHost && notDataOrJs && isImageUrl;
+            } catch (e) {
+                console.warn('Invalid image URL:', url, e);
+                return false;
+            }
+        }
+
+        function isValidShopeeUrl(url) {
+            if (!url || typeof url !== 'string') return false;
+            
+            try {
+                const urlObj = new URL(url);
+                const validDomains = ['shopee.vn', 'shp.ee', 's.shopee.vn'];
+                return validDomains.some(domain => urlObj.hostname === domain || urlObj.hostname.endsWith('.' + domain));
             } catch (e) {
                 return false;
             }
@@ -1297,7 +1357,7 @@
         }
 
         // ====================================================================
-        // 🔍 SHOPEE EXTRACTION FUNCTIONS (From Document 1)
+        // 🛍️ SHOPEE EXTRACTION (IMPROVED & MORE PRECISE)
         // ====================================================================
 
         function extractShopeeProducts(html, postTitle) {
@@ -1305,98 +1365,169 @@
             
             if (!html || !postTitle) return products;
             
-            // Enhanced patterns to find Shopee links including s.shopee.vn
+            // FIXED: More precise patterns to avoid false positives
             const shopeeLinkPatterns = [
-                /https?:\/\/(?:www\.)?shopee\.vn\/[^\s"'<>)]+/gi,
-                /https?:\/\/(?:www\.)?shp\.ee\/[^\s"'<>)]+/gi,
-                /https?:\/\/s\.shopee\.vn\/[^\s"'<>)]+/gi,
-                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shopee\.vn\/[^"']+)["'][^>]*>/gi,
-                /<a[^>]*href=["'](https?:\/\/(?:www\.)?shp\.ee\/[^"']+)["'][^>]*>/gi,
-                /<a[^>]*href=["'](https?:\/\/s\.shopee\.vn\/[^"']+)["'][^>]*>/gi
+                // Only capture actual Shopee domains
+                /https:\/\/(?:www\.)?shopee\.vn\/[a-zA-Z0-9\-._~:/?#[\]@!            .shopee-product'()*+,;=%]+/gi,
+                /https:\/\/shp\.ee\/[a-zA-Z0-9]+/gi,
+                /https:\/\/s\.shopee\.vn\/[a-zA-Z0-9]+/gi
             ];
             
             const foundLinks = new Set();
             
-            // Extract all Shopee links
+            // Extract Shopee links with validation
             for (const pattern of shopeeLinkPatterns) {
                 let match;
                 while ((match = pattern.exec(html)) !== null) {
-                    const link = match[1] || match[0];
-                    const sanitizedLink = sanitizeUrl(link);
-                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
-                        foundLinks.add(sanitizedLink);
+                    const link = match[0];
+                    if (isValidShopeeUrl(link) && !foundLinks.has(link)) {
+                        foundLinks.add(link);
+                        console.log(`🛒 Found Shopee link: ${link}`);
                     }
                 }
             }
             
-            // Also search for s.shopee.vn in plain text
-            const shortLinkMatches = html.match(/https?:\/\/s\.shopee\.vn\/[A-Za-z0-9]+/gi);
-            if (shortLinkMatches) {
-                shortLinkMatches.forEach(link => {
-                    const sanitizedLink = sanitizeUrl(link);
-                    if (sanitizedLink && !foundLinks.has(sanitizedLink)) {
-                        foundLinks.add(sanitizedLink);
-                    }
-                });
-            }
+            // FIXED: Extract product images more precisely
+            const productImages = extractProductImagesFromPost(html);
             
             if (foundLinks.size === 0) {
+                console.log('❌ No Shopee links found in post');
                 return [];
             }
             
-            const images = extractProductImages(html);
-            
             Array.from(foundLinks).forEach((link, index) => {
-                const productName = extractProductNameFromLink(link, html, postTitle);
-                const price = extractPriceFromContent(html, link);
+                const productName = extractProductNameFromContext(html, link, postTitle);
+                const price = extractPriceFromContext(html, link);
                 
                 products.push({
                     name: escapeHtml(productName),
                     price: escapeHtml(price || "Xem giá trên Shopee"),
                     url: link,
-                    image: images[index % images.length] || null,
+                    image: productImages[index % productImages.length] || null,
                     badge: "Từ bài viết",
                     postTitle: escapeHtml(postTitle)
                 });
             });
             
+            console.log(`✅ Extracted ${products.length} Shopee products from: ${postTitle}`);
             return products.slice(0, SHOPEE_CONFIG.maxProductsPerPost);
         }
 
-        function extractProductImages(html) {
+        function extractProductImagesFromPost(html) {
             const images = [];
             
             if (!html) return images;
             
+            // IMPROVED: Clean HTML and handle line breaks in URLs
+            const cleanHtml = html.replace(/\n\s*/g, ' ');
+            
+            // More comprehensive image extraction patterns
             const imagePatterns = [
-                /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
-                /<meta\s+property="og:image"\s+content="([^"]+)"/gi,
-                /background-image\s*:\s*url\(['"]?([^'"]+)['"]?\)/gi
+                // Standard img tags with better whitespace handling
+                /<img[^>]*src=["']([^"'\s]+(?:\s*\n\s*[^"'\s]*)*?)["'][^>]*>/gi,
+                // Open Graph images
+                /<meta\s+property=["']og:image["']\s+content=["']([^"']+)["'][^>]*>/gi,
+                // Twitter card images
+                /<meta\s+name=["']twitter:image["']\s+content=["']([^"']+)["'][^>]*>/gi,
+                // Schema.org images
+                /<meta\s+itemprop=["']image["']\s+content=["']([^"']+)["'][^>]*>/gi
             ];
             
             for (const pattern of imagePatterns) {
                 let match;
-                while ((match = pattern.exec(html)) !== null) {
-                    const imageUrl = match[1];
-                    if (isValidImageUrl(imageUrl) && 
-                        imageUrl.length > 20 &&
-                        !images.includes(imageUrl)) {
-                        images.push(imageUrl);
+                while ((match = pattern.exec(cleanHtml)) !== null) {
+                    let imageUrl = match[1];
+                    if (imageUrl) {
+                        // FIXED: Clean URL properly - remove line breaks and extra whitespace
+                        imageUrl = imageUrl.trim().replace(/\s+/g, '');
+                        
+                        console.log(`🖼️ Found image URL: "${imageUrl}"`);
+                        
+                        if (isValidImageUrl(imageUrl) && !images.includes(imageUrl)) {
+                            images.push(imageUrl);
+                            console.log(`✅ Valid image added: ${imageUrl}`);
+                        } else {
+                            console.log(`❌ Invalid or duplicate image: ${imageUrl}`);
+                        }
                     }
                 }
+            }
+            
+            // Fallback: Extract from hero/section image containers
+            const heroImageMatches = cleanHtml.match(/<div[^>]*(?:hero-image|section-image)[^>]*>[\s\S]*?<img[^>]*src=["']([^"']+)["'][^>]*>[\s\S]*?<\/div>/gi);
+            if (heroImageMatches) {
+                heroImageMatches.forEach(match => {
+                    const imgMatch = match.match(/src=["']([^"']+)["']/i);
+                    if (imgMatch && imgMatch[1]) {
+                        let imageUrl = imgMatch[1].trim().replace(/\s+/g, '');
+                        if (isValidImageUrl(imageUrl) && !images.includes(imageUrl)) {
+                            images.push(imageUrl);
+                            console.log(`✅ Hero/section image added: ${imageUrl}`);
+                        }
+                    }
+                });
+            }
+            
+            console.log(`📊 Total images extracted: ${images.length}`);
+            
+            // Fallback to high-quality coffee images if no images found
+            if (images.length === 0) {
+                console.log('🔄 Using fallback images');
+                images.push(
+                    'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop&auto=format',
+                    'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop&auto=format',
+                    'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop&auto=format'
+                );
             }
             
             return images;
         }
 
-        function extractProductNameFromLink(link, html, postTitle) {
+        function extractProductNameFromContext(html, link, postTitle) {
             try {
+                // IMPROVED: Better product name extraction
+                const linkIndex = html.indexOf(link);
+                if (linkIndex > -1) {
+                    // Look for text around the link (300 chars before and after)
+                    const contextStart = Math.max(0, linkIndex - 300);
+                    const contextEnd = Math.min(html.length, linkIndex + 300);
+                    const context = html.substring(contextStart, contextEnd);
+                    
+                    // Try to find product names in various formats
+                    const namePatterns = [
+                        // Text inside link tags
+                        /<a[^>]*href=["'][^"']*shopee[^"']*["'][^>]*>([^<]{10,60})<\/a>/i,
+                        // Text before or after shopee links
+                        /(?:sản phẩm|product)[\s:]*([^<\n]{10,60})[\s\S]*?shopee/i,
+                        // Headers or strong text near links
+                        /<h[1-6][^>]*>([^<]{10,60})<\/h[1-6]>[\s\S]{0,100}shopee/i,
+                        /<strong[^>]*>([^<]{10,60})<\/strong>[\s\S]{0,100}shopee/i,
+                        // Price context (often indicates product names)
+                        /([^<\n]{10,60})[\s-]*\d+[.,]\d+.*shopee/i
+                    ];
+                    
+                    for (const pattern of namePatterns) {
+                        const match = context.match(pattern);
+                        if (match && match[1] && match[1].trim()) {
+                            let name = match[1].trim()
+                                .replace(/['"]/g, '')
+                                .replace(/\s+/g, ' ')
+                                .substring(0, 60);
+                            
+                            if (name.length > 15) { // Ensure meaningful name
+                                return name;
+                            }
+                        }
+                    }
+                }
+                
+                // Fallback: Generate from URL
                 const urlObj = new URL(link);
                 const pathParts = urlObj.pathname.split('/');
-                
                 for (const part of pathParts) {
                     if (part.length > 10 && part.includes('-')) {
-                        const decoded = decodeURIComponent(part.replace(/-/g, ' '))
+                        const decoded = decodeURIComponent(part)
+                                       .replace(/-/g, ' ')
                                        .replace(/\b\w/g, l => l.toUpperCase())
                                        .substring(0, 50);
                         if (decoded && decoded.trim()) {
@@ -1405,56 +1536,39 @@
                     }
                 }
             } catch (e) {
-                // URL parsing failed
-            }
-            
-            if (html && html.indexOf) {
-                const linkIndex = html.indexOf(link);
-                if (linkIndex > -1) {
-                    const before = html.substring(Math.max(0, linkIndex - 200), linkIndex);
-                    const after = html.substring(linkIndex, linkIndex + 200);
-                    
-                    const namePatterns = [
-                        /<a[^>]*>[^<]*([^<]{10,50})[^<]*<\/a>/i,
-                        /alt=["']([^"']{10,50})["']/i,
-                        /title=["']([^"']{10,50})["']/i
-                    ];
-                    
-                    for (const pattern of namePatterns) {
-                        const match = (before + after).match(pattern);
-                        if (match && match[1] && match[1].trim()) {
-                            return match[1].trim().substring(0, 50);
-                        }
-                    }
-                }
+                console.warn('Error extracting product name:', e);
             }
             
             return `${postTitle.substring(0, 30)} - Sản phẩm`;
         }
 
-        function extractPriceFromContent(html, link) {
+        function extractPriceFromContext(html, link) {
             if (!html || !link) return null;
             
             const linkIndex = html.indexOf(link);
             if (linkIndex === -1) return null;
             
+            // Look for price in surrounding text
             const searchText = html.substring(
-                Math.max(0, linkIndex - 300), 
-                linkIndex + 300
+                Math.max(0, linkIndex - 500), 
+                linkIndex + 500
             );
             
             const pricePatterns = [
+                // Vietnamese price formats
                 /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:đ|dong|vnd|₫)/gi,
-                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k)/gi,
+                /(\d{1,3}(?:[,.]?\d{3})*)\s*(?:nghìn|k|thousand)/gi,
                 /giá\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
-                /price\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi
+                /price\s*:?\s*(\d{1,3}(?:[,.]?\d{3})*)/gi,
+                // Look for currency symbols
+                /[\$₫]\s*(\d{1,3}(?:[,.]?\d{3})*)/gi
             ];
             
             for (const pattern of pricePatterns) {
                 const match = searchText.match(pattern);
                 if (match && match[1]) {
-                    const price = match[1] || match[0];
-                    return price.includes('đ') ? price : `${price}đ`;
+                    const price = match[1];
+                    return price.includes('đ') || price.includes('₫') ? price : `${price}đ`;
                 }
             }
             
@@ -1462,7 +1576,531 @@
         }
 
         // ====================================================================
-        // 📱 MOBILE/DESKTOP DETECTION (From Document 1)
+        // 📖 POST LOADING (IMPROVED & MORE RELIABLE)
+        // ====================================================================
+
+        async function loadPostMetadata(filepath, id) {
+            try {
+                console.log(`📄 Loading post: ${filepath}`);
+                
+                const response = await fetch(filepath, {
+                    cache: 'no-cache', // FIXED: Always get latest version
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+                
+                const html = await response.text();
+                const filename = filepath.split('/').pop();
+                const metadata = parsePostMetadata(html, filename);
+                
+                // Extract Shopee products from this post
+                const shopeeProducts = extractShopeeProducts(html, metadata.title);
+                
+                return {
+                    id: id,
+                    title: escapeHtml(metadata.title),
+                    excerpt: escapeHtml(metadata.excerpt),
+                    tags: metadata.tags || ['coffee'],
+                    date: metadata.date,
+                    readTime: escapeHtml(metadata.readTime),
+                    image: metadata.image,
+                    imageType: metadata.imageType,
+                    link: sanitizeUrl(filepath) || filepath,
+                    shopeeProducts: shopeeProducts,
+                    lastModified: new Date().toISOString() // FIXED: Add timestamp
+                };
+            } catch (error) {
+                console.error(`❌ Error loading ${filepath}:`, error);
+                return null;
+            }
+        }
+
+        async function loadManualPosts() {            
+            if (!Array.isArray(manualPosts) || manualPosts.length === 0) {
+                console.log('📋 No manual posts configured');
+                return [];
+            }
+            
+            console.log(`📚 Loading ${manualPosts.length} manual posts...`);
+            
+            // FIXED: Sort posts by date (newest first)
+            const loadPromises = manualPosts.map(async (filename, index) => {
+                try {
+                    if (!filename || typeof filename !== 'string') {
+                        console.warn(`⚠️ Invalid filename at index ${index}:`, filename);
+                        return null;
+                    }
+                    
+                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, index + 1);
+                    if (postData) {
+                        console.log(`✅ Loaded: ${postData.title}`);
+                        return postData;
+                    }
+                    return null;
+                } catch (error) {
+                    console.error(`❌ Failed to load: ${filename}`, error);
+                    return null;
+                }
+            });
+            
+            const results = await Promise.all(loadPromises);
+            const validPosts = results.filter(post => post !== null);
+            
+            // FIXED: Sort by date (newest first) and filename as fallback
+            validPosts.sort((a, b) => {
+                // First sort by date
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                if (dateB.getTime() !== dateA.getTime()) {
+                    return dateB.getTime() - dateA.getTime();
+                }
+                // Then by filename to ensure consistency
+                return a.link.localeCompare(b.link);
+            });
+            
+            console.log(`📊 Successfully loaded ${validPosts.length}/${manualPosts.length} posts`);
+            return validPosts;
+        }
+
+        // IMPROVED: Better metadata parsing
+        function parsePostMetadata(html, filename) {
+            console.log(`🔍 Parsing metadata for: ${filename}`);
+            const metadata = {};
+            
+            // Method 1: HTML Comments (enhanced)
+            const commentPatterns = [
+                /<!--\s*META\s*([\s\S]*?)\s*-->/gi,
+                /<!--\s*POST_INFO\s*([\s\S]*?)\s*-->/gi,
+                /<!--\s*(title|tags|excerpt|date|readtime):\s*([^\n\r]+)\s*-->/gi,
+                /<!--\s*([\s\S]*?)\s*-->/g
+            ];
+            
+            for (const pattern of commentPatterns) {
+                let match;
+                while ((match = pattern.exec(html)) !== null) {
+                    const content = match[1] || match[0];
+                    
+                    if (pattern.source.includes('title|tags')) {
+                        // Direct key-value extraction
+                        const key = match[1] ? match[1].toLowerCase() : '';
+                        const value = match[2] ? match[2].trim() : '';
+                        
+                        if (key && value) {
+                            if (key === 'tags' && value) {
+                                metadata.tags = value.split(',').map(tag => tag.trim().toLowerCase());
+                            } else if (key === 'title') {
+                                metadata.title = value;
+                            } else if (key === 'excerpt') {
+                                metadata.excerpt = value;
+                            } else if (key === 'date') {
+                                metadata.date = value;
+                            } else if (key === 'readtime') {
+                                metadata.readTime = value;
+                            }
+                        }
+                    } else {
+                        // Parse multi-line comments
+                        const lines = content.split('\n');
+                        for (const line of lines) {
+                            const keyValue = line.match(/(\w+):\s*(.+)/);
+                            if (keyValue) {
+                                const key = keyValue[1].toLowerCase();
+                                const value = keyValue[2].trim();
+                                
+                                if (key === 'tags' && value) {
+                                    metadata.tags = value.split(',').map(tag => tag.trim().toLowerCase());
+                                } else if (key === 'title') {
+                                    metadata.title = value;
+                                } else if (key === 'excerpt' || key === 'description') {
+                                    metadata.excerpt = value;
+                                } else if (key === 'date') {
+                                    metadata.date = value;
+                                } else if (key === 'readtime' || key === 'reading-time') {
+                                    metadata.readTime = value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Method 2: Meta tags (enhanced)
+            const metaPatterns = [
+                { pattern: /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i, key: 'tags' },
+                { pattern: /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
+                { pattern: /<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i, key: 'title' },
+                { pattern: /<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
+                { pattern: /<meta\s+name=["']tags["']\s+content=["']([^"']+)["']/i, key: 'tags' }
+            ];
+            
+            for (const { pattern, key } of metaPatterns) {
+                const match = html.match(pattern);
+                if (match && !metadata[key]) {
+                    if (key === 'tags') {
+                        metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
+                    } else {
+                        metadata[key] = match[1];
+                    }
+                }
+            }
+            
+            // Extract title from HTML if not found
+            if (!metadata.title) {
+                const titleMatch = html.match(/<title>([^<]+)<\/title>/i) || 
+                                  html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+                if (titleMatch) {
+                    metadata.title = titleMatch[1].trim();
+                }
+            }
+            
+            // Extract excerpt from first meaningful paragraph
+            if (!metadata.excerpt) {
+                const paragraphMatches = html.match(/<p[^>]*>([^<]+)<\/p>/gi);
+                if (paragraphMatches) {
+                    for (const p of paragraphMatches) {
+                        const content = p.replace(/<[^>]*>/g, '').trim();
+                        if (content.length > 50) {
+                            metadata.excerpt = content.substring(0, 150) + '...';
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Enhanced content analysis for tags
+            if (!metadata.tags || metadata.tags.length === 0) {
+                metadata.tags = analyzeContentForTags(html, filename);
+            }
+            
+            // Extract first image
+            const firstImage = extractFirstImage(html);
+            if (firstImage) {
+                metadata.image = firstImage;
+                metadata.imageType = 'image';
+            }
+            
+            // Set defaults with better fallbacks
+            metadata.title = metadata.title || formatFilenameToTitle(filename);
+            metadata.excerpt = metadata.excerpt || 'Đọc bài viết để khám phá thêm...';
+            metadata.tags = metadata.tags && metadata.tags.length > 0 ? metadata.tags : ['coffee'];
+            metadata.date = metadata.date || getDefaultDateFromFilename(filename);
+            metadata.readTime = metadata.readTime || calculateReadingTime(html);
+            
+            if (!metadata.image) {
+                metadata.image = getEmojiForTags(metadata.tags);
+                metadata.imageType = 'emoji';
+            }
+            
+            console.log(`✅ Final metadata for ${filename}:`, metadata);
+            return metadata;
+        }
+
+        // Helper functions for metadata parsing
+        function formatFilenameToTitle(filename) {
+            return filename
+                .replace('.html', '')
+                .replace(/[-_]/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase())
+                .trim();
+        }
+
+        function getDefaultDateFromFilename(filename) {
+            // Try to extract date from filename patterns
+            const dateMatch = filename.match(/(\d{4})-?(\d{2})-?(\d{2})/);
+            if (dateMatch) {
+                return `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+            }
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function calculateReadingTime(html) {
+            if (!html) return '5 phút đọc';
+            
+            const textContent = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            const wordCount = textContent.split(' ').length;
+            const readingTime = Math.ceil(wordCount / 200); // 200 words per minute average
+            
+            return `${readingTime} phút đọc`;
+        }
+
+        function analyzeContentForTags(html, filename) {
+            const tags = [];
+            
+            if (!html || !filename) return ['coffee'];
+            
+            const content = html.toLowerCase();
+            
+            // Vietnamese coffee terms mapping
+            const termMap = {
+                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip', 'pour over'],
+                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
+                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
+                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
+                'arabica': ['arabica'],
+                'robusta': ['robusta'],
+                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
+                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
+                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit', 'caffein'],
+                'review': ['đánh giá', 'review', 'tasting', 'thử'],
+                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
+                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
+                'latte': ['latte', 'sữa'],
+                'espresso': ['espresso'],
+                'phin': ['phin'],
+                'bảo quản cà phê': ['bảo quản', 'lưu trữ', 'storage'],
+                'rang cà phê': ['rang', 'roast', 'roasting'],
+                'light roast': ['rang nhẹ', 'light roast'],
+                'medium roast': ['rang vừa', 'medium roast'],
+                'dark roast': ['rang đậm', 'dark roast']
+            };
+            
+            // Analyze filename first
+            const filenameLower = filename.toLowerCase();
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                if (terms.some(term => filenameLower.includes(term))) {
+                    tags.push(tag);
+                }
+            });
+            
+            // Analyze content
+            Object.entries(termMap).forEach(([tag, terms]) => {
+                const score = terms.reduce((acc, term) => {
+                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
+                    return acc + matches;
+                }, 0);
+                
+                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag);
+                    }
+                }
+            });
+            
+            // Always include 'coffee' as base tag if no other tags found
+            if (tags.length === 0) {
+                tags.push('coffee');
+            }
+            
+            return tags;
+        }
+
+        function extractFirstImage(html) {
+            if (!html) return null;
+            
+            // FIXED: Clean HTML to handle line breaks in URLs
+            const cleanHtml = html.replace(/\n\s*/g, ' ');
+            
+            const patterns = [
+                // Open Graph image (highest priority)
+                /<meta\s+property=["']og:image["']\s+content=["']([^"']+)["'][^>]*>/i,
+                // Twitter card image  
+                /<meta\s+name=["']twitter:image["']\s+content=["']([^"']+)["'][^>]*>/i,
+                // Hero/featured images with better whitespace handling
+                /<img[^>]*class=["'][^"']*(?:hero|featured|main)[^"']*["'][^>]*src=["']([^"']+)["'][^>]*>/i,
+                // First img tag in content with better URL extraction
+                /<img[^>]*src=["']([^"'\s]+(?:\s*\n\s*[^"'\s]*)*?)["'][^>]*>/i,
+                // Background images
+                /background(?:-image)?\s*:\s*url\(['"]?([^'"]+?)['"]?\)/i
+            ];
+
+            for (const pattern of patterns) {
+                const match = cleanHtml.match(pattern);
+                if (match) {
+                    let imageUrl = match[1];
+                    if (imageUrl) {
+                        // CRITICAL FIX: Clean the URL properly
+                        imageUrl = imageUrl.trim().replace(/\s+/g, '');
+                        console.log(`🎯 Potential first image: "${imageUrl}"`);
+                        
+                        if (isValidImageUrl(imageUrl)) {
+                            console.log(`✅ Valid first image found: ${imageUrl}`);
+                            return imageUrl;
+                        } else {
+                            console.log(`❌ Invalid first image: ${imageUrl}`);
+                        }
+                    }
+                }
+            }
+            
+            console.log('❌ No valid first image found');
+            return null;
+        }
+
+        function getEmojiForTags(tags) {
+            if (!Array.isArray(tags)) return '📄';
+            
+            const emojiMap = {
+                'brewing': '☕',
+                'tips': '💡', 
+                'culture': '🏛️',
+                'origin': '🌱',
+                'review': '⭐',
+                'equipment': '⚙️',
+                'coffee': '☕',
+                'latte': '🥛',
+                'espresso': '🇮🇹',
+                'cold': '🧊',
+                'health': '💪',
+                'specialty': '⭐',
+                'vietnamese': '🇻🇳',
+                'arabica': '🌿',
+                'robusta': '💪',
+                'phin': '☕',
+                'bảo quản cà phê': '📦',
+                'rang cà phê': '🔥',
+                'light roast': '🌅',
+                'medium roast': '☀️',
+                'dark roast': '🌚'
+            };
+            
+            for (const tag of tags) {
+                if (tag && emojiMap[tag.toLowerCase()]) {
+                    return emojiMap[tag.toLowerCase()];
+                }
+            }
+            
+            return '📄';
+        }
+
+        // ====================================================================
+        // 🎨 RENDERING FUNCTIONS (IMPROVED)
+        // ====================================================================
+
+        function renderFeaturedPost() {
+            if (!DOM.featuredPost) return;
+            
+            if (!Array.isArray(filteredPosts) || filteredPosts.length === 0) {
+                DOM.featuredPost.innerHTML = `
+                    <div class="featured-content">
+                        <div class="no-results">
+                            <div class="no-results-icon">🔍</div>
+                            <h3>Chưa có bài viết nổi bật</h3>
+                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const post = filteredPosts[0];
+            if (!post) return;
+
+            const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
+                `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                escapeHtml(post.image || '📄');
+
+            DOM.featuredPost.innerHTML = `
+                <div class="featured-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                    ${imageContent}
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span class="featured-date">${escapeHtml(formatDate(post.date))}</span>
+                        <span class="featured-reading-time">
+                            📖 ${post.readTime || '5 phút đọc'}
+                        </span>
+                    </div>
+                    <h2 class="featured-title">
+                        <a href="${escapeHtml(post.link)}">${post.title}</a>
+                    </h2>
+                    <p class="featured-excerpt">${post.excerpt}</p>
+                    <div class="featured-tags">
+                        ${Array.isArray(post.tags) ? post.tags.map(tag => 
+                            `<span class="featured-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
+                        ).join('') : ''}
+                    </div>
+                </div>
+            `;
+
+            // Add click handlers for featured tags
+            DOM.featuredPost.querySelectorAll('.featured-tag').forEach(tag => {
+                tag.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tagValue = tag.dataset.tag;
+                    if (tagValue) {
+                        filterByTag(tagValue);
+                    }
+                });
+            });
+        }
+
+        function renderPosts() {
+            if (!DOM.postsGrid || !DOM.noResults || !DOM.pagination) return;
+            
+            const startIndex = currentFilter === 'all' && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? 1 : 0;
+            const postsToShow = Array.isArray(filteredPosts) ? filteredPosts.slice(startIndex) : [];
+            
+            // Calculate pagination
+            totalPages = Math.ceil(postsToShow.length / POSTS_PER_PAGE);
+            const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
+            const endIdx = startIdx + POSTS_PER_PAGE;
+            const currentPosts = postsToShow.slice(startIdx, endIdx);
+
+            if (currentPosts.length === 0 && startIndex === 0) {
+                DOM.postsGrid.style.display = 'none';
+                DOM.noResults.style.display = 'block';
+                DOM.pagination.style.display = 'none';
+                return;
+            }
+
+            DOM.postsGrid.style.display = 'grid';
+            DOM.noResults.style.display = 'none';
+
+            DOM.postsGrid.innerHTML = currentPosts.map(post => {
+                if (!post) return '';
+                
+                const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
+                    `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
+                    escapeHtml(post.image || '📄');
+
+                return `
+                    <article class="post-card fade-in">
+                        <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
+                            ${imageContent}
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">${escapeHtml(formatDate(post.date))}</span>
+                                <span class="post-reading-time">
+                                    📖 ${post.readTime || '5 phút đọc'}
+                                </span>
+                            </div>
+                            <h2 class="post-title">
+                                <a href="${escapeHtml(post.link)}">${post.title}</a>
+                            </h2>
+                            <p class="post-excerpt">${post.excerpt}</p>
+                            <div class="post-tags">
+                                ${Array.isArray(post.tags) ? post.tags.map(tag => 
+                                    `<span class="post-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
+                                ).join('') : ''}
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            // Add click handlers for post tags
+            DOM.postsGrid.querySelectorAll('.post-tag').forEach(tag => {
+                tag.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tagValue = tag.dataset.tag;
+                    if (tagValue) {
+                        filterByTag(tagValue);
+                    }
+                });
+            });
+
+            updatePagination();
+        }
+
+        // ====================================================================
+        // 🛍️ SHOPEE WIDGET FUNCTIONS (IMPROVED)
         // ====================================================================
 
         function checkIfMobile() {
@@ -1479,9 +2117,19 @@
             return shuffled;
         }
 
-        // ====================================================================
-        // 🎨 RENDERING FUNCTIONS (From Document 1)
-        // ====================================================================
+        function processShopeeProducts(allPosts) {
+            extractedShopeeProducts = [];
+            
+            if (!Array.isArray(allPosts)) return;
+            
+            allPosts.forEach(post => {
+                if (post && Array.isArray(post.shopeeProducts)) {
+                    extractedShopeeProducts.push(...post.shopeeProducts);
+                }
+            });
+            
+            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
+        }
 
         function renderShopeeProducts(containerId = 'shopeeProducts', widgetId = 'shopeeWidget') {
             const shopeeWidget = document.getElementById(widgetId);
@@ -1494,7 +2142,12 @@
             // Use extracted products from posts if available, fallback to demo
             let productsToShow = extractedShopeeProducts.length > 0 ? 
                 [...extractedShopeeProducts] : 
-                [...demoShopeeProducts];
+                getDemoShopeeProducts();
+            
+            if (productsToShow.length === 0) {
+                shopeeWidget.style.display = 'none';
+                return;
+            }
             
             shopeeWidget.style.display = 'block';
             
@@ -1564,10 +2217,33 @@
             `;
         }
 
-        // ====================================================================
-        // 🎮 NAVIGATION FUNCTIONS (From Document 1)
-        // ====================================================================
+        function getDemoShopeeProducts() {
+            return [
+                {
+                    name: "Bộ Tách Cafe Gốm Sứ Cao Cấp Kèm Đĩa",
+                    price: "90.000đ",
+                    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop",
+                    url: "https://s.shopee.vn/1LWRLK1RkU",
+                    badge: "Cao cấp"
+                },
+                {
+                    name: "Ấm Rót Nước Cổ Ngỗng Chuyên Nghiệp",
+                    price: "189.000đ",
+                    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop",
+                    url: "https://s.shopee.vn/1VprXd0oPX",
+                    badge: "Best seller"
+                },
+                {
+                    name: "Bình Pha Cà Phê Nhỏ Giọt Cold Brew",
+                    price: "669.000đ",
+                    image: "https://images.unsplash.com/photo-1611564635773-3217d88450ed?w=300&h=200&fit=crop",
+                    url: "https://s.shopee.vn/10tawi2iQS",
+                    badge: "Premium"
+                }
+            ];
+        }
 
+        // Carousel navigation functions
         function updateCarouselPosition() {
             const container = document.getElementById('carouselContainer');
             const indicators = document.querySelectorAll('.carousel-dot');
@@ -1583,13 +2259,15 @@
 
         function nextProduct() {
             if (!isMobile) return;
-            currentProductIndex = (currentProductIndex + 1) % demoShopeeProducts.length;
+            const totalProducts = extractedShopeeProducts.length > 0 ? extractedShopeeProducts.length : getDemoShopeeProducts().length;
+            currentProductIndex = (currentProductIndex + 1) % totalProducts;
             updateCarouselPosition();
         }
 
         function prevProduct() {
             if (!isMobile) return;
-            currentProductIndex = (currentProductIndex - 1 + demoShopeeProducts.length) % demoShopeeProducts.length;
+            const totalProducts = extractedShopeeProducts.length > 0 ? extractedShopeeProducts.length : getDemoShopeeProducts().length;
+            currentProductIndex = (currentProductIndex - 1 + totalProducts) % totalProducts;
             updateCarouselPosition();
         }
 
@@ -1601,38 +2279,20 @@
 
         function refreshDesktopProducts() {
             if (isMobile) return;
-            
-            const randomProducts = shuffleArray(demoShopeeProducts).slice(0, SHOPEE_CONFIG.desktopProductsCount);
-            const productContainer = document.getElementById('shopeeProducts');
-            
-            if (!productContainer) return;
-            
-            const newProductsHTML = randomProducts.map((product, index) => renderSingleProduct(product, index)).join('');
-            productContainer.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 15px;">
-                    <button class="shopee-refresh-btn" onclick="refreshDesktopProducts()">🔄 Sản phẩm khác</button>
-                </div>
-                ${newProductsHTML}
-            `;
+            renderShopeeProducts();
         }
-
-        // ====================================================================
-        // 👆 TOUCH SUPPORT (From Document 1)
-        // ====================================================================
 
         function addTouchSupport() {
             const container = document.getElementById('carouselContainer');
             if (!container) return;
             
             let startX = 0;
-            let startY = 0;
             let isDragging = false;
             
             const handleStart = (e) => {
                 isDragging = true;
                 const touch = e.touches ? e.touches[0] : e;
                 startX = touch.clientX;
-                startY = touch.clientY;
             };
             
             const handleMove = (e) => {
@@ -1646,12 +2306,9 @@
                 
                 const touch = e.changedTouches ? e.changedTouches[0] : e;
                 const endX = touch.clientX;
-                const endY = touch.clientY;
-                
                 const deltaX = startX - endX;
-                const deltaY = startY - endY;
                 
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (Math.abs(deltaX) > 50) {
                     if (deltaX > 0) {
                         nextProduct();
                     } else {
@@ -1663,650 +2320,12 @@
             container.addEventListener('touchstart', handleStart, { passive: true });
             container.addEventListener('touchmove', handleMove, { passive: false });
             container.addEventListener('touchend', handleEnd, { passive: true });
-            
-            container.addEventListener('mousedown', handleStart);
-            container.addEventListener('mousemove', handleMove);
-            container.addEventListener('mouseup', handleEnd);
-            container.addEventListener('mouseleave', handleEnd);
         }
 
         // ====================================================================
-        // 🔄 RESPONSIVE HANDLER (From Document 1)
+        // 🎯 FILTER & SEARCH FUNCTIONS (IMPROVED)
         // ====================================================================
 
-        function handleWindowResize() {
-            const wasMobile = isMobile;
-            checkIfMobile();
-            
-            if (wasMobile !== isMobile) {
-                renderShopeeProducts();
-            }
-        }
-
-        function processShopeeProducts(allPosts) {
-            extractedShopeeProducts = [];
-            
-            if (!Array.isArray(allPosts)) return;
-            
-            allPosts.forEach(post => {
-                if (post && Array.isArray(post.shopeeProducts)) {
-                    extractedShopeeProducts.push(...post.shopeeProducts);
-                }
-            });
-            
-            console.log(`🛒 Extracted ${extractedShopeeProducts.length} Shopee products from posts`);
-        }
-
-        // ====================================================================
-        // 🚀 INITIALIZATION (From Document 1)
-        // ====================================================================
-
-        function initShopeeWidget() {
-            // Expose functions to global scope
-            window.nextProduct = nextProduct;
-            window.prevProduct = prevProduct;
-            window.goToProduct = goToProduct;
-            window.refreshDesktopProducts = refreshDesktopProducts;
-            
-            // Add keyboard support
-            document.addEventListener('keydown', (e) => {
-                if (isMobile) {
-                    if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        prevProduct();
-                    } else if (e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        nextProduct();
-                    }
-                }
-            });
-            
-            // Add resize listener
-            const debounce = (func, wait) => {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
-            };
-            
-            window.addEventListener('resize', debounce(handleWindowResize, 300));
-            
-            console.log('🛒 Shopee Widget initialized');
-        }
-
-        // ====================================================================
-        // 🔧 ORIGINAL BLOG CONFIGURATION (From Document 2)
-        // ====================================================================
-        
-        const POSTS_FOLDER = './posts/';
-        const AUTO_SCAN = false;
-        const POSTS_PER_PAGE = 5;
-        
-        // Fixed and verified post filenames
-        const manualPosts = [
-            'caffein-cold-brew-ca-phe.html',
-            'cach-chon-hat-ca-phe-danh-cho-pha-may.html',
-            'cac-muc-rang-ca-phe.html', 
-            'cach-bao-quan-ca-phe.html',
-            'arabica-robusta-blog.html',
-            'cach-pha-ca-phe-phin.html',
-            'bai-viet-dau-tien.html',
-        ];
-
-        // ====================================================================
-        // 🎯 GLOBAL VARIABLES (From Document 2)
-        // ====================================================================
-        
-        let allPosts = [];
-        let filteredPosts = [];
-        let currentFilter = 'all';
-        let currentPage = 1;
-        let totalPages = 1;
-        let filterCache = new Map(); // Cache for filter results
-
-        // Cached DOM Elements for performance
-        const DOM = {
-            featuredPost: document.getElementById('featuredPost'),
-            postsGrid: document.getElementById('postsGrid'),
-            searchInput: document.getElementById('searchInput'),
-            mobileSearchInput: document.getElementById('mobileSearchInput'),
-            filterDropdown: document.getElementById('filterDropdown'),
-            filterOptions: document.getElementById('filterOptions'),
-            selectedFilter: document.getElementById('selectedFilter'),
-            shopeeProducts: document.getElementById('shopeeProducts'),
-            shopeeWidget: document.getElementById('shopeeWidget'),
-            noResults: document.getElementById('noResults'),
-            totalPostsEl: document.getElementById('totalPosts'),
-            totalTagsEl: document.getElementById('totalTags'),
-            loading: document.getElementById('loading'),
-            refreshBtn: document.getElementById('refreshBtn'),
-            mobileRefreshBtn: document.getElementById('mobileRefreshBtn'),
-            pagination: document.getElementById('pagination'),
-            prevBtn: document.getElementById('prevBtn'),
-            nextBtn: document.getElementById('nextBtn'),
-            paginationInfo: document.getElementById('paginationInfo')
-        };
-
-        // ====================================================================
-        // 🔍 METADATA PARSING FUNCTIONS (ENHANCED)
-        // ====================================================================
-
-        // Enhanced metadata parser - KEEP ORIGINAL LOGIC, only add safety checks
-        function parsePostMetadata(html, filename) {
-            console.log(`🔍 Parsing metadata for: ${filename}`);
-            const metadata = {};
-            
-            // Method 1: HTML Comments
-            const commentPatterns = [
-                /<!--\s*([\s\S]*?)\s*-->/g,
-                /\/\*\s*([\s\S]*?)\s*\*\//g
-            ];
-            
-            for (const pattern of commentPatterns) {
-                let match;
-                while ((match = pattern.exec(html)) !== null) {
-                    const content = match[1];
-                    const lines = content.split('\n');
-                    
-                    for (const line of lines) {
-                        const keyValue = line.match(/(\w+):\s*(.+)/);
-                        if (keyValue) {
-                            const key = keyValue[1].toLowerCase();
-                            const value = keyValue[2].trim();
-                            
-                            if (key === 'tags' && value) {
-                                metadata.tags = value.split(',').map(tag => tag.trim().toLowerCase());
-                            } else if (key === 'title') {
-                                metadata.title = value;
-                            } else if (key === 'excerpt' || key === 'description') {
-                                metadata.excerpt = value;
-                            } else if (key === 'date') {
-                                metadata.date = value;
-                            } else if (key === 'readtime' || key === 'reading-time') {
-                                metadata.readTime = value;
-                            }
-                        }
-                    }
-                }
-            }
-            
-            // Method 2: Meta tags
-            const metaPatterns = [
-                { pattern: /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i, key: 'tags' },
-                { pattern: /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
-                { pattern: /<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i, key: 'title' },
-                { pattern: /<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i, key: 'excerpt' },
-                { pattern: /<meta\s+name=["']tags["']\s+content=["']([^"']+)["']/i, key: 'tags' },
-                { pattern: /<meta\s+name=["']post-tags["']\s+content=["']([^"']+)["']/i, key: 'tags' }
-            ];
-            
-            for (const { pattern, key } of metaPatterns) {
-                const match = html.match(pattern);
-                if (match) {
-                    console.log(`🏷️ Found meta tag: ${key} = ${match[1]}`);
-                    if (key === 'tags') {
-                        metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
-                    } else {
-                        metadata[key] = match[1];
-                    }
-                }
-            }
-            
-            // Method 3: JSON-LD structured data
-            const jsonLdMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i);
-            if (jsonLdMatch) {
-                try {
-                    const jsonData = JSON.parse(jsonLdMatch[1]);
-                    console.log(`📊 Found JSON-LD data:`, jsonData);
-                    
-                    if (jsonData.keywords) {
-                        if (typeof jsonData.keywords === 'string') {
-                            metadata.tags = jsonData.keywords.split(',').map(tag => tag.trim().toLowerCase());
-                        } else if (Array.isArray(jsonData.keywords)) {
-                            metadata.tags = jsonData.keywords.map(tag => tag.toLowerCase());
-                        }
-                    }
-                    
-                    if (jsonData.headline && !metadata.title) metadata.title = jsonData.headline;
-                    if (jsonData.description && !metadata.excerpt) metadata.excerpt = jsonData.description;
-                    if (jsonData.datePublished && !metadata.date) metadata.date = jsonData.datePublished;
-                } catch (e) {
-                    console.log(`❌ JSON-LD parse error:`, e);
-                }
-            }
-            
-            // Method 4: Data attributes or special divs
-            const dataPatterns = [
-                /data-tags=["']([^"']+)["']/i,
-                /<div\s+class=["']post-tags["'][^>]*>([^<]*)</i,
-                /<span\s+class=["']tags["'][^>]*>([^<]*)</i
-            ];
-            
-            for (const pattern of dataPatterns) {
-                const match = html.match(pattern);
-                if (match && match[1].trim()) {
-                    console.log(`🏷️ Found data tags: ${match[1]}`);
-                    metadata.tags = match[1].split(',').map(tag => tag.trim().toLowerCase());
-                    break;
-                }
-            }
-            
-            // Method 5: Fallback - analyze content for Vietnamese coffee terms
-            if (!metadata.tags || metadata.tags.length === 0) {
-                console.log(`🔍 No tags found, analyzing content...`);
-                metadata.tags = analyzeContentForTags(html, filename);
-            }
-            
-            // Extract title
-            if (!metadata.title) {
-                const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-                if (titleMatch) {
-                    metadata.title = titleMatch[1].trim();
-                } else {
-                    // Fallback to h1
-                    const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-                    if (h1Match) metadata.title = h1Match[1].trim();
-                }
-            }
-            
-            // Extract excerpt
-            if (!metadata.excerpt) {
-                // Try to find first meaningful paragraph
-                const paragraphMatches = html.match(/<p[^>]*>([^<]+)<\/p>/gi);
-                if (paragraphMatches) {
-                    for (const p of paragraphMatches) {
-                        const content = p.replace(/<[^>]*>/g, '').trim();
-                        if (content.length > 50) {
-                            metadata.excerpt = content.substring(0, 150) + '...';
-                            break;
-                        }
-                    }
-                }
-            }
-            
-            // Extract first image
-            const firstImage = extractFirstImage(html);
-            if (firstImage) {
-                metadata.image = firstImage;
-                metadata.imageType = 'image';
-            }
-            
-            // Set defaults
-            metadata.title = metadata.title || `Bài viết ${filename.replace('.html', '')}`;
-            metadata.excerpt = metadata.excerpt || 'Đọc bài viết để khám phá thêm...';
-            metadata.tags = metadata.tags && metadata.tags.length > 0 ? metadata.tags : ['coffee'];
-            metadata.date = metadata.date || new Date().toISOString().split('T')[0];
-            metadata.readTime = metadata.readTime || '5 phút đọc';
-            
-            if (!metadata.image) {
-                metadata.image = getEmojiForTags(metadata.tags);
-                metadata.imageType = 'emoji';
-            }
-            
-            console.log(`✅ Final metadata for ${filename}:`, metadata);
-            return metadata;
-        }
-
-        // Get default metadata when parsing fails
-        function getDefaultMetadata(filename) {
-            return {
-                title: `Bài viết ${filename.replace('.html', '')}`,
-                excerpt: 'Đọc bài viết để khám phá thêm...',
-                tags: ['coffee'],
-                date: new Date().toISOString().split('T')[0],
-                readTime: '5 phút đọc',
-                image: '☕',
-                imageType: 'emoji'
-            };
-        }
-
-        // AI-powered content analysis for tag extraction (enhanced)
-        function analyzeContentForTags(html, filename) {
-            const tags = [];
-            
-            if (!html || !filename) return ['coffee'];
-            
-            const content = html.toLowerCase();
-            
-            // Vietnamese coffee terms mapping
-            const termMap = {
-                'brewing': ['pha chế', 'pha cà phê', 'cách pha', 'brewing', 'drip', 'pour over'],
-                'equipment': ['máy pha', 'phin', 'espresso machine', 'grinder', 'dụng cụ', 'thiết bị'],
-                'origin': ['nguồn gốc', 'xuất xứ', 'vùng trồng', 'origin', 'farm', 'plantation'],
-                'vietnamese': ['việt nam', 'vietnamese', 'vn coffee', 'cà phê việt'],
-                'arabica': ['arabica'],
-                'robusta': ['robusta'],
-                'specialty': ['specialty', 'đặc biệt', 'cao cấp', 'premium'],
-                'culture': ['văn hóa', 'culture', 'truyền thống', 'tradition'],
-                'health': ['sức khỏe', 'health', 'lợi ích', 'benefit'],
-                'review': ['đánh giá', 'review', 'tasting', 'thử'],
-                'tips': ['mẹo', 'tips', 'bí quyết', 'hướng dẫn', 'cách'],
-                'cold': ['cold brew', 'cà phê lạnh', 'iced coffee', 'lạnh'],
-                'latte': ['latte', 'sữa'],
-                'espresso': ['espresso'],
-                'phin': ['phin'],
-                'bảo quản cà phê': ['bảo quản', 'lưu trữ', 'storage'],
-                'rang cà phê': ['rang', 'roast', 'roasting'],
-                'light roast': ['rang nhẹ', 'light roast'],
-                'medium roast': ['rang vừa', 'medium roast'],
-                'dark roast': ['rang đậm', 'dark roast']
-            };
-            
-            // Analyze filename first
-            const filenameLower = filename.toLowerCase();
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                if (terms.some(term => filenameLower.includes(term))) {
-                    tags.push(tag);
-                }
-            });
-            
-            // Analyze content
-            Object.entries(termMap).forEach(([tag, terms]) => {
-                const score = terms.reduce((acc, term) => {
-                    const matches = (content.match(new RegExp(term, 'g')) || []).length;
-                    return acc + matches;
-                }, 0);
-                
-                if (score >= 2 || (score >= 1 && terms.some(term => filenameLower.includes(term)))) {
-                    if (!tags.includes(tag)) {
-                        tags.push(tag);
-                    }
-                }
-            });
-            
-            // Always include 'coffee' as base tag if no other tags found
-            if (tags.length === 0) {
-                tags.push('coffee');
-            }
-            
-            return tags;
-        }
-
-        // Extract first image URL from HTML content (enhanced)
-        function extractFirstImage(html) {
-            if (!html) return null;
-            
-            const patterns = [
-                /<meta\s+property="og:image"\s+content="([^"]+)"/i,
-                /<meta\s+name="twitter:image"\s+content="([^"]+)"/i,
-                /<img[^>]+src="([^"]+)"[^>]*>/i,
-                /background(-image)?\s*:\s*url\(['"]?([^'"]+)['"]?\)/i,
-                /\.hero-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i,
-                /\.content-image[^}]*background[^}]*url\(['"]?([^'"]+)['"]?\)/i
-            ];
-
-            for (const pattern of patterns) {
-                const match = html.match(pattern);
-                if (match) {
-                    let imageUrl = match[1] || match[2] || match[3];
-                    if (imageUrl) {
-                        imageUrl = imageUrl.trim();
-                        if (isValidImageUrl(imageUrl)) {
-                            return imageUrl;
-                        }
-                    }
-                }
-            }
-            
-            return null;
-        }
-
-        // Get appropriate emoji for tags
-        function getEmojiForTags(tags) {
-            if (!Array.isArray(tags)) return '📄';
-            
-            const emojiMap = {
-                'brewing': '☕',
-                'tips': '💡', 
-                'culture': '🏛️',
-                'origin': '🌱',
-                'review': '⭐',
-                'equipment': '⚙️',
-                'coffee': '☕',
-                'latte': '🥛',
-                'espresso': '🇮🇹',
-                'cold': '🧊',
-                'health': '💪',
-                'specialty': '⭐',
-                'vietnamese': '🇻🇳',
-                'arabica': '🌿',
-                'robusta': '💪',
-                'phin': '☕',
-                'bảo quản cà phê': '📦',
-                'rang cà phê': '🔥',
-                'light roast': '🌅',
-                'medium roast': '☀️',
-                'dark roast': '🌚'
-            };
-            
-            for (const tag of tags) {
-                if (tag && emojiMap[tag.toLowerCase()]) {
-                    return emojiMap[tag.toLowerCase()];
-                }
-            }
-            
-            return '📄';
-        }
-
-        // ====================================================================
-        // 📖 POST LOADING FUNCTIONS (ENHANCED)
-        // ====================================================================
-
-        // Load metadata from individual post file (enhanced with error handling)
-        async function loadPostMetadata(filepath, id) {
-            try {
-                console.log(`📄 Loading post: ${filepath}`);
-                
-                const response = await fetch(filepath);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-                }
-                
-                const html = await response.text();
-                const filename = filepath.split('/').pop();
-                const metadata = parsePostMetadata(html, filename);
-                
-                // Extract Shopee products from this post
-                const shopeeProducts = extractShopeeProducts(html, metadata.title);
-                
-                return {
-                    id: id,
-                    title: escapeHtml(metadata.title),
-                    excerpt: escapeHtml(metadata.excerpt),
-                    tags: metadata.tags || ['coffee'],
-                    date: metadata.date,
-                    readTime: escapeHtml(metadata.readTime),
-                    image: metadata.image,
-                    imageType: metadata.imageType,
-                    link: sanitizeUrl(filepath) || filepath,
-                    shopeeProducts: shopeeProducts
-                };
-            } catch (error) {
-                console.error(`❌ Error loading ${filepath}:`, error);
-                return null;
-            }
-        }
-
-        // Load posts from manual list (enhanced)
-        async function loadManualPosts() {            
-            if (!Array.isArray(manualPosts) || manualPosts.length === 0) {
-                console.log('📝 No manual posts configured');
-                return [];
-            }
-            
-            const posts = [];
-            console.log(`📚 Loading ${manualPosts.length} manual posts...`);
-            
-            const loadPromises = manualPosts.map(async (filename, index) => {
-                try {
-                    if (!filename || typeof filename !== 'string') {
-                        console.warn(`⚠️ Invalid filename at index ${index}:`, filename);
-                        return null;
-                    }
-                    
-                    const postData = await loadPostMetadata(POSTS_FOLDER + filename, index + 1);
-                    if (postData) {
-                        console.log(`✅ Loaded: ${postData.title}`);
-                        return postData;
-                    }
-                    return null;
-                } catch (error) {
-                    console.error(`❌ Failed to load: ${filename}`, error);
-                    return null;
-                }
-            });
-            
-            const results = await Promise.all(loadPromises);
-            const validPosts = results.filter(post => post !== null);
-            
-            console.log(`📊 Successfully loaded ${validPosts.length}/${manualPosts.length} posts`);
-            return validPosts;
-        }
-
-        // ====================================================================
-        // 🎨 RENDERING FUNCTIONS (ENHANCED)
-        // ====================================================================
-
-        // Render featured post (first/newest post) with security enhancements
-        function renderFeaturedPost() {
-            if (!DOM.featuredPost) return;
-            
-            if (!Array.isArray(filteredPosts) || filteredPosts.length === 0) {
-                DOM.featuredPost.innerHTML = `
-                    <div class="featured-content">
-                        <div class="no-results">
-                            <div class="no-results-icon">📝</div>
-                            <h3>Chưa có bài viết nổi bật</h3>
-                            <p>Hãy thêm bài viết để hiển thị ở đây</p>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
-            const post = filteredPosts[0];
-            if (!post) return;
-
-            const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
-                `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
-                escapeHtml(post.image || '📄');
-
-            DOM.featuredPost.innerHTML = `
-                <div class="featured-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
-                    ${imageContent}
-                </div>
-                <div class="featured-content">
-                    <div class="featured-meta">
-                        <span class="featured-date">${escapeHtml(formatDate(post.date))}</span>
-                        <span class="featured-reading-time">
-                            📖 ${post.readTime || '5 phút đọc'}
-                        </span>
-                    </div>
-                    <h2 class="featured-title">
-                        <a href="${escapeHtml(post.link)}">${post.title}</a>
-                    </h2>
-                    <p class="featured-excerpt">${post.excerpt}</p>
-                    <div class="featured-tags">
-                        ${Array.isArray(post.tags) ? post.tags.map(tag => 
-                            `<span class="featured-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
-                        ).join('') : ''}
-                    </div>
-                </div>
-            `;
-
-            // Add click handlers for featured tags
-            DOM.featuredPost.querySelectorAll('.featured-tag').forEach(tag => {
-                tag.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const tagValue = tag.dataset.tag;
-                    if (tagValue) {
-                        filterByTag(tagValue);
-                    }
-                });
-            });
-        }
-
-        // Render posts grid (excluding featured post) with security enhancements
-        function renderPosts() {
-            if (!DOM.postsGrid || !DOM.noResults || !DOM.pagination) return;
-            
-            const startIndex = currentFilter === 'all' && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? 1 : 0;
-            const postsToShow = Array.isArray(filteredPosts) ? filteredPosts.slice(startIndex) : [];
-            
-            // Calculate pagination
-            totalPages = Math.ceil(postsToShow.length / POSTS_PER_PAGE);
-            const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
-            const endIdx = startIdx + POSTS_PER_PAGE;
-            const currentPosts = postsToShow.slice(startIdx, endIdx);
-
-            if (currentPosts.length === 0 && startIndex === 0) {
-                DOM.postsGrid.style.display = 'none';
-                DOM.noResults.style.display = 'block';
-                DOM.pagination.style.display = 'none';
-                return;
-            }
-
-            DOM.postsGrid.style.display = 'grid';
-            DOM.noResults.style.display = 'none';
-
-            DOM.postsGrid.innerHTML = currentPosts.map(post => {
-                if (!post) return '';
-                
-                const imageContent = post.imageType === 'image' && isValidImageUrl(post.image) ? 
-                    `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" onerror="this.parentElement.innerHTML='${getEmojiForTags(post.tags)}'; this.parentElement.classList.add('emoji');">` : 
-                    escapeHtml(post.image || '📄');
-
-                return `
-                    <article class="post-card fade-in">
-                        <div class="post-image ${post.imageType === 'emoji' ? 'emoji' : ''}">
-                            ${imageContent}
-                        </div>
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <span class="post-date">${escapeHtml(formatDate(post.date))}</span>
-                                <span class="post-reading-time">
-                                    📖 ${post.readTime || '5 phút đọc'}
-                                </span>
-                            </div>
-                            <h2 class="post-title">
-                                <a href="${escapeHtml(post.link)}">${post.title}</a>
-                            </h2>
-                            <p class="post-excerpt">${post.excerpt}</p>
-                            <div class="post-tags">
-                                ${Array.isArray(post.tags) ? post.tags.map(tag => 
-                                    `<span class="post-tag" data-tag="${escapeHtml(tag)}">${escapeHtml(getDisplayName(tag))}</span>`
-                                ).join('') : ''}
-                            </div>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-
-            // Add click handlers for post tags
-            DOM.postsGrid.querySelectorAll('.post-tag').forEach(tag => {
-                tag.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const tagValue = tag.dataset.tag;
-                    if (tagValue) {
-                        filterByTag(tagValue);
-                    }
-                });
-            });
-
-            // Update pagination
-            updatePagination();
-        }
-
-        // ====================================================================
-        // 🎯 FILTER & SEARCH FUNCTIONS (ENHANCED)
-        // ====================================================================
-
-        // Generate dynamic filter options with caching
         function generateFilterOptions() {
             if (!Array.isArray(allPosts) || !DOM.filterOptions) return;
             
@@ -2314,7 +2333,6 @@
                 Array.isArray(post.tags) ? post.tags : []
             ))].filter(Boolean);
             
-            // Keep the "Tất cả" option and add dynamic options
             DOM.filterOptions.innerHTML = '<div class="filter-option selected" data-tag="all">Tất cả</div>';
             
             allTags.sort().forEach(tag => {
@@ -2328,11 +2346,9 @@
                 }
             });
             
-            // Attach event listeners
             attachFilterOptionListeners();
         }
 
-        // Get display name for tags (enhanced)
         function getDisplayName(tag) {
             if (!tag || typeof tag !== 'string') return 'Không rõ';
             
@@ -2354,28 +2370,16 @@
                 'espresso': 'Espresso',
                 'phin': 'Phin',
                 'bảo quản cà phê': 'Bảo quản cà phê',
-                'cách bảo quản cà phê': 'Cách bảo quản',
-                'cà phê hạt': 'Cà phê hạt',
-                'cà phê xay': 'Cà phê xay',
-                'hướng dẫn cà phê': 'Hướng dẫn',
                 'rang cà phê': 'Rang cà phê',
-                'các mức rang cà phê': 'Các mức rang',
                 'light roast': 'Light roast',
                 'medium roast': 'Medium roast', 
-                'dark roast': 'Dark roast',
-                'hương vị cà phê': 'Hương vị',
-                'arabica vs robusta': 'Arabica vs Robusta',
-                'sự khác nhau arabica robusta': 'So sánh Arabica Robusta',
-                'phân biệt arabica robusta': 'Phân biệt loại hạt',
-                'cà phê arabica': 'Cà phê Arabica',
-                'cà phê robusta': 'Cà phê Robusta'
+                'dark roast': 'Dark roast'
             };
             
             const lowerTag = tag.toLowerCase();
             return displayNames[lowerTag] || (tag.charAt(0).toUpperCase() + tag.slice(1));
         }
 
-        // Attach filter option listeners with enhanced error handling
         function attachFilterOptionListeners() {
             if (!DOM.filterOptions) return;
             
@@ -2385,22 +2389,18 @@
                     try {
                         e.preventDefault();
                         
-                        // Update selected option
                         filterOptionElements.forEach(o => o.classList.remove('selected'));
                         option.classList.add('selected');
                         
-                        // Update dropdown display
                         if (DOM.selectedFilter) {
                             DOM.selectedFilter.textContent = option.textContent || 'Tất cả';
                         }
                         
-                        // Hide dropdown
                         if (DOM.filterOptions && DOM.filterDropdown) {
                             DOM.filterOptions.classList.remove('show');
                             DOM.filterDropdown.classList.remove('active');
                         }
                         
-                        // Filter posts
                         const tagValue = option.dataset.tag;
                         if (tagValue) {
                             filterByTag(tagValue);
@@ -2412,15 +2412,12 @@
             });
         }
 
-        // Filter by tag with caching
         function filterByTag(tag) {
             if (!tag || typeof tag !== 'string') return;
             
-            // Reset page and apply filter
             currentPage = 1;
             currentFilter = tag;
             
-            // Use cached result if available
             const cacheKey = `${tag}_${DOM.searchInput?.value || ''}`;
             if (filterCache.has(cacheKey)) {
                 filteredPosts = filterCache.get(cacheKey);
@@ -2432,13 +2429,11 @@
             }
         }
 
-        // Handle search with enhanced debouncing and validation
         function handleSearch(query = '') {
             if (typeof query !== 'string') query = '';
             
             const sanitizedQuery = query.toLowerCase().trim();
             
-            // Sync search inputs
             if (DOM.searchInput && DOM.mobileSearchInput) {
                 if (DOM.searchInput.value !== query) DOM.searchInput.value = query;
                 if (DOM.mobileSearchInput.value !== query) DOM.mobileSearchInput.value = query;
@@ -2447,7 +2442,6 @@
             filterPosts(sanitizedQuery);
         }
 
-        // Main filter function with caching and performance optimization
         function filterPosts(searchQuery = '') {
             if (!Array.isArray(allPosts)) {
                 filteredPosts = [];
@@ -2460,7 +2454,6 @@
             
             showLoading();
             
-            // Use cache if available
             const cacheKey = `${currentFilter}_${searchQuery}`;
             if (filterCache.has(cacheKey)) {
                 filteredPosts = filterCache.get(cacheKey);
@@ -2488,16 +2481,13 @@
                         return matchesTag && matchesSearch;
                     });
 
-                    // Cache result
                     filterCache.set(cacheKey, [...filteredPosts]);
                     
-                    // Limit cache size
                     if (filterCache.size > 50) {
                         const firstKey = filterCache.keys().next().value;
                         filterCache.delete(firstKey);
                     }
 
-                    // Reset to first page when filtering
                     currentPage = 1;
                     
                 } catch (error) {
@@ -2508,15 +2498,15 @@
                     renderFeaturedPost();
                     renderPosts();
                     updateStats();
+                    renderShopeeProducts(); // Update Shopee products when filtering
                 }
-            }, 300);
+            }, 100);
         }
 
         // ====================================================================
-        // 📄 PAGINATION FUNCTIONS (ENHANCED)
+        // 📄 PAGINATION & UI UTILITIES
         // ====================================================================
 
-        // Update pagination UI with error handling
         function updatePagination() {
             if (!DOM.pagination || !DOM.prevBtn || !DOM.nextBtn || !DOM.paginationInfo) return;
             
@@ -2536,7 +2526,6 @@
             }
         }
 
-        // Go to previous page with validation
         function goToPrevPage() {
             if (currentPage > 1) {
                 currentPage--;
@@ -2545,7 +2534,6 @@
             }
         }
 
-        // Go to next page with validation
         function goToNextPage() {
             if (currentPage < totalPages) {
                 currentPage++;
@@ -2554,11 +2542,6 @@
             }
         }
 
-        // ====================================================================
-        // 🎛️ UI UTILITY FUNCTIONS (ENHANCED)
-        // ====================================================================
-
-        // Update statistics with error handling
         function updateStats() {
             try {
                 if (DOM.totalPostsEl) {
@@ -2577,7 +2560,6 @@
             }
         }
 
-        // Show loading state
         function showLoading() {
             if (DOM.loading) DOM.loading.style.display = 'block';
             if (DOM.postsGrid) DOM.postsGrid.style.display = 'none';
@@ -2585,12 +2567,10 @@
             if (DOM.pagination) DOM.pagination.style.display = 'none';
         }
 
-        // Hide loading state
         function hideLoading() {
             if (DOM.loading) DOM.loading.style.display = 'none';
         }
 
-        // Format date for display with validation
         function formatDate(dateString) {
             try {
                 if (!dateString) return 'Không rõ';
@@ -2617,7 +2597,6 @@
             }
         }
 
-        // Debounce utility function
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -2631,10 +2610,9 @@
         }
 
         // ====================================================================
-        // 🚀 INITIALIZATION & EVENT LISTENERS (ENHANCED)
+        // 🚀 INITIALIZATION & EVENT LISTENERS (IMPROVED)
         // ====================================================================
 
-        // Initialize the blog with comprehensive error handling
         async function initializePosts() {
             console.log('🚀 Initializing Anaro Coffee Blog...');
             showLoading();
@@ -2646,13 +2624,8 @@
                 extractedShopeeProducts = [];
                 filterCache.clear();
                 
-                if (AUTO_SCAN) {
-                    console.log('🔍 Auto-scanning posts folder...');
-                    allPosts = await scanPostsFolder();
-                } else {
-                    console.log('📋 Loading manual posts list...');
-                    allPosts = await loadManualPosts();
-                }
+                console.log('📋 Loading manual posts list...');
+                allPosts = await loadManualPosts();
                 
                 // Ensure allPosts is an array
                 if (!Array.isArray(allPosts)) {
@@ -2682,7 +2655,6 @@
             }
         }
 
-        // Setup all event listeners with enhanced error handling
         function setupEventListeners() {
             try {
                 // Search functionality with debouncing
@@ -2794,11 +2766,47 @@
             }
         }
 
+        function handleWindowResize() {
+            const wasMobile = isMobile;
+            checkIfMobile();
+            
+            if (wasMobile !== isMobile) {
+                renderShopeeProducts();
+            }
+        }
+
+        function initShopeeWidget() {
+            // Expose functions to global scope
+            window.nextProduct = nextProduct;
+            window.prevProduct = prevProduct;
+            window.goToProduct = goToProduct;
+            window.refreshDesktopProducts = refreshDesktopProducts;
+            
+            // Add keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (isMobile) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        prevProduct();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        nextProduct();
+                    }
+                }
+            });
+            
+            // Add resize listener
+            const debouncedResize = debounce(handleWindowResize, 300);
+            window.addEventListener('resize', debouncedResize);
+            
+            console.log('🛒 Shopee Widget initialized');
+        }
+
         // ====================================================================
         // 🎬 MAIN EXECUTION
         // ====================================================================
 
-        // Auto-initialize Shopee widget when DOM is ready
+        // Initialize Shopee widget when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initShopeeWidget);
         } else {
@@ -2825,20 +2833,31 @@
             console.error('💥 Unhandled promise rejection:', e.reason);
         });
 
-        // Make ShopeeWidget available globally
-        const ShopeeWidget = {
-            render: renderShopeeProducts,
-            extract: extractShopeeProducts,
-            process: processShopeeProducts,
-            init: initShopeeWidget,
-            config: SHOPEE_CONFIG
-        };
-
-        if (typeof window !== 'undefined') {
-            window.ShopeeWidget = ShopeeWidget;
-        }
-
-        console.log('☕ Anaro Coffee Blog with Shopee Widget loaded successfully!');
+        console.log('☕ Anaro Coffee Blog with improved Shopee Widget loaded successfully!');
     </script>
-</body>
-</html>
+
+s {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .shopee-product-image {
+                height: 200px;
+                font-size: 4em;
+            }
+
+            .shopee-widget {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .shopee-widget h3 {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+
+            .shopee-product-info {
+                padding: 15px;
+            }
+
+            .shopee-product</body></html>
