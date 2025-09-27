@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home page -->
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/checkout.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/espresso-only.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/faq.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/giasi.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/index-cart.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/wholesale.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog index -->
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/arabica-robusta-blog.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/bai-viet-dau-tien.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/cac-muc-rang-ca-phe.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/cach-bao-quan-ca-phe.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/cach-chon-hat-ca-phe-danh-cho-pha-may.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/cach-pha-ca-phe-phin.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anarocafe-vert.vercel.app/blog/posts/caffein-cold-brew-ca-phe.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
