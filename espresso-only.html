@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espresso Seasons Collection - ANARO Coffee</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Khám phá Espresso Seasons Collection từ ANARO Coffee với August Special Blend và July Special Blend - hai dòng espresso cao cấp được chế biến đặc biệt cho máy pha espresso.">
+    <meta name="keywords" content="ANARO Coffee, Espresso Seasons, August Special Blend, July Special Blend, espresso blend, cà phê espresso cao cấp">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Espresso Seasons Collection - ANARO Coffee">
+    <meta property="og:description" content="Bộ sưu tập espresso đặc biệt với August và July Special Blend">
+    <meta property="og:type" content="website">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProductCollection",
+      "name": "Espresso Seasons Collection",
+      "description": "Bộ sưu tập espresso đặc biệt từ ANARO Coffee",
+      "brand": {
+        "@type": "Brand",
+        "name": "ANARO Coffee"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "August Special Blend",
+            "description": "Espresso blend đậm đà cân bằng với độ ngọt tự nhiên"
+          },
+          "price": "105000",
+          "priceCurrency": "VND"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "July Special Blend", 
+            "description": "Espresso blend mạnh mẽ với aftertaste kéo dài"
+          },
+          "price": "110000",
+          "priceCurrency": "VND"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #6b3f25;
+            --secondary: #a47148;
+            --bg: #f6efe9;
+            --text: #2a221d;
+            --light: #f8ebdd;
+            --border: #e9d7c5;
+            --white: #ffffff;
+            --radius: 16px;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-title {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-title {
+            color: var(--secondary);
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .collection-subtitle {
+            color: var(--text);
+            font-size: 1.25rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .collection-description {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-header {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .seasonal-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .august-indicator {
+            background: linear-gradient(45deg, #ff7b54, #ff9068);
+        }
+
+        .july-indicator {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .product-content {
+            padding: 2rem;
+        }
+
+        .product-title {
+            color: var(--primary);
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-tagline {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        .flavor-profile {
+            margin-bottom: 1.5rem;
+        }
+
+        .flavor-profile h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flavor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .flavor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.75rem;
+            background: var(--light);
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .flavor-item:hover {
+            background: var(--border);
+        }
+
+        .flavor-label {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+
+        .flavor-value {
+            color: var(--secondary);
+            font-weight: 500;
+            text-align: right;
+            font-size: 0.85rem;
+            flex: 1;
+            margin-left: 0.5rem;
+        }
+
+        .brewing-methods {
+            margin-bottom: 1.5rem;
+        }
+
+        .brewing-methods h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .method-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .method-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: var(--light);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .method-item:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .method-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .method-rating {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .method-item:hover .method-rating {
+            color: var(--white);
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, var(--light), var(--white));
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--border);
+        }
+
+        .pricing-section h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .pricing-options {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .price-chip {
+            background: var(--white);
+            border: 3px solid var(--border);
+            border-radius: 20px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-chip:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .price-weight {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .price-amount {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: var(--light);
+            color: var(--primary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .collection-footer {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .footer-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .brand-title {
+                font-size: 2rem;
+            }
+
+            .collection-title {
+                font-size: 2.25rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .flavor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .pricing-options {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-chip {
+                min-width: 200px;
+            }
+
+            .footer-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .product-header {
+                height: 220px;
+            }
+
+            .product-content {
+                padding: 1.5rem;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="brand-title">☕ ANARO COFFEE</h1>
+            <h2 class="collection-title">Espresso Seasons</h2>
+            <p class="collection-subtitle">
+                Bộ sưu tập espresso đặc biệt được chế biến tỉ mỉ, dành riêng cho những tín đồ yêu thích espresso chính hiệu
+            </p>
+            <div class="collection-description">
+                <strong>Tại sao chọn Espresso Seasons?</strong> Hai blend này được thiết kế đặc biệt để tạo ra crema hoàn hảo, thân vị đậm đà và aftertaste kéo dài. Chỉ sử dụng Arabica cao cấp kết hợp Robusta Honey process, rang Full City để tối ưu cho máy espresso.
+            </div>
+        </header>
+
+        <!-- Products Grid -->
+        <main class="products-grid">
+            
+            <!-- August Special Blend -->
+            <article class="product-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=400&fit=crop&auto=format" 
+                         alt="August Special Blend - Cà phê espresso cân bằng" class="product-image">
+                    <div class="product-badge">Espresso Only</div>
+                    <div class="seasonal-indicator august-indicator">AUG</div>
+                </div>
+                
+                <div class="product-content">
+                    <h3 class="product-title">August Special Blend</h3>
+                    
+                    <div class="product-tagline">
+                        <strong>Dành cho:</strong> Những ai tìm kiếm sự cân bằng hoàn hảo giữa độ đậm và ngọt tự nhiên, thích hợp uống hàng ngày
+                    </div>
+
+                    <div class="flavor-profile">
+                        <h4>🌟 Hồ sơ hương vị</h4>
+                        <div class="flavor-grid">
+                            <div class="flavor-item">
+                                <span class="flavor-label">Thân vị</span>
+                                <span class="flavor-value">Đậm đà, cân bằng</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Hương thơm</span>
+                                <span class="flavor-value">Chocolate đen, caramel</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Crema</span>
+                                <span class="flavor-value">Dày, màu nâu đỏ</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Vị chua</span>
+                                <span class="flavor-value">Nhẹ nhàng, dễ chịu</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Vị đắng</span>
+                                <span class="flavor-value">Cân bằng, không gắt</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Aftertaste</span>
+                                <span class="flavor-value">Ngọt chocolate, khói nhẹ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brewing-methods">
+                        <h4>☕ Phương pháp pha khuyên dùng</h4>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>☕</span>
+                                    <span>Espresso Shot</span>
+                                </div>
+                                <span class="method-rating">★★★</span>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>🥛</span>
+                                    <span>Cappuccino/Latte</span>
+                                </div>
+                                <span class="method-rating">★★★</span>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>🧊</span>
+                                    <span>Iced Americano</span>
+                                </div>
+                                <span class="method-rating">★★★</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-section">
+                        <h4>💰 Bảng giá & Kích cỡ</h4>
+                        <div class="pricing-options">
+                            <div class="price-chip">
+                                <span class="price-weight">250g</span>
+                                <span class="price-amount">105.000đ</span>
+                            </div>
+                            <div class="price-chip">
+                                <span class="price-weight">500g</span>
+                                <span class="price-amount">220.000đ</span>
+                            </div>
+                            <div class="price-chip">
+                                <span class="price-weight">1kg</span>
+                                <span class="price-amount">370.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="#" class="btn btn-primary">🛒 Đặt mua ngay</a>
+                        <a href="#" class="btn btn-secondary">💬 Tư vấn</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- July Special Blend -->
+            <article class="product-card">
+                <div class="product-header">
+                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=400&fit=crop&auto=format" 
+                         alt="July Special Blend - Cà phê espresso mạnh mẽ" class="product-image">
+                    <div class="product-badge">Espresso Only</div>
+                    <div class="seasonal-indicator july-indicator">JUL</div>
+                </div>
+                
+                <div class="product-content">
+                    <h3 class="product-title">July Special Blend</h3>
+                    
+                    <div class="product-tagline">
+                        <strong>Dành cho:</strong> Những ai yêu thích espresso truyền thống với độ đậm mạnh và aftertaste kéo dài
+                    </div>
+
+                    <div class="flavor-profile">
+                        <h4>🌟 Hồ sơ hương vị</h4>
+                        <div class="flavor-grid">
+                            <div class="flavor-item">
+                                <span class="flavor-label">Thân vị</span>
+                                <span class="flavor-value">Mạnh mẽ, body dày đặc</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Hương thơm</span>
+                                <span class="flavor-value">Nướng, chocolate đắng</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Crema</span>
+                                <span class="flavor-value">Rất dày, màu nâu sậm</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Vị chua</span>
+                                <span class="flavor-value">Tinh tế, hòa quyện</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Vị đắng</span>
+                                <span class="flavor-value">Đặc trưng espresso</span>
+                            </div>
+                            <div class="flavor-item">
+                                <span class="flavor-label">Aftertaste</span>
+                                <span class="flavor-value">Khói, chocolate đắng</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brewing-methods">
+                        <h4>☕ Phương pháp pha khuyên dùng</h4>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>☕</span>
+                                    <span>Espresso Shot</span>
+                                </div>
+                                <span class="method-rating">★★★</span>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>🥛</span>
+                                    <span>Cappuccino/Latte</span>
+                                </div>
+                                <span class="method-rating">★★★</span>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-name">
+                                    <span>🧊</span>
+                                    <span>Iced Americano</span>
+                                </div>
+                                <span class="method-rating">★★☆</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-section">
+                        <h4>💰 Bảng giá & Kích cỡ</h4>
+                        <div class="pricing-options">
+                            <div class="price-chip">
+                                <span class="price-weight">250g</span>
+                                <span class="price-amount">110.000đ</span>
+                            </div>
+                            <div class="price-chip">
+                                <span class="price-weight">500g</span>
+                                <span class="price-amount">230.000đ</span>
+                            </div>
+                            <div class="price-chip">
+                                <span class="price-weight">1kg</span>
+                                <span class="price-amount">390.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="#" class="btn btn-primary">🛒 Đặt mua ngay</a>
+                        <a href="#" class="btn btn-secondary">💬 Tư vấn</a>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="collection-footer">
+            <div class="footer-content">
+                <h3 class="footer-title">Tại sao chọn Espresso Seasons?</h3>
+                <p class="footer-text">
+                    Mỗi blend trong bộ sưu tập được nghiên cứu và chế biến đặc biệt để tối ưu hóa cho máy espresso. 
+                    Từ việc lựa chọn tỷ lệ Arabica/Robusta, mức độ rang, đến quá trình honey process - 
+                    tất cả nhằm tạo ra những shot espresso hoàn hảo với crema dày, hương vị đậm đà và aftertaste kéo dài.
+                </p>
+                <div class="footer-cta">
+                    <a href="#" class="btn btn-primary">🏠 Về trang chủ ANARO</a>
+                    <a href="#" class="btn btn-secondary">📞 Liên hệ tư vấn</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for internal links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation delay for cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Price chip selection effect
+            const priceChips = document.querySelectorAll('.price-chip');
+            priceChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    // Remove active class from siblings
+                    const parent = this.parentNode;
+                    parent.querySelectorAll('.price-chip').forEach(c => c.classList.remove('active'));
+                    // Add active class to clicked chip
+                    this.classList.add('active');
+                });
+            });
+
+            // Method items hover effect
+            const methodItems = document.querySelectorAll('.method-item');
+            methodItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(8px) scale(1.02)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+
+            // Lazy loading for images
+            const images = document.querySelectorAll('img');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
+
+        // Add click tracking for analytics
+        function trackProductInteraction(product, action) {
+            console.log(`Product: ${product}, Action: ${action}`);
+            // Add your analytics tracking here
+            // gtag('event', action, { product_name: product });
+        }
+
+        // Enhanced button interactions
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const product = this.closest('.product-card').querySelector('.product-title').textContent;
+                trackProductInteraction(product, 'add_to_cart_click');
+                
+                // Add visual feedback
+                const originalText = this.textContent;
+                this.textContent = '✅ Đã thêm vào giỏ!';
+                this.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
